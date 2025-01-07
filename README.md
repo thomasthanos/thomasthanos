@@ -1,16 +1,77 @@
-## Hi there 👋
+<div align="center">
+  <img height="200" src="https://i.postimg.cc/jSrhnxX5/banner-github-copy.png"  />
+</div>
 
-<!--
-**thomasthanos/thomasthanos** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+###
 
-Here are some ideas to get you started:
+<h2 align="center">Discord Themes: Crafted by Thomas, Approved by SpongeBob at 04:00 AM UTC!</h2>
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+###
+
+<p align="left">🛠️ Currently working on my own app<br>I’m diving into the art of app development, crafting something exciting and unique!<br><br>🍔 Lover of coding, food, and a sprinkle of chaos<br>I enjoy creating all sorts of programs, indulging in delicious meals, and occasionally stirring up some friendly discord. 😜<br><br>💻 Learning CSS, HTML, and C#<br>Expanding my skills and tackling new challenges—because why not add more tools to my coding arsenal?</p>
+
+###
+
+<h3 align="left">Programming Languages I Know ↓↓</h3>
+
+###
+
+<div align="left">
+  <img src="https://skillicons.dev/icons?i=pr" height="37" alt="adobepremierepro logo"  />
+  <img width="14" />
+  <img src="https://skillicons.dev/icons?i=ps" height="37" alt="adobephotoshop logo"  />
+  <img width="14" />
+  <img src="https://skillicons.dev/icons?i=discord" height="37" alt="discord logo"  />
+  <img width="14" />
+  <img src="https://skillicons.dev/icons?i=bots" height="37" alt="abbrobotstudio logo"  />
+  <img width="14" />
+  <img src="https://skillicons.dev/icons?i=vscode" height="37" alt="vscode logo"  />
+  <img width="14" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg" height="37" alt="trello logo"  />
+  <img width="14" />
+  <img src="https://skillicons.dev/icons?i=css" height="37" alt="css3 logo"  />
+  <img width="14" />
+  <img src="https://skillicons.dev/icons?i=replit" height="37" alt="replit logo"  />
+  <img width="14" />
+  <img src="https://skillicons.dev/icons?i=github" height="37" alt="github logo"  />
+  <img width="14" />
+  <img src="https://skillicons.dev/icons?i=html" height="37" alt="html5 logo"  />
+  <img width="14" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="37" alt="javascript logo"  />
+  <img width="14" />
+  <img src="https://skillicons.dev/icons?i=visualstudio" height="37" alt="visualstudio logo"  />
+  <img width="14" />
+  <img src="https://skillicons.dev/icons?i=cs" height="37" alt="csharp logo"  />
+  <img width="14" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gimp/gimp-original.svg" height="37" alt="gimp logo"  />
+  <img width="14" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" height="37" alt="git logo"  />
+  <img width="14" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/filezilla/filezilla-plain.svg" height="37" alt="filezilla logo"  />
+  <img width="14" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg" height="37" alt="chrome logo"  />
+  <img width="14" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-plain.svg" height="37" alt="facebook logo"  />
+  <img width="14" />
+  <img src="https://skillicons.dev/icons?i=instagram" height="37" alt="instagram logo"  />
+</div>
+
+###
+
+<div align="center">
+  <a href="https://open.spotify.com/user/5mzpusyea4zcmevbljg1oh3gy">
+    <img src="https://spotify-recently-played-readme.vercel.app/api?user=5mzpusyea4zcmevbljg1oh3gy&count=3&unique=false" alt="Spotify recently played"  />
+  </a>
+</div>
+
+###
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=thomasthanos&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=bear&hide_border=false&order=2" height="180" alt="languages graph"  />
+</div>
+
+###
+
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/output/snake.svg" alt="Snake animation" />
+
+###
