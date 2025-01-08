@@ -1,5 +1,5 @@
 <div align="center">
-  <img height="200" src="https://i.postimg.cc/d0dZDPfw/banner-gthub-copy.png"  />
+  <img height="200" src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/main/photos/banner_gthub_copy.png"  />
 </div>
 
 ###
