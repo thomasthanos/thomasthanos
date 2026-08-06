@@ -94,7 +94,9 @@ def render_stats(s):
     cells = [(human(s["repos"]), "repos"), (human(s["stars"]), "stars"),
              (human(s["forks"]), "forks"), (human(s["commits"]), "commits"),
              (human(s["contribs"]), "contributions")]
-    H, R, PADX, VFS, LFS, GAP = 90.0, 16.0, 26.0, 23.0, 11.2, 34.0
+    # Kept narrow enough that this and the languages card sit side by side
+    # inside GitHub's ~860px content column instead of stacking.
+    H, R, PADX, VFS, LFS, GAP = 84.0, 16.0, 18.0, 21.0, 10.4, 22.0
     m = []
     for v, l in cells:
         vd, vw = text_path(v, F_BOLD, VFS, -0.2)
@@ -105,11 +107,11 @@ def render_stats(s):
     parts, x = [], PADX
     for i, ((v, l), (vd, vw, ld, lw)) in enumerate(zip(cells, m)):
         cx = x + colw[i] / 2
-        parts.append(f'<rect x="{cx-14:.2f}" y="16" width="28" height="2.6" rx="1.3" fill="{MINT}" opacity=".85"/>')
-        parts.append(f'<g transform="translate({cx-vw/2:.2f},48)" fill="#ffffff">{vd}</g>')
-        parts.append(f'<g transform="translate({cx-lw/2:.2f},69)" fill="{MUTED}">{ld}</g>')
+        parts.append(f'<rect x="{cx-12:.2f}" y="15" width="24" height="2.4" rx="1.2" fill="{MINT}" opacity=".85"/>')
+        parts.append(f'<g transform="translate({cx-vw/2:.2f},45)" fill="#ffffff">{vd}</g>')
+        parts.append(f'<g transform="translate({cx-lw/2:.2f},65)" fill="{MUTED}">{ld}</g>')
         if i < len(cells) - 1:
-            parts.append(f'<path d="M{x+colw[i]+GAP/2:.2f} 26V70" stroke="#ffffff" stroke-opacity=".10" stroke-width="1"/>')
+            parts.append(f'<path d="M{x+colw[i]+GAP/2:.2f} 24V66" stroke="#ffffff" stroke-opacity=".10" stroke-width="1"/>')
         x += colw[i] + GAP
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W:.0f}" height="{H:.0f}" '
            f'viewBox="0 0 {W:.2f} {H:.0f}" role="img" aria-label="GitHub stats">\n'
@@ -121,9 +123,9 @@ def render_stats(s):
 
 # ────────────────────────────────────────────────── languages card
 def render_langs(s):
-    FS, LH, PADX, PADT, PADB = 13.4, 30.0, 26.0, 54.0, 22.0
-    BARW, BARH = 250.0, 8.0
-    title, tw = text_path("Most used languages", F_BOLD, 15.0, 0.2)
+    FS, LH, PADX, PADT, PADB = 12.6, 26.0, 18.0, 46.0, 18.0
+    BARW, BARH = 168.0, 7.0
+    title, tw = text_path("Most used languages", F_BOLD, 14.0, 0.2)
     rows = []
     for name, pct, colour in s["langs"]:
         nd, nw = text_path(name, F_MED, FS, 0)
@@ -131,17 +133,17 @@ def render_langs(s):
         rows.append((nd, nw, pd, pw, pct, colour))
     namew = max(nw for _, nw, _, _, _, _ in rows)
     pctw  = max(pw for _, _, _, pw, _, _ in rows)
-    W = PADX * 2 + namew + 16 + BARW + 16 + pctw
+    W = PADX * 2 + namew + 12 + BARW + 12 + pctw
     H = PADT + len(rows) * LH + PADB
-    parts = [f'<g transform="translate({PADX:.1f},32)" fill="#eaf2ff">{title}</g>']
+    parts = [f'<g transform="translate({PADX:.1f},28)" fill="#eaf2ff">{title}</g>']
     y = PADT
     for nd, nw, pd, pw, pct, colour in rows:
         by = y + FS * 0.355 + 2
-        bx = PADX + namew + 16
+        bx = PADX + namew + 12
         parts.append(f'<g transform="translate({PADX:.1f},{by:.2f})" fill="#dfe9f7">{nd}</g>')
         parts.append(f'<rect x="{bx:.1f}" y="{y-BARH/2-1:.2f}" width="{BARW}" height="{BARH}" rx="{BARH/2}" fill="#ffffff" fill-opacity=".07"/>')
         parts.append(f'<rect x="{bx:.1f}" y="{y-BARH/2-1:.2f}" width="{max(BARW*pct/100, BARH):.2f}" height="{BARH}" rx="{BARH/2}" fill="{colour}"/>')
-        parts.append(f'<g transform="translate({bx+BARW+16:.1f},{by:.2f})" fill="{MUTED}">{pd}</g>')
+        parts.append(f'<g transform="translate({bx+BARW+12:.1f},{by:.2f})" fill="{MUTED}">{pd}</g>')
         y += LH
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W:.0f}" height="{H:.0f}" '
            f'viewBox="0 0 {W:.2f} {H:.2f}" role="img" aria-label="Most used languages">\n'

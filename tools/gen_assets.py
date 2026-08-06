@@ -131,8 +131,8 @@ def button(fname, label, gname):
 
 
 # ══════════════════════════════════════════════════ project pills
-P_H, P_R, P_FS = 62.0, 31.0, 18.6
-P_PADL, P_ICO, P_GAP, P_PADR, P_CHEV, P_CHEVGAP = 14.0, 30.0, 14.0, 21.0, 18.0, 24.0
+P_H, P_R, P_FS = 44.0, 22.0, 15.2
+P_PADL, P_ICO, P_GAP, P_PADR, P_CHEV, P_CHEVGAP = 9.0, 24.0, 11.0, 14.0, 13.0, 16.0
 
 
 def project_width(name):
@@ -174,11 +174,11 @@ def project(fname, name, gname, accent, uniform_w=None):
   <rect x=".8" y=".8" width="{W-1.6:.2f}" height="{H-1.6:.1f}" rx="{R-.8:.1f}" fill="url(#wash)"/>
   <rect x=".8" y=".8" width="{W-1.6:.2f}" height="{H-1.6:.1f}" rx="{R-.8:.1f}" fill="url(#sheen)"/>
   <rect x=".8" y=".8" width="{W-1.6:.2f}" height="{H-1.6:.1f}" rx="{R-.8:.1f}" fill="none" stroke="url(#edge)" stroke-width="1.4"/>
-  <circle cx="{padL+ico/2:.1f}" cy="{H/2:.1f}" r="{ico/2+5:.1f}" fill="{accent}" opacity=".13"/>
+  <circle cx="{padL+ico/2:.1f}" cy="{H/2:.1f}" r="{ico/2+4:.1f}" fill="{accent}" opacity=".13"/>
   {glyph(gname, padL, (H-ico)/2, ico, halo=False, sw=1.9)}
   <g transform="translate({x_lab:.2f},{by:.2f})" fill="#eaf1fb">{lab}</g>
-  <path d="M{x_chev:.1f} {H/2-5.6:.1f}l5.6 5.6-5.6 5.6" fill="none" stroke="{accent}" stroke-opacity=".85"
-        stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M{x_chev:.1f} {H/2-4.4:.1f}l4.4 4.4-4.4 4.4" fill="none" stroke="{accent}" stroke-opacity=".85"
+        stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 '''
     write(fname, svg)

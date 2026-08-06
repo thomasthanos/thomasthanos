@@ -21,26 +21,12 @@
 Small tools that remove some stupid friction I got tired of living with. Then I keep maintaining
 them, which is the part nobody warns you about.
 
-<a href="https://github.com/thomasthanos/browser-extensions"><img src=".github/assets/link-extensions.svg" alt="browser-extensions"></a>
-
-Four Manifest V3 extensions for Chrome & Edge: NexusMods Bypass, An1me.to Tracker, Auto Liker and
-Speed Control. No trackers, no ads, no telemetry — and the full source is published so you can
-verify that instead of taking my word for it.
-
-<a href="https://github.com/thomasthanos/Make_Your_Life_Easier.A.E"><img src=".github/assets/link-mylife.svg" alt="Make_Your_Life_Easier.A.E"></a>
-
-All-in-one Windows desktop app: AES-256-GCM password manager, system tools (SFC, DISM, cleanup),
-one-click software installer, and auto-updates through GitHub Releases.
-
-<a href="https://github.com/thomasthanos/steam-idler"><img src=".github/assets/link-steam.svg" alt="steam-idler"></a>
-
-Steam achievement manager and game idler. Unlock or lock achievements, idle games, auto-invisible
-mode.
-
-<a href="https://github.com/thomasthanos/discord_package_viewer"><img src=".github/assets/link-discord.svg" alt="discord_package_viewer"></a>
-
-Turns your Discord data export into a fully offline HTML viewer: complete message history,
-statistics, charts, word cloud and live search. No server, no dependencies.
+|  |  |
+|---|---|
+| [![browser-extensions](.github/assets/link-extensions.svg)](https://github.com/thomasthanos/browser-extensions) | Four Manifest V3 extensions for Chrome & Edge: NexusMods Bypass, An1me.to Tracker, Auto Liker and Speed Control. No trackers, no ads, no telemetry — full source published so you can verify that instead of taking my word for it. |
+| [![Make_Your_Life_Easier.A.E](.github/assets/link-mylife.svg)](https://github.com/thomasthanos/Make_Your_Life_Easier.A.E) | All-in-one Windows desktop app: AES-256-GCM password manager, system tools (SFC, DISM, cleanup), one-click installer, auto-updates through GitHub Releases. |
+| [![steam-idler](.github/assets/link-steam.svg)](https://github.com/thomasthanos/steam-idler) | Steam achievement manager and game idler. Unlock or lock achievements, idle games, auto-invisible mode. |
+| [![discord_package_viewer](.github/assets/link-discord.svg)](https://github.com/thomasthanos/discord_package_viewer) | Turns your Discord data export into a fully offline HTML viewer: message history, statistics, charts, word cloud and live search. No server, no dependencies. |
 
 <img src=".github/assets/divider.svg" width="100%" alt="">
 
@@ -60,14 +46,13 @@ statistics, charts, word cloud and live search. No server, no dependencies.
 
 <div align="center">
 
-<img src=".github/assets/stats.svg" alt="GitHub stats">
-
-<img src=".github/assets/top-langs.svg" alt="Most used languages">
-
-</div>
+<img src=".github/assets/stats.svg" alt="GitHub stats" align="top">
+<img src=".github/assets/top-langs.svg" alt="Most used languages" align="top">
 
 <sub>Rendered daily from the GitHub API by a workflow in this repo — no third-party stats service,
 so it never shows up as a broken image.</sub>
+
+</div>
 
 <img src=".github/assets/divider.svg" width="100%" alt="">
 
