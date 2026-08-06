@@ -1,7 +1,8 @@
 name: Contribution snake
 
-# Renders the contribution graph as an animated snake, in the same palette as
-# the rest of the profile, and publishes it to the `output` branch.
+# Renders the contribution graph as an animated snake in the profile palette
+# and commits it straight into .github/assets/ on main — so the repo stays on a
+# single branch and the README can use a plain relative path.
 
 on:
   schedule:
@@ -26,22 +27,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # svg-only is the lighter variant of the action — we never generate a gif,
+      # and the shorter job is less exposed to runner-acquisition timeouts.
       - name: Generate snake animations
-        uses: Platane/snk@v3
+        uses: Platane/snk/svg-only@v3
         with:
           github_user_name: ${{ github.repository_owner }}
-          # colour_dots goes empty → most active. Mint ramp on light, the same
-          # ramp on the profile's navy for dark, so it matches the banner.
+          # color_dots runs empty → most active. Mint ramp on light, the same
+          # ramp over the profile's navy on dark, so it matches the banner.
           outputs: |
-            dist/github-snake.svg?color_snake=#31b89b&color_dots=#eef4fb,#b7e9dc,#7fd8c2,#3fc0a4,#1f8f79
-            dist/github-snake-dark.svg?color_snake=#63e0c7&color_dots=#0d1524,#173b3a,#22645a,#3ba98f,#63e0c7
+            dist/snake.svg?color_snake=#31b89b&color_dots=#eef4fb,#b7e9dc,#7fd8c2,#3fc0a4,#1f8f79
+            dist/snake-dark.svg?color_snake=#63e0c7&color_dots=#0d1524,#173b3a,#22645a,#3ba98f,#63e0c7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish to the output branch
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: output
-          commit_message: "Update snake animation [skip ci]"
+      - name: Commit into main if it changed
+        run: |
+          mkdir -p .github/assets
+          cp dist/snake.svg dist/snake-dark.svg .github/assets/
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/assets/snake.svg .github/assets/snake-dark.svg
+          if git diff --staged --quiet; then
+            echo "Snake unchanged — nothing to commit."
+          else
+            git commit -m "Update contribution snake [skip ci]"
+            git push
+          fi

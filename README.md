@@ -106,9 +106,9 @@ release updates.
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thomasthanos/thomasthanos/output/github-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thomasthanos/thomasthanos/output/github-snake.svg" />
-  <img alt="Contribution graph" src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/output/github-snake.svg" />
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset=".github/assets/snake.svg" />
+  <img alt="Contribution graph" src=".github/assets/snake.svg" />
 </picture>
 
 <sub><b>12,000 people use something I made. 1 person follows me here. Perfect balance.</b></sub>
