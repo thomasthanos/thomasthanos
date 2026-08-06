@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Generate every static SVG used by the profile README.
+"""Generate the static SVGs used by the profile README.
+
+The hero banner is built separately by gen_banner.py, because it composites
+the illustration from photos/.
 
 Run:  python tools/gen_assets.py
 Output goes to .github/assets/. Safe to re-run — it overwrites in place.
@@ -352,118 +355,6 @@ def divider():
     return write("divider.svg", svg)
 
 
-# ══════════════════════════════════════════════════ hero banner
-def banner():
-    W, H = 1200.0, 340.0
-    css = '''
-    @keyframes drift1 { 0%,100% { transform: translate(0,0) } 50% { transform: translate(26px,-16px) } }
-    @keyframes drift2 { 0%,100% { transform: translate(0,0) } 50% { transform: translate(-22px,14px) } }
-    @keyframes breathe { 0%,100% { opacity:.55 } 50% { opacity:.95 } }
-    @keyframes sweepx  { 0% { transform: translateX(-560px) } 100% { transform: translateX(1360px) } }
-    @keyframes floaty  { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-9px) } }
-    .d1 { animation: drift1 15s ease-in-out infinite }
-    .d2 { animation: drift2 19s ease-in-out infinite }
-    .br { animation: breathe 8s ease-in-out infinite }
-    .sw { animation: sweepx 9s linear infinite }
-    .f1 { animation: floaty 7s ease-in-out infinite }
-    .f2 { animation: floaty 7s ease-in-out infinite .9s }
-    .f3 { animation: floaty 7s ease-in-out infinite 1.8s }
-    @media (prefers-reduced-motion: reduce) { * { animation: none !important } }
-'''
-    chips = []
-    x = 64.0
-    for label, colour in [("Browser extensions", MINT), ("Windows apps", AMBER),
-                          ("Athens", ROSE), ("04:00 AM commits", SKY)]:
-        d, lw = text_path(label, F_MED, 15.5, 0)
-        w = 21 + 15 + lw + 20
-        chips.append(f'''    <g>
-      <rect x="{x:.1f}" y="262" width="{w:.1f}" height="40" rx="20" fill="#ffffff" fill-opacity=".045"/>
-      <rect x="{x:.1f}" y="262" width="{w:.1f}" height="40" rx="20" fill="none" stroke="url(#hair)" stroke-width="1.1"/>
-      <circle cx="{x+21:.1f}" cy="282" r="4.5" fill="{colour}"/>
-      <g transform="translate({x+36:.1f},{287.5:.1f})" fill="#dce6f5">{d}</g>
-    </g>''')
-        x += w + 14
-
-    # Three glass tiles carrying a prompt, a tag and the initials — the empty
-    # squares read as placeholder art, these read as someone who writes code.
-    tiles = []
-    for mark, (tx, ty), rot, cls, fs_m in [(">_", (47, 81), -9, "f1", 31),
-                                           ("</>", (133, 55), 6, "f2", 27),
-                                           ("TT", (197, 159), -4, "f3", 31)]:
-        md, mw = text_path(mark, F_BOLD, fs_m, 0.5)
-        rx, ry = tx - 47, ty - 47
-        tiles.append(
-            f'      <g class="{cls}">'
-            f'<g transform="rotate({rot} {tx} {ty})">'
-            f'<rect x="{rx}" y="{ry}" width="94" height="94" rx="26" fill="#ffffff" '
-            f'fill-opacity=".05" stroke="url(#hair)" stroke-width="1.2"/>'
-            f'<g transform="translate({tx - mw/2:.2f},{ty + fs_m*0.355:.2f})" fill="#ffffff" '
-            f'fill-opacity=".30">{md}</g></g></g>')
-    tiles = chr(10).join(tiles)
-
-    t_kick, _ = text_path("KOLOKITHES A.E.", F_BOLD, 13.5, 3.1)
-    t_name, _ = text_path("Thomas Thanos", F_BOLD, 62, -1.6)
-    t_sub, _  = text_path("A multinational corporation with one employee, one office,", F_MED, 20, 0)
-    t_sub2, _ = text_path("and deeply questionable working hours.", F_MED, 20, 0)
-
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W:g} {H:g}" width="{W:g}" height="{H:g}" role="img" aria-label="Thomas Thanos — Kolokithes A.E.">
-  <defs>
-    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0c1727"/><stop offset=".55" stop-color="#08121f"/><stop offset="1" stop-color="#060e18"/>
-    </linearGradient>
-    <radialGradient id="gm" cx=".5" cy=".5" r=".5">
-      <stop offset="0" stop-color="{MINT}" stop-opacity=".55"/><stop offset="1" stop-color="{MINT}" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="gs" cx=".5" cy=".5" r=".5">
-      <stop offset="0" stop-color="{SKY}" stop-opacity=".55"/><stop offset="1" stop-color="{SKY}" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="gr" cx=".5" cy=".5" r=".5">
-      <stop offset="0" stop-color="{ROSE}" stop-opacity=".38"/><stop offset="1" stop-color="{ROSE}" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="title" gradientUnits="userSpaceOnUse" x1="60" y1="0" x2="760" y2="0">
-      <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#b9f2e4"/><stop offset="1" stop-color="#8fbcff"/>
-    </linearGradient>
-    <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".30"/><stop offset="1" stop-color="#ffffff" stop-opacity=".04"/>
-    </linearGradient>
-    <linearGradient id="sweep" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset=".5" stop-color="#ffffff" stop-opacity=".07"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="rule" gradientUnits="userSpaceOnUse" x1="64" y1="0" x2="112" y2="0">
-      <stop offset="0" stop-color="{MINT}" stop-opacity=".9"/>
-      <stop offset="1" stop-color="{SKY}" stop-opacity="0"/>
-    </linearGradient>
-    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
-      <path d="M44 0H0v44" fill="none" stroke="#9fb4d0" stroke-opacity=".05" stroke-width="1"/>
-    </pattern>
-    <clipPath id="clip"><rect x="0" y="0" width="{W:g}" height="{H:g}" rx="26"/></clipPath>
-  </defs>
-  <style>{css}</style>
-  <g clip-path="url(#clip)">
-    <rect width="{W:g}" height="{H:g}" fill="url(#card)"/>
-    <rect width="{W:g}" height="{H:g}" fill="url(#grid)"/>
-    <g class="d1"><ellipse cx="120" cy="20" rx="420" ry="270" fill="url(#gm)"/></g>
-    <g class="d2"><ellipse cx="1080" cy="40" rx="440" ry="290" fill="url(#gs)"/></g>
-    <ellipse cx="700" cy="350" rx="380" ry="180" fill="url(#gr)"/>
-    <g opacity=".9" transform="translate(902,54)">
-{tiles}
-    </g>
-    <rect class="sw" x="-560" y="0" width="560" height="{H:g}" fill="url(#sweep)"/>
-  </g>
-  <rect x=".75" y=".75" width="{W-1.5:g}" height="{H-1.5:g}" rx="26" fill="none" stroke="url(#hair)" stroke-width="1.5"/>
-  <rect x="64" y="52" width="46" height="3" rx="1.5" fill="url(#rule)" class="br"/>
-  <g transform="translate(64,88)" fill="{MINT}" fill-opacity=".95">{t_kick}</g>
-  <g transform="translate(62,164)" fill="url(#title)">{t_name}</g>
-  <g transform="translate(64,203)" fill="#a8b6cb">{t_sub}</g>
-  <g transform="translate(64,229)" fill="#a8b6cb">{t_sub2}</g>
-{chr(10).join(chips)}
-</svg>
-'''
-    return write("banner-profile.svg", svg)
-
-
 # ══════════════════════════════════════════════════ build everything
 if __name__ == "__main__":
     made = []
@@ -508,7 +399,6 @@ if __name__ == "__main__":
         status(f, l, a)
 
     divider()
-    banner()
 
     print(f"badge row   {row:.0f}px  (GitHub content width ~860px)")
     print(f"button row  {brow:.0f}px")
