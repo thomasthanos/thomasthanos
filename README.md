@@ -5,10 +5,9 @@
 [![4 extensions shipped](.github/assets/badge-extensions.svg)](https://github.com/thomasthanos/browser-extensions)
 [![NexusMods Bypass — 12k+ users](.github/assets/badge-users.svg)](https://thomasthanos.github.io/browser-extensions/)
 [![3 desktop apps](.github/assets/badge-apps.svg)](https://github.com/thomasthanos?tab=repositories)
-[![Support via PayPal](.github/assets/badge-support.svg)](https://www.paypal.me/ThomasThanos)
 <br>
-[![thomasthanos.uk](.github/assets/btn-website.svg)](https://thomasthanos.uk)
-[![Extension showcase](.github/assets/btn-showcase.svg)](https://thomasthanos.github.io/browser-extensions/)
+[![Website](.github/assets/btn-website.svg)](https://thomasthanos.uk)
+[![Projects](.github/assets/btn-projects.svg)](https://thomasthanos.github.io/browser-extensions/)
 [![PayPal](.github/assets/btn-paypal.svg)](https://www.paypal.me/ThomasThanos)
 [![Revolut](.github/assets/btn-revolut.svg)](https://revolut.me/thomas2873)
 
@@ -16,44 +15,102 @@
 
 <img src=".github/assets/divider.svg" width="100%" alt="">
 
-## <img src=".github/assets/icon-build.svg" width="22" align="middle"> What I build
+## <img src=".github/assets/icon-build.svg" width="22" align="middle"> Featured Projects
 
-Small tools that remove some stupid friction I got tired of living with. Then I keep maintaining
-them, which is the part nobody warns you about.
+<div align="center">
 
-|  |  |
-|:--:|---|
-| <img src=".github/assets/proj-extensions.svg" width="44"> | **[browser-extensions](https://github.com/thomasthanos/browser-extensions)**<br>Four Manifest V3 extensions for Chrome & Edge: NexusMods Bypass, An1me.to Tracker, Auto Liker and Speed Control. No trackers, no ads, no telemetry — full source published so you can verify that instead of taking my word for it. |
-| <img src=".github/assets/proj-mylife.svg" width="44"> | **[Make_Your_Life_Easier.A.E](https://github.com/thomasthanos/Make_Your_Life_Easier.A.E)**<br>All-in-one Windows desktop app: AES-256-GCM password manager, system tools (SFC, DISM, cleanup), one-click installer, auto-updates through GitHub Releases. |
-| <img src=".github/assets/proj-steam.svg" width="44"> | **[steam-idler](https://github.com/thomasthanos/steam-idler)**<br>Steam achievement manager and game idler. Unlock or lock achievements, idle games, auto-invisible mode. |
-| <img src=".github/assets/proj-discord.svg" width="44"> | **[discord_package_viewer](https://github.com/thomasthanos/discord_package_viewer)**<br>Turns your Discord data export into a fully offline HTML viewer: message history, statistics, charts, word cloud and live search. No server, no dependencies. |
+<img src=".github/assets/stats-strip.svg" alt="12K+ users · 4 extensions · 3 desktop apps · 100% source available">
+
+</div>
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+<img src=".github/assets/proj-extensions.svg" width="40">
+
+**Browser Extensions**
+
+Four Manifest V3 extensions for Chrome & Edge. No trackers, no ads, no telemetry.
+
+`JavaScript` `CSS` · **12K+ users**
+
+[→ View repository](https://github.com/thomasthanos/browser-extensions)
+
+</td>
+<td width="50%" valign="top">
+
+<img src=".github/assets/proj-mylife.svg" width="40">
+
+**Make Your Life Easier**
+
+Windows desktop toolkit: password manager, system tools, one-click installer.
+
+`JavaScript` · **AES-256-GCM · auto-update**
+
+[→ View repository](https://github.com/thomasthanos/Make_Your_Life_Easier.A.E)
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+<img src=".github/assets/proj-steam.svg" width="40">
+
+**Steam Idler**
+
+Achievement manager and game idler. Unlock or lock achievements, idle games.
+
+`TypeScript` · **Steam**
+
+[→ View repository](https://github.com/thomasthanos/steam-idler)
+
+</td>
+<td width="50%" valign="top">
+
+<img src=".github/assets/proj-discord.svg" width="40">
+
+**Discord Package Viewer**
+
+Turns a Discord data export into a fully offline HTML archive with search.
+
+`Python` `HTML` · **no server**
+
+[→ View repository](https://github.com/thomasthanos/discord_package_viewer)
+
+</td>
+</tr>
+</table>
 
 <img src=".github/assets/divider.svg" width="100%" alt="">
 
-## <img src=".github/assets/icon-stack.svg" width="22" align="middle"> Stack
+## <img src=".github/assets/icon-stack.svg" width="22" align="middle"> Tech Stack
 
-<img src=".github/assets/stack.svg" alt="TypeScript, JavaScript, Python, React, Node.js, C#, HTML, CSS, SQLite, Firebase, Git, VS Code">
-
-## <img src=".github/assets/icon-apps.svg" width="22" align="middle"> Apps I currently have open
-
-<sub>Some of them are even for coding.</sub>
-
-<img src=".github/assets/apps.svg" alt="Premiere Pro, Photoshop, GIMP, Discord, Trello, Replit, FileZilla, Chrome, Instagram">
+<img src=".github/assets/stack.svg" alt="Languages: TypeScript, JavaScript, Python, C#. Frontend: React, HTML, CSS. Backend and data: Node.js, SQLite, Firebase. Tools: Git, VS Code.">
 
 <img src=".github/assets/divider.svg" width="100%" alt="">
+
+## <img src=".github/assets/icon-bolt.svg" width="22" align="middle"> Currently Building
+
+**An1me.to Tracker** — Chrome extension for tracking episodes, resuming progress and catching
+release updates.
+
+**Windows utilities** — small desktop tools aimed at removing repetitive Windows chores.
+
+**Experiments** — browser automation, Discord tooling, and things I probably started at 04:00.
+
+<img src=".github/assets/divider.svg" width="100%" alt="">
+
+## <img src=".github/assets/icon-activity.svg" width="22" align="middle"> GitHub Activity
 
 <div align="center">
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thomasthanos/thomasthanos/output/github-snake-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thomasthanos/thomasthanos/output/github-snake.svg" />
-  <img alt="github-snake" src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/output/github-snake.svg" />
+  <img alt="Contribution graph" src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/output/github-snake.svg" />
 </picture>
 
-<br><br>
-
-<img src=".github/assets/icon-star.svg" width="28" align="middle">
-
-**12,000 people use something I made. 1 person follows me here. Perfect balance.**
+<sub><b>12,000 people use something I made. 1 person follows me here. Perfect balance.</b></sub>
 
 </div>

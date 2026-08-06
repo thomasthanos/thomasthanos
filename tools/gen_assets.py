@@ -32,6 +32,8 @@ G = {
  "mail":     '<rect x="2.8" y="5.2" width="18.4" height="13.6" rx="2.4"/><path d="M3.4 7l8.6 6 8.6-6"/>',
  "code":     '<path d="M9 6.6L3.7 12 9 17.4"/><path d="M15 6.6L20.3 12 15 17.4"/>',
  "clock":    '<circle cx="12" cy="12" r="8.7"/><path d="M12 6.9V12l3.4 2"/>',
+ "bolt":     '<path d="M13.3 2.6L4.7 13.6h6.1L10.2 21.4l8.6-11h-6.1z"/>',
+ "activity": '<path d="M2.8 12.4h4.1l2.7-7.1 4.3 12 2.5-4.9h4.8"/>',
  "coffee":   '<path d="M4 8.4h13v6.2a4.6 4.6 0 01-4.6 4.6H8.6A4.6 4.6 0 014 14.6z"/><path d="M17 9.8h1.6a2.6 2.6 0 010 5.2H17"/><path d="M7 3.4v2.2M11 3.4v2.2M15 3.4v2.2"/>',
 }
 
@@ -190,6 +192,46 @@ def project(fname, name, gname, accent, uniform_w=None):
 
 
 # ══════════════════════════════════════════════════ tech / app strips
+def stack_card(fname, groups):
+    """groups = [(category, [(label, colour), ...]), ...] — one row per category."""
+    LFS, CFS = 11.6, 13.2
+    CH, PADX, PADY, GAPX, GAPY = 32.0, 22.0, 20.0, 8.0, 12.0
+    dot, cpadL, cgap, cpadR = 3.7, 11.0, 7.5, 13.0
+    labw = 0.0
+    prepared = []
+    for cat, items in groups:
+        ld, lw = text_path(cat.upper(), F_BOLD, LFS, 1.0)
+        labw = max(labw, lw)
+        chips = []
+        for label, colour in items:
+            d, tw = text_path(label, F_MED, CFS, 0)
+            chips.append((d, colour, cpadL + dot * 2 + cgap + tw + cpadR))
+        prepared.append((ld, lw, chips))
+    colx = PADX + labw + 22
+    W = max(colx + sum(c[2] for c in chips) + GAPX * (len(chips) - 1) + PADX
+            for _, _, chips in prepared)
+    H = PADY * 2 + len(prepared) * CH + (len(prepared) - 1) * GAPY
+    parts, y = [], PADY
+    for ld, lw, chips in prepared:
+        parts.append(f'<g transform="translate({PADX:.1f},{y + CH/2 + LFS*0.355:.2f})" fill="{MUTED}">{ld}</g>')
+        x = colx
+        for d, colour, cw in chips:
+            by = y + CH / 2 + CFS * 0.355
+            parts.append(f'<rect x="{x:.2f}" y="{y:.2f}" width="{cw:.2f}" height="{CH}" rx="{CH/2}" fill="#ffffff" fill-opacity=".045"/>')
+            parts.append(f'<rect x="{x:.2f}" y="{y:.2f}" width="{cw:.2f}" height="{CH}" rx="{CH/2}" fill="none" stroke="{colour}" stroke-opacity=".30" stroke-width="1.1"/>')
+            parts.append(f'<circle cx="{x+cpadL+dot:.2f}" cy="{y+CH/2:.2f}" r="{dot+2.2:.1f}" fill="{colour}" opacity=".18"/>')
+            parts.append(f'<circle cx="{x+cpadL+dot:.2f}" cy="{y+CH/2:.2f}" r="{dot}" fill="{colour}"/>')
+            parts.append(f'<g transform="translate({x+cpadL+dot*2+cgap:.2f},{by:.2f})" fill="#dfe9f7">{d}</g>')
+            x += cw + GAPX
+        y += CH + GAPY
+    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W:.0f}" height="{H:.0f}" '
+           f'viewBox="0 0 {W:.2f} {H:.2f}" role="img" aria-label="Tech stack">\n'
+           f'{card_defs(MINT)}{card_frame(W, H)}\n'
+           + "\n".join("  " + p for p in parts) + "\n</svg>\n")
+    write(fname, svg)
+    return W, H
+
+
 def strip(fname, title, items, cols=6):
     """items = [(label, colour), ...] laid out as a grid of chips inside a card."""
     fs, trk = 13.4, 0.0
@@ -227,6 +269,34 @@ def strip(fname, title, items, cols=6):
 '''
     write(fname, svg)
     return W, H
+
+
+# ══════════════════════════════════════════════════ context strip
+def strip_stats(fname, cells, accent=MINT):
+    """cells = [(value, label), ...] — the at-a-glance line above the projects."""
+    H, R, PADX, VFS, LFS, GAP = 82.0, 16.0, 22.0, 21.0, 10.4, 26.0
+    m = []
+    for v, l in cells:
+        vd, vw = text_path(v, F_BOLD, VFS, -0.2)
+        ld, lw = text_path(l.upper(), F_MED, LFS, 1.15)
+        m.append((vd, vw, ld, lw))
+    colw = [max(vw, lw) for _, vw, _, lw in m]
+    W = PADX * 2 + sum(colw) + GAP * (len(cells) - 1)
+    parts, x = [], PADX
+    for i, (vd, vw, ld, lw) in enumerate(m):
+        cx = x + colw[i] / 2
+        parts.append(f'<rect x="{cx-12:.2f}" y="15" width="24" height="2.4" rx="1.2" fill="{accent}" opacity=".85"/>')
+        parts.append(f'<g transform="translate({cx-vw/2:.2f},45)" fill="#ffffff">{vd}</g>')
+        parts.append(f'<g transform="translate({cx-lw/2:.2f},65)" fill="{MUTED}">{ld}</g>')
+        if i < len(cells) - 1:
+            parts.append(f'<path d="M{x+colw[i]+GAP/2:.2f} 24V66" stroke="#ffffff" stroke-opacity=".10" stroke-width="1"/>')
+        x += colw[i] + GAP
+    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W:.0f}" height="{H:.0f}" '
+           f'viewBox="0 0 {W:.2f} {H:.0f}" role="img" aria-label="At a glance">\n'
+           f'{card_defs(accent)}{card_frame(W, H, R)}\n'
+           + "\n".join("  " + p for p in parts) + "\n</svg>\n")
+    write(fname, svg)
+    return W
 
 
 # ══════════════════════════════════════════════════ divider
@@ -354,46 +424,45 @@ def banner():
 if __name__ == "__main__":
     made = []
 
-    # Only the icons the README actually uses — every generated file should
-    # have a job, otherwise the assets folder rots.
-    for n, g in [("build", "build"), ("stack", "stack"), ("apps", "apps"),
-                 ("star", "star")]:
+    # section icons — Featured Projects / Tech Stack / Currently Building / GitHub Activity
+    for n, g in [("build", "build"), ("stack", "stack"),
+                 ("bolt", "bolt"), ("activity", "activity")]:
         made.append(icon(n, g))
 
-    badges = [("badge-extensions.svg", "extensions", "4 shipped", MINT),
-              ("badge-users.svg",      "nexusmods bypass", "12k+ users", AMBER),
-              ("badge-apps.svg",       "desktop apps", "3", SKY),
-              ("badge-support.svg",    "support", "paypal", ROSE)]
-    row = sum(badge(*b) for b in badges) + 4 * (len(badges) - 1)
-
-    buttons = [("btn-website.svg", "thomasthanos.uk", "globe"),
-               ("btn-showcase.svg", "Extension showcase", "puzzle"),
-               ("btn-paypal.svg", "PayPal", "heart"),
-               ("btn-revolut.svg", "Revolut", "heart")]
-    brow = sum(button(*b) for b in buttons) + 4 * (len(buttons) - 1)
-
-    # Project icons — they sit alone in a table cell, so no inline padding.
+    # project icons — alone in a table cell, so no inline padding
     for n, g, a in [("extensions", "puzzle", MINT), ("mylife", "toolbox", AMBER),
                     ("steam", "gamepad", SKY), ("discord", "archive", ROSE)]:
         made.append(icon(n, g, accent=a, pad=False, prefix="proj"))
 
-    strip("stack.svg", "Stack", [
-        ("TypeScript", "#3178c6"), ("JavaScript", "#f7df1e"), ("Python", "#3776ab"),
-        ("React", "#61dafb"), ("Node.js", "#5fa04e"), ("C#", "#9b4f96"),
-        ("HTML", "#e34f26"), ("CSS", "#1572b6"), ("SQLite", "#0f80cc"),
-        ("Firebase", "#ffca28"), ("Git", "#f05033"), ("VS Code", "#0098ff"),
-    ], cols=6)
+    badges = [("badge-extensions.svg", "extensions", "4 shipped", MINT),
+              ("badge-users.svg",      "nexusmods bypass", "12k+ users", AMBER),
+              ("badge-apps.svg",       "desktop apps", "3", SKY)]
+    row = sum(badge(*b) for b in badges) + 4 * (len(badges) - 1)
 
-    strip("apps.svg", "Apps I have open", [
-        ("Premiere Pro", "#9999ff"), ("Photoshop", "#31a8ff"), ("GIMP", "#5c5543"),
-        ("Discord", "#5865f2"), ("Trello", "#0079bf"), ("Replit", "#f26207"),
-        ("FileZilla", "#bf0000"), ("Chrome", "#4285f4"), ("Instagram", "#e4405f"),
-    ], cols=5)
+    buttons = [("btn-website.svg",  "Website",  "globe"),
+               ("btn-projects.svg", "Projects", "puzzle"),
+               ("btn-paypal.svg",   "PayPal",   "heart"),
+               ("btn-revolut.svg",  "Revolut",  "heart")]
+    brow = sum(button(*b) for b in buttons) + 4 * (len(buttons) - 1)
+
+    # "100% open source" would contradict the extensions LICENCE, which is
+    # explicitly source-available. "source available" is the accurate claim.
+    sw = strip_stats("stats-strip.svg", [("12K+", "users"), ("4", "extensions"),
+                                         ("3", "desktop apps"), ("100%", "source available")])
+
+    stw, sth = stack_card("stack.svg", [
+        ("Languages",      [("TypeScript", "#3178c6"), ("JavaScript", "#f7df1e"),
+                            ("Python", "#3776ab"), ("C#", "#9b4f96")]),
+        ("Frontend",       [("React", "#61dafb"), ("HTML", "#e34f26"), ("CSS", "#1572b6")]),
+        ("Backend / Data", [("Node.js", "#5fa04e"), ("SQLite", "#0f80cc"), ("Firebase", "#ffca28")]),
+        ("Tools",          [("Git", "#f05033"), ("VS Code", "#0098ff")]),
+    ])
 
     divider()
     banner()
 
-    print(f"badge row  {row:.0f}px  (GitHub content width ~860px)")
-    print(f"button row {brow:.0f}px")
-    print(f"project icons: 4")
-    print(f"assets written to .github/assets/")
+    print(f"badge row   {row:.0f}px  (GitHub content width ~860px)")
+    print(f"button row  {brow:.0f}px")
+    print(f"stats strip {sw:.0f}px")
+    print(f"stack card  {stw:.0f} x {sth:.0f}px")
+    print("assets written to .github/assets/")
