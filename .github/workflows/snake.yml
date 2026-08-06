@@ -18,7 +18,6 @@ permissions:
 
 concurrency:
   group: contribution-snake
-  cancel-in-progress: true
 
 jobs:
   generate:
@@ -33,15 +32,36 @@ jobs:
         uses: Platane/snk/svg-only@v3
         with:
           github_user_name: ${{ github.repository_owner }}
-          # color_dots runs empty → most active. Mint ramp on light, the same
-          # ramp over the profile's navy on dark, so it matches the banner.
+          # color_dots runs empty → most active, and the docs require exactly 5.
+          # Mint ramp on light, the same ramp over the profile navy on dark.
           outputs: |
             dist/snake.svg?color_snake=#31b89b&color_dots=#eef4fb,#b7e9dc,#7fd8c2,#3fc0a4,#1f8f79
             dist/snake-dark.svg?color_snake=#63e0c7&color_dots=#0d1524,#173b3a,#22645a,#3ba98f,#63e0c7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit into main if it changed
+      # A real snake is a few hundred KB and contains CSS keyframes. The static
+      # placeholder shipped in the repo is ~52 KB with no animation at all, so
+      # both checks together catch an action that exits green having produced
+      # nothing usable.
+      - name: Check the generated files
+        run: |
+          echo "── dist ──"
+          ls -la dist/
+          for f in dist/snake.svg dist/snake-dark.svg; do
+            if [ ! -f "$f" ]; then
+              echo "::error::$f was not generated"; exit 1
+            fi
+            size=$(stat -c%s "$f")
+            echo "$f -> ${size} bytes"
+            if [ "$size" -lt 80000 ]; then
+              echo "::error::$f is only ${size} bytes — too small to be a rendered snake"; exit 1
+            fi
+            grep -q "@keyframes" "$f" || { echo "::error::$f contains no animation"; exit 1; }
+          done
+          echo "Both files look like real animated snakes."
+
+      - name: Commit into main
         run: |
           mkdir -p .github/assets
           cp dist/snake.svg dist/snake-dark.svg .github/assets/
@@ -49,8 +69,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .github/assets/snake.svg .github/assets/snake-dark.svg
           if git diff --staged --quiet; then
-            echo "Snake unchanged — nothing to commit."
+            echo "::notice::Snake unchanged since the last run — nothing to commit."
           else
             git commit -m "Update contribution snake [skip ci]"
             git push
+            echo "::notice::Committed a fresh snake to main."
           fi
