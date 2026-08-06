@@ -17,6 +17,9 @@
 
 ## <img src=".github/assets/icon-build.svg" width="22" align="middle"> Featured Projects
 
+I build small tools that delete some stupid friction I got tired of living with. Then I maintain
+them forever, which is the part nobody warns you about.
+
 <div align="center">
 
 <img src=".github/assets/stats-strip.svg" alt="12K+ users · 4 extensions · 3 desktop apps · 100% source available">
@@ -31,7 +34,8 @@
 
 **Browser Extensions**
 
-Four Manifest V3 extensions for Chrome & Edge. No trackers, no ads, no telemetry.
+Four Manifest V3 extensions for Chrome & Edge. No trackers, no ads, no telemetry — and the whole
+source is public, so you can check rather than take my word for it.
 
 `JavaScript` `CSS` · **12K+ users**
 
@@ -44,7 +48,8 @@ Four Manifest V3 extensions for Chrome & Edge. No trackers, no ads, no telemetry
 
 **Make Your Life Easier**
 
-Windows desktop toolkit: password manager, system tools, one-click installer.
+Password manager, system cleanup, one-click installer. Built because running the same three
+maintenance chores by hand every month is not a personality.
 
 `JavaScript` · **AES-256-GCM · auto-update**
 
@@ -59,7 +64,8 @@ Windows desktop toolkit: password manager, system tools, one-click installer.
 
 **Steam Idler**
 
-Achievement manager and game idler. Unlock or lock achievements, idle games.
+Achievement manager and game idler. For the achievements you earned emotionally but never quite
+managed technically.
 
 `TypeScript` · **Steam**
 
@@ -72,7 +78,8 @@ Achievement manager and game idler. Unlock or lock achievements, idle games.
 
 **Discord Package Viewer**
 
-Turns a Discord data export into a fully offline HTML archive with search.
+Turns a Discord export into an offline HTML archive with full search. Now you can finally find the
+nonsense you typed at 3am in 2021.
 
 `Python` `HTML` · **no server**
 
@@ -88,16 +95,23 @@ Turns a Discord data export into a fully offline HTML archive with search.
 
 <img src=".github/assets/stack.svg" alt="Languages: TypeScript, JavaScript, Python, C#. Frontend: React, HTML, CSS. Backend and data: Node.js, SQLite, Firebase. Tools: Git, VS Code.">
 
+<sub>Half of these I learned because something broke at midnight and refused to explain itself.</sub>
+
 <img src=".github/assets/divider.svg" width="100%" alt="">
 
 ## <img src=".github/assets/icon-bolt.svg" width="22" align="middle"> Currently Building
 
-**An1me.to Tracker** — Chrome extension for tracking episodes, resuming progress and catching
-release updates.
+**An1me.to Tracker** <img src=".github/assets/status-inprogress.svg" align="middle"><br>
+Tracks episodes, resumes where you stopped and shouts when something new airs. Because remembering
+which episode you were on is apparently too much to ask of a grown adult.
 
-**Windows utilities** — small desktop tools aimed at removing repetitive Windows chores.
+**Windows utilities** <img src=".github/assets/status-active.svg" align="middle"><br>
+Small desktop tools that remove repetitive Windows chores — mostly so I never have to open Disk
+Cleanup with my own hands again.
 
-**Experiments** — browser automation, Discord tooling, and things I probably started at 04:00.
+**Experiments** <img src=".github/assets/status-lab.svg" align="middle"><br>
+Browser automation, Discord tooling, and whatever seemed like a brilliant idea at 04:00. Some of it
+even survives until morning.
 
 <img src=".github/assets/divider.svg" width="100%" alt="">
 

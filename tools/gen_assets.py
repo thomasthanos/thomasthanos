@@ -271,6 +271,35 @@ def strip(fname, title, items, cols=6):
     return W, H
 
 
+# ══════════════════════════════════════════════════ status chips
+def status(fname, label, accent):
+    """Small uppercase state pill that sits beside a Currently Building item."""
+    H, R, fs, trk = 21.0, 10.5, 9.4, 0.9
+    padL, gap, padR, dot = 9.0, 6.5, 11.0, 3.0
+    d, lw = text_path(label.upper(), F_BOLD, fs, trk)
+    x_dot = padL + dot
+    x_lab = x_dot + dot + gap
+    W = x_lab + lw + padR
+    by = H / 2 + fs * 0.36
+    PAD = INLINE_LIFT          # sits inline in a sentence
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W:.0f}" height="{H+PAD:.1f}" viewBox="0 0 {W:.2f} {H+PAD:.1f}" role="img" aria-label="{esc(label)}">
+  <defs>
+    <linearGradient id="p" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="{accent}" stop-opacity=".20"/>
+      <stop offset="1" stop-color="{accent}" stop-opacity=".07"/>
+    </linearGradient>
+  </defs>
+  <rect x=".5" y=".5" width="{W-1:.2f}" height="{H-1:.1f}" rx="{R-.5:.1f}" fill="#0c1524"/>
+  <rect x=".5" y=".5" width="{W-1:.2f}" height="{H-1:.1f}" rx="{R-.5:.1f}" fill="url(#p)"/>
+  <rect x=".5" y=".5" width="{W-1:.2f}" height="{H-1:.1f}" rx="{R-.5:.1f}" fill="none" stroke="{accent}" stroke-opacity=".45" stroke-width="1"/>
+  <circle cx="{x_dot:.2f}" cy="{H/2:.1f}" r="{dot}" fill="{accent}"/>
+  <g transform="translate({x_lab:.2f},{by:.2f})" fill="{accent}">{d}</g>
+</svg>
+'''
+    write(fname, svg)
+    return W
+
+
 # ══════════════════════════════════════════════════ context strip
 def strip_stats(fname, cells, accent=MINT):
     """cells = [(value, label), ...] — the at-a-glance line above the projects."""
@@ -344,7 +373,7 @@ def banner():
     chips = []
     x = 64.0
     for label, colour in [("Browser extensions", MINT), ("Windows apps", AMBER),
-                          ("Athens", ROSE), ("04:00 commits", SKY)]:
+                          ("Athens", ROSE), ("04:00 AM commits", SKY)]:
         d, lw = text_path(label, F_MED, 15.5, 0)
         w = 21 + 15 + lw + 20
         chips.append(f'''    <g>
@@ -354,6 +383,23 @@ def banner():
       <g transform="translate({x+36:.1f},{287.5:.1f})" fill="#dce6f5">{d}</g>
     </g>''')
         x += w + 14
+
+    # Three glass tiles carrying a prompt, a tag and the initials — the empty
+    # squares read as placeholder art, these read as someone who writes code.
+    tiles = []
+    for mark, (tx, ty), rot, cls, fs_m in [(">_", (47, 81), -9, "f1", 31),
+                                           ("</>", (133, 55), 6, "f2", 27),
+                                           ("TT", (197, 159), -4, "f3", 31)]:
+        md, mw = text_path(mark, F_BOLD, fs_m, 0.5)
+        rx, ry = tx - 47, ty - 47
+        tiles.append(
+            f'      <g class="{cls}">'
+            f'<g transform="rotate({rot} {tx} {ty})">'
+            f'<rect x="{rx}" y="{ry}" width="94" height="94" rx="26" fill="#ffffff" '
+            f'fill-opacity=".05" stroke="url(#hair)" stroke-width="1.2"/>'
+            f'<g transform="translate({tx - mw/2:.2f},{ty + fs_m*0.355:.2f})" fill="#ffffff" '
+            f'fill-opacity=".30">{md}</g></g></g>')
+    tiles = chr(10).join(tiles)
 
     t_kick, _ = text_path("KOLOKITHES A.E.", F_BOLD, 13.5, 3.1)
     t_name, _ = text_path("Thomas Thanos", F_BOLD, 62, -1.6)
@@ -402,9 +448,7 @@ def banner():
     <g class="d2"><ellipse cx="1080" cy="40" rx="440" ry="290" fill="url(#gs)"/></g>
     <ellipse cx="700" cy="350" rx="380" ry="180" fill="url(#gr)"/>
     <g opacity=".9" transform="translate(902,54)">
-      <g class="f1"><rect x="0" y="34" width="94" height="94" rx="26" fill="#ffffff" fill-opacity=".05" stroke="url(#hair)" stroke-width="1.2" transform="rotate(-9 47 81)"/></g>
-      <g class="f2"><rect x="86" y="8" width="94" height="94" rx="26" fill="#ffffff" fill-opacity=".05" stroke="url(#hair)" stroke-width="1.2" transform="rotate(6 133 55)"/></g>
-      <g class="f3"><rect x="150" y="112" width="94" height="94" rx="26" fill="#ffffff" fill-opacity=".05" stroke="url(#hair)" stroke-width="1.2" transform="rotate(-4 197 159)"/></g>
+{tiles}
     </g>
     <rect class="sw" x="-560" y="0" width="560" height="{H:g}" fill="url(#sweep)"/>
   </g>
@@ -457,6 +501,11 @@ if __name__ == "__main__":
         ("Backend / Data", [("Node.js", "#5fa04e"), ("SQLite", "#0f80cc"), ("Firebase", "#ffca28")]),
         ("Tools",          [("Git", "#f05033"), ("VS Code", "#0098ff")]),
     ])
+
+    for f, l, a in [("status-inprogress.svg", "in progress", MINT),
+                    ("status-active.svg",     "active",      AMBER),
+                    ("status-lab.svg",        "lab",         ROSE)]:
+        status(f, l, a)
 
     divider()
     banner()
