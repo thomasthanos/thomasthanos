@@ -2,12 +2,12 @@
 
 <img src=".github/assets/banner-profile.svg" alt="Thomas Thanos — Kolokithes A.E.">
 
-[![4 extensions shipped](.github/assets/badge-extensions.svg)](https://github.com/thomasthanos/browser-extensions)
-[![NexusMods Bypass — 12k+ users](.github/assets/badge-users.svg)](https://thomasthanos.github.io/browser-extensions/)
+[![4 extensions shipped](.github/assets/badge-extensions.svg)](https://github.com/thomasthanos/google_extention_privacy)
+[![NexusMods Bypass — 12k+ users](.github/assets/badge-users.svg)](https://thomasthanos.github.io/google_extention_privacy/)
 [![3 desktop apps](.github/assets/badge-apps.svg)](https://github.com/thomasthanos?tab=repositories)
 <br>
 [![Website](.github/assets/btn-website.svg)](https://thomasthanos.uk)
-[![Projects](.github/assets/btn-projects.svg)](https://thomasthanos.github.io/browser-extensions/)
+[![Projects](.github/assets/btn-projects.svg)](https://thomasthanos.github.io/google_extention_privacy/)
 [![PayPal](.github/assets/btn-paypal.svg)](https://www.paypal.me/ThomasThanos)
 [![Revolut](.github/assets/btn-revolut.svg)](https://revolut.me/thomas2873)
 
@@ -39,7 +39,7 @@ source is public, so you can check rather than take my word for it.
 
 `JavaScript` `CSS` · **12K+ users**
 
-[→ View repository](https://github.com/thomasthanos/browser-extensions)
+[→ View repository](https://github.com/thomasthanos/google_extention_privacy)
 
 </td>
 <td width="50%" valign="top">
