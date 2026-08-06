@@ -63,15 +63,28 @@ jobs:
 
       - name: Commit into main
         run: |
+          set -euo pipefail
           mkdir -p .github/assets
           cp dist/snake.svg dist/snake-dark.svg .github/assets/
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .github/assets/snake.svg .github/assets/snake-dark.svg
+
           if git diff --staged --quiet; then
             echo "::notice::Snake unchanged since the last run — nothing to commit."
-          else
-            git commit -m "Update contribution snake [skip ci]"
-            git push
-            echo "::notice::Committed a fresh snake to main."
+            exit 0
           fi
+          git commit -m "Update contribution snake [skip ci]"
+
+          # main can move while this job runs — rebase and retry rather than
+          # failing the whole workflow on a non-fast-forward push.
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "::notice::Committed a fresh snake to main."
+              exit 0
+            fi
+            echo "Push rejected (attempt ${attempt}) — rebasing onto the latest main."
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          done
+          echo "::error::Could not push after 3 attempts."
+          exit 1
