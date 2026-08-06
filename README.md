@@ -22,11 +22,11 @@ Small tools that remove some stupid friction I got tired of living with. Then I 
 them, which is the part nobody warns you about.
 
 |  |  |
-|---|---|
-| [![browser-extensions](.github/assets/link-extensions.svg)](https://github.com/thomasthanos/browser-extensions) | Four Manifest V3 extensions for Chrome & Edge: NexusMods Bypass, An1me.to Tracker, Auto Liker and Speed Control. No trackers, no ads, no telemetry — full source published so you can verify that instead of taking my word for it. |
-| [![Make_Your_Life_Easier.A.E](.github/assets/link-mylife.svg)](https://github.com/thomasthanos/Make_Your_Life_Easier.A.E) | All-in-one Windows desktop app: AES-256-GCM password manager, system tools (SFC, DISM, cleanup), one-click installer, auto-updates through GitHub Releases. |
-| [![steam-idler](.github/assets/link-steam.svg)](https://github.com/thomasthanos/steam-idler) | Steam achievement manager and game idler. Unlock or lock achievements, idle games, auto-invisible mode. |
-| [![discord_package_viewer](.github/assets/link-discord.svg)](https://github.com/thomasthanos/discord_package_viewer) | Turns your Discord data export into a fully offline HTML viewer: message history, statistics, charts, word cloud and live search. No server, no dependencies. |
+|:--:|---|
+| <img src=".github/assets/proj-extensions.svg" width="44"> | **[browser-extensions](https://github.com/thomasthanos/browser-extensions)**<br>Four Manifest V3 extensions for Chrome & Edge: NexusMods Bypass, An1me.to Tracker, Auto Liker and Speed Control. No trackers, no ads, no telemetry — full source published so you can verify that instead of taking my word for it. |
+| <img src=".github/assets/proj-mylife.svg" width="44"> | **[Make_Your_Life_Easier.A.E](https://github.com/thomasthanos/Make_Your_Life_Easier.A.E)**<br>All-in-one Windows desktop app: AES-256-GCM password manager, system tools (SFC, DISM, cleanup), one-click installer, auto-updates through GitHub Releases. |
+| <img src=".github/assets/proj-steam.svg" width="44"> | **[steam-idler](https://github.com/thomasthanos/steam-idler)**<br>Steam achievement manager and game idler. Unlock or lock achievements, idle games, auto-invisible mode. |
+| <img src=".github/assets/proj-discord.svg" width="44"> | **[discord_package_viewer](https://github.com/thomasthanos/discord_package_viewer)**<br>Turns your Discord data export into a fully offline HTML viewer: message history, statistics, charts, word cloud and live search. No server, no dependencies. |
 
 <img src=".github/assets/divider.svg" width="100%" alt="">
 

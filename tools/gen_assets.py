@@ -48,17 +48,21 @@ def glyph(name, x, y, size=16, stroke="url(#ink)", halo=True, sw=2.1):
     return out
 
 
-# ══════════════════════════════════════════════════ heading icons
-def icon(name, gname, accent=MINT):
+# ══════════════════════════════════════════════════ heading / project icons
+def icon(name, gname, accent=MINT, pad=True, prefix="icon"):
+    """pad=True adds transparent space below so the icon optically centres on
+       a line of text (see theme.INLINE_LIFT). Icons that sit alone in a table
+       cell are already centred by the cell, so they skip it."""
     W = 48.0
-    PAD = 10.0          # transparent bottom padding — see theme.INLINE_LIFT
+    PAD = 10.0 if pad else 0.0
+    ink_a = accent if accent != MINT else "#7bead2"
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 {48+PAD:g}" width="48" height="{48+PAD:g}" role="img" aria-label="{esc(name)}">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#18243a"/><stop offset="1" stop-color="#0a1220"/>
     </linearGradient>
     <linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="24">
-      <stop offset="0" stop-color="#7bead2"/><stop offset="1" stop-color="#7fb2ff"/>
+      <stop offset="0" stop-color="{ink_a}"/><stop offset="1" stop-color="#7fb2ff"/>
     </linearGradient>
     <linearGradient id="edge" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#ffffff" stop-opacity=".40"/>
@@ -76,7 +80,7 @@ def icon(name, gname, accent=MINT):
   {glyph(gname, 12, 12, 24, sw=2.1)}
 </svg>
 '''
-    return write(f"icon-{name}.svg", svg)
+    return write(f"{prefix}-{name}.svg", svg)
 
 
 # ══════════════════════════════════════════════════ badges
@@ -368,13 +372,10 @@ if __name__ == "__main__":
                ("btn-revolut.svg", "Revolut", "heart")]
     brow = sum(button(*b) for b in buttons) + 4 * (len(buttons) - 1)
 
-    names = [("link-extensions.svg", "browser-extensions", "puzzle", MINT),
-             ("link-mylife.svg",     "Make_Your_Life_Easier.A.E", "toolbox", AMBER),
-             ("link-steam.svg",      "steam-idler", "gamepad", SKY),
-             ("link-discord.svg",    "discord_package_viewer", "archive", ROSE)]
-    uw = max(project_width(n) for _, n, _, _ in names)
-    for f, n, g, a in names:
-        project(f, n, g, a, uniform_w=uw)
+    # Project icons — they sit alone in a table cell, so no inline padding.
+    for n, g, a in [("extensions", "puzzle", MINT), ("mylife", "toolbox", AMBER),
+                    ("steam", "gamepad", SKY), ("discord", "archive", ROSE)]:
+        made.append(icon(n, g, accent=a, pad=False, prefix="proj"))
 
     strip("stack.svg", "Stack", [
         ("TypeScript", "#3178c6"), ("JavaScript", "#f7df1e"), ("Python", "#3776ab"),
@@ -394,5 +395,5 @@ if __name__ == "__main__":
 
     print(f"badge row  {row:.0f}px  (GitHub content width ~860px)")
     print(f"button row {brow:.0f}px")
-    print(f"project pill width {uw:.0f}px")
+    print(f"project icons: 4")
     print(f"assets written to .github/assets/")
