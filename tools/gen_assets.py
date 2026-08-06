@@ -353,7 +353,7 @@ if __name__ == "__main__":
     # Only the icons the README actually uses — every generated file should
     # have a job, otherwise the assets folder rots.
     for n, g in [("build", "build"), ("stack", "stack"), ("apps", "apps"),
-                 ("stats", "stats"), ("star", "star")]:
+                 ("star", "star")]:
         made.append(icon(n, g))
 
     badges = [("badge-extensions.svg", "extensions", "4 shipped", MINT),

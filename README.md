@@ -42,20 +42,6 @@ them, which is the part nobody warns you about.
 
 <img src=".github/assets/divider.svg" width="100%" alt="">
 
-## <img src=".github/assets/icon-stats.svg" width="22" align="middle"> Stats
-
-<div align="center">
-
-<img src=".github/assets/stats.svg" alt="GitHub stats" align="top">
-<img src=".github/assets/top-langs.svg" alt="Most used languages" align="top">
-
-<sub>Rendered daily from the GitHub API by a workflow in this repo — no third-party stats service,
-so it never shows up as a broken image.</sub>
-
-</div>
-
-<img src=".github/assets/divider.svg" width="100%" alt="">
-
 <div align="center">
 
 <picture>
