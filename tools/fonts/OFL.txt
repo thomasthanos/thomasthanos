@@ -1,7 +1,0 @@
-Poppins is licensed under the SIL Open Font License, Version 1.1.
-Copyright 2020 The Poppins Project Authors
-(https://github.com/itfoundry/Poppins)
-
-The fonts in this directory are bundled so the asset generator produces
-identical output on any machine, including GitHub Actions runners.
-Full licence text: https://openfontlicense.org/

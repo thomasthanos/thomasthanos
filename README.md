@@ -1,28 +1,28 @@
 <div align="center">
 
-<img src=".github/assets/banner-profile.svg" alt="Thomas Thanos — Kolokithes A.E.">
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/banner-profile.svg?v=623" alt="Thomas Thanos — Kolokithes A.E.">
 
-[![4 extensions shipped](.github/assets/badge-extensions.svg)](https://github.com/thomasthanos/google_extention_privacy)
-[![NexusMods Bypass — 12k+ users](.github/assets/badge-users.svg)](https://thomasthanos.github.io/google_extention_privacy/)
-[![3 desktop apps](.github/assets/badge-apps.svg)](https://github.com/thomasthanos?tab=repositories)
+[![4 extensions shipped](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/badge-extensions.svg?v=623)](https://github.com/thomasthanos/google_extention_privacy)
+[![NexusMods Bypass — 12k+ users](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/badge-users.svg?v=623)](https://thomasthanos.github.io/google_extention_privacy/)
+[![3 desktop apps](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/badge-apps.svg?v=623)](https://github.com/thomasthanos?tab=repositories)
 <br>
-[![Website](.github/assets/btn-website.svg)](https://thomasthanos.uk)
-[![Projects](.github/assets/btn-projects.svg)](https://thomasthanos.github.io/google_extention_privacy/)
-[![PayPal](.github/assets/btn-paypal.svg)](https://www.paypal.me/ThomasThanos)
-[![Revolut](.github/assets/btn-revolut.svg)](https://revolut.me/thomas2873)
+[![Website](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/btn-website.svg?v=623)](https://thomasthanos.uk)
+[![Projects](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/btn-projects.svg?v=623)](https://thomasthanos.github.io/google_extention_privacy/)
+[![PayPal](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/btn-paypal.svg?v=623)](https://www.paypal.me/ThomasThanos)
+[![Revolut](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/btn-revolut.svg?v=623)](https://revolut.me/thomas2873)
 
 </div>
 
-<img src=".github/assets/divider.svg" width="100%" alt="">
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/divider.svg?v=623" width="100%" alt="">
 
-## <img src=".github/assets/icon-build.svg" width="22" align="middle"> Featured Projects
+## <img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/icon-build.svg?v=623" width="22" align="middle"> Featured Projects
 
 I build small tools that delete some stupid friction I got tired of living with. Then I maintain
 them forever, which is the part nobody warns you about.
 
 <div align="center">
 
-<img src=".github/assets/stats-strip.svg" alt="12K+ users · 4 extensions · 3 desktop apps · 100% source available">
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/stats-strip.svg?v=623" alt="12K+ users · 4 extensions · 3 desktop apps · 100% source available">
 
 </div>
 
@@ -30,7 +30,7 @@ them forever, which is the part nobody warns you about.
 <tr>
 <td width="50%" valign="top">
 
-<img src=".github/assets/proj-extensions.svg" width="40">
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/proj-extensions.svg?v=623" width="40">
 
 **Browser Extensions**
 
@@ -44,7 +44,7 @@ source is public, so you can check rather than take my word for it.
 </td>
 <td width="50%" valign="top">
 
-<img src=".github/assets/proj-mylife.svg" width="40">
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/proj-mylife.svg?v=623" width="40">
 
 **Make Your Life Easier**
 
@@ -60,7 +60,7 @@ maintenance chores by hand every month is not a personality.
 <tr>
 <td width="50%" valign="top">
 
-<img src=".github/assets/proj-steam.svg" width="40">
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/proj-steam.svg?v=623" width="40">
 
 **Steam Idler**
 
@@ -74,7 +74,7 @@ managed technically.
 </td>
 <td width="50%" valign="top">
 
-<img src=".github/assets/proj-discord.svg" width="40">
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/proj-discord.svg?v=623" width="40">
 
 **Discord Package Viewer**
 
@@ -89,40 +89,40 @@ nonsense you typed at 3am in 2021.
 </tr>
 </table>
 
-<img src=".github/assets/divider.svg" width="100%" alt="">
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/divider.svg?v=623" width="100%" alt="">
 
-## <img src=".github/assets/icon-stack.svg" width="22" align="middle"> Tech Stack
+## <img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/icon-stack.svg?v=623" width="22" align="middle"> Tech Stack
 
-<img src=".github/assets/stack.svg" alt="Languages: TypeScript, JavaScript, Python, C#. Frontend: React, HTML, CSS. Backend and data: Node.js, SQLite, Firebase. Tools: Git, VS Code.">
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/stack.svg?v=623" alt="Languages: TypeScript, JavaScript, Python, C#. Frontend: React, HTML, CSS. Backend and data: Node.js, SQLite, Firebase. Tools: Git, VS Code.">
 
 <sub>Half of these I learned because something broke at midnight and refused to explain itself.</sub>
 
-<img src=".github/assets/divider.svg" width="100%" alt="">
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/divider.svg?v=623" width="100%" alt="">
 
-## <img src=".github/assets/icon-bolt.svg" width="22" align="middle"> Currently Building
+## <img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/icon-bolt.svg?v=623" width="22" align="middle"> Currently Building
 
-**An1me.to Tracker** <img src=".github/assets/status-inprogress.svg" align="middle"><br>
+**An1me.to Tracker** <img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/status-inprogress.svg?v=623" align="middle"><br>
 Tracks episodes, resumes where you stopped and shouts when something new airs. Because remembering
 which episode you were on is apparently too much to ask of a grown adult.
 
-**Windows utilities** <img src=".github/assets/status-active.svg" align="middle"><br>
+**Windows utilities** <img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/status-active.svg?v=623" align="middle"><br>
 Small desktop tools that remove repetitive Windows chores — mostly so I never have to open Disk
 Cleanup with my own hands again.
 
-**Experiments** <img src=".github/assets/status-lab.svg" align="middle"><br>
+**Experiments** <img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/status-lab.svg?v=623" align="middle"><br>
 Browser automation, Discord tooling, and whatever seemed like a brilliant idea at 04:00. Some of it
 even survives until morning.
 
-<img src=".github/assets/divider.svg" width="100%" alt="">
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/divider.svg?v=623" width="100%" alt="">
 
-## <img src=".github/assets/icon-activity.svg" width="22" align="middle"> GitHub Activity
+## <img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/icon-activity.svg?v=623" width="22" align="middle"> GitHub Activity
 
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset=".github/assets/snake.svg" />
-  <img alt="Contribution graph" src=".github/assets/snake.svg" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/snake-dark.svg?v=623" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/snake.svg?v=623" />
+  <img alt="Contribution graph" src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/snake.svg?v=623" />
 </picture>
 
 <sub><b>12,000 people use something I made. 1 person follows me here. Perfect balance.</b></sub>
