@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="24.2" viewBox="0 0 51.91 24.2" role="img" aria-label="lab">
+  <defs>
+    <linearGradient id="p" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff8fab" stop-opacity=".20"/>
+      <stop offset="1" stop-color="#ff8fab" stop-opacity=".07"/>
+    </linearGradient>
+  </defs>
+  <rect x=".5" y=".5" width="50.91" height="20.0" rx="10.0" fill="#0c1524"/>
+  <rect x=".5" y=".5" width="50.91" height="20.0" rx="10.0" fill="url(#p)"/>
+  <rect x=".5" y=".5" width="50.91" height="20.0" rx="10.0" fill="none" stroke="#ff8fab" stroke-opacity=".45" stroke-width="1"/>
+  <circle cx="12.00" cy="10.5" r="3.0" fill="#ff8fab"/>
+  <g transform="translate(21.50,13.88)" fill="#ff8fab"><path transform="translate(0.00,0) scale(0.00940,-0.00940)" d="M233.00 132.00H457.00V0.00H62.00V702.00H233.00Z"/><path transform="translate(5.38,0) scale(0.00940,-0.00940)" d="M499.00 124.00H237.00L195.00 0.00H16.00L270.00 702.00H468.00L722.00 0.00H541.00ZM455.00 256.00 368.00 513.00 282.00 256.00Z"/><path transform="translate(13.21,0) scale(0.00940,-0.00940)" d="M622.00 191.00Q622.00 103.00 560.50 51.50Q499.00 0.00 389.00 0.00H62.00V702.00H378.00Q485.00 702.00 545.50 653.00Q606.00 604.00 606.00 520.00Q606.00 458.00 573.50 417.00Q541.00 376.00 487.00 360.00Q548.00 347.00 585.00 299.50Q622.00 252.00 622.00 191.00ZM233.00 418.00H345.00Q387.00 418.00 409.50 436.50Q432.00 455.00 432.00 491.00Q432.00 527.00 409.50 546.00Q387.00 565.00 345.00 565.00H233.00ZM449.00 214.00Q449.00 251.00 424.50 272.00Q400.00 293.00 357.00 293.00H233.00V138.00H359.00Q402.00 138.00 425.50 157.50Q449.00 177.00 449.00 214.00Z"/></g>
+</svg>
