@@ -30,6 +30,17 @@
   transform: translateX(-2px);
 }
 
+/* Detail routes carry more sections than the index pages. Their own rhythm
+   keeps long case studies connected without turning a 4K screen into a stack
+   of large empty bands. */
+.page[data-accent] .dsec {
+  margin-top: clamp(2.75rem, 2rem + 2vw, 4.75rem);
+}
+
+.page[data-accent] .dsec__body {
+  min-width: 0;
+}
+
 /* --- Hero ------------------------------------------------------------------- */
 .dhero {
   display: grid;
@@ -150,9 +161,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
   gap: var(--s-4);
+  align-items: stretch;
 }
 
 .dmetric {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
   padding: var(--s-5);
   border: 1px solid
     color-mix(in srgb, var(--accent, var(--c-lime)) 25%, var(--c-line));
@@ -179,8 +195,14 @@
 /* --- Two-up prose ---------------------------------------------------------------- */
 .dsplit {
   display: grid;
+  align-items: stretch;
   gap: var(--s-5);
   grid-template-columns: 1fr;
+}
+
+.dsplit > .reveal {
+  display: flex;
+  width: 100%;
 }
 
 @media (min-width: 820px) {
@@ -190,6 +212,8 @@
 }
 
 .dblock {
+  width: 100%;
+  height: 100%;
   padding: var(--s-6);
   border: 1px solid var(--c-line);
   border-radius: var(--r-lg);
@@ -234,33 +258,58 @@
 /* --- Feature / challenge grids ------------------------------------------------------ */
 .dgrid {
   display: grid;
-  gap: var(--s-4);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+  gap: clamp(0.75rem, 0.55rem + 0.45vw, 1.25rem);
+}
+
+.dgrid > li,
+.dgrid > li > .reveal {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
 }
 
 .dcard {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 176px;
+  flex-direction: column;
   padding: var(--s-5);
   border: 1px solid var(--c-line);
   border-radius: var(--r-md);
   background: var(--c-surface);
-  transition: border-color var(--d-base) var(--e-out);
+  box-shadow: var(--sh-inset-top);
+  transition:
+    transform var(--d-base) var(--e-out),
+    border-color var(--d-base) var(--e-out),
+    background var(--d-base) var(--e-out);
 }
 
 .dcard:hover {
+  transform: translateY(-2px);
   border-color: var(--c-line-strong);
+  background: color-mix(in srgb, var(--accent, var(--c-lime)) 3%, var(--c-surface));
 }
 
 .dcard__t {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   gap: var(--s-3);
+  min-block-size: 2.5em;
   margin-bottom: var(--s-3);
   font-size: var(--t-sm);
   font-weight: 640;
   letter-spacing: var(--ls-tight);
+  line-height: 1.28;
 }
 
 .dcard__n {
+  margin-top: 0.18em;
   font-family: var(--f-mono);
   font-size: 10px;
   letter-spacing: 0.1em;
@@ -269,10 +318,76 @@
 }
 
 .dcard__b {
+  max-width: 62ch;
   font-size: var(--t-xs);
   line-height: var(--lh-relaxed);
   color: var(--c-text-3);
   text-wrap: pretty;
+}
+
+/* Laptop: two readable columns. Odd final cards sit in the visual centre
+   rather than hanging from the left edge on their own. */
+@media (min-width: 900px) and (max-width: 1399px) {
+  .dgrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .dgrid > li {
+    grid-column: span 2;
+  }
+
+  .dgrid[data-count='1'] > li,
+  .dgrid[data-count='3'] > li:last-child,
+  .dgrid[data-count='5'] > li:last-child,
+  .dgrid[data-count='7'] > li:last-child {
+    grid-column: 2 / span 2;
+  }
+}
+
+/* Desktop and 4K: select the column count from the actual amount of content.
+   This prevents 6+1 orphan layouts and keeps every project detail balanced. */
+@media (min-width: 1400px) {
+  .dgrid[data-count='1'] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dgrid[data-count='2'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dgrid[data-count='3'],
+  .dgrid[data-count='6'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .dgrid[data-count='4'],
+  .dgrid[data-count='8'] {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .dgrid[data-count='5'] {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .dgrid[data-count='5'] > li {
+    grid-column: span 2;
+  }
+
+  .dgrid[data-count='5'] > li:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .dgrid[data-count='7'] {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  .dgrid[data-count='7'] > li {
+    grid-column: span 2;
+  }
+
+  .dgrid[data-count='7'] > li:nth-child(5) {
+    grid-column: 2 / span 2;
+  }
 }
 
 .dcard__b code {
@@ -347,7 +462,9 @@
 
 .dnav__link {
   display: flex;
+  min-height: 112px;
   flex-direction: column;
+  justify-content: space-between;
   gap: var(--s-2);
   padding: var(--s-5);
   border: 1px solid var(--c-line);
@@ -411,7 +528,7 @@
 
 @media (max-width: 899px) {
   .page[data-accent] .dsec {
-    margin-top: 1.65rem;
+    margin-top: 2rem;
   }
 
   .dback {
@@ -539,6 +656,10 @@
   .dcard,
   .dnav__link {
     padding: var(--s-4);
+  }
+
+  .dcard {
+    min-height: 0;
   }
 
   .dblock__t {

@@ -148,9 +148,9 @@ export function ProjectDetail() {
 
         {/* --- Features ----------------------------------------------------- */}
         {p.features && p.features.length > 0 && (
-          <Section title={t.detail.features}>
+          <Section title={t.detail.features} className="dsec--cards">
             {p.features.length > 1 && <SwipeHint />}
-            <ul className="dgrid">
+            <ul className="dgrid" data-count={p.features.length}>
               {p.features.map((f, i) => (
                 <li key={f.title.en}>
                   <Reveal className="dcard" delay={Math.min(i, 5) * 50}>
@@ -170,9 +170,9 @@ export function ProjectDetail() {
 
         {/* --- Challenges ----------------------------------------------------- */}
         {p.challenges && p.challenges.length > 0 && (
-          <Section title={t.detail.challenges}>
+          <Section title={t.detail.challenges} className="dsec--cards">
             {p.challenges.length > 1 && <SwipeHint />}
-            <ul className="dgrid">
+            <ul className="dgrid" data-count={p.challenges.length}>
               {p.challenges.map((c, i) => (
                 <li key={c.title.en}>
                   <Reveal className="dcard" delay={Math.min(i, 5) * 50}>
