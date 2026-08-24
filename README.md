@@ -1,4 +1,4 @@
-# thomasthanos.uk — portfolio
+# me.thomast.uk — portfolio
 
 Personal site for Thomas Thanos (`kolokithes A.E.`). React + TypeScript + Vite,
 no UI framework, no trackers, no cookie banner because there are no cookies.
@@ -84,15 +84,31 @@ appear above 1424px, where there is actual gutter to draw in.
 
 ## Deploying
 
-The build is a static `dist/`. Two things to know:
+Live at **https://me.thomast.uk** on Cloudflare Pages, built from this branch on
+every push.
 
-- **Base path.** Defaults to `/`. For a sub-path host: `VITE_BASE=/sub/ npm run build`.
-- **SPA routing.** `dist/404.html` is written as a copy of `index.html`, which is
-  what GitHub Pages and most static hosts need so `/projects/steam-idler` resolves
-  on a hard refresh. On Netlify/Vercel add the usual rewrite to `/index.html`.
+| Pages setting | Value |
+|---|---|
+| Production branch | `portfolio` |
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Root directory | `/` |
 
-Canonical URL and OpenGraph tags point at `https://thomasthanos.uk` — change
-`src/data/site.ts` and `index.html` if that ever moves.
+`.nvmrc` pins Node 22 — Vite 7 refuses to build on the Node 18 that Pages
+otherwise defaults to.
+
+Two files in `public/` configure the host and are copied into `dist/` verbatim:
+
+- **`_redirects`** — `/* /index.html 200`. Without it a hard refresh on
+  `/projects/steam-idler` is answered by `404.html` with a 404 status, so
+  crawlers record every deep link as missing.
+- **`_headers`** — CSP, `X-Frame-Options`, `Permissions-Policy` and cache
+  lifetimes. The CSP is `'self'`-only because the site genuinely loads nothing
+  from anywhere else; adding a third-party script means editing this file first.
+
+Other hosts: `dist/404.html` covers GitHub Pages, and `VITE_BASE=/sub/ npm run build`
+covers a sub-path. Moving domain means editing `src/data/site.ts`, `index.html`,
+`public/robots.txt` and the `ORIGIN` default in `tools/gen-static.mjs`.
 
 ## Notes
 

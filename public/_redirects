@@ -1,0 +1,5 @@
+# Cloudflare Pages: the app is a client-side router, so any path that is not a
+# real file has to be answered with index.html — and with a 200, not a 404, or
+# crawlers and link-preview bots record every deep link as missing.
+# Real files (assets, og.png, sitemap.xml) are served before this rule is read.
+/*  /index.html  200

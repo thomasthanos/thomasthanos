@@ -11,7 +11,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const ORIGIN = process.env.SITE_ORIGIN ?? 'https://thomasthanos.uk'
+const ORIGIN = process.env.SITE_ORIGIN ?? 'https://me.thomast.uk'
 
 const STATIC_ROUTES = ['/', '/projects', '/stack', '/labs', '/about', '/contact']
 

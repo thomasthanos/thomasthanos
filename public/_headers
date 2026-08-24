@@ -1,0 +1,32 @@
+# Cloudflare Pages response headers.
+#
+# The site loads nothing from anywhere else — no CDN, no analytics, no embedded
+# fonts from Google — so the policy below can be as narrow as 'self' and still
+# not break anything. If a third-party script ever gets added, it has to be
+# allowed here on purpose, which is the point.
+
+/*
+  # No MIME sniffing, no framing, no referrer leakage to other origins.
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+
+  # Nothing here needs a camera, a microphone or a location.
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+
+  # style-src keeps 'unsafe-inline' for the one <style> block in index.html that
+  # paints the background before the CSS bundle lands. Scripts get no such
+  # exemption — there is not a single inline script in the build.
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+
+# Vite fingerprints everything under /assets/, so these can never go stale.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# The fonts are subset by hand and only change when a margin note changes, but
+# they are not fingerprinted, so a week is the honest ceiling.
+/*.woff2
+  Cache-Control: public, max-age=604800
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600

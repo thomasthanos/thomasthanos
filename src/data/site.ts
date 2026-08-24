@@ -12,7 +12,7 @@ export const site = {
     en: 'Athens, Greece',
     el: 'Αθήνα, Ελλάδα',
   } satisfies L,
-  url: 'https://thomasthanos.uk',
+  url: 'https://me.thomast.uk',
   github: 'https://github.com/thomasthanos',
   email: 'thomasthanos28@gmail.com',
   discord: 'thomass_28',

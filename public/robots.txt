@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://thomasthanos.uk/sitemap.xml
+Sitemap: https://me.thomast.uk/sitemap.xml

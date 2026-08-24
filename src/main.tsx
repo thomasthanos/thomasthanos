@@ -19,6 +19,6 @@ if (import.meta.env.PROD || !('__ttGreeted' in window)) {
   Object.defineProperty(window, '__ttGreeted', { value: true })
   const style = 'color:#c8fa4b;font:600 12px/1.6 ui-monospace,monospace'
   const dim = 'color:#767d87;font:400 12px/1.6 ui-monospace,monospace'
-  console.log('%c kolokithes A.E. %c — thomasthanos.uk', style, dim)
+  console.log('%c kolokithes A.E. %c — me.thomast.uk', style, dim)
   consoleLines.forEach((line) => console.log(`%c${line}`, dim))
 }
