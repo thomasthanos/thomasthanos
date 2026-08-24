@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Github, Menu } from 'lucide-react'
 import { Logo } from '../brand/Logo'
@@ -14,35 +14,9 @@ export function Header() {
   const { t } = useI18n()
   const [open, setOpen] = useState(false)
   const location = useLocation()
-  const barRef = useRef<HTMLDivElement>(null)
 
   // Close the drawer whenever the route changes.
   useEffect(() => setOpen(false), [location.pathname])
-
-  // Scroll progress hairline. rAF-throttled, transform-only.
-  useEffect(() => {
-    let frame = 0
-    const update = () => {
-      frame = 0
-      const el = barRef.current
-      if (!el) return
-      const max = document.documentElement.scrollHeight - window.innerHeight
-      const p = max > 0 ? Math.min(1, window.scrollY / max) : 0
-      el.style.transform = `scaleX(${p})`
-      el.style.width = '100%'
-    }
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update)
-    }
-    update()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-      if (frame) cancelAnimationFrame(frame)
-    }
-  }, [])
 
   return (
     <>
@@ -96,7 +70,6 @@ export function Header() {
             </button>
           </div>
         </div>
-        <div className="hdr__progress" ref={barRef} aria-hidden="true" />
       </header>
 
       {open && <MobileNav onClose={() => setOpen(false)} />}

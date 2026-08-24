@@ -14,17 +14,6 @@
   -webkit-backdrop-filter: blur(14px) saturate(140%);
 }
 
-/* A hairline of accent that fills as you scroll the page. */
-.hdr__progress {
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  height: 1px;
-  background: linear-gradient(90deg, var(--c-lime), var(--c-violet));
-  transform-origin: 0 50%;
-  will-change: transform;
-}
-
 .hdr__inner {
   display: flex;
   align-items: center;
@@ -230,6 +219,12 @@
   transition:
     background var(--d-base) var(--e-out),
     box-shadow var(--d-base) var(--e-out);
+}
+
+.chaos-btn__icon {
+  display: none;
+  width: 16px;
+  height: 16px;
 }
 
 .chaos-btn.is-on {
@@ -527,11 +522,9 @@
 }
 
 /* --- Very small screens ---------------------------------------------------------------
-   Below 480px the tool cluster cannot share the bar with the wordmark. Language
-   stays (it is a usability control); GitHub and Chaos move into the drawer,
-   where both already live. */
+   GitHub moves into the drawer. Language and Chaos stay in the header so the
+   drawer does not repeat controls that are already visible. */
 @media (max-width: 479px) {
-  .hdr .hdr__tools > .chaos-btn,
   .hdr .hdr__tools > .icon-btn:not(.burger) {
     display: none;
   }
@@ -583,6 +576,53 @@
   .chaos-btn {
     min-width: 40px;
     height: 40px;
+  }
+
+  .chaos-btn {
+    position: relative;
+    justify-content: center;
+    width: 40px;
+    padding: 0;
+    border-color: var(--c-violet-a35);
+    border-radius: 12px;
+    color: var(--c-violet-bright);
+    background:
+      radial-gradient(circle at 50% 45%, var(--c-violet-a10), transparent 66%),
+      var(--c-surface);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.035);
+  }
+
+  .chaos-btn__icon {
+    display: block;
+    transition:
+      color var(--d-fast) var(--e-out),
+      filter var(--d-fast) var(--e-out),
+      transform var(--d-fast) var(--e-out);
+  }
+
+  .chaos-btn__led {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+  }
+
+  .chaos-btn.is-on {
+    border-color: color-mix(in srgb, var(--c-violet) 62%, var(--c-line));
+    background:
+      radial-gradient(circle at 50% 45%, var(--c-violet-a20), transparent 70%),
+      var(--c-surface);
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.05),
+      0 0 18px -8px var(--c-violet);
+  }
+
+  .chaos-btn.is-on .chaos-btn__icon {
+    color: var(--c-violet-bright);
+    filter: drop-shadow(0 0 5px var(--c-violet));
+    transform: rotate(-7deg) scale(1.06);
   }
 
   .lang__btn {

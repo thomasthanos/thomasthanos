@@ -2,8 +2,6 @@ import { useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ArrowUpRight, Github, X } from 'lucide-react'
 import { Logo } from '../brand/Logo'
-import { LangSwitch } from '../ui/LangSwitch'
-import { ChaosToggle } from '../chaos/ChaosToggle'
 import { Annotation } from '../ui/Annotation'
 import { useI18n } from '../../i18n/i18n'
 import { nav, site } from '../../data/site'
@@ -120,11 +118,6 @@ export function MobileNav({ onClose }: { onClose: () => void }) {
             {t.nav.github}
             <ArrowUpRight aria-hidden="true" />
           </a>
-
-          <div className="drawer__tools">
-            <ChaosToggle />
-            <LangSwitch />
-          </div>
 
           <p className="drawer__sig">
             <span>{site.studio}</span>

@@ -171,6 +171,14 @@ pre {
   border-radius: var(--r-xs);
 }
 
+/* Route changes focus the main landmark for screen readers. It is not an
+   interactive control, so drawing an outline around the full page only creates
+   a stray horizontal line at its bottom edge. */
+#main:focus,
+#main:focus-visible {
+  outline: none;
+}
+
 /* --- Scrollbar ------------------------------------------------------------ */
 * {
   scrollbar-width: thin;

@@ -4,6 +4,11 @@
 .myle {
   --myle-lime-wash: color-mix(in srgb, var(--c-lime) 7%, var(--c-surface));
   --myle-violet-wash: color-mix(in srgb, var(--c-violet) 7%, var(--c-surface));
+  padding-bottom: 0;
+}
+
+main:has(> .myle) + .ftr {
+  margin-top: var(--s-4);
 }
 
 .myle__container {
@@ -758,7 +763,7 @@
 }
 
 .myle-section--links {
-  padding-bottom: var(--s-7);
+  padding-bottom: var(--s-4);
 }
 
 .myle-stack {
@@ -1199,18 +1204,12 @@
     inset: calc(var(--n-fs) * 0.5) auto auto 0.25rem;
   }
 
-  .myle-note--hero::after {
-    --n-flip: 1;
-    --n-arrow-rot: 52deg;
-    order: 0;
-    margin: -0.05em auto 0 0;
-  }
   /* Arrows now lead upward, back to the element each note is about. */
   .myle-note--hero::after,
   .myle-note--ipc::after,
   .myle-note--privacy::after {
     --n-flip: -1;
-    --n-arrow-rot: 58deg;
+    --n-arrow-rot: -58deg;
     order: -1;
     margin: 0 auto -0.1em 0;
   }
@@ -1231,22 +1230,92 @@
 
 
 
+
 /* ============================================================================
    Hand-placed positions
    ----------------------------------------------------------------------------
-   Captured with the Sticker Edit Mode overlay and written back here. These
-   come last on purpose: they override the computed rail/inset placement above,
-   which now only decides where a note goes at a width nobody tuned by hand.
+   Captured with the Sticker Edit Mode overlay and written back here. They come
+   last on purpose: they override the computed rail/inset placement above, which
+   now only decides where a note goes at a width nobody tuned by hand.
 
-   Horizontal offsets inside the anchor are percentages of it, so they hold
-   across a whole tier rather than only at the width they were captured at.
-   A second capture at 1180 landed within 5px of what the 1280 percentages
-   predicted horizontally, which is what this is based on. Vertical offsets
-   stay in px and did drift, so 720p carries two sets.
+   `right` and `bottom` are the captured value plus a correction. The overlay
+   measured those two against the rotated bounding box while measuring top and
+   left against the layout box, so they came out short by however much the
+   rotation inflates the element — 47px on the 18-degree lessons note. Each
+   value below shows the raw capture and the correction that was added.
 
-   Each rule resets the two edges it does not use, because the generic rules
-   above set all four, some through the `inset` shorthand.
+   Horizontal offsets inside the anchor are percentages of it so they hold
+   across a tier; offsets into the side band stay in px, clamped to the band.
    ========================================================================= */
+
+
+/* 4K — captured at 2644x1285, rail mode. The container caps at 1920 so the
+   anchors stop growing past 2048; these hold for any width from here up. */
+@media (min-width: 2560px) {
+  .myle-note--hero {
+    top: 741px;
+    bottom: auto;
+    left: 26.842%; /* 481px at capture width */
+    right: auto;
+    --n-rot: -6deg;
+  }
+
+  .myle-note--admin {
+    bottom: 69px; /* 44 captured + 25 rotation */
+    top: auto;
+    right: max(-209px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -213 captured + 4 rotation */
+    left: auto;
+    --n-rot: 7deg;
+  }
+
+  .myle-note--metrics {
+    top: 85px;
+    bottom: auto;
+    right: max(-209px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -216 captured + 7 rotation */
+    left: auto;
+    --n-rot: 5deg;
+  }
+
+  .myle-note--ipc {
+    top: 340px;
+    bottom: auto;
+    left: 0.781%; /* 14px at capture width */
+    right: auto;
+    --n-rot: -20deg;
+  }
+
+  .myle-note--evolution {
+    bottom: 16px; /* -32 captured + 48 rotation */
+    top: auto;
+    right: max(-201px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -211 captured + 10 rotation */
+    left: auto;
+    --n-rot: 14deg;
+  }
+
+  .myle-note--gallery {
+    top: 554px;
+    bottom: auto;
+    right: 7.745%; /* 139px = 128 captured + 11 rotation */
+    left: auto;
+    --n-rot: 17deg;
+  }
+
+  .myle-note--privacy {
+    bottom: 103px; /* 40 captured + 63 rotation */
+    top: auto;
+    left: 58.300%; /* 439px at capture width */
+    right: auto;
+    --n-rot: -19deg;
+  }
+
+  .myle-note--ship {
+    bottom: 84px; /* 39 captured + 45 rotation */
+    top: auto;
+    right: 2.919%; /* 30px = 20 captured + 10 rotation */
+    left: auto;
+    --n-rot: -13deg;
+  }
+}
 
 /* 1440p — captured at 2552x1308, rail mode. Gated to widths where a rail
    actually exists; below that the computed inset placement takes over. */
@@ -1261,9 +1330,9 @@
   }
 
   .myle-note--admin {
-    bottom: -16px;
+    bottom: 30px; /* -16 captured + 46 rotation */
     top: auto;
-    right: max(-184px, calc(-1 * (var(--n-gutter) - 0.75rem)));
+    right: max(-180px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -184 captured + 4 rotation */
     left: auto;
     --n-rot: 15deg;
   }
@@ -1271,8 +1340,9 @@
   .myle-note--metrics {
     top: 97px;
     bottom: auto;
-    right: max(-193px, calc(-1 * (var(--n-gutter) - 0.75rem)));
+    right: max(-189px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -193 captured + 4 rotation */
     left: auto;
+    --n-rot: 3deg;
   }
 
   .myle-note--ipc {
@@ -1281,13 +1351,12 @@
     left: 1.395%; /* 25px at capture width */
     right: auto;
     --n-rot: -27deg;
-    /* carried over from round 1 — not re-touched */
   }
 
   .myle-note--evolution {
-    bottom: -84px;
+    bottom: -41px; /* -84 captured + 43 rotation */
     top: auto;
-    right: max(-199px, calc(-1 * (var(--n-gutter) - 0.75rem)));
+    right: max(-190px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -199 captured + 9 rotation */
     left: auto;
     --n-rot: 14deg;
   }
@@ -1295,13 +1364,13 @@
   .myle-note--gallery {
     top: 568px;
     bottom: auto;
-    right: 5.078%; /* 91px at capture width */
+    right: 5.597%; /* 100px = 91 captured + 9 rotation */
     left: auto;
     --n-rot: -14deg;
   }
 
   .myle-note--privacy {
-    bottom: -42px;
+    bottom: 26px; /* -42 captured + 68 rotation */
     top: auto;
     left: 50.465%; /* 380px at capture width */
     right: auto;
@@ -1309,11 +1378,35 @@
   }
 
   .myle-note--ship {
-    bottom: 14px;
+    bottom: 39px; /* 14 captured + 25 rotation */
     top: auto;
-    right: 2.061%; /* 21px at capture width */
+    right: 2.691%; /* 27px = 21 captured + 6 rotation */
     left: auto;
     --n-rot: -8deg;
+  }
+}
+
+/* Compact the complete 1080p presentation instead of carrying the larger
+   1440p/4K vertical rhythm into a shorter viewport. */
+@media (min-width: 1600px) and (max-width: 1999px) and (max-height: 1100px) {
+  .myle {
+    padding-top: 1.25rem;
+  }
+
+  .myle-hero__copy {
+    padding-top: 1.25rem;
+  }
+
+  .myle-section {
+    padding-top: 3rem;
+  }
+
+  .myle-section--tight {
+    padding-top: 1.25rem;
+  }
+
+  .myle-section__head {
+    margin-bottom: 1rem;
   }
 }
 
@@ -1328,40 +1421,47 @@
   }
 
   .myle-note--admin {
-    bottom: -47px;
+    bottom: -6px; /* -43 captured + 37 rotation */
     top: auto;
-    right: max(-169px, calc(-1 * (var(--n-gutter) - 0.75rem)));
+    right: max(-169px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -178 captured + 9 rotation */
     left: auto;
     --n-rot: 14deg;
   }
 
   .myle-note--metrics {
-    top: 113px;
+    top: 103px;
     bottom: auto;
-    right: max(-119px, calc(-1 * (var(--n-gutter) - 0.75rem)));
+    right: max(-159px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -171 captured + 12 rotation */
     left: auto;
     --n-rot: 13deg;
   }
 
   .myle-note--ipc {
-    top: 359px;
+    top: 339px;
     bottom: auto;
-    left: max(-49px, calc(-1 * (var(--n-gutter) - 0.75rem)));
+    left: max(-29px, calc(-1 * (var(--n-gutter) - 0.75rem)));
     right: auto;
     --n-rot: -17deg;
-    /* carried over from round 1 — not re-touched */
   }
 
   .myle-note--evolution {
-    bottom: -53px;
+    bottom: -33px; /* -68 captured + 35 rotation */
     top: auto;
-    right: max(-146px, calc(-1 * (var(--n-gutter) - 0.75rem)));
+    right: max(-156px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -164 captured + 8 rotation */
     left: auto;
     --n-rot: 13deg;
   }
 
+  .myle-note--gallery {
+    top: 454px;
+    bottom: auto;
+    right: 7.456%; /* 104px = 95 captured + 9 rotation */
+    left: auto;
+    --n-rot: 21deg;
+  }
+
   .myle-note--privacy {
-    bottom: -28px;
+    bottom: 23px; /* -14 captured + 37 rotation */
     top: auto;
     left: 57.094%; /* 334px at capture width */
     right: auto;
@@ -1369,28 +1469,48 @@
   }
 
   .myle-note--ship {
-    bottom: -21px;
+    bottom: 21px; /* -26 captured + 47 rotation */
     top: auto;
-    right: 1.138%; /* 9px at capture width */
+    right: 1.878%; /* 15px = 6 captured + 9 rotation */
     left: auto;
     --n-rot: -18deg;
   }
 }
 
-/* 720p, wider half — captured at 1280x720. The tier is split because the
-   vertical offsets, which stay in px, drifted by about 40px across it. */
-@media (min-width: 1230px) and (max-width: 1599px) {
+/* 720p — captured at 1280x720. One tier again: the 1180 sample differed by
+   the same 42px the export bug accounted for, not by genuine drift. */
+@media (min-width: 1100px) and (max-width: 1599px) {
+  .myle {
+    padding-top: 1rem;
+  }
+
+  :root[data-chaos='on'] .myle__back {
+    margin-bottom: 0.5rem;
+  }
+
+  .myle-hero__copy {
+    padding-top: 1rem;
+  }
+
   .myle-note--hero {
     top: 502px;
     bottom: auto;
     left: 25.975%; /* 313px at capture width */
     right: auto;
+    --n-rot: -6deg;
+  }
+
+  .myle-note--hero::after {
+    --n-flip: 1;
+    --n-arrow-rot: -12deg;
+    order: 0;
+    margin: -0.15em -0.9em 0 auto;
   }
 
   .myle-note--admin {
-    bottom: 8px;
+    bottom: 23px; /* -3 captured + 26 rotation */
     top: auto;
-    right: 0.498%; /* 6px at capture width */
+    right: 0.280%; /* 3px = 0 captured + 3 rotation */
     left: auto;
     --n-rot: -10deg;
   }
@@ -1398,10 +1518,9 @@
   .myle-note--metrics {
     top: 144px;
     bottom: auto;
-    right: 1.577%; /* 19px at capture width */
+    right: 1.717%; /* 21px = 19 captured + 2 rotation */
     left: auto;
     --n-rot: -9deg;
-    /* carried over from round 1 — not re-touched */
   }
 
   .myle-note--ipc {
@@ -1410,13 +1529,12 @@
     left: 37.593%; /* 453px at capture width */
     right: auto;
     --n-rot: -13deg;
-    /* carried over from round 1 — not re-touched */
   }
 
   .myle-note--evolution {
-    bottom: -15px;
+    bottom: 29px; /* -14 captured + 43 rotation */
     top: auto;
-    right: 1.245%; /* 15px at capture width */
+    right: 1.586%; /* 19px = 17 captured + 2 rotation */
     left: auto;
     --n-rot: -11deg;
   }
@@ -1424,13 +1542,13 @@
   .myle-note--gallery {
     top: 398px;
     bottom: auto;
-    right: 5.477%; /* 66px at capture width */
+    right: 5.640%; /* 68px = 66 captured + 2 rotation */
     left: auto;
     --n-rot: -13deg;
   }
 
   .myle-note--privacy {
-    bottom: 39px;
+    bottom: 69px; /* 23 captured + 46 rotation */
     top: auto;
     left: 58.449%; /* 294px at capture width */
     right: auto;
@@ -1438,76 +1556,9 @@
   }
 
   .myle-note--ship {
-    bottom: -11px;
+    bottom: 35px; /* -9 captured + 44 rotation */
     top: auto;
-    right: 4.699%; /* 32px at capture width */
-    left: auto;
-    --n-rot: -13deg;
-  }
-}
-
-/* 720p, narrower half — captured at 1180x820. */
-@media (min-width: 1100px) and (max-width: 1229px) {
-  .myle-note--hero {
-    top: 468px;
-    bottom: auto;
-    left: 25.699%; /* 285px at capture width */
-    right: auto;
-  }
-
-  .myle-note--admin {
-    bottom: 12px;
-    top: auto;
-    right: 1.353%; /* 15px at capture width */
-    left: auto;
-    --n-rot: -10deg;
-  }
-
-  .myle-note--metrics {
-    top: 144px;
-    bottom: auto;
-    right: 1.533%; /* 17px at capture width */
-    left: auto;
-    --n-rot: -9deg;
-    /* carried over from round 1 percentage — not re-touched */
-  }
-
-  .myle-note--ipc {
-    top: 299px;
-    bottom: auto;
-    left: 37.151%; /* 412px at capture width */
-    right: auto;
-    --n-rot: -13deg;
-  }
-
-  .myle-note--evolution {
-    bottom: -16px;
-    top: auto;
-    right: 1.533%; /* 17px at capture width */
-    left: auto;
-    --n-rot: -11deg;
-  }
-
-  .myle-note--gallery {
-    top: 372px;
-    bottom: auto;
-    right: 5.681%; /* 63px at capture width */
-    left: auto;
-    --n-rot: -12deg;
-  }
-
-  .myle-note--privacy {
-    bottom: 43px;
-    top: auto;
-    left: 58.315%; /* 270px at capture width */
-    right: auto;
-    --n-rot: 6deg;
-  }
-
-  .myle-note--ship {
-    bottom: -10px;
-    top: auto;
-    right: 4.633%; /* 29px at capture width */
+    right: 4.750%; /* 32px = 30 captured + 2 rotation */
     left: auto;
     --n-rot: -13deg;
   }
