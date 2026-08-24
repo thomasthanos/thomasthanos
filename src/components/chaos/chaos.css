@@ -104,26 +104,17 @@
    Shown from 1100px up, which covers 1280x720 landscape. Below that the layout
    is a phone and there is genuinely nowhere to put a mark that is not on top
    of something, so the layer stays empty. */
-@media (min-width: 900px) {
+@media (min-width: 1100px) {
   .doodle,
   .sticker-note {
     display: block;
   }
 }
 
-/* 900-1099 shows the handwritten notes, so the global marks have to appear
-   with them or the page looks half-decorated. The only room is the page
-   padding, about 30px, so they shrink to suit. */
-@media (min-width: 900px) and (max-width: 1099px) {
-  .doodle--1 { --doodle-w: 20px; }
-  .doodle--2 { --doodle-w: 21px; }
-  .doodle--3 { --doodle-w: 17px; }
-}
-
 /* Narrow band: the only room is the page padding itself, so the marks shrink
    and the stickers stand on end. Turned rather than hidden — the text is still
    the text, just read down the margin. */
-@media (min-width: 900px) and (max-width: 1875px),
+@media (min-width: 1100px) and (max-width: 1875px),
        (min-height: 1101px) and (max-width: 2295px) {
   .doodle--1 { --doodle-w: 26px; }
   .doodle--2 { --doodle-w: 28px; }
