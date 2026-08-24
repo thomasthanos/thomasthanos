@@ -348,7 +348,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
           <span className="myle-note myle-note--ipc">{c.notes[3]}</span>
         </CaseSection>
 
-        <CaseSection id="myle-evolution" label={c.evolution} aside={c.evolutionNote}>
+        <CaseSection id="myle-evolution" label={c.evolution} aside={c.evolutionNote} className="myle-section--note-space">
           <SwipeHint />
           <ol className="myle-evolution">
             {evolution[lang].map(([version, title, body], index) => (
@@ -395,7 +395,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
 
         <div className="myle-endgrid">
           {p.privacy && (
-            <CaseSection id="myle-privacy" label={c.privacy} className="myle-section--panel">
+            <CaseSection id="myle-privacy" label={c.privacy} className="myle-section--panel myle-section--note-space">
               <Reveal className="myle-privacy">
                 <ShieldCheck aria-hidden="true" />
                 <p>{tr(p.privacy)}</p>

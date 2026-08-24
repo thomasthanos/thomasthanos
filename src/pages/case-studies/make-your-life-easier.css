@@ -925,8 +925,9 @@
 }
 
 .myle-note--evolution {
-  top: 3.1rem;
+  top: auto;
   right: 1.25rem;
+  bottom: 0.5rem;
   color: var(--c-lime);
   transform: rotate(4deg);
 }
@@ -937,10 +938,16 @@
 }
 
 .myle-note--privacy {
-  bottom: -0.5rem;
+  bottom: 0.5rem;
   left: 1.5rem;
   color: var(--c-orange);
   transform: rotate(-4deg);
+}
+
+@media (min-width: 900px) {
+  :root[data-chaos='on'] .myle-section--note-space {
+    padding-bottom: 8rem;
+  }
 }
 
 .myle-note--ship {
