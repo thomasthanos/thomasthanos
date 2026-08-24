@@ -20,6 +20,7 @@ import { useI18n } from '../i18n/i18n'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
 import { getProject, neighbours } from '../data/projects'
 import { external } from '../utils'
+import { MakeYourLifeEasierCaseStudy } from './case-studies/MakeYourLifeEasierCaseStudy'
 import './detail.css'
 
 export function ProjectDetail() {
@@ -37,6 +38,10 @@ export function ProjectDetail() {
 
   const p = project
   const near = neighbours(p.slug)
+
+  if (p.slug === 'make-your-life-easier') {
+    return <MakeYourLifeEasierCaseStudy project={p} near={near} />
+  }
 
   return (
     <div className="page" data-accent={p.accent}>
