@@ -4,7 +4,7 @@
   // Must match the Worker this repository is connected to in the Cloudflare
   // dashboard. Deploying with a different name creates a second Worker instead
   // of updating the one me.thomast.uk points at.
-  "name": "portofolio",
+  "name": "thomasthanos",
   "compatibility_date": "2026-08-24",
 
   // The site tells visitors it runs no telemetry. Shipping it with a build tool
