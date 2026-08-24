@@ -1030,6 +1030,60 @@
   }
 }
 
+/* At 1080p the narrowed case study creates real side gutters again. Keep every
+   chaos decoration in those gutters instead of laying it over product content. */
+@media (min-width: 1600px) and (max-width: 2559px) and (max-height: 1100px) {
+  body:has(.myle) .chaos-layer {
+    --gutter: calc((100vw - 1500px) / 2);
+  }
+
+  body:has(.myle) .chaos-layer .doodle,
+  body:has(.myle) .chaos-layer .sticker-note {
+    display: block;
+  }
+
+  .myle__container {
+    --myle-note-rail: calc((100vw - 1500px) / -4 - 4.25rem);
+  }
+
+  .myle-note {
+    max-width: 14ch;
+    font-size: 0.95rem;
+  }
+
+  .myle-note::after {
+    font-size: 1.55rem;
+  }
+
+  .myle-note--hero,
+  .myle-note--ipc,
+  .myle-note--privacy {
+    right: auto;
+    left: var(--myle-note-rail);
+  }
+
+  .myle-note--admin,
+  .myle-note--metrics,
+  .myle-note--evolution,
+  .myle-note--gallery,
+  .myle-note--ship {
+    right: var(--myle-note-rail);
+    left: auto;
+  }
+
+  .myle-note--hero {
+    top: 13%;
+  }
+
+  .myle-note--admin {
+    bottom: 12%;
+  }
+
+  .myle-note--metrics {
+    top: 1.25rem;
+  }
+}
+
 @media (max-width: 1399px) {
   .myle-hero {
     grid-template-columns: minmax(300px, 0.78fr) minmax(500px, 1.22fr);

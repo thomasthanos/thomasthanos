@@ -41,8 +41,8 @@
   white-space: nowrap;
 }
 
-/* 1240 container + 2 × (72px art + 20px breathing room) */
-@media (min-width: 1424px) {
+/* 1920px page + 2 × (72px art + 20px breathing room). */
+@media (min-width: 2104px) {
   .doodle,
   .sticker-note {
     display: block;
