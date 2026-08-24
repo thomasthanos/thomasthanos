@@ -406,7 +406,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
           )}
 
           {p.lessons && (
-            <CaseSection id="myle-lessons" label={c.lessons} className="myle-section--panel">
+            <CaseSection id="myle-lessons" label={c.lessons} className="myle-section--panel myle-section--lessons">
               <SwipeHint />
               <ul className="myle-lessons">
                 {trList(p.lessons).map((lesson) => <li key={lesson}>{lesson}</li>)}

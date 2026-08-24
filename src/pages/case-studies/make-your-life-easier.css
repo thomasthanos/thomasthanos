@@ -681,9 +681,17 @@
   flex-direction: column;
 }
 
-.myle-section--panel > .myle-privacy,
-.myle-section--panel > .myle-lessons {
+.myle-section--panel > .myle-privacy {
   flex: 1;
+}
+
+.myle-section--lessons {
+  align-self: start;
+}
+
+.myle-section--lessons > .myle-lessons {
+  flex: none;
+  height: auto;
 }
 
 .myle-privacy,
@@ -732,9 +740,10 @@
 
 .myle-lessons li {
   position: relative;
-  padding: var(--s-5) var(--s-5) var(--s-5) calc(var(--s-5) + 1rem);
+  min-height: 104px;
+  padding: 1.15rem 1.25rem 1.15rem 2.25rem;
   font-size: var(--t-sm);
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--c-text-3);
   background: var(--c-surface);
 }
@@ -742,8 +751,8 @@
 .myle-lessons li::before {
   content: '—';
   position: absolute;
-  top: var(--s-5);
-  left: var(--s-5);
+  top: 1.15rem;
+  left: 1.25rem;
   color: var(--c-lime);
 }
 
