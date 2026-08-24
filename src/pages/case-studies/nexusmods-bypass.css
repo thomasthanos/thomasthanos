@@ -1,0 +1,2109 @@
+/* ============================================================================
+   NexusMods Bypass — case study
+   ----------------------------------------------------------------------------
+   Its own identity, deliberately not Make Your Life Easier.
+
+   MYLE is a desktop control centre: a centred OS window, calm vertical stacking,
+   one accent. This is a browser queue: things move left to right, the frame is
+   browser chrome rather than a title bar, and two accents carry meaning —
+   lime for work that completed, orange for the friction the tool exists to
+   remove (timers, rate limits, permissions it refuses).
+   ========================================================================= */
+
+.nxb {
+  /* The extension itself is amber throughout, so the hero and the gallery —
+   * the two places that sit next to real captures — are amber too. The rest
+   * of the page stays on the portfolio lime. */
+  --nxb-orange: #f0883e;
+  --nxb-orange-bright: #ffa257;
+  --nxb-orange-deep: #c96a28;
+  --nxb-orange-a08: rgba(240, 136, 62, 0.08);
+  --nxb-orange-a24: rgba(240, 136, 62, 0.24);
+  --nxb-orange-a40: rgba(240, 136, 62, 0.4);
+  --nxb-orange-a12: rgba(240, 136, 62, 0.12);
+  --nxb-orange-a30: rgba(240, 136, 62, 0.3);
+  --nxb-line: var(--c-line);
+  --nxb-panel: color-mix(in srgb, var(--c-surface) 78%, transparent);
+}
+
+.nxb__container {
+  position: relative;
+}
+
+.nxb__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: clamp(1rem, 0.8rem + 1vw, 1.75rem);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+  transition: color var(--d-fast) var(--e-out);
+}
+
+.nxb__back:hover {
+  color: var(--c-lime);
+}
+
+.nxb__back svg {
+  width: 14px;
+  transition: transform var(--d-fast) var(--e-out);
+}
+
+.nxb__back:hover svg {
+  transform: translateX(-3px);
+}
+
+/* --- Sections --------------------------------------------------------------- */
+.nxb-section {
+  position: relative;
+  padding-top: clamp(2.5rem, 1.8rem + 2.2vw, 4.5rem);
+}
+
+.nxb-section__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-5);
+  margin-bottom: clamp(1.25rem, 1rem + 1vw, 2rem);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--nxb-line);
+}
+
+.nxb-section__head h2 {
+  font-family: var(--f-display);
+  font-size: clamp(1.35rem, 1.1rem + 1vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: var(--ls-head);
+  text-transform: uppercase;
+  color: var(--c-text);
+}
+
+.nxb-section__aside {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 46ch;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  line-height: 1.5;
+  color: var(--c-text-4);
+  text-align: right;
+}
+
+/* --- Hero ------------------------------------------------------------------- */
+.nxb-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.82fr) minmax(440px, 1.18fr);
+  align-items: center;
+  gap: clamp(1.75rem, 2.4vw, 3.5rem);
+  padding: clamp(1rem, 1.6vw, 2.5rem) 0 clamp(2rem, 3vw, 3.5rem);
+  border-bottom: 1px solid var(--nxb-line);
+}
+
+/* A queue moves sideways, so the hero glow does too. It stops at the hero's
+   own edge: a negative offset here is real scroll overflow, and the blur
+   spreads it outwards anyway without adding to the scroll width. */
+.nxb-hero::before {
+  content: '';
+  position: absolute;
+  inset: 8% 0 auto auto;
+  width: min(46vw, 620px);
+  aspect-ratio: 2.2;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--nxb-orange-a08), transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.nxb-hero__copy {
+  position: relative;
+  z-index: 1;
+  max-width: 56ch;
+}
+
+.nxb-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-4);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+
+.nxb-hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--nxb-orange-a24);
+  border-radius: var(--r-pill);
+  background: var(--nxb-orange-a08);
+  color: var(--nxb-orange-bright);
+}
+
+.nxb-hero__status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--nxb-orange);
+  box-shadow: 0 0 8px var(--nxb-orange);
+}
+
+.nxb-hero h1 {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--f-display);
+  font-size: clamp(2.6rem, 1.6rem + 3.4vw, 5rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: var(--c-text);
+}
+
+.nxb-hero__line2 {
+  display: inline-flex;
+  align-items: center;
+  color: var(--nxb-orange-bright);
+}
+
+/* The prompt caret is the one thing that blinks on this page. */
+.nxb-hero__caret {
+  width: 0.42em;
+  height: 0.78em;
+  margin-left: 0.1em;
+  background: var(--nxb-orange-bright);
+  animation: nxb-caret 1.15s steps(1, end) infinite;
+}
+
+@keyframes nxb-caret {
+  50% { opacity: 0; }
+}
+
+.nxb-hero__tagline {
+  margin-top: var(--s-4);
+  font-family: var(--f-mono);
+  font-size: clamp(0.85rem, 0.78rem + 0.3vw, 1.02rem);
+  letter-spacing: 0.01em;
+  color: var(--nxb-orange-bright);
+}
+
+.nxb-hero__summary {
+  margin-top: var(--s-3);
+  max-width: 54ch;
+  font-size: clamp(0.9rem, 0.85rem + 0.25vw, 1.02rem);
+  line-height: 1.55;
+  color: var(--c-text-2);
+}
+
+.nxb-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+}
+
+/* --- Console (interface schematic) ------------------------------------------ */
+.nxb-console {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--r-lg);
+  background: linear-gradient(160deg, var(--c-surface-2), var(--c-surface));
+  box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+/* Browser chrome, not a window title bar — this thing lives in a tab. */
+.nxb-console__chrome {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--nxb-line);
+  background: var(--c-bg-elev);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  color: var(--c-text-3);
+}
+
+.nxb-console__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.28rem 0.6rem;
+  border: 1px solid var(--nxb-line);
+  border-bottom-color: transparent;
+  border-radius: var(--r-sm) var(--r-sm) 0 0;
+  background: var(--c-surface-2);
+  color: var(--c-text-2);
+  white-space: nowrap;
+}
+
+.nxb-console__tab i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--nxb-orange);
+}
+
+.nxb-console__url {
+  flex: 1;
+  min-width: 0;
+  padding: 0.22rem 0.6rem;
+  border: 1px solid var(--nxb-line);
+  border-radius: var(--r-pill);
+  background: var(--c-bg);
+  color: var(--c-text-4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nxb-console__body {
+  padding: clamp(0.75rem, 1.4vw, 1.15rem);
+  display: grid;
+  gap: 0.3rem;
+}
+
+.nxb-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 0.5rem 0.65rem;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  background: var(--nxb-panel);
+  font-family: var(--f-mono);
+  font-size: clamp(0.72rem, 0.68rem + 0.2vw, 0.84rem);
+}
+
+.nxb-row[data-hot='y'] {
+  border-color: var(--nxb-orange-a24);
+  background: var(--nxb-orange-a08);
+}
+
+.nxb-row__k {
+  min-width: 0;
+  color: var(--c-text-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nxb-row[data-hot='y'] .nxb-row__k {
+  color: var(--nxb-orange-bright);
+}
+
+.nxb-row__v {
+  color: var(--c-text-2);
+  white-space: nowrap;
+}
+
+/* A row carrying a bar gives it the whole middle column. */
+.nxb-row:has(.nxb-row__bar) {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
+.nxb-row__bar {
+  height: 5px;
+  border-radius: var(--r-pill);
+  background: var(--c-surface-3);
+  overflow: hidden;
+}
+
+.nxb-row__bar i {
+  display: block;
+  width: var(--p, 0%);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--nxb-orange-deep), var(--nxb-orange));
+}
+
+.nxb-console__foot {
+  margin-top: 0.35rem;
+  padding: 0.55rem 0.65rem;
+  border-top: 1px dashed var(--nxb-line);
+}
+
+.nxb-console__clicks {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--nxb-orange-bright);
+}
+
+.nxb-console__clicks svg {
+  width: 13px;
+  height: 13px;
+}
+
+.nxb-console__caption {
+  padding: 0.55rem 0.9rem 0.75rem;
+  border-top: 1px solid var(--nxb-line);
+  background: var(--c-bg-elev);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  line-height: 1.45;
+  color: var(--c-text-4);
+}
+
+/* --- Metrics ---------------------------------------------------------------- */
+.nxb-section--tight {
+  padding-top: clamp(1.75rem, 1.4rem + 1.4vw, 3rem);
+}
+
+.nxb-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid var(--nxb-line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.nxb-stat {
+  padding: clamp(0.9rem, 1.6vw, 1.6rem);
+  border-right: 1px solid var(--nxb-line);
+  background: var(--nxb-panel);
+}
+
+.nxb-stat:last-child {
+  border-right: 0;
+}
+
+.nxb-stat dt {
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--c-lime);
+}
+
+.nxb-stat dd {
+  margin-top: 0.35rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.04em;
+  color: var(--c-text-4);
+}
+
+/* --- The maths -------------------------------------------------------------- */
+.nxb-maths {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.1fr);
+  align-items: stretch;
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+}
+
+.nxb-sum {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.1rem, 2vw, 1.9rem);
+  border: 1px solid var(--nxb-orange-a30);
+  border-radius: var(--r-lg);
+  background: linear-gradient(160deg, var(--nxb-orange-a12), transparent 65%), var(--nxb-panel);
+  font-family: var(--f-mono);
+  transition: border-color var(--d-fast) var(--e-out);
+}
+
+.nxb-sum:hover {
+  border-color: var(--nxb-orange-a40);
+}
+
+.nxb-sum__row {
+  display: grid;
+  grid-template-columns: 1.2em auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.3rem 0;
+}
+
+.nxb-sum__op {
+  color: var(--nxb-orange);
+  text-align: center;
+}
+
+.nxb-sum__n {
+  font-family: var(--f-display);
+  font-size: clamp(1.15rem, 0.95rem + 0.8vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--c-text);
+}
+
+.nxb-sum__l {
+  font-size: clamp(0.72rem, 0.68rem + 0.2vw, 0.85rem);
+  color: var(--c-text-3);
+}
+
+.nxb-sum__rule {
+  height: 1px;
+  margin: 0.6rem 0;
+  background: var(--nxb-orange-a30);
+}
+
+.nxb-sum__row--total .nxb-sum__n {
+  color: var(--nxb-orange);
+}
+
+.nxb-sum__row--total .nxb-sum__l {
+  color: var(--nxb-orange);
+  opacity: 0.75;
+}
+
+.nxb-maths__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(0.75rem, 1.2vw, 1.15rem);
+  padding: clamp(1.1rem, 2vw, 1.9rem);
+  border: 1px solid var(--nxb-line);
+  border-radius: var(--r-lg);
+  background: linear-gradient(160deg, var(--c-surface-2), var(--nxb-panel));
+  transition: border-color var(--d-fast) var(--e-out);
+}
+
+.nxb-maths__card:hover {
+  border-color: var(--c-line-strong);
+}
+
+.nxb-maths__block {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.nxb-maths__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.nxb-maths__tag svg {
+  width: 13px;
+  height: 13px;
+}
+
+.nxb-maths__block--why .nxb-maths__tag {
+  color: var(--nxb-orange-bright);
+}
+
+.nxb-maths__block--what .nxb-maths__tag {
+  color: var(--c-lime);
+}
+
+.nxb-maths__block p {
+  max-width: 60ch;
+  font-size: clamp(0.84rem, 0.8rem + 0.2vw, 0.94rem);
+  line-height: 1.6;
+  color: var(--c-text-2);
+}
+
+.nxb-maths__divider {
+  height: 1px;
+  background: var(--nxb-line);
+  border-top: 1px dashed var(--c-line-strong);
+}
+
+/* --- Queue pipeline --------------------------------------------------------- */
+.nxb-pipe {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--s-2);
+  counter-reset: step;
+}
+
+.nxb-pipe > li {
+  position: relative;
+  display: flex;
+  min-width: 0;
+}
+
+/* The connector between steps — the thing that makes it read as a flow. */
+.nxb-pipe > li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 1.65rem;
+  right: calc(var(--s-2) * -1 - 1px);
+  width: var(--s-2);
+  height: 1px;
+  background: var(--c-line-strong);
+}
+
+.nxb-step {
+  flex: 1;
+  min-width: 0;
+  padding: clamp(0.7rem, 1.1vw, 1rem);
+  border: 1px solid var(--nxb-line);
+  border-radius: var(--r-md);
+  background: var(--nxb-panel);
+  transition: border-color var(--d-fast) var(--e-out), background var(--d-fast) var(--e-out);
+}
+
+.nxb-pipe > li:hover .nxb-step {
+  border-color: var(--c-lime-a24);
+  background: var(--c-lime-a08);
+}
+
+.nxb-step__n {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.12em;
+  color: var(--c-lime-deep);
+}
+
+.nxb-step h3 {
+  margin-top: 0.4rem;
+  font-size: clamp(0.82rem, 0.78rem + 0.2vw, 0.95rem);
+  font-weight: 640;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+}
+
+.nxb-step p {
+  margin-top: 0.3rem;
+  font-size: clamp(0.7rem, 0.68rem + 0.15vw, 0.8rem);
+  line-height: 1.45;
+  color: var(--c-text-3);
+}
+
+/* --- Features --------------------------------------------------------------- */
+.nxb-features {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+
+/* The first two carry the product; they get twice the room. */
+.nxb-features > li {
+  grid-column: span 2;
+  display: flex;
+  min-width: 0;
+}
+
+.nxb-features > li[data-lead='y'] {
+  grid-column: span 3;
+}
+
+/* Seven cards in a six-column grid: two leads fill row one, three fill row two,
+   and the last two would leave a third of row three empty. The final card takes
+   the slack — it is the language list, which wants the width anyway. */
+.nxb-features > li:last-child {
+  grid-column: span 4;
+}
+
+.nxb-feature {
+  flex: 1;
+  min-width: 0;
+  padding: clamp(0.9rem, 1.4vw, 1.4rem);
+  border: 1px solid var(--nxb-line);
+  border-radius: var(--r-md);
+  background: var(--nxb-panel);
+  transition: border-color var(--d-fast) var(--e-out);
+}
+
+.nxb-features > li:hover .nxb-feature {
+  border-color: var(--c-lime-a24);
+}
+
+.nxb-feature__icon {
+  display: inline-flex;
+  padding: 0.4rem;
+  border: 1px solid var(--c-lime-a24);
+  border-radius: var(--r-sm);
+  background: var(--c-lime-a08);
+  color: var(--c-lime);
+}
+
+.nxb-feature__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nxb-feature h3 {
+  margin-top: 0.65rem;
+  font-size: clamp(0.85rem, 0.8rem + 0.2vw, 1rem);
+  font-weight: 640;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+}
+
+.nxb-feature p {
+  margin-top: 0.35rem;
+  font-size: clamp(0.75rem, 0.72rem + 0.18vw, 0.86rem);
+  line-height: 1.5;
+  color: var(--c-text-3);
+}
+
+/* --- Challenges ------------------------------------------------------------- */
+.nxb-challenges {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+
+.nxb-challenge {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--s-3);
+  padding: clamp(0.9rem, 1.4vw, 1.4rem);
+  border-left: 2px solid var(--c-lime-a24);
+  background: linear-gradient(90deg, var(--c-lime-a08), transparent 60%);
+}
+
+.nxb-challenge > span {
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.12em;
+  color: var(--c-lime-deep);
+}
+
+.nxb-challenge h3 {
+  font-size: clamp(0.88rem, 0.82rem + 0.22vw, 1.02rem);
+  font-weight: 640;
+  color: var(--c-text);
+}
+
+.nxb-challenge p {
+  margin-top: 0.4rem;
+  font-size: clamp(0.78rem, 0.74rem + 0.18vw, 0.88rem);
+  line-height: 1.55;
+  color: var(--c-text-3);
+}
+
+/* --- Architecture ----------------------------------------------------------- */
+.nxb-arch {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+
+.nxb-layer {
+  min-width: 0;
+  padding: clamp(0.9rem, 1.3vw, 1.3rem);
+  border: 1px solid var(--nxb-line);
+  border-radius: var(--r-md);
+  background: var(--nxb-panel);
+}
+
+.nxb-layer h3 {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--nxb-line);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-lime);
+}
+
+.nxb-layer ul {
+  margin-top: 0.65rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.nxb-layer code {
+  font-family: var(--f-mono);
+  font-size: clamp(0.68rem, 0.65rem + 0.15vw, 0.78rem);
+  color: var(--c-text-2);
+  overflow-wrap: anywhere;
+}
+
+.nxb-layer p {
+  margin-top: 0.7rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--nxb-line);
+  font-size: clamp(0.72rem, 0.7rem + 0.15vw, 0.8rem);
+  line-height: 1.45;
+  color: var(--c-text-4);
+}
+
+/* --- Privacy ---------------------------------------------------------------- */
+.nxb-privacy {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(0, 1.15fr);
+  gap: clamp(1.25rem, 2.4vw, 2.5rem);
+  align-items: start;
+}
+
+.nxb-privacy__prose {
+  padding: clamp(1rem, 1.6vw, 1.6rem);
+  border: 1px solid var(--c-lime-a24);
+  border-radius: var(--r-lg);
+  background: linear-gradient(160deg, var(--c-lime-a08), transparent 70%), var(--nxb-panel);
+}
+
+.nxb-privacy__prose > svg {
+  width: 26px;
+  height: 26px;
+  color: var(--c-lime);
+}
+
+.nxb-privacy__prose p {
+  margin-top: 0.75rem;
+  font-size: clamp(0.82rem, 0.78rem + 0.2vw, 0.94rem);
+  line-height: 1.6;
+  color: var(--c-text-2);
+}
+
+.nxb-privacy__prose strong {
+  display: block;
+  margin-top: 0.9rem;
+  font-family: var(--f-hand);
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.4rem);
+  font-weight: 400;
+  color: var(--c-lime);
+}
+
+.nxb-perms {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+
+.nxb-perms__col {
+  min-width: 0;
+  padding: clamp(0.8rem, 1.2vw, 1.15rem);
+  border: 1px solid var(--nxb-line);
+  border-radius: var(--r-md);
+  background: var(--nxb-panel);
+}
+
+.nxb-perms__col h3 {
+  margin-bottom: 0.6rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-lime);
+}
+
+.nxb-perms__col--no h3 {
+  color: var(--nxb-orange);
+}
+
+.nxb-perms li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.4rem 0.5rem;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--c-line-soft);
+}
+
+.nxb-perms li:first-of-type {
+  border-top: 0;
+}
+
+.nxb-perms li svg {
+  width: 12px;
+  height: 12px;
+  color: var(--c-lime);
+  transform: translateY(1px);
+}
+
+.nxb-perms__col--no li svg {
+  color: var(--nxb-orange);
+}
+
+.nxb-perms code {
+  font-family: var(--f-mono);
+  font-size: clamp(0.68rem, 0.66rem + 0.12vw, 0.76rem);
+  color: var(--c-text);
+  overflow-wrap: anywhere;
+}
+
+.nxb-perms li span {
+  grid-column: 2;
+  font-size: clamp(0.68rem, 0.66rem + 0.12vw, 0.76rem);
+  line-height: 1.4;
+  color: var(--c-text-4);
+}
+
+/* --- Origin story ----------------------------------------------------------- */
+.nxb-story {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+
+.nxb-story > li {
+  display: flex;
+  min-width: 0;
+}
+
+.nxb-era {
+  flex: 1;
+  min-width: 0;
+  padding: clamp(0.9rem, 1.4vw, 1.4rem);
+  border: 1px solid var(--nxb-line);
+  border-top: 2px solid var(--c-lime-a40);
+  border-radius: 0 0 var(--r-md) var(--r-md);
+  background: var(--nxb-panel);
+}
+
+.nxb-era__when {
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-lime);
+}
+
+.nxb-era h3 {
+  margin-top: 0.45rem;
+  font-size: clamp(0.88rem, 0.82rem + 0.22vw, 1.05rem);
+  font-weight: 640;
+  color: var(--c-text);
+}
+
+.nxb-era p {
+  margin-top: 0.4rem;
+  font-size: clamp(0.76rem, 0.73rem + 0.18vw, 0.86rem);
+  line-height: 1.55;
+  color: var(--c-text-3);
+}
+
+/* --- Lessons, stack, disclaimer --------------------------------------------- */
+.nxb-endgrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(1.25rem, 2.4vw, 2.5rem);
+  align-items: start;
+}
+
+.nxb-section--panel {
+  padding-top: clamp(2.5rem, 1.8rem + 2.2vw, 4.5rem);
+}
+
+.nxb-lessons {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.nxb-lessons li {
+  position: relative;
+  padding-left: 1.35rem;
+  font-size: clamp(0.8rem, 0.76rem + 0.2vw, 0.92rem);
+  line-height: 1.55;
+  color: var(--c-text-2);
+}
+
+.nxb-lessons li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  font-family: var(--f-mono);
+  color: var(--c-lime-deep);
+}
+
+.nxb-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.nxb-stack span {
+  padding: 0.32rem 0.6rem;
+  border: 1px solid var(--nxb-line);
+  border-radius: var(--r-sm);
+  background: var(--nxb-panel);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  color: var(--c-text-3);
+}
+
+.nxb-links {
+  margin-top: var(--s-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+.nxb-disclaimer {
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--nxb-line);
+  font-size: var(--t-micro);
+  line-height: 1.5;
+  color: var(--c-text-4);
+}
+
+.nxb-disclaimer strong {
+  color: var(--c-text-3);
+}
+
+/* --- Prev / next ------------------------------------------------------------ */
+.nxb-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: var(--s-3);
+  margin-top: clamp(2.5rem, 2rem + 2vw, 4.5rem);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--nxb-line);
+}
+
+.nxb-nav a {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-width: 0;
+  padding: clamp(0.75rem, 1.2vw, 1.1rem);
+  border: 1px solid var(--nxb-line);
+  border-radius: var(--r-md);
+  background: var(--nxb-panel);
+  transition: border-color var(--d-fast) var(--e-out), background var(--d-fast) var(--e-out);
+}
+
+.nxb-nav a:hover {
+  border-color: var(--c-lime-a24);
+  background: var(--c-lime-a08);
+}
+
+.nxb-nav__next {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.nxb-nav__thumb {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-sm);
+  background: var(--c-surface-3);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  font-weight: 700;
+  color: var(--accent, var(--c-lime));
+}
+
+.nxb-nav__copy {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.nxb-nav__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+
+.nxb-nav__next .nxb-nav__label {
+  justify-content: flex-end;
+}
+
+.nxb-nav__label svg {
+  width: 12px;
+  height: 12px;
+}
+
+.nxb-nav__copy strong {
+  font-size: clamp(0.85rem, 0.8rem + 0.2vw, 1rem);
+  color: var(--c-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nxb-nav__copy small {
+  font-size: var(--t-micro);
+  line-height: 1.4;
+  color: var(--c-text-4);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.nxb-nav__brand {
+  display: grid;
+  place-items: center;
+  padding-inline: var(--s-3);
+  opacity: 0.55;
+}
+
+/* --- Annotations: page-specific anchors ------------------------------------- *
+   Mechanics live in annotations.css. These only say where each note goes.
+   RAIL mode: the note sits in the band beside the container. */
+.nxb__container {
+  --n-cw: min(var(--w-page), 100vw);
+}
+
+@media (max-height: 1100px) {
+  .nxb__container {
+    --n-cw: min(1560px, 100vw);
+  }
+}
+
+/* Rail placement. This is the default: any width that is not narrow enough
+   for the inset block below gets it, so there is no gap between the two. */
+.nxb-note--hero {
+  top: 3.5rem;
+  left: var(--n-rail);
+  --n-rot: -6deg;
+}
+
+.nxb-note--console {
+  right: var(--n-rail);
+  bottom: 4.5rem;
+  color: var(--nxb-orange-bright);
+  --n-rot: 5deg;
+}
+
+.nxb-note--stats {
+  top: 4rem;
+  right: var(--n-rail);
+  color: var(--c-lime);
+  --n-rot: 4deg;
+}
+
+.nxb-note--maths {
+  bottom: 1.5rem;
+  left: var(--n-rail);
+  color: var(--nxb-orange);
+  --n-rot: -7deg;
+}
+
+.nxb-note--queue {
+  top: 4rem;
+  right: var(--n-rail);
+  --n-rot: 4deg;
+}
+
+.nxb-note--features {
+  bottom: 2rem;
+  right: var(--n-rail);
+  color: var(--c-lime);
+  --n-rot: -4deg;
+}
+
+.nxb-note--privacy {
+  bottom: 2rem;
+  left: var(--n-rail);
+  color: var(--nxb-orange);
+  --n-rot: -5deg;
+}
+
+.nxb-note--origin {
+  bottom: 1.5rem;
+  right: var(--n-rail);
+  --n-rot: 5deg;
+}
+
+/* 4K — @media (min-width: 2560px) */
+@media (min-width: 2560px) {
+  .nxb-note--hero {
+    top: 446px;
+    bottom: auto;
+    left: 589px;
+    right: auto;
+    --n-rot: -9deg;
+  }
+
+  .nxb-note--console {
+    bottom: 30px;
+    top: auto;
+    right: -209px;
+    left: auto;
+    --n-rot: 10deg;
+  }
+
+  .nxb-note--stats {
+    top: 209px;
+    bottom: auto;
+    right: -201px;
+    left: auto;
+    --n-rot: 10deg;
+  }
+
+  .nxb-note--maths {
+    bottom: -23px;
+    top: auto;
+    left: -209px;
+    right: auto;
+  }
+
+  .nxb-note--queue {
+    top: 247px;
+    bottom: auto;
+    right: -211px;
+    left: auto;
+    --n-rot: 8deg;
+  }
+
+  .nxb-note--features {
+    bottom: -39px;
+    top: auto;
+    right: 1358px;
+    left: auto;
+    --n-rot: 11deg;
+  }
+
+  .nxb-note--privacy {
+    bottom: 53px;
+    top: auto;
+    left: -93px;
+    right: auto;
+    --n-rot: -12deg;
+  }
+
+  .nxb-note--origin {
+    bottom: -17px;
+    top: auto;
+    right: -162px;
+    left: auto;
+  }
+}
+
+/* 1080p / 1440p — @media (min-width: 1600px) and (max-width: 2559px) */
+@media (min-width: 1600px) and (max-width: 2559px) {
+  .nxb-note--hero {
+    top: 401px;
+    bottom: auto;
+    left: 506px;
+    right: auto;
+    --n-rot: -10deg;
+  }
+
+  .nxb-note--console {
+    bottom: 35px;
+    top: auto;
+    right: -161px;
+    left: auto;
+    --n-rot: 10deg;
+  }
+
+  .nxb-note--stats {
+    top: 219px;
+    bottom: auto;
+    right: -164px;
+    left: auto;
+    --n-rot: 10deg;
+  }
+
+  .nxb-note--maths {
+    bottom: -26px;
+    top: auto;
+    left: -161px;
+    right: auto;
+    --n-rot: -12deg;
+  }
+
+  .nxb-note--queue {
+    top: 270px;
+    bottom: auto;
+    right: -166px;
+    left: auto;
+    --n-rot: 7deg;
+  }
+
+  .nxb-note--features {
+    bottom: -31px;
+    top: auto;
+    right: 994px;
+    left: auto;
+    --n-rot: 10deg;
+  }
+
+  .nxb-note--privacy {
+    bottom: 62px;
+    top: auto;
+    left: -38px;
+    right: auto;
+    --n-rot: -17deg;
+  }
+
+  .nxb-note--origin {
+    bottom: -20px;
+    top: auto;
+    right: -132px;
+    left: auto;
+    --n-rot: 10deg;
+  }
+}
+
+/* 720p — @media (min-width: 1100px) and (max-width: 1599px) */
+@media (min-width: 1100px) and (max-width: 1599px) {
+  .nxb-note--hero {
+    top: 425px;
+    bottom: auto;
+    left: 499px;
+    right: auto;
+    --n-rot: 12deg;
+  }
+
+  .nxb-note--console {
+    bottom: 17px;
+    top: auto;
+    right: 6px;
+    left: auto;
+    --n-rot: -6deg;
+  }
+
+  .nxb-note--stats {
+    top: 240px;
+    bottom: auto;
+    right: 17px;
+    left: auto;
+    --n-rot: -10deg;
+  }
+
+  .nxb-note--maths {
+    bottom: 24px;
+    top: auto;
+    left: 20px;
+    right: auto;
+    --n-rot: 7deg;
+  }
+
+  .nxb-note--queue {
+    top: 390px;
+    bottom: auto;
+    right: 367px;
+    left: auto;
+    --n-rot: -13deg;
+  }
+
+  .nxb-note--features {
+    bottom: 27px;
+    top: auto;
+    right: 888px;
+    left: auto;
+    --n-rot: -9deg;
+  }
+
+  .nxb-note--privacy {
+    bottom: 115px;
+    top: auto;
+    left: 134px;
+    right: auto;
+    --n-rot: 6deg;
+  }
+
+  .nxb-note--origin {
+    bottom: 32px;
+    top: auto;
+    right: 31px;
+    left: auto;
+    --n-rot: -5deg;
+  }
+}
+
+/* Mobile & Tablet — @media (max-width: 1099px) */
+@media (max-width: 1099px) {
+  .nxb-note--hero {
+    top: 822px;
+    bottom: auto;
+    left: 28px;
+    right: auto;
+    --n-rot: 9deg;
+  }
+
+  .nxb-note--console {
+    bottom: 34px;
+    top: auto;
+    right: 27px;
+    left: auto;
+    --n-rot: -12deg;
+  }
+
+  .nxb-note--stats {
+    top: 200px;
+    bottom: auto;
+    right: 31px;
+    left: auto;
+    --n-rot: -9deg;
+  }
+
+  .nxb-note--maths {
+    bottom: 31px;
+    top: auto;
+    left: 24px;
+    right: auto;
+    --n-rot: 7deg;
+  }
+
+  .nxb-note--queue {
+    top: 356px;
+    bottom: auto;
+    right: 276px;
+    left: auto;
+    --n-rot: -6deg;
+  }
+
+  .nxb-note--features {
+    bottom: 46px;
+    top: auto;
+    right: 487px;
+    left: auto;
+  }
+
+  .nxb-note--privacy {
+    bottom: 42px;
+    top: auto;
+    left: 34px;
+    right: auto;
+    --n-rot: 5deg;
+  }
+
+  .nxb-note--origin {
+    bottom: 46px;
+    top: auto;
+    right: 30px;
+    left: auto;
+    --n-rot: -4deg;
+  }
+}
+
+/* 1366x1024 needs its own calibration; sharing the 1280x720 offsets puts the
+   notes against the wrong targets because the section heights are different. */
+@media (min-width: 1300px) and (max-width: 1599px) and (min-height: 900px) {
+  .nxb-note--hero {
+    top: 426px;
+    bottom: auto;
+    left: 534px;
+    right: auto;
+    --n-rot: 7deg;
+  }
+
+  .nxb-note--console {
+    bottom: 31px;
+    top: auto;
+    right: 46px;
+    left: auto;
+    --n-rot: -9deg;
+  }
+
+  .nxb-note--stats {
+    top: 247px;
+    bottom: auto;
+    right: 26px;
+    left: auto;
+    --n-rot: -3deg;
+  }
+
+  .nxb-note--maths {
+    bottom: 25px;
+    top: auto;
+    left: 34px;
+    right: auto;
+    --n-rot: 4deg;
+  }
+
+  .nxb-note--queue {
+    top: 372px;
+    bottom: auto;
+    right: 396px;
+    left: auto;
+    --n-rot: -3deg;
+  }
+
+  .nxb-note--features {
+    bottom: 33px;
+    top: auto;
+    right: 916px;
+    left: auto;
+    --n-rot: 0deg;
+  }
+
+  .nxb-note--privacy {
+    bottom: 27px;
+    top: auto;
+    left: 1066px;
+    right: auto;
+    --n-rot: 6deg;
+  }
+
+  .nxb-note--origin {
+    bottom: 29px;
+    top: auto;
+    right: 32px;
+    left: auto;
+    --n-rot: -5deg;
+  }
+}
+
+/* Portrait tablet calibration. */
+@media (min-width: 1000px) and (max-width: 1099px) and (min-height: 900px) {
+  .nxb-note--hero {
+    top: 833px;
+    bottom: auto;
+    left: 25px;
+    right: auto;
+    --n-rot: 11deg;
+  }
+
+  .nxb-note--console {
+    bottom: 36px;
+    top: auto;
+    right: 27px;
+    left: auto;
+    --n-rot: -10deg;
+  }
+
+  .nxb-note--stats {
+    top: 208px;
+    bottom: auto;
+    right: 17px;
+    left: auto;
+    --n-rot: -8deg;
+  }
+
+  .nxb-note--maths {
+    bottom: 36px;
+    top: auto;
+    left: 14px;
+    right: auto;
+    --n-rot: 7deg;
+  }
+
+  .nxb-note--queue {
+    top: 355px;
+    bottom: auto;
+    right: 266px;
+    left: auto;
+    --n-rot: -5deg;
+  }
+
+  .nxb-note--features {
+    bottom: 206px;
+    top: auto;
+    right: 187px;
+    left: auto;
+    --n-rot: 0deg;
+  }
+
+  .nxb-note--privacy {
+    bottom: 35px;
+    top: auto;
+    left: 684px;
+    right: auto;
+    --n-rot: 10deg;
+  }
+
+  .nxb-note--origin {
+    bottom: 35px;
+    top: auto;
+    right: 46px;
+    left: auto;
+    --n-rot: -11deg;
+  }
+}
+
+/* 440x956 portrait phone calibration. */
+@media (max-width: 599px) and (orientation: portrait) {
+  .nxb-note--hero {
+    top: 772px;
+    bottom: auto;
+    left: 7px;
+    right: auto;
+  }
+
+  .nxb-note--console {
+    bottom: 25px;
+    top: auto;
+    right: 8px;
+    left: auto;
+  }
+
+  .nxb-note--stats {
+    top: 172px;
+    bottom: auto;
+    right: 74px;
+    left: auto;
+  }
+
+  .nxb-note--maths {
+    bottom: 241px;
+    top: auto;
+    left: 84px;
+    right: auto;
+    --n-rot: 0deg;
+  }
+
+  .nxb-note--queue {
+    top: 806px;
+    bottom: auto;
+    right: 77px;
+    left: auto;
+  }
+
+  .nxb-note--origin {
+    bottom: 52px;
+    top: auto;
+    right: 35px;
+    left: auto;
+  }
+}
+
+/* INSET mode — no side band, so each note drops to the foot of its section and
+   the section reserves the room. The shared file handles the arrows. */
+@media (max-height: 1100px) and (max-width: 1911px),
+       (min-height: 1101px) and (max-width: 2359px) {
+  /* Keep the calibrated per-resolution anchors above. Only the shared inset
+     sizing and arrow direction are needed in this range. */
+  .nxb-note {
+    max-width: none;
+    white-space: nowrap;
+  }
+
+  /* Arrows lead upward here, back at what each note is about. Restated
+     because this range is wider than the shared file's. */
+  .nxb-note.cs-note--to-r::after {
+    --n-flip: -1;
+    --n-arrow-rot: -58deg;
+    order: -1;
+    margin: 0 auto -0.1em 0;
+  }
+
+  .nxb-note.cs-note--to-l::after {
+    --n-flip: 1;
+    --n-arrow-rot: -58deg;
+    order: -1;
+    margin: 0 0 -0.1em auto;
+  }
+  :root[data-chaos='on'] .nxb-hero,
+  :root[data-chaos='on'] .nxb-section--tight,
+  :root[data-chaos='on'] .nxb-section--maths,
+  :root[data-chaos='on'] .nxb-section--queue,
+  :root[data-chaos='on'] .nxb-section--features,
+  :root[data-chaos='on'] .nxb-section--privacy,
+  :root[data-chaos='on'] .nxb-section--origin {
+    padding-bottom: calc(var(--n-fs) * 4.6);
+  }
+}
+
+/* 2552x1308 / 1440p calibration. */
+@media (min-width: 2000px) and (max-width: 2559px) {
+  .nxb-note--hero {
+    top: 444px;
+    bottom: auto;
+    left: 611px;
+    right: auto;
+  }
+
+  .nxb-note--console {
+    bottom: 26px;
+    top: auto;
+    right: -185px;
+    left: auto;
+  }
+
+  .nxb-note--stats {
+    top: 221px;
+    bottom: auto;
+    right: -188px;
+    left: auto;
+  }
+
+  .nxb-note--maths {
+    bottom: -22px;
+    top: auto;
+    left: -164px;
+    right: auto;
+  }
+
+  .nxb-note--queue {
+    top: 242px;
+    bottom: auto;
+    right: -185px;
+    left: auto;
+  }
+
+  .nxb-note--features {
+    bottom: -9px;
+    top: auto;
+    right: 1297px;
+    left: auto;
+  }
+
+  .nxb-note--privacy {
+    bottom: -21px;
+    top: auto;
+    left: 1164px;
+    right: auto;
+  }
+
+  .nxb-note--origin {
+    bottom: -16px;
+    top: auto;
+    right: -121px;
+    left: auto;
+  }
+}
+
+/* --- Responsive ------------------------------------------------------------- */
+
+/* Wide desktops: let the console breathe rather than stretching one text
+   column across the whole page. */
+@media (min-width: 2000px) {
+  .nxb-hero {
+    grid-template-columns: minmax(360px, 0.78fr) minmax(520px, 1.22fr);
+  }
+}
+
+/* 1080p and 720p landscape: the hero must not need a scroll to be understood. */
+@media (min-width: 1100px) and (max-width: 1999px) and (max-height: 1100px) {
+  .nxb__container {
+    max-width: 1560px;
+  }
+
+  .nxb-hero {
+    padding-top: 0.5rem;
+    gap: clamp(1.5rem, 2vw, 2.25rem);
+  }
+
+  .nxb-hero h1 {
+    font-size: clamp(2.4rem, 1.4rem + 2.4vw, 3.6rem);
+  }
+
+  .nxb-hero__summary {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .nxb-console__body {
+    padding: 0.7rem;
+  }
+}
+
+@media (max-width: 1399px) {
+  .nxb-pipe {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* Connectors only make sense along a row, not across a wrap. */
+  .nxb-pipe > li:nth-child(4n)::after {
+    display: none;
+  }
+
+  .nxb-arch {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Tablet: deliberate two-row compositions rather than shrunken desktop. */
+@media (max-width: 1099px) {
+  .nxb-hero {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
+
+  .nxb-hero__copy {
+    max-width: 100%;
+  }
+
+  .nxb-maths,
+  .nxb-privacy,
+  .nxb-endgrid {
+    grid-template-columns: 1fr;
+  }
+
+  .nxb-features > li,
+  .nxb-features > li[data-lead='y'] {
+    grid-column: span 3;
+  }
+
+  .nxb-features > li:last-child {
+    grid-column: span 6;
+  }
+
+  .nxb-story {
+    grid-template-columns: 1fr;
+  }
+
+  .nxb-section__head {
+    flex-wrap: wrap;
+    row-gap: var(--s-2);
+  }
+
+  .nxb-section__aside {
+    flex-basis: 100%;
+    text-align: left;
+    max-width: 60ch;
+  }
+}
+
+@media (max-width: 899px) {
+  .nxb-pipe {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nxb-pipe > li::after {
+    display: none;
+  }
+
+  .nxb-challenges {
+    grid-template-columns: 1fr;
+  }
+
+  .nxb-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .nxb-stat {
+    border-right: 0;
+    border-bottom: 1px solid var(--nxb-line);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-4);
+  }
+
+  .nxb-stat:last-child {
+    border-bottom: 0;
+  }
+
+  .nxb-stat dd {
+    margin-top: 0;
+    text-align: right;
+  }
+}
+
+@media (max-width: 719px) {
+  .nxb-features > li,
+  .nxb-features > li[data-lead='y'] {
+    grid-column: span 6;
+  }
+
+  .nxb-arch,
+  .nxb-perms,
+  .nxb-pipe {
+    grid-template-columns: 1fr;
+  }
+
+  .nxb-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .nxb-nav__brand {
+    display: none;
+  }
+
+  .nxb-nav__next {
+    justify-content: flex-start;
+    text-align: left;
+    flex-direction: row-reverse;
+  }
+
+  .nxb-nav__next .nxb-nav__label {
+    justify-content: flex-start;
+  }
+
+  .nxb-hero__actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 419px) {
+  .nxb-console__url {
+    display: none;
+  }
+
+  .nxb-sum__row {
+    grid-template-columns: 1em auto minmax(0, 1fr);
+    gap: 0.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nxb-hero__caret {
+    animation: none;
+  }
+
+  .nxb-step,
+  .nxb-feature,
+  .nxb-nav a {
+    transition: none;
+  }
+}
+
+/* --- Real screens ------------------------------------------------------------
+   The shell follows the intrinsic ratio of the active capture. Wide collection
+   screens stay wide and shallow; popup/settings captures become narrower and
+   taller. Nothing is cropped and no fixed 16:9 box leaves a black void below a
+   panoramic image. */
+.nxb-carousel-shell {
+  --nxb-shot-ratio: 1.7778;
+  width: min(100%, max(20rem, calc(68vh * var(--nxb-shot-ratio))));
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.nxb-carousel-shell[data-orientation='portrait'] {
+  width: min(100%, max(18rem, calc(52vh * var(--nxb-shot-ratio))));
+  max-width: 34rem;
+}
+
+.nxb-carousel-shell[data-orientation='tall'] {
+  width: min(100%, max(18rem, calc(52vh * var(--nxb-shot-ratio))));
+  max-width: 24rem;
+}
+
+.nxb-carousel {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--nxb-orange-a24);
+  border-radius: var(--r-lg);
+  background: linear-gradient(160deg, var(--nxb-orange-a08), transparent 60%), var(--c-bg);
+  overflow: hidden;
+}
+
+.nxb-carousel__track {
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+}
+
+.nxb-carousel__track:focus-visible {
+  outline: 2px solid var(--nxb-orange);
+  outline-offset: -2px;
+}
+
+.nxb-carousel__track.is-dragging {
+  cursor: grabbing;
+}
+
+.nxb-slide {
+  width: 100%;
+  margin: 0;
+  translate: var(--nxb-drag-x, 0) 0;
+}
+
+.nxb-carousel__track.is-dragging .nxb-slide {
+  transition: none;
+}
+
+.nxb-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 68vh;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.nxb-carousel-shell[data-orientation='portrait'] .nxb-slide img,
+.nxb-carousel-shell[data-orientation='tall'] .nxb-slide img {
+  max-height: min(52vh, 42rem);
+}
+
+.nxb-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--nxb-orange-a24);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--c-bg) 82%, transparent);
+  color: var(--nxb-orange-bright);
+  cursor: pointer;
+  transition:
+    background var(--d-fast) var(--e-out),
+    opacity var(--d-fast) var(--e-out);
+}
+
+.nxb-carousel__arrow:hover:not(:disabled) {
+  background: var(--nxb-orange);
+  color: var(--c-bg);
+}
+
+.nxb-carousel__arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.nxb-carousel__arrow svg {
+  width: 17px;
+  height: 17px;
+}
+
+.nxb-carousel__arrow--prev { left: 0.75rem; }
+.nxb-carousel__arrow--next { right: 0.75rem; }
+
+.nxb-carousel__open {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.24rem 0.6rem;
+  border: 1px solid var(--nxb-orange-a24);
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--c-bg) 84%, transparent);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  color: var(--nxb-orange-bright);
+  cursor: pointer;
+  transition: background var(--d-fast) var(--e-out);
+}
+
+.nxb-carousel__open:hover {
+  background: var(--nxb-orange);
+  color: var(--c-bg);
+}
+
+.nxb-carousel__foot {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-top: var(--s-3);
+}
+
+/* Fixed height: the captions are different lengths and the dots would hop
+   around underneath them as you swipe. */
+.nxb-carousel__caption {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.6rem;
+  min-height: 2.8em;
+  max-width: 70ch;
+  font-size: clamp(0.76rem, 0.73rem + 0.16vw, 0.86rem);
+  line-height: 1.5;
+  color: var(--c-text-3);
+}
+
+.nxb-carousel__caption span {
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.12em;
+  color: var(--nxb-orange);
+}
+
+.nxb-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  background: rgb(4 5 7 / 92%);
+  backdrop-filter: blur(12px);
+}
+
+.nxb-lightbox img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 94vw;
+  max-height: 88vh;
+  border: 1px solid var(--nxb-orange-a24);
+  border-radius: var(--r-lg);
+  box-shadow: 0 1.5rem 5rem rgb(0 0 0 / 55%);
+}
+
+.nxb-lightbox__close {
+  position: fixed;
+  top: clamp(0.8rem, 2vw, 1.5rem);
+  right: clamp(0.8rem, 2vw, 1.5rem);
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--nxb-orange-a24);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--c-bg) 88%, transparent);
+  color: var(--c-text-1);
+  font: 400 1.65rem/1 var(--f-sans);
+  cursor: pointer;
+  transition:
+    background var(--d-fast) var(--e-out),
+    color var(--d-fast) var(--e-out);
+}
+
+.nxb-lightbox__close:hover {
+  background: var(--nxb-orange);
+  color: var(--c-bg);
+}
+
+.nxb-dots {
+  display: flex;
+  flex: none;
+  gap: 0.4rem;
+  padding-top: 0.2rem;
+}
+
+.nxb-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--c-line-strong);
+  cursor: pointer;
+  transition:
+    background var(--d-fast) var(--e-out),
+    width var(--d-fast) var(--e-out);
+}
+
+.nxb-dots button.is-on {
+  width: 22px;
+  border-radius: var(--r-pill);
+  background: var(--nxb-orange);
+}
+
+@media (max-width: 719px) {
+  /* Thumbs cover the sides on a phone, and the swipe is the point there. */
+  .nxb-carousel__arrow {
+    display: none;
+  }
+
+  .nxb-carousel__foot {
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .nxb-carousel__caption {
+    min-height: 0;
+  }
+
+  .nxb-carousel__swipe {
+    margin-bottom: 0.55rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nxb-carousel-shell,
+  .nxb-slide,
+  .nxb-carousel__arrow,
+  .nxb-carousel__open,
+  .nxb-dots button {
+    transition: none;
+  }
+
+}

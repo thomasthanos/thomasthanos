@@ -17,9 +17,9 @@ export const more: Project[] = [
     accent: 'pink',
     year: '2026',
     version: '3.5',
-    repo: `${GH}/google_extention_privacy/tree/main/An1me_speed_control`,
-    repoLabel: 'google_extention_privacy',
-    repoPath: 'An1me_speed_control',
+    repo: `${GH}/an1me-extensions/tree/main/an1me-speed-control`,
+    repoLabel: 'an1me-extensions',
+    repoPath: 'an1me-speed-control',
     tech: ['JavaScript', 'Manifest V3'],
     lab: {
       badge: { en: 'Surprisingly stable', el: 'Απρόσμενα σταθερό' },
@@ -106,9 +106,8 @@ export const more: Project[] = [
     accent: 'pink',
     year: '2026',
     version: '4.8',
-    repo: `${GH}/google_extention_privacy/tree/main/auto-liker-extension`,
-    repoLabel: 'google_extention_privacy',
-    repoPath: 'auto-liker-extension',
+    repo: `${GH}/auto-liker-for-tinder-and-boo`,
+    repoLabel: 'auto-liker-for-tinder-and-boo',
     tech: ['JavaScript', 'Manifest V3', 'i18n'],
     lab: {
       badge: { en: 'Questionable idea', el: 'Αμφίβολη ιδέα' },
@@ -216,9 +215,8 @@ export const more: Project[] = [
     status: 'maintained',
     accent: 'lime',
     year: '2026',
-    repo: `${GH}/google_extention_privacy`,
-    repoLabel: 'google_extention_privacy',
-    demo: 'https://thomasthanos.github.io/google_extention_privacy/',
+    repo: `${GH}/nexusmods-bypass/tree/727b706`,
+    repoLabel: 'historical multi-extension showcase',
     tech: ['HTML', 'CSS', 'JavaScript', 'Cloudflare'],
     lab: {
       badge: { en: 'Ships itself', el: 'Ανεβαίνει μόνο του' },
@@ -249,7 +247,7 @@ export const more: Project[] = [
       el: 'Μία σελίδα που κάνει τη δουλειά που θα έκανε ένα store listing: τι κάνει καθένα από τα τέσσερα extensions, τι permissions ζητάει και γιατί, και η διαδρομή τριάντα δευτερολέπτων μέχρι να δουλέψει unpacked.',
     },
     sketch: {
-      title: 'thomasthanos.github.io/google_extention_privacy',
+      title: 'historical multi-extension showcase',
       kind: 'browser',
       rows: [
         { label: 'NexusMods Bypass', value: 'Chrome · Firefox', hot: true },

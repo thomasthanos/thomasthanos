@@ -21,6 +21,7 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta'
 import { getProject, neighbours } from '../data/projects'
 import { external } from '../utils'
 import { MakeYourLifeEasierCaseStudy } from './case-studies/MakeYourLifeEasierCaseStudy'
+import { NexusModsBypassCaseStudy } from './case-studies/NexusModsBypassCaseStudy'
 import './detail.css'
 
 export function ProjectDetail() {
@@ -41,6 +42,10 @@ export function ProjectDetail() {
 
   if (p.slug === 'make-your-life-easier') {
     return <MakeYourLifeEasierCaseStudy project={p} near={near} />
+  }
+
+  if (p.slug === 'nexusmods-bypass') {
+    return <NexusModsBypassCaseStudy project={p} near={near} />
   }
 
   return (

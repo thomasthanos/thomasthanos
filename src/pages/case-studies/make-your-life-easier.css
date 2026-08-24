@@ -890,120 +890,12 @@ main:has(> .myle) + .ftr {
   justify-content: flex-end;
 }
 
-/* ============================================================================
-   Case-study annotations
-   ----------------------------------------------------------------------------
-   One system, two placement modes, four desktop tiers.
-
-   RAIL mode   — the note sits in the empty band beside the container. Used
-                 whenever that band provably fits it.
-   INSET mode  — no usable band, so the note drops into padding the section
-                 reserves for it and points back up at its target. Nothing is
-                 hidden and nothing lands on content.
-
-   Every note is absolutely positioned against the section it annotates (all
-   `.myle-section`s are already `position: relative`), so its offsets are
-   section-relative and stay correct however tall the section grows. No note
-   is placed with a viewport coordinate.
-   ========================================================================= */
-
-.myle__container {
-  /* Note metrics. Only the tier blocks below override these. */
-  --n-fs: 1.2rem;
-  --n-w: 13rem;
-  --n-arrow: 1.8rem;
-  --n-gap: 1.5rem;
-
-  /* Mirrors the container's own max-width so the gutter maths matches what is
-     actually on screen. The `max-height` condition below tracks the existing
-     compact-viewport rule; if that rule changes, this has to follow it. */
-  --n-cw: min(var(--w-page), 100vw);
-  --n-gutter: max(0px, (100vw - var(--n-cw)) / 2);
-
-  /* How far outside the container edge a rail note starts: as far as it needs,
-     but never further than the gutter can hold. Both operands are negative, so
-     max() picks the one closer to the container — which is what keeps a note
-     on screen if a zoom level lands between two tiers. */
-  --n-rail: max(
-    calc(-1 * (var(--n-w) + var(--n-gap))),
-    calc(-1 * (var(--n-gutter) - 0.75rem))
-  );
-}
-
+/* MYLE caps its container at 1500px on short viewports, so the shared gutter
+   maths has to be told. If that cap changes, this follows it. */
 @media (max-height: 1100px) {
   .myle__container {
     --n-cw: min(1500px, 100vw);
   }
-}
-
-.myle-note {
-  display: none;
-  position: absolute;
-  z-index: 3;
-  flex-direction: column;
-  align-items: flex-start;
-  /* Hug the text. A fixed width leaves the arrow stranded at the right edge
-     of an empty box whenever the last line wraps short, which is what put a
-     gap between "chores" and its arrow. */
-  width: max-content;
-  max-width: var(--n-w);
-  font-family: var(--f-hand);
-  font-size: var(--n-fs);
-  line-height: 1.18;
-  color: var(--c-violet-bright);
-  rotate: var(--n-rot, -5deg);
-  pointer-events: none;
-}
-
-:root[data-chaos='on'] .myle-note {
-  display: flex;
-  animation: myle-note-in 500ms var(--e-spring) both;
-}
-
-/* The arrow is one glyph steered by two properties, so a note can be re-aimed
-   from a single rule instead of needing its own SVG. `↝` points right at rest. */
-.myle-note::after {
-  content: '↝';
-  display: block;
-  margin-top: -0.05em;
-  font-family: var(--f-hand);
-  font-size: var(--n-arrow);
-  line-height: 0.85;
-  color: currentColor;
-  transform: scaleX(var(--n-flip, 1)) rotate(var(--n-arrow-rot, 0deg));
-}
-
-/* Direction modifiers — the arrow sits on the edge facing its target. */
-.myle-note--to-r::after {
-  margin-left: auto;
-}
-
-.myle-note--to-l::after {
-  --n-flip: -1;
-  margin-right: auto;
-}
-
-.myle-note--to-d::after {
-  --n-arrow-rot: 58deg;
-  margin-left: auto;
-}
-
-/* Pointing up means the arrow leads, so it moves above the text. */
-.myle-note--to-u::after {
-  --n-arrow-rot: -58deg;
-  order: -1;
-  margin-top: 0;
-  margin-bottom: -0.1em;
-  margin-left: auto;
-}
-
-.myle-note--to-ul::after {
-  --n-flip: -1;
-  --n-arrow-rot: 58deg;
-  order: -1;
-  margin-top: 0;
-  margin-bottom: -0.1em;
-  margin-right: auto;
 }
 
 /* --- Anchors: RAIL mode ---------------------------------------------------
@@ -1069,77 +961,8 @@ main:has(> .myle) + .ftr {
   padding-bottom: calc(var(--n-fs) * 5.4);
 }
 
-@keyframes myle-note-in {
-  from { opacity: 0; translate: 0 8px; }
-  to { opacity: 1; }
-}
-
 @keyframes myle-cursor {
   50% { opacity: 0; }
-}
-
-/* --- Annotation tiers -------------------------------------------------------
-   Size first, then the rail/inset mode switch.
-
-   The mode switch cannot be a plain width breakpoint. The container is 1920px
-   wide normally but 1500px on short viewports, so the width at which the side
-   band becomes big enough to hold a note is different in each case:
-
-       container 1920  ->  needs 1920 + 2 x 188 = 2296px
-       container 1500  ->  needs 1500 + 2 x 188 = 1876px
-
-   Keying the switch on width alone is exactly what made notes drift onto
-   content before, so the two queries below carry the height condition too. */
-
-/* 1440p */
-@media (min-width: 2000px) and (max-width: 2559px) {
-  .myle__container {
-    --n-fs: 1.06rem;
-    --n-w: 11.5rem;
-    --n-arrow: 1.6rem;
-    --n-gap: 1.25rem;
-  }
-}
-
-/* 1080p */
-@media (min-width: 1600px) and (max-width: 1999px) {
-  .myle__container {
-    --n-fs: 0.97rem;
-    --n-w: 10rem;
-    --n-arrow: 1.45rem;
-    --n-gap: 1rem;
-  }
-}
-
-/* 720p landscape */
-@media (min-width: 1100px) and (max-width: 1599px) {
-  .myle__container {
-    --n-fs: 0.9rem;
-    --n-w: 11rem;
-    --n-arrow: 1.3rem;
-    --n-gap: 0.75rem;
-  }
-}
-
-/* Greek runs roughly a fifth longer than the English for the same note, so it
-   gets a wider column — never a different position. */
-:root:lang(el) .myle__container {
-  --n-w: 15rem;
-}
-
-@media (min-width: 2000px) and (max-width: 2559px) {
-  :root:lang(el) .myle__container { --n-w: 13rem; }
-}
-
-/* The side band is 188px here and a 184px note leaves it no margin, so the
-   Greek column is narrowed rather than letting the rail push it onto the
-   container. Rail mode has vertical room to spare, so the extra line is free. */
-@media (min-width: 1600px) and (max-width: 1999px) {
-  :root:lang(el) .myle__container { --n-w: 9.5rem; }
-}
-
-@media (min-width: 1100px) and (max-width: 1599px) {
-  :root:lang(el) .myle__container { --n-w: 12.5rem; }
 }
 
 /* --- INSET mode -------------------------------------------------------------
@@ -1149,31 +972,16 @@ main:has(> .myle) + .ftr {
    the reading order and the semantic anchor survive the move. */
 @media (max-height: 1100px) and (max-width: 1875px),
        (min-height: 1101px) and (max-width: 2295px) {
-  :root[data-chaos='on'] .myle-hero {
-    padding-bottom: calc(var(--n-fs) * 5.0);
-  }
-
-  :root[data-chaos='on'] .myle-section--tight,
-  :root[data-chaos='on'] .myle-section--gallery,
-  :root[data-chaos='on'] .myle-section--note-space {
-    padding-bottom: calc(var(--n-fs) * 4.8);
-  }
-
-  :root[data-chaos='on'] .myle-section--lessons {
-    padding-bottom: calc(var(--n-fs) * 5.2);
-  }
-
-  /* One line each. Wrapping is what made the Greek notes outgrow the space
-     reserved for them; on a foot rail there is plenty of width and almost no
-     height, so trading one for the other makes the reserve deterministic and
-     the same in both languages. */
+  /* Restated here, not just inherited from annotations.css: that file is
+     imported first, so the unconditional rail anchors above would otherwise
+     win and leave the notes in a band too narrow to hold them. The arrows do
+     come from the shared file — nothing here competes with those. */
   .myle-note {
     inset: auto auto 0.35rem auto;
     max-width: none;
     white-space: nowrap;
   }
 
-  /* Left-hand notes keep the left edge, right-hand notes keep the right. */
   .myle-note--hero,
   .myle-note--ipc,
   .myle-note--privacy {
@@ -1189,6 +997,19 @@ main:has(> .myle) + .ftr {
     right: 1rem;
     left: auto;
   }
+  :root[data-chaos='on'] .myle-hero {
+    padding-bottom: calc(var(--n-fs) * 5.0);
+  }
+
+  :root[data-chaos='on'] .myle-section--tight,
+  :root[data-chaos='on'] .myle-section--gallery,
+  :root[data-chaos='on'] .myle-section--note-space {
+    padding-bottom: calc(var(--n-fs) * 4.8);
+  }
+
+  :root[data-chaos='on'] .myle-section--lessons {
+    padding-bottom: calc(var(--n-fs) * 5.2);
+  }
 
   /* The hero is taller than a 720p viewport, so its foot is below the fold.
      This one goes to the band of empty space between the back link and the
@@ -1196,34 +1017,21 @@ main:has(> .myle) + .ftr {
   /* The band this note lives in is bounded by the back link above and the
      eyebrow below. Greek runs to two lines here, so the band is widened to
      suit rather than letting the note creep onto either neighbour. */
-  :root[data-chaos='on'] .myle__back {
-    margin-bottom: calc(var(--n-fs) * 3.2);
+  /* Only the 720p tier needs this. There the hero is taller than the viewport,
+     so its foot is below the fold and the note goes to the band between the
+     back link and the eyebrow instead. Wider viewports have a visible hero
+     foot and were landing the note on the eyebrow.
+     Verified at 1700x950, where it used to overlap by 24px. */
+  @media (max-width: 1599px) {
+    :root[data-chaos='on'] .myle__back {
+      margin-bottom: calc(var(--n-fs) * 3.2);
+    }
+
+    .myle-note--hero {
+      inset: calc(var(--n-fs) * 0.5) auto auto 0.25rem;
+    }
   }
 
-  .myle-note--hero {
-    inset: calc(var(--n-fs) * 0.5) auto auto 0.25rem;
-  }
-
-  /* Arrows now lead upward, back to the element each note is about. */
-  .myle-note--hero::after,
-  .myle-note--ipc::after,
-  .myle-note--privacy::after {
-    --n-flip: -1;
-    --n-arrow-rot: -58deg;
-    order: -1;
-    margin: 0 auto -0.1em 0;
-  }
-
-  .myle-note--admin::after,
-  .myle-note--metrics::after,
-  .myle-note--evolution::after,
-  .myle-note--gallery::after,
-  .myle-note--ship::after {
-    --n-flip: 1;
-    --n-arrow-rot: -58deg;
-    order: -1;
-    margin: 0 0 -0.1em auto;
-  }
 
 }
 
@@ -1261,9 +1069,9 @@ main:has(> .myle) + .ftr {
   }
 
   .myle-note--admin {
-    bottom: 69px; /* 44 captured + 25 rotation */
+    bottom: 43px; /* from left:1788 top:768 */
     top: auto;
-    right: max(-209px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -213 captured + 4 rotation */
+    right: max(-203px, calc(-1 * (var(--n-gutter) - 0.75rem)));
     left: auto;
     --n-rot: 7deg;
   }
@@ -1285,9 +1093,9 @@ main:has(> .myle) + .ftr {
   }
 
   .myle-note--evolution {
-    bottom: 16px; /* -32 captured + 48 rotation */
+    bottom: -33px; /* from left:1785 top:267 */
     top: auto;
-    right: max(-201px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -211 captured + 10 rotation */
+    right: max(-201px, calc(-1 * (var(--n-gutter) - 0.75rem)));
     left: auto;
     --n-rot: 14deg;
   }
@@ -1301,17 +1109,17 @@ main:has(> .myle) + .ftr {
   }
 
   .myle-note--privacy {
-    bottom: 103px; /* 40 captured + 63 rotation */
+    bottom: 46px; /* from left:403 top:286 */
     top: auto;
-    left: 58.300%; /* 439px at capture width */
+    left: 53.519%; /* 403px at capture width */
     right: auto;
     --n-rot: -19deg;
   }
 
   .myle-note--ship {
-    bottom: 84px; /* 39 captured + 45 rotation */
+    bottom: 24px; /* from left:782 top:332 */
     top: auto;
-    right: 2.919%; /* 30px = 20 captured + 10 rotation */
+    right: 2.846%; /* 29px */
     left: auto;
     --n-rot: -13deg;
   }

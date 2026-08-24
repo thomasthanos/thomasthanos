@@ -10,7 +10,7 @@
  * them:  npm run gen:assets
  */
 import sharp from 'sharp'
-import { readdirSync, statSync } from 'node:fs'
+import { mkdirSync, readdirSync, statSync } from 'node:fs'
 import { join, dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -29,6 +29,14 @@ const JOBS = [
   { src: 'spongebob-pame-gta_gr.png', width: 344, mode: 'lossy', quality: 86 },
   // .logo__image — 30px in the header, 25px in the footer. 96px covers 3×.
   { src: 'pumpkin-logo-transparent.png', width: 96, mode: 'lossless' },
+
+  // Project captures. `out` puts them in a per-project folder, so the flat top
+  // level stays for brand artwork. These are UI, not photographs, so they get a
+  // high quality setting — banding across a settings panel is very visible.
+  { src: 'nxb-popup.png', out: 'projects/nexusmods-bypass/popup.webp', width: null, mode: 'lossy', quality: 92 },
+  { src: 'nxb-collection-idle.png', out: 'projects/nexusmods-bypass/collection-idle.webp', width: 1792, mode: 'lossy', quality: 88 },
+  { src: 'nxb-collection-running.png', out: 'projects/nexusmods-bypass/collection-running.webp', width: 1794, mode: 'lossy', quality: 88 },
+  { src: 'nxb-settings.png', out: 'projects/nexusmods-bypass/settings.webp', width: null, mode: 'lossy', quality: 90 },
 ]
 
 let before = 0
@@ -43,7 +51,8 @@ for (const job of JOBS) {
     continue
   }
 
-  const out = join(OUT, job.src.replace(/\.png$/, '.webp'))
+  const out = join(OUT, job.out ?? job.src.replace(/\.png$/, '.webp'))
+  mkdirSync(dirname(out), { recursive: true })
   let img = sharp(from)
   const meta = await img.metadata()
 
