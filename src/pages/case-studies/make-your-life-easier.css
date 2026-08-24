@@ -936,7 +936,11 @@
   z-index: 3;
   flex-direction: column;
   align-items: flex-start;
-  width: var(--n-w);
+  /* Hug the text. A fixed width leaves the arrow stranded at the right edge
+     of an empty box whenever the last line wraps short, which is what put a
+     gap between "chores" and its arrow. */
+  width: max-content;
+  max-width: var(--n-w);
   font-family: var(--f-hand);
   font-size: var(--n-fs);
   line-height: 1.18;
@@ -1121,8 +1125,11 @@
   :root:lang(el) .myle__container { --n-w: 13rem; }
 }
 
+/* The side band is 188px here and a 184px note leaves it no margin, so the
+   Greek column is narrowed rather than letting the rail push it onto the
+   container. Rail mode has vertical room to spare, so the extra line is free. */
 @media (min-width: 1600px) and (max-width: 1999px) {
-  :root:lang(el) .myle__container { --n-w: 11.5rem; }
+  :root:lang(el) .myle__container { --n-w: 9.5rem; }
 }
 
 @media (min-width: 1100px) and (max-width: 1599px) {
@@ -1137,21 +1144,27 @@
 @media (max-height: 1100px) and (max-width: 1875px),
        (min-height: 1101px) and (max-width: 2295px) {
   :root[data-chaos='on'] .myle-hero {
-    padding-bottom: calc(var(--n-fs) * 6.4);
+    padding-bottom: calc(var(--n-fs) * 5.0);
   }
 
   :root[data-chaos='on'] .myle-section--tight,
   :root[data-chaos='on'] .myle-section--gallery,
   :root[data-chaos='on'] .myle-section--note-space {
-    padding-bottom: calc(var(--n-fs) * 6.2);
+    padding-bottom: calc(var(--n-fs) * 4.8);
   }
 
   :root[data-chaos='on'] .myle-section--lessons {
-    padding-bottom: calc(var(--n-fs) * 6.8);
+    padding-bottom: calc(var(--n-fs) * 5.2);
   }
 
+  /* One line each. Wrapping is what made the Greek notes outgrow the space
+     reserved for them; on a foot rail there is plenty of width and almost no
+     height, so trading one for the other makes the reserve deterministic and
+     the same in both languages. */
   .myle-note {
     inset: auto auto 0.35rem auto;
+    max-width: none;
+    white-space: nowrap;
   }
 
   /* Left-hand notes keep the left edge, right-hand notes keep the right. */
@@ -1178,7 +1191,7 @@
      eyebrow below. Greek runs to two lines here, so the band is widened to
      suit rather than letting the note creep onto either neighbour. */
   :root[data-chaos='on'] .myle__back {
-    margin-bottom: calc(var(--n-fs) * 4.2);
+    margin-bottom: calc(var(--n-fs) * 3.2);
   }
 
   .myle-note--hero {

@@ -120,10 +120,14 @@
   .doodle--3 { --doodle-w: 22px; }
 
   .sticker-note {
-    --sticker-w: 1.75rem;
+    /* Measured footprint, not a guess: text box + padding + border. The tilt
+       goes because on a tall vertical label it costs about 8px of horizontal
+       room that this band does not have. */
+    --sticker-w: 1.7rem;
     writing-mode: vertical-rl;
-    padding: 0.5rem 0.24rem;
-    font-size: 0.82rem;
+    padding: 0.5rem 0.18rem;
+    font-size: 0.78rem;
+    rotate: 0deg;
   }
 }
 
