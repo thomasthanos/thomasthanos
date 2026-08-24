@@ -87,7 +87,7 @@ const copy = {
       'four rewrites. character development.',
       'dark because bright software hurts',
       "0 telemetry. I genuinely don't care what you clicked.",
-      'still shipping. immediately refactoring.',
+      'Still learning. Always shipping. :)',
     ],
   },
   el: {
@@ -138,7 +138,7 @@ const copy = {
       'τέσσερα rewrites. character development.',
       'dark γιατί το φωτεινό software πονάει',
       '0 telemetry. πραγματικά δε με νοιάζει τι πάτησες.',
-      'shipάρει. και αμέσως refactorάρει.',
+      'Ακόμα μαθαίνω. Πάντα shipάρω. :)',
     ],
   },
 } as const

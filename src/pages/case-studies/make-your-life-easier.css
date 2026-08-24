@@ -712,9 +712,13 @@
 .myle-privacy strong {
   display: block;
   margin-top: var(--s-5);
-  font-family: var(--f-mono);
-  font-size: var(--t-xs);
+  font-family: var(--f-hand);
+  font-size: clamp(1.15rem, 0.95rem + 0.45vw, 1.55rem);
+  font-weight: 400;
+  line-height: 1.1;
   color: var(--c-lime);
+  transform: rotate(-1deg);
+  transform-origin: left center;
 }
 
 .myle-lessons {
@@ -907,6 +911,8 @@
 .myle-note--admin {
   right: -1rem;
   bottom: 8%;
+  font-family: var(--f-hand);
+  font-weight: 400;
   color: var(--c-lime);
   transform: rotate(4deg);
 }
