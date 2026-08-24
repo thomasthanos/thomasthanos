@@ -34,7 +34,7 @@ pnpm-debug.log*
 .idea/
 *.swp
 *.swo
-.claude/settings.local.json
+.claude/
 
 # --- OS noise ---
 .DS_Store
