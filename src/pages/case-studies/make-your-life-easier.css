@@ -981,6 +981,47 @@
   to { opacity: 1; }
 }
 
+/* Standard 1080p landscape needs less theatrical vertical spacing than 1440p/4K. */
+@media (min-width: 1100px) and (max-width: 2559px) and (max-height: 1100px) {
+  .myle__back {
+    margin-bottom: 0.5rem;
+  }
+
+  .myle-hero {
+    grid-template-columns: minmax(360px, 0.84fr) minmax(520px, 1.16fr);
+    gap: clamp(2rem, 2.2vw, 3rem);
+    min-height: 0;
+    padding: 0.75rem 0 2rem;
+  }
+
+  .myle-hero h1 {
+    font-size: clamp(3.75rem, 2.3rem + 2.65vw, 5.4rem);
+  }
+
+  .myle-hero__meta {
+    margin-bottom: var(--s-3);
+  }
+
+  .myle-hero__summary {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .myle-hero__actions {
+    margin-top: var(--s-4);
+  }
+
+  .myle-window {
+    width: 100%;
+    max-width: 980px;
+    justify-self: end;
+  }
+
+  .myle-window__bar {
+    min-height: 34px;
+  }
+}
+
 @media (max-width: 1399px) {
   .myle-hero {
     grid-template-columns: minmax(300px, 0.78fr) minmax(500px, 1.22fr);
