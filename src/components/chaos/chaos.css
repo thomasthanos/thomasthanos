@@ -26,11 +26,58 @@
   animation: fade-in var(--d-slower) var(--e-out) 200ms forwards;
 }
 
+/* The band between the viewport edge and the first pixel of content: the empty
+   margin beside the container plus the container's own padding. Decorations
+   are centred in it, so they sit beside the text rather than against the glass.
+   `max(0px, ...)` keeps it from going negative on a narrow viewport. */
+.chaos-layer {
+  --band: calc(max(0px, var(--gutter)) + var(--pad-x));
+}
+
+@media (max-height: 1100px) {
+  body:has(.myle) .chaos-layer {
+    --gutter: max(0px, (100vw - 1500px) / 2);
+  }
+}
+
+/* Size and place live here, NOT inside a media query.
+
+   They used to exist only inside the 2104px block. Any other selector that
+   flipped `display: block` — and there was one on this case study — got an SVG
+   with no width at all, which renders at the replaced-element default of
+   300x150 and parks itself in the corner. A doodle is now always sized and
+   always positioned; the tiers below only adjust the numbers. */
 .doodle {
+  width: var(--doodle-w, 44px);
+  height: auto;
   color: var(--c-violet);
 }
 
+.doodle--1 {
+  --doodle-w: 44px;
+  top: 26vh;
+  left: max(2px, calc((var(--band) - var(--doodle-w) * 1.2) / 2));
+  rotate: -12deg;
+}
+
+.doodle--2 {
+  --doodle-w: 46px;
+  top: 44vh;
+  right: max(2px, calc((var(--band) - var(--doodle-w) * 1.2) / 2));
+  rotate: 9deg;
+  color: var(--c-lime);
+}
+
+.doodle--3 {
+  --doodle-w: 36px;
+  top: 68vh;
+  left: max(2px, calc((var(--band) - var(--doodle-w) * 1.2) / 2));
+  rotate: 18deg;
+  color: var(--c-orange);
+}
+
 .sticker-note {
+  --sticker-w: 7.5rem;
   padding: 0.28rem 0.55rem;
   border: 1px dashed var(--c-violet-a35);
   border-radius: var(--r-sm);
@@ -41,48 +88,61 @@
   white-space: nowrap;
 }
 
-/* 1920px page + 2 × (72px art + 20px breathing room). */
-@media (min-width: 2104px) {
+.sticker-note--a {
+  top: 62vh;
+  right: max(2px, calc((var(--band) - var(--sticker-w) * 1.15) / 2));
+  rotate: -6deg;
+}
+
+.sticker-note--b {
+  top: 44vh;
+  left: max(2px, calc((var(--band) - var(--sticker-w) * 1.15) / 2));
+  rotate: 5deg;
+}
+
+/* --- Visibility tiers -------------------------------------------------------
+   Shown from 1100px up, which covers 1280x720 landscape. Below that the layout
+   is a phone and there is genuinely nowhere to put a mark that is not on top
+   of something, so the layer stays empty. */
+@media (min-width: 1100px) {
   .doodle,
   .sticker-note {
     display: block;
   }
+}
 
-  /* Centre each piece inside its gutter. */
-  .doodle--1 {
-    top: 26vh;
-    left: calc(var(--gutter) / 2 - 32px);
-    width: 64px;
-    rotate: -12deg;
-  }
+/* Narrow band: the only room is the page padding itself, so the marks shrink
+   and the stickers stand on end. Turned rather than hidden — the text is still
+   the text, just read down the margin. */
+@media (min-width: 1100px) and (max-width: 1875px) {
+  .doodle--1 { --doodle-w: 26px; }
+  .doodle--2 { --doodle-w: 28px; }
+  .doodle--3 { --doodle-w: 22px; }
 
-  .doodle--2 {
-    top: 44vh;
-    right: calc(var(--gutter) / 2 - 34px);
-    width: 68px;
-    rotate: 9deg;
-    color: var(--c-lime);
+  .sticker-note {
+    --sticker-w: 1.75rem;
+    writing-mode: vertical-rl;
+    padding: 0.5rem 0.24rem;
+    font-size: 0.82rem;
   }
+}
 
-  .doodle--3 {
-    top: 68vh;
-    left: calc(var(--gutter) / 2 - 25px);
-    width: 50px;
-    rotate: 18deg;
-    color: var(--c-orange);
-  }
+/* Comfortable band. */
+@media (min-width: 1876px) and (max-width: 2559px) {
+  .doodle--1 { --doodle-w: 52px; }
+  .doodle--2 { --doodle-w: 54px; }
+  .doodle--3 { --doodle-w: 42px; }
 
-  .sticker-note--a {
-    top: 62vh;
-    right: calc(var(--gutter) / 2 - 60px);
-    rotate: -6deg;
+  .sticker-note {
+    font-size: 0.9rem;
   }
+}
 
-  .sticker-note--b {
-    top: 44vh;
-    left: calc(var(--gutter) / 2 - 52px);
-    rotate: 5deg;
-  }
+/* Reference sizing, unchanged from the 4K design. */
+@media (min-width: 2560px) {
+  .doodle--1 { --doodle-w: 64px; }
+  .doodle--2 { --doodle-w: 68px; }
+  .doodle--3 { --doodle-w: 50px; }
 }
 
 /* --- Konami toast ------------------------------------------------------------ */

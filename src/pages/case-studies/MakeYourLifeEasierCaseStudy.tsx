@@ -249,8 +249,8 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
             <p className="myle-window__caption">{c.verified}</p>
           </Reveal>
 
-          <span className="myle-note myle-note--hero">{c.notes[0]}</span>
-          <span className="myle-note myle-note--admin">{c.notes[1]}</span>
+          <span className="myle-note myle-note--hero myle-note--to-r">{c.notes[0]}</span>
+          <span className="myle-note myle-note--admin myle-note--to-l">{c.notes[1]}</span>
         </header>
 
         <CaseSection id="myle-metrics" label={c.metrics} className="myle-section--tight">
@@ -262,7 +262,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
               </div>
             ))}
           </dl>
-          <span className="myle-note myle-note--metrics">{c.notes[2]}</span>
+          <span className="myle-note myle-note--metrics myle-note--to-l">{c.notes[2]}</span>
         </CaseSection>
 
         {p.features && (
@@ -288,7 +288,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
           </CaseSection>
         )}
 
-        <CaseSection id="myle-architecture" label={c.architecture} aside={c.architectureNote}>
+        <CaseSection id="myle-architecture" label={c.architecture} aside={c.architectureNote} className="myle-section--note-space">
           <div className="myle-engineering">
             <Reveal className="myle-arch">
               <div className="myle-arch__node myle-arch__node--renderer">
@@ -345,7 +345,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
               </div>
             )}
           </div>
-          <span className="myle-note myle-note--ipc">{c.notes[3]}</span>
+          <span className="myle-note myle-note--ipc myle-note--to-r">{c.notes[3]}</span>
         </CaseSection>
 
         <CaseSection id="myle-evolution" label={c.evolution} aside={c.evolutionNote} className="myle-section--note-space">
@@ -361,10 +361,10 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
               </li>
             ))}
           </ol>
-          <span className="myle-note myle-note--evolution">{c.notes[4]}</span>
+          <span className="myle-note myle-note--evolution myle-note--to-l">{c.notes[4]}</span>
         </CaseSection>
 
-        <CaseSection id="myle-gallery" label={c.gallery} aside={c.galleryNote} className="myle-section--gallery">
+        <CaseSection id="myle-gallery" label={c.gallery} aside={c.galleryNote} className="myle-section--gallery myle-section--note-space">
           <SwipeHint />
           <div className="myle-gallery">
             <figure className="myle-shot">
@@ -390,7 +390,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
               <figcaption><span>02</span>{c.cleanerShot}</figcaption>
             </figure>
           </div>
-          <span className="myle-note myle-note--gallery">{c.notes[5]}</span>
+          <span className="myle-note myle-note--gallery myle-note--to-l">{c.notes[5]}</span>
         </CaseSection>
 
         <div className="myle-endgrid">
@@ -401,7 +401,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
                 <p>{tr(p.privacy)}</p>
                 <strong>{c.privacyLine}</strong>
               </Reveal>
-              <span className="myle-note myle-note--privacy">{c.notes[6]}</span>
+              <span className="myle-note myle-note--privacy myle-note--to-r">{c.notes[6]}</span>
             </CaseSection>
           )}
 
@@ -411,6 +411,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
               <ul className="myle-lessons">
                 {trList(p.lessons).map((lesson) => <li key={lesson}>{lesson}</li>)}
               </ul>
+              <span className="myle-note myle-note--ship myle-note--to-u">{c.notes[7]}</span>
             </CaseSection>
           )}
         </div>
@@ -427,7 +428,6 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
               <Paintbrush aria-hidden="true" /> {c.more}
             </Link>
           </div>
-          <span className="myle-note myle-note--ship">{c.notes[7]}</span>
         </CaseSection>
 
         {near && (
