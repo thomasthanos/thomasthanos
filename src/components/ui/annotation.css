@@ -1,0 +1,62 @@
+.anno {
+  position: relative;
+  display: inline-block;
+  rotate: var(--tilt, -4deg);
+  font-family: var(--f-hand);
+  font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.2rem);
+  line-height: 1.15;
+  color: var(--c-text-3);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.anno--lime {
+  color: var(--c-lime-deep);
+}
+
+.anno--violet {
+  color: var(--c-violet);
+}
+
+.anno__text {
+  display: block;
+}
+
+.anno__arrow {
+  position: absolute;
+  width: 72px;
+  height: 56px;
+  stroke: currentColor;
+  opacity: 0.85;
+}
+
+.anno__arrow--sw {
+  top: 100%;
+  right: 55%;
+  margin-top: -3px;
+}
+
+.anno__arrow--se {
+  top: 100%;
+  left: 55%;
+  margin-top: -3px;
+}
+
+.anno__arrow--nw {
+  bottom: 100%;
+  right: 55%;
+  margin-bottom: -3px;
+}
+
+.anno__arrow--ne {
+  bottom: 100%;
+  left: 55%;
+  margin-bottom: -3px;
+}
+
+/* Chaos Mode makes the notes lean harder and go violet. */
+:root[data-chaos='on'] .anno {
+  rotate: calc(var(--tilt, -4deg) * 1.9);
+  color: var(--c-violet);
+}

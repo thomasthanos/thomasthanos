@@ -1,0 +1,200 @@
+import type { Dict } from './en'
+
+/**
+ * Τα ελληνικά ΔΕΝ είναι μετάφραση των αγγλικών — είναι το ίδιο πράγμα ειπωμένο
+ * όπως θα το έλεγε κάποιος από εδώ. Πιο χαλαρά, πιο ξεκάθαρα, με λίγο τσαμπουκά.
+ *
+ * Ο κανόνας: η πληροφορία μένει ίδια. Το αστείο μπαίνει γύρω από την
+ * πληροφορία, ποτέ στη θέση της.
+ */
+export const el: Dict = {
+  nav: {
+    home: 'Αρχική',
+    projects: 'Projects',
+    stack: 'Stack',
+    labs: 'Labs',
+    about: 'Ποιος είμαι',
+    contact: 'Επικοινωνία',
+    github: 'GitHub',
+    menu: 'Μενού',
+    openMenu: 'Άνοιγμα μενού',
+    closeMenu: 'Κλείσιμο μενού',
+    primary: 'Κύρια',
+    hint: {
+      home: 'από την αρχή',
+      projects: 'όσα βγήκαν όντως έξω',
+      stack: 'τα εργαλεία',
+      labs: 'τα μισοτελειωμένα',
+      about: 'ποιος γράφει',
+      contact: 'πες κάτι',
+    },
+  },
+
+  common: {
+    viewProject: 'Για δες το',
+    viewAll: 'Όλα τα projects',
+    allProjects: 'Δες τα όλα',
+    repository: 'Repository',
+    liveDemo: 'Live demo',
+    copy: 'Αντιγραφή',
+    copied: 'Το πήρες',
+    next: 'Επόμενο',
+    previous: 'Προηγούμενο',
+    backToProjects: 'Πίσω στα projects',
+    backToTop: 'Πάνω πάνω',
+    skipToContent: 'Πάμε στο περιεχόμενο',
+    loading: 'Φορτώνει',
+    showMore: 'Δείξε κι άλλα',
+    swipe: 'Σύρε',
+    year: 'Χρονιά',
+    external: 'ανοίγει σε νέα καρτέλα',
+  },
+
+  status: {
+    active: 'Ζωντανό',
+    maintained: 'Το προσέχω',
+    shipped: 'Βγήκε',
+    experiment: 'Πείραμα',
+    legacy: 'Παλιά δόξα',
+  },
+
+  category: {
+    all: 'Όλα',
+    browser: 'Browser',
+    windows: 'Windows',
+    desktop: 'Desktop',
+    automation: 'Automation',
+    discord: 'Discord',
+    web: 'Web',
+    labs: 'Labs',
+  },
+
+  home: {
+    kicker: 'Αυτοδίδακτος indie developer',
+    heroLead: 'Φτιάχνω εργαλεία για',
+    heroAccent: 'εκνευριστικά προβλήματα',
+    lede: 'Automations, εργαλεία για Windows, browser extensions και desktop apps που σου γλιτώνουν χρόνο, κλικ και νεύρα. Ο κώδικας είναι ανοιχτός να τον διαβάσεις, όλα δουλεύουν τοπικά, και τίποτα δεν στέλνει δεδομένα πουθενά.',
+    ctaPrimary: 'Δες τι βγάζω',
+    ctaSecondary: 'Πες μου κάτι',
+    terminalHint: 'Μη γράφεις τίποτα. Τρέχει μόνο του.',
+    featuredTitle: 'Πράγματα που όντως χρησιμοποιεί κόσμος',
+    statsUsers: 'χρήστες την εβδομάδα, σε ένα και μόνο extension',
+    statsShipped: 'extensions και desktop apps που κυκλοφορούν',
+    statsTracking: 'analytics SDK μέσα σε όλα αυτά μαζί',
+  },
+
+  projects: {
+    kicker: 'Τα πάντα',
+    title: 'Projects',
+    lede: 'Δεκατέσσερα πράγματα που έφτιαξα και ακόμα τα συντηρώ. Φιλτράρισε ανά πλατφόρμα, ή μπες στα case studies για τα μεγάλα.',
+    filterLabel: 'Φιλτράρισμα ανά πλατφόρμα',
+    showing: 'Βλέπεις',
+    project: 'project',
+    projects: 'projects',
+  },
+
+  detail: {
+    overview: 'Με δυο λόγια',
+    why: 'Γιατί το έφτιαξα',
+    what: 'Τι κάνει',
+    features: 'Τι έχει μέσα',
+    challenges: 'Πού κόλλησα',
+    architecture: 'Πώς είναι στημένο',
+    sketchNote: 'Σκίτσο του πραγματικού interface, φτιαγμένο από τα δεδομένα του project. Όχι screenshot.',
+    privacy: 'Ιδιωτικότητα & ασφάλεια',
+    impact: 'Πόσοι το χρησιμοποιούν',
+    lessons: 'Τι έμαθα με το ζόρι',
+    tech: 'Φτιαγμένο με',
+    links: 'Σύνδεσμοι',
+    disclaimer: 'Ψιλά γράμματα',
+    metrics: 'Σε νούμερα',
+    gallery: 'Οθόνες',
+    moreProjects: 'Κι άλλα',
+  },
+
+  stack: {
+    kicker: 'Τα εργαλεία',
+    title: 'Stack',
+    lede: 'Χρησιμοποιώ ό,τι κάνει τη δουλειά. Αυτά εδώ αποδείχτηκαν ότι είναι το «ό,τι κάνει τη δουλειά», με ένα σχόλιο για το γιατί — αντί για κάποιο ποσοστό βγαλμένο από το πουθενά.',
+    areasKicker: 'Τι κάνω με αυτά',
+    areasTitle: 'Τομείς',
+    usedIn: 'Το χρησιμοποιώ σε',
+    noteTitle: 'Για τις μπάρες δεξιοτήτων',
+  },
+
+  labs: {
+    kicker: 'Το άλλο μισό',
+    title: 'Labs',
+    lede: 'Πειράματα, μικρά εργαλεία, παλιά δουλειά και ιδέες που επέζησαν μέχρι το πρωί. Ο πήχης είναι χαμηλά επίτηδες — το ζητούμενο ήταν να δω αν γίνεται, όχι να γίνει σωστά.',
+    warning: 'Σταθερότητα δεν εγγυώμαι. Ενθουσιασμό, ναι.',
+  },
+
+  about: {
+    kicker: 'Ποιος γράφει',
+    title: 'Ποιος είμαι',
+    timelineKicker: 'Πώς έγινε',
+    timelineTitle: 'Η διαδρομή',
+    principlesKicker: 'Πώς δουλεύω',
+    principlesTitle: 'Έξι κανόνες που όντως τηρώ',
+    likesKicker: 'Τι με τραβάει',
+    likesTitle: 'Τι μου αρέσει να φτιάχνω',
+    factsTitle: 'Στοιχεία',
+    factRole: 'Ρόλος',
+    factBased: 'Βάση',
+    factLanguages: 'Γλώσσες',
+    factLanguagesValue: 'Αγγλικά, Ελληνικά',
+    factStarted: 'Ξεκίνησα',
+    factStartedValue: '2018, με τα devtools ανοιχτά',
+    factStatus: 'Κατάσταση',
+    factStatusValue: 'Διαθέσιμος',
+    closingKicker: 'Το χρήσιμο κομμάτι',
+    closingTitle: 'Έχεις κάτι που το κάνεις χίλιες φορές με το χέρι; Ωραία.',
+    closingBody: 'Από εκεί ξεκινάνε συνήθως τα projects που αξίζει να φτιαχτούν.',
+    closingAction: 'Πες μου τι σε εκνευρίζει',
+  },
+
+  contact: {
+    kicker: 'Πες κάτι',
+    title: 'Ας φτιάξουμε κάτι άσκοπα χρήσιμο',
+    lede: 'Χωρίς φόρμα, χωρίς αυτόματη απάντηση, χωρίς «ευχαριστούμε για το ενδιαφέρον σας». Διάλεξε ό,τι από αυτά έχεις ήδη ανοιχτό.',
+    availabilityKicker: 'Διαθεσιμότητα',
+    availabilityTitle: 'Ανοιχτός για',
+    availabilityNote: 'Στο Discord απαντάω πιο γρήγορα. Email αν χρειάζεται να μείνει γραπτό.',
+    discordLabel: 'Discord',
+    emailLabel: 'Email',
+    githubLabel: 'GitHub',
+    open: 'Άνοιγμα',
+    availability: [
+      'Freelance projects',
+      'Μικρές συνεργασίες',
+      'Utilities και εσωτερικά εργαλεία',
+      'Browser extensions',
+      'Automation',
+      'Indie side-projects',
+    ],
+    notInterested: 'Δεν ψάχνω',
+    notInterestedItems: [
+      'Απλήρωτη δουλειά «για την εμπειρία»',
+      'Οτιδήποτε θέλει post στο LinkedIn',
+      'Crypto',
+    ],
+  },
+
+  chaos: {
+    label: 'Χάος',
+    enable: 'Ενεργοποίηση Chaos Mode',
+    disable: 'Απενεργοποίηση Chaos Mode',
+    hint: 'Ξεκλειδώνει πράγματα που δεν χρειαζόταν να δεις.',
+  },
+
+  lang: {
+    label: 'Γλώσσα',
+    en: 'English',
+    el: 'Ελληνικά',
+  },
+
+  notFound: {
+    back: 'Πάμε αρχική',
+    browse: 'Ή δες τα projects',
+  },
+}

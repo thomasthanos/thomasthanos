@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face{font-family:'IT';src:url('../node_modules/@fontsource-variable/inter-tight/files/inter-tight-latin-wght-normal.woff2') format('woff2-variations');font-weight:100 900;}
+  @font-face{font-family:'JB';src:url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2') format('woff2-variations');font-weight:100 800;}
+  *{margin:0;box-sizing:border-box}
+  body{width:1200px;height:630px;overflow:hidden;background:#0a0b0d;font-family:'IT',sans-serif;color:#e9ece7;
+    background-image:
+      radial-gradient(760px 460px at 8% -10%, rgba(200,250,75,.13), transparent 62%),
+      radial-gradient(680px 420px at 100% 8%, rgba(167,139,250,.13), transparent 60%),
+      linear-gradient(#191d22 1px, transparent 1px),
+      linear-gradient(90deg, #191d22 1px, transparent 1px);
+    background-size:100% 100%,100% 100%,64px 64px,64px 64px;}
+  .wrap{position:relative;height:100%;padding:72px 76px;display:flex;flex-direction:column;justify-content:space-between}
+  .kick{display:flex;align-items:center;gap:12px;font-family:'JB',monospace;font-size:19px;letter-spacing:.18em;text-transform:uppercase;color:#c8fa4b}
+  .tick{width:9px;height:9px;background:#c8fa4b;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+  h1{font-size:92px;font-weight:800;line-height:.99;letter-spacing:-.045em;max-width:16ch;margin-top:26px}
+  .accent{color:#c8fa4b;text-decoration:underline;text-decoration-color:rgba(200,250,75,.28);text-decoration-thickness:5px;text-underline-offset:12px}
+  .foot{display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+  .who{display:flex;flex-direction:column;gap:9px}
+  .name{font-size:33px;font-weight:700;letter-spacing:-.025em}
+  .role{font-family:'JB',monospace;font-size:17px;letter-spacing:.06em;color:#949aa4}
+  .chips{display:flex;gap:11px}
+  .chip{padding:9px 15px;border:1px solid rgba(200,250,75,.3);border-radius:8px;background:rgba(200,250,75,.09);
+    font-family:'JB',monospace;font-size:17px;color:#c8fa4b}
+  .chip.d{border-color:#22262c;background:#121417;color:#949aa4}
+  .mark{position:absolute;right:74px;top:268px;width:216px;height:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div>
+    <div class="kick"><span class="tick"></span>Self-taught indie developer</div>
+    <h1>I build tools for <span class="accent">annoying problems</span>.</h1>
+  </div>
+  <div class="foot">
+    <div class="who">
+      <span class="name">Thomas Thanos</span>
+      <span class="role">Athens, Greece &middot; kolokithes A.E.</span>
+    </div>
+    <div class="chips">
+      <span class="chip">8K+ weekly users</span>
+      <span class="chip d">0 trackers</span>
+      <span class="chip d">source-available</span>
+    </div>
+  </div>
+  <!-- The mascot itself, not a redrawing of it — same file the header uses. -->
+  <img class="mark" src="../assets-src/pumpkin-logo-transparent.png" alt="">
+</div>
+</body>
+</html>

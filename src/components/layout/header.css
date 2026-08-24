@@ -1,0 +1,650 @@
+/* ============================================================================
+   Header — app chrome, not a marketing navbar.
+   ========================================================================= */
+
+.hdr {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  height: calc(var(--h-header) + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  border-bottom: 1px solid var(--c-line);
+  background: color-mix(in srgb, var(--c-bg) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+/* A hairline of accent that fills as you scroll the page. */
+.hdr__progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--c-lime), var(--c-violet));
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+
+.hdr__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  height: 100%;
+}
+
+/* --- Brand ----------------------------------------------------------------- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex: none;
+  color: var(--c-text);
+  border-radius: var(--r-md);
+  padding: 4px;
+  margin-left: -4px;
+}
+
+.brand:hover .brand__name {
+  color: var(--c-lime);
+}
+
+.brand__mark {
+  transition: transform var(--d-slow) var(--e-spring);
+}
+
+.brand:hover .brand__mark {
+  transform: rotate(-8deg) scale(1.05);
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1;
+}
+
+.brand__name {
+  font-size: var(--t-sm);
+  font-weight: 680;
+  letter-spacing: var(--ls-tight);
+  transition: color var(--d-fast) var(--e-out);
+}
+
+.brand__sub {
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+
+/* --- Desktop nav ------------------------------------------------------------ */
+.nav {
+  display: none;
+  align-items: center;
+  gap: 2px;
+  margin-left: var(--s-4);
+  padding-left: var(--s-4);
+  border-left: 1px solid var(--c-line);
+  height: 26px;
+}
+
+.nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 0.7rem;
+  border-radius: var(--r-sm);
+  font-size: var(--t-xs);
+  font-weight: 550;
+  color: var(--c-text-3);
+  letter-spacing: var(--ls-tight);
+  transition:
+    color var(--d-fast) var(--e-out),
+    background var(--d-fast) var(--e-out);
+}
+
+.nav__link:hover {
+  color: var(--c-text);
+  background: var(--c-surface);
+}
+
+.nav__link.is-active {
+  color: var(--c-text);
+}
+
+.nav__link.is-active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  translate: -50% 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--c-lime);
+  box-shadow: 0 0 8px var(--c-lime-a40);
+}
+
+/* --- Right cluster ------------------------------------------------------------ */
+.hdr__spacer {
+  flex: 1;
+}
+
+.hdr__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex: none;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  color: var(--c-text-3);
+  transition:
+    color var(--d-fast) var(--e-out),
+    border-color var(--d-fast) var(--e-out),
+    background var(--d-fast) var(--e-out);
+}
+
+.icon-btn:hover {
+  color: var(--c-text);
+  border-color: var(--c-line-strong);
+  background: var(--c-surface-2);
+}
+
+.icon-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* --- Language switch --------------------------------------------------------- */
+.lang {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+}
+
+.lang__btn {
+  padding: 0.28rem 0.5rem;
+  border-radius: var(--r-sm);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-text-4);
+  transition:
+    color var(--d-fast) var(--e-out),
+    background var(--d-fast) var(--e-out);
+}
+
+.lang__btn:hover {
+  color: var(--c-text-2);
+}
+
+.lang__btn.is-on {
+  color: var(--c-lime-ink);
+  background: var(--c-lime);
+}
+
+/* --- Chaos toggle -------------------------------------------------------------- */
+.chaos-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  height: 34px;
+  padding: 0 0.6rem;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-text-4);
+  transition:
+    color var(--d-fast) var(--e-out),
+    border-color var(--d-fast) var(--e-out);
+}
+
+.chaos-btn:hover {
+  color: var(--c-text-2);
+  border-color: var(--c-line-strong);
+}
+
+.chaos-btn__led {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--c-line-strong);
+  transition:
+    background var(--d-base) var(--e-out),
+    box-shadow var(--d-base) var(--e-out);
+}
+
+.chaos-btn.is-on {
+  color: var(--c-violet);
+  border-color: var(--c-violet-a35);
+}
+
+.chaos-btn.is-on .chaos-btn__led {
+  background: var(--c-violet);
+  box-shadow: 0 0 10px var(--c-violet);
+}
+
+.chaos-btn__text {
+  display: none;
+}
+
+/* --- Burger ---------------------------------------------------------------------- */
+.burger {
+  display: inline-grid;
+}
+
+/* --- Breakpoints ------------------------------------------------------------------ */
+@media (min-width: 560px) {
+  .chaos-btn__text {
+    display: inline;
+  }
+}
+
+@media (min-width: 900px) {
+  .nav {
+    display: flex;
+  }
+
+  .burger {
+    display: none;
+  }
+}
+
+
+/* --- Mobile drawer ---------------------------------------------------------------------
+   A full-screen index rather than a grid of tiles. Six rows share the whole
+   height, so the panel reads as a table of contents instead of a small cluster
+   of buttons floating above a void. */
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-drawer);
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(560px 380px at 100% -4%, var(--c-violet-a10), transparent 70%),
+    radial-gradient(520px 360px at -10% 104%, var(--c-lime-a08), transparent 72%),
+    var(--c-bg);
+  animation: fade-in var(--d-base) var(--e-out) both;
+}
+
+/* A hairline of accent along the very top edge, so the panel reads as a
+   surface that slid over the page rather than a repainted background. */
+.drawer::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c-lime), var(--c-violet) 65%, transparent);
+  opacity: 0.7;
+}
+
+.drawer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  height: calc(var(--h-header) + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  border-bottom: 1px solid var(--c-line);
+  flex: none;
+}
+
+.drawer__close {
+  border-color: var(--c-line-strong);
+}
+
+.drawer__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-top: var(--s-4);
+  padding-bottom: max(var(--s-5), env(safe-area-inset-bottom));
+}
+
+.drawer__nav {
+  flex: 1 1 auto;
+  display: flex;
+  min-height: 0;
+}
+
+.drawer__list {
+  flex: 1;
+  display: grid;
+  /* Rows stretch to share whatever height is left; the floor keeps them
+     tappable when the viewport is short. */
+  grid-auto-rows: minmax(58px, 1fr);
+  align-content: stretch;
+}
+
+.drawer__list li {
+  display: flex;
+  min-height: 0;
+}
+
+.drawer__link {
+  position: relative;
+  flex: 1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  align-content: center;
+  align-items: center;
+  column-gap: var(--s-4);
+  padding: var(--s-3) var(--s-2) var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--c-line-soft);
+  color: var(--c-text-2);
+  animation: fade-up var(--d-slow) var(--e-out) both;
+  animation-delay: var(--i, 0ms);
+  transition:
+    color var(--d-fast) var(--e-out),
+    background var(--d-fast) var(--e-out);
+}
+
+.drawer__list li:last-child .drawer__link {
+  border-bottom: 0;
+}
+
+/* The rail is the active marker: a lime bar in the left gutter. Easier to read
+   at a glance than a tinted box, and it survives long labels. */
+.drawer__rail {
+  position: absolute;
+  left: 0;
+  top: 12%;
+  bottom: 12%;
+  width: 2px;
+  border-radius: var(--r-pill);
+  background: var(--c-line);
+  transition:
+    background var(--d-fast) var(--e-out),
+    width var(--d-fast) var(--e-out);
+}
+
+.drawer__idx {
+  grid-row: 1 / span 2;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--c-text-4);
+  transition: color var(--d-fast) var(--e-out);
+}
+
+.drawer__label {
+  grid-column: 2;
+  font-family: var(--f-display);
+  text-transform: uppercase;
+  font-size: clamp(1.45rem, 7.4vw, 2rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: var(--ls-head);
+  color: var(--c-text);
+  transition: color var(--d-fast) var(--e-out);
+}
+
+.drawer__hint {
+  grid-column: 2;
+  margin-top: 0.24rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.04em;
+  color: var(--c-text-4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.drawer__arrow {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  width: 17px;
+  height: 17px;
+  opacity: 0.3;
+  transition:
+    opacity var(--d-fast) var(--e-out),
+    transform var(--d-fast) var(--e-out);
+}
+
+.drawer__link:hover .drawer__arrow,
+.drawer__link:focus-visible .drawer__arrow {
+  opacity: 0.8;
+  transform: translate(2px, -2px);
+}
+
+.drawer__link:hover,
+.drawer__link:focus-visible {
+  background: linear-gradient(90deg, var(--c-lime-a08), transparent 60%);
+}
+
+.drawer__link:hover .drawer__rail,
+.drawer__link:focus-visible .drawer__rail {
+  background: var(--c-lime-a40);
+}
+
+.drawer__link.is-active {
+  background: linear-gradient(90deg, var(--c-lime-a14), transparent 72%);
+}
+
+.drawer__link.is-active .drawer__rail {
+  width: 3px;
+  background: var(--c-lime);
+  box-shadow: 0 0 14px -2px var(--c-lime-a40);
+}
+
+.drawer__link.is-active .drawer__label {
+  color: var(--c-lime);
+}
+
+.drawer__link.is-active .drawer__idx {
+  color: var(--c-lime-deep);
+}
+
+.drawer__link.is-active .drawer__arrow {
+  opacity: 0.75;
+}
+
+/* Margin note — only when there is height to spare for it. */
+.drawer__note {
+  display: none;
+}
+
+@media (min-height: 660px) {
+  .drawer__note {
+    display: block;
+    align-self: flex-end;
+    flex: none;
+    margin: var(--s-4) var(--s-6) calc(var(--s-2) * -1) 0;
+  }
+}
+
+.drawer__foot {
+  flex: none;
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  display: grid;
+  gap: var(--s-3);
+  border-top: 1px solid var(--c-line);
+}
+
+.drawer__gh {
+  justify-content: center;
+  width: 100%;
+}
+
+.drawer__tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.drawer__sig {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin: 0;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.08em;
+  color: var(--c-text-4);
+}
+
+.drawer__sig span:nth-child(2) {
+  color: var(--c-line-strong);
+}
+
+/* Greek labels run longer; give them a little less type so they stay on one line. */
+:root:lang(el) .drawer__label {
+  font-size: clamp(1.3rem, 6.4vw, 1.8rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer,
+  .drawer__link {
+    animation: none;
+  }
+}
+
+/* --- Very small screens ---------------------------------------------------------------
+   Below 480px the tool cluster cannot share the bar with the wordmark. Language
+   stays (it is a usability control); GitHub and Chaos move into the drawer,
+   where both already live. */
+@media (max-width: 479px) {
+  .hdr .hdr__tools > .chaos-btn,
+  .hdr .hdr__tools > .icon-btn:not(.burger) {
+    display: none;
+  }
+
+  .hdr__inner {
+    gap: var(--s-3);
+  }
+
+  .brand {
+    gap: var(--s-2);
+  }
+
+  .brand__sub {
+    display: none;
+  }
+
+  .brand__name {
+    font-size: var(--t-xs);
+  }
+
+  /* The drawer has room for the studio name even when the header does not. */
+  .drawer__top .brand__sub {
+    display: block;
+  }
+}
+
+@media (max-width: 359px) {
+  .brand__name {
+    /* "Thomas Thanos" no longer fits beside the controls; the mark carries it. */
+    display: none;
+  }
+
+  .drawer__top .brand__name {
+    display: block;
+  }
+
+  .drawer__link {
+    column-gap: var(--s-3);
+    padding-left: var(--s-3);
+  }
+}
+
+@media (max-width: 899px) {
+  .hdr__inner {
+    gap: var(--s-3);
+  }
+
+  .icon-btn,
+  .chaos-btn {
+    min-width: 40px;
+    height: 40px;
+  }
+
+  .lang__btn {
+    min-height: 34px;
+    padding-inline: 0.45rem;
+  }
+
+  .drawer .chaos-btn {
+    width: auto;
+    padding-inline: 0.75rem;
+  }
+
+  .drawer .chaos-btn__text {
+    display: inline;
+  }
+}
+
+/* Landscape phones: drop the descriptors and shrink the type so all six rows
+   still fit without the panel turning into a scroller. */
+@media (max-height: 560px) {
+  .drawer__hint {
+    display: none;
+  }
+
+  .drawer__label {
+    font-size: 1.15rem;
+  }
+
+  .drawer__list {
+    grid-auto-rows: minmax(46px, 1fr);
+  }
+
+  .drawer__foot {
+    margin-top: var(--s-4);
+  }
+}
+
+@media (min-width: 560px) and (max-width: 899px) {
+  .hdr .chaos-btn__text {
+    display: none;
+  }
+}
+
+/* Tablet-width drawer: the index does not need the full bleed, so cap it and
+   let the rows breathe instead of stretching one row of small text across 700px. */
+@media (min-width: 620px) and (max-width: 899px) {
+  /* Beats `.container`, which both the top bar and the body also carry. */
+  .drawer .drawer__top,
+  .drawer .drawer__body {
+    width: 100%;
+    max-width: 32rem;
+    margin-inline: auto;
+  }
+
+  /* At this width a stretched row is mostly empty space, so cap it and centre
+     the block instead. */
+  .drawer__list {
+    grid-auto-rows: minmax(58px, 96px);
+    align-content: center;
+  }
+
+  .drawer__label {
+    font-size: 1.9rem;
+  }
+}

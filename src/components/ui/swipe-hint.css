@@ -1,0 +1,41 @@
+.swipe-hint {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .swipe-hint {
+    display: flex;
+    align-items: center;
+    gap: 0.38rem;
+    width: fit-content;
+    margin: 0 0 0.65rem auto;
+    font-family: var(--f-mono);
+    font-size: 8px;
+    font-weight: 650;
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
+    color: var(--c-violet);
+  }
+
+  .swipe-hint svg {
+    width: 16px;
+    height: 16px;
+    animation: swipe-hint-nudge 1.8s var(--e-in-out) infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swipe-hint svg {
+    animation: none;
+  }
+}
+
+@keyframes swipe-hint-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}

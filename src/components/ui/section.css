@@ -1,0 +1,49 @@
+/* Shared titled section shell. Kept with the component so every route gets it. */
+.dsec {
+  margin-top: var(--gap-section);
+}
+
+.dsec__head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  margin-bottom: clamp(1rem, 0.8rem + 0.55vw, 1.5rem);
+}
+
+.dsec__title {
+  /* Shrinkable, not fixed: a long tracked-caps title (Greek especially) has to
+     be able to wrap on a 375px screen instead of pushing the page sideways. */
+  flex: 0 1 auto;
+  min-width: 0;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  font-weight: 550;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-3);
+}
+
+.dsec__rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--c-line-strong), transparent);
+}
+
+.dsec__note {
+  margin-top: calc(var(--s-4) * -1);
+  margin-bottom: var(--s-5);
+  font-size: var(--t-xs);
+  color: var(--c-text-4);
+}
+
+@media (max-width: 899px) {
+  .dsec__head {
+    gap: var(--s-3);
+    margin-bottom: var(--s-4);
+  }
+
+  .dsec__note {
+    margin-top: calc(var(--s-2) * -1);
+    margin-bottom: var(--s-4);
+  }
+}

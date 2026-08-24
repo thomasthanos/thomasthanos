@@ -1,0 +1,47 @@
+# --- Dependencies ---
+node_modules/
+.pnp
+.pnp.*
+
+# --- Build output ---
+dist/
+dist-ssr/
+.vite/
+*.tsbuildinfo
+
+# --- Caches ---
+.eslintcache
+.cache/
+coverage/
+*.local
+
+# --- Logs ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Secrets ---
+# Nothing in this app needs a key, and nothing should start to. Kept as a
+# guard rail rather than because there is anything to hide.
+.env
+.env.*
+!.env.example
+
+# --- Editors / tooling ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.claude/settings.local.json
+
+# --- OS noise ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Note: public/assets/*.webp, public/og.png, public/apple-touch-icon.png and
+# src/assets/fonts/*.woff2 are generated (gen:assets, gen:og, gen:font) but are
+# committed on purpose — `npm run build` does not regenerate them, so a clean
+# checkout has to already contain them.

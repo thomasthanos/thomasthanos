@@ -1,0 +1,67 @@
+/* ============================================================================
+   kolokithes A.E. — the mascot. Outline in the accent, face lit from inside.
+   ========================================================================= */
+
+.pk {
+  display: block;
+  overflow: visible;
+}
+
+.pk__stem,
+.pk__body,
+.pk__rib {
+  fill: none;
+  stroke: var(--pk-line, var(--c-lime));
+  stroke-linejoin: round;
+}
+
+.pk__stem {
+  stroke: var(--pk-stem, var(--c-lime-deep));
+}
+
+.pk__rib {
+  opacity: 0.3;
+}
+
+.pk__face {
+  fill: var(--pk-face, var(--c-lime));
+}
+
+/* The lit-from-inside look. drop-shadow composites on the GPU, so this stays
+   cheap even on the 200px mascot. */
+.pk--glow .pk__face {
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--pk-face, var(--c-lime)) 70%, transparent));
+}
+
+.pk--glow .pk__body {
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--pk-line, var(--c-lime)) 28%, transparent));
+}
+
+/* Chaos Mode turns the whole thing violet and gives it the manic grin. */
+:root[data-chaos='on'] .pk {
+  --pk-line: var(--c-violet);
+  --pk-stem: var(--c-violet-deep);
+  --pk-face: var(--c-violet-bright);
+}
+
+/* A very slow idle breath on the big mascot only. */
+.pk--breathe {
+  animation: pk-breathe 5.5s var(--e-in-out) infinite;
+  transform-origin: 50% 70%;
+}
+
+@keyframes pk-breathe {
+  0%,
+  100% {
+    transform: scale(1) rotate(-0.6deg);
+  }
+  50% {
+    transform: scale(1.025) rotate(0.6deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pk--breathe {
+    animation: none;
+  }
+}

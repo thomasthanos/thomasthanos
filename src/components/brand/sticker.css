@@ -1,0 +1,25 @@
+.sticker {
+  display: inline-block;
+  width: clamp(132px, 11vw, 172px);
+  rotate: var(--tilt, -7deg);
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.72));
+  transform-origin: 50% 70%;
+}
+
+.sticker__art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+:root[data-chaos='on'] .sticker {
+  animation: wobble 2.8s var(--e-in-out) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-chaos='on'] .sticker {
+    animation: none;
+  }
+}
