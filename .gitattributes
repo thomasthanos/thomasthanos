@@ -1,0 +1,6 @@
+# The host parses these line by line; a trailing CR can end up inside a header
+# value or break the status code on a redirect rule. Windows checkouts get LF
+# here regardless of core.autocrlf.
+/public/_headers    text eol=lf
+/public/_redirects  text eol=lf
+/.nvmrc             text eol=lf
