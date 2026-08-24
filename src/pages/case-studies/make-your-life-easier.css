@@ -369,11 +369,11 @@
   display: grid;
   grid-template-columns: minmax(520px, 1.08fr) minmax(380px, 0.92fr);
   gap: var(--s-5);
-  align-items: stretch;
+  align-items: start;
 }
 
 .myle-arch,
-.myle-challenges {
+.myle-challenges-wrap {
   min-width: 0;
   padding: clamp(1.25rem, 1rem + 1.2vw, 2.25rem);
   border: 1px solid var(--c-line);
@@ -493,30 +493,43 @@
   margin-top: var(--s-3);
 }
 
-.myle-challenges {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
+.myle-challenges-wrap {
   padding: 0;
   overflow: hidden;
   background: var(--c-line);
 }
 
-.myle-challenges > h3 {
+.myle-challenges__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
   padding: var(--s-5);
+  background: var(--c-surface-2);
+}
+
+.myle-challenges__head h3 {
   font-family: var(--f-mono);
   font-size: var(--t-micro);
   font-weight: 650;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
   color: var(--c-violet-bright);
-  background: var(--c-surface-2);
+}
+
+.myle-challenges {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--c-line);
 }
 
 .myle-challenge {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
+  align-content: start;
   gap: var(--s-4);
+  min-height: 178px;
   padding: var(--s-5);
   background: var(--c-surface);
 }
@@ -664,10 +677,12 @@
 
 .myle-section--panel {
   display: flex;
+  min-width: 0;
   flex-direction: column;
 }
 
-.myle-section--panel > :last-child {
+.myle-section--panel > .myle-privacy,
+.myle-section--panel > .myle-lessons {
   flex: 1;
 }
 
@@ -757,35 +772,57 @@
 
 .myle-nav {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--s-4);
-  padding-top: var(--s-7);
-  border-top: 1px solid var(--c-line);
-}
-
-.myle-nav a {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--s-5);
-  min-height: 128px;
-  padding: var(--s-5);
+  grid-template-columns: minmax(0, 1fr) 116px minmax(0, 1fr);
+  gap: 0;
+  overflow: hidden;
   border: 1px solid var(--c-line);
   border-radius: var(--r-lg);
   background: linear-gradient(145deg, var(--c-surface-2), var(--c-surface));
+  box-shadow: var(--sh-inset-top);
+}
+
+.myle-nav a {
+  display: grid;
+  grid-template-columns: 66px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--s-4);
+  min-height: 112px;
+  padding: var(--s-4);
   transition:
-    transform var(--d-base) var(--e-out),
+    color var(--d-base) var(--e-out),
     border-color var(--d-base) var(--e-out),
     background var(--d-base) var(--e-out);
 }
 
 .myle-nav a:hover {
-  transform: translateY(-3px);
-  border-color: color-mix(in srgb, var(--c-lime) 32%, var(--c-line));
   background: var(--myle-lime-wash);
 }
 
-.myle-nav a > span {
+.myle-nav__thumb {
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--c-line));
+  border-radius: var(--r-md);
+  font-family: var(--f-display);
+  font-size: 1.25rem;
+  font-weight: 760;
+  color: var(--accent);
+  background:
+    radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 62%),
+    var(--c-bg-elev);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.myle-nav__copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.myle-nav__label {
   display: flex;
   align-items: center;
   gap: var(--s-2);
@@ -796,19 +833,42 @@
   color: var(--c-text-4);
 }
 
-.myle-nav a > span svg {
+.myle-nav__label svg {
   width: 13px;
   height: 13px;
 }
 
 .myle-nav strong {
   font-family: var(--f-display);
-  font-size: var(--t-xl);
+  font-size: var(--t-lg);
+  color: var(--c-text);
+}
+
+.myle-nav small {
+  overflow: hidden;
+  font-size: var(--t-xs);
+  line-height: 1.35;
+  color: var(--c-text-4);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.myle-nav__brand {
+  display: grid;
+  place-items: center;
+  min-height: 112px;
+  border-right: 1px solid var(--c-line);
+  border-left: 1px solid var(--c-line);
+  background: radial-gradient(circle, var(--c-lime-a08), transparent 68%);
 }
 
 .myle-nav__next {
-  align-items: flex-end;
+  grid-template-columns: minmax(0, 1fr) 66px !important;
   text-align: right;
+}
+
+.myle-nav__next .myle-nav__label {
+  justify-content: flex-end;
 }
 
 /* Chaos notes belong to this case study, not to the global decorative layer. */
@@ -851,9 +911,36 @@
   transform: rotate(4deg);
 }
 
+.myle-note--metrics {
+  top: 2.25rem;
+  right: 2rem;
+  color: var(--c-lime);
+  transform: rotate(3deg);
+}
+
+.myle-note--ipc {
+  top: 54%;
+  left: -1rem;
+  transform: rotate(-7deg);
+}
+
+.myle-note--evolution {
+  top: 3.1rem;
+  right: 1.25rem;
+  color: var(--c-lime);
+  transform: rotate(4deg);
+}
+
 .myle-note--gallery {
   right: -1.5rem;
   bottom: -0.25rem;
+}
+
+.myle-note--privacy {
+  bottom: -0.5rem;
+  left: 1.5rem;
+  color: var(--c-orange);
+  transform: rotate(-4deg);
 }
 
 .myle-note--ship {
@@ -956,7 +1043,7 @@
   }
 
   .myle-nav a {
-    min-height: 110px;
+    min-height: 100px;
   }
 
   .myle-note {
@@ -1011,7 +1098,9 @@
 
   .myle-features,
   .myle-evolution,
-  .myle-gallery {
+  .myle-gallery,
+  .myle-challenges,
+  .myle-lessons {
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: min(84vw, 330px);
@@ -1028,13 +1117,17 @@
 
   .myle-features::-webkit-scrollbar,
   .myle-evolution::-webkit-scrollbar,
-  .myle-gallery::-webkit-scrollbar {
+  .myle-gallery::-webkit-scrollbar,
+  .myle-challenges::-webkit-scrollbar,
+  .myle-lessons::-webkit-scrollbar {
     display: none;
   }
 
   .myle-features > li,
   .myle-evolution > li,
-  .myle-gallery > figure {
+  .myle-gallery > figure,
+  .myle-challenges > article,
+  .myle-lessons > li {
     scroll-snap-align: start;
   }
 
@@ -1050,13 +1143,34 @@
     min-height: 260px;
   }
 
-  .myle-arch,
-  .myle-challenges {
+  .myle-arch {
     padding: var(--s-4);
   }
 
+  .myle-challenges-wrap {
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .myle-challenges__head {
+    min-height: 0;
+    padding: 0 0 var(--s-3);
+    background: transparent;
+  }
+
   .myle-challenges {
-    padding: 0;
+    padding-bottom: var(--s-3);
+    background: transparent;
+  }
+
+  .myle-challenge {
+    min-height: 220px;
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-md);
+    background: linear-gradient(145deg, var(--myle-violet-wash), var(--c-surface));
+    box-shadow: var(--sh-inset-top);
   }
 
   .myle-arch__node--bridge,
@@ -1065,7 +1179,20 @@
   }
 
   .myle-arch__leaves {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-2);
+  }
+
+  .myle-arch__leaves .myle-arch__node {
     grid-template-columns: 1fr;
+    grid-template-areas: 'icon' 'title' 'note';
+    gap: 0.35rem;
+    padding: var(--s-3);
+  }
+
+  .myle-arch__leaves .myle-arch__node > svg {
+    width: 17px;
+    height: 17px;
   }
 
   .myle-arch__branches {
@@ -1080,17 +1207,72 @@
     min-height: 74px;
   }
 
+  .myle-section--panel > .swipe-hint {
+    margin-bottom: var(--s-3);
+  }
+
   .myle-lessons {
-    grid-template-columns: 1fr;
+    height: auto;
+    padding-bottom: var(--s-3);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .myle-lessons li {
+    min-height: 170px;
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-md);
+    background: linear-gradient(145deg, var(--myle-lime-wash), var(--c-surface));
   }
 
   .myle-nav {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) 52px minmax(0, 1fr);
+    border-radius: var(--r-md);
   }
 
+  .myle-nav a,
   .myle-nav__next {
-    align-items: flex-start;
-    text-align: left;
+    grid-template-columns: 38px minmax(0, 1fr) !important;
+    gap: var(--s-2);
+    min-height: 78px;
+    padding: var(--s-3);
+  }
+
+  .myle-nav a.myle-nav__next {
+    grid-template-columns: minmax(0, 1fr) 38px !important;
+  }
+
+  .myle-nav__thumb {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--r-sm);
+    font-size: 0.82rem;
+  }
+
+  .myle-nav__brand {
+    min-height: 78px;
+  }
+
+  .myle-nav__brand svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  .myle-nav__label {
+    font-size: 7px;
+  }
+
+  .myle-nav strong {
+    overflow: hidden;
+    font-size: 0.86rem;
+    line-height: 1.1;
+    text-overflow: ellipsis;
+  }
+
+  .myle-nav small {
+    display: none;
   }
 }
 
@@ -1126,6 +1308,41 @@
 
   .myle-challenge {
     padding: var(--s-4);
+  }
+
+  .myle-nav {
+    grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr);
+  }
+
+  .myle-nav a,
+  .myle-nav__next {
+    grid-template-columns: 32px minmax(0, 1fr) !important;
+    gap: 0.45rem;
+    padding: 0.6rem;
+  }
+
+  .myle-nav a.myle-nav__next {
+    grid-template-columns: minmax(0, 1fr) 32px !important;
+  }
+
+  .myle-nav__thumb {
+    width: 32px;
+    height: 32px;
+    font-size: 0.7rem;
+  }
+
+  .myle-nav__brand svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .myle-nav__label {
+    gap: 0.2rem;
+    letter-spacing: 0.06em;
+  }
+
+  .myle-nav strong {
+    font-size: 0.75rem;
   }
 
   .myle-links .btn {

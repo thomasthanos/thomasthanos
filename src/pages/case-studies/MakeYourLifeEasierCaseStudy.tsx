@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import { Reveal } from '../../components/ui/Reveal'
 import { SwipeHint } from '../../components/ui/SwipeHint'
+import { Pumpkin } from '../../components/brand/Pumpkin'
 import type { Project } from '../../data/types'
 import { useI18n } from '../../i18n/i18n'
 import { external } from '../../utils'
@@ -81,8 +82,12 @@ const copy = {
     notes: [
       'one place for the PC chores',
       'if it needs admin, it asks',
+      '61 apps. bookmarks clearly lost the argument.',
+      'UAC: the Windows jump scare.',
+      'four rewrites. character development.',
       'dark because bright software hurts',
-      'still shipping. always refactoring.',
+      "0 telemetry. I genuinely don't care what you clicked.",
+      'still shipping. immediately refactoring.',
     ],
   },
   el: {
@@ -128,8 +133,12 @@ const copy = {
     notes: [
       'ένα μέρος για τις αγγαρείες του PC',
       'αν θέλει admin, το ζητάει',
+      '61 apps. τα bookmarks έχασαν τη μάχη.',
+      'UAC: το jump scare των Windows.',
+      'τέσσερα rewrites. character development.',
       'dark γιατί το φωτεινό software πονάει',
-      'ακόμα shipάρει. πάντα refactorάρει.',
+      '0 telemetry. πραγματικά δε με νοιάζει τι πάτησες.',
+      'shipάρει. και αμέσως refactorάρει.',
     ],
   },
 } as const
@@ -177,6 +186,15 @@ function CaseSection({ id, label, aside, children, className = '' }: CaseSection
       </div>
       {children}
     </section>
+  )
+}
+
+function ProjectThumb({ project }: { project: Project }) {
+  const mark = project.slug === 'an1me-tracker' ? 'A1' : project.name.slice(0, 2).toUpperCase()
+  return (
+    <span className="myle-nav__thumb" data-accent={project.accent} aria-hidden="true">
+      {mark}
+    </span>
   )
 }
 
@@ -244,6 +262,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
               </div>
             ))}
           </dl>
+          <span className="myle-note myle-note--metrics">{c.notes[2]}</span>
         </CaseSection>
 
         {p.features && (
@@ -307,20 +326,26 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
             </Reveal>
 
             {p.challenges && (
-              <div className="myle-challenges" aria-labelledby="myle-challenges-title">
-                <h3 id="myle-challenges-title">{c.challenges}</h3>
-                {p.challenges.map((challenge, index) => (
-                  <Reveal className="myle-challenge" delay={index * 45} key={challenge.title.en}>
-                    <span>{String(index + 1).padStart(2, '0')}</span>
-                    <div>
-                      <h4>{tr(challenge.title)}</h4>
-                      <p>{tr(challenge.body)}</p>
-                    </div>
-                  </Reveal>
-                ))}
+              <div className="myle-challenges-wrap" aria-labelledby="myle-challenges-title">
+                <div className="myle-challenges__head">
+                  <h3 id="myle-challenges-title">{c.challenges}</h3>
+                  <SwipeHint />
+                </div>
+                <div className="myle-challenges">
+                  {p.challenges.map((challenge, index) => (
+                    <Reveal className="myle-challenge" delay={index * 45} key={challenge.title.en}>
+                      <span>{String(index + 1).padStart(2, '0')}</span>
+                      <div>
+                        <h4>{tr(challenge.title)}</h4>
+                        <p>{tr(challenge.body)}</p>
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
               </div>
             )}
           </div>
+          <span className="myle-note myle-note--ipc">{c.notes[3]}</span>
         </CaseSection>
 
         <CaseSection id="myle-evolution" label={c.evolution} aside={c.evolutionNote}>
@@ -336,6 +361,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
               </li>
             ))}
           </ol>
+          <span className="myle-note myle-note--evolution">{c.notes[4]}</span>
         </CaseSection>
 
         <CaseSection id="myle-gallery" label={c.gallery} aside={c.galleryNote} className="myle-section--gallery">
@@ -364,7 +390,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
               <figcaption><span>02</span>{c.cleanerShot}</figcaption>
             </figure>
           </div>
-          <span className="myle-note myle-note--gallery">{c.notes[2]}</span>
+          <span className="myle-note myle-note--gallery">{c.notes[5]}</span>
         </CaseSection>
 
         <div className="myle-endgrid">
@@ -375,11 +401,13 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
                 <p>{tr(p.privacy)}</p>
                 <strong>{c.privacyLine}</strong>
               </Reveal>
+              <span className="myle-note myle-note--privacy">{c.notes[6]}</span>
             </CaseSection>
           )}
 
           {p.lessons && (
             <CaseSection id="myle-lessons" label={c.lessons} className="myle-section--panel">
+              <SwipeHint />
               <ul className="myle-lessons">
                 {trList(p.lessons).map((lesson) => <li key={lesson}>{lesson}</li>)}
               </ul>
@@ -399,18 +427,27 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
               <Paintbrush aria-hidden="true" /> {c.more}
             </Link>
           </div>
-          <span className="myle-note myle-note--ship">{c.notes[3]}</span>
+          <span className="myle-note myle-note--ship">{c.notes[7]}</span>
         </CaseSection>
 
         {near && (
           <nav className="myle-nav" aria-label={c.more}>
             <Link to={`/projects/${near.prev.slug}`}>
-              <span><ArrowLeft aria-hidden="true" /> {c.previous}</span>
-              <strong>{near.prev.name}</strong>
+              <ProjectThumb project={near.prev} />
+              <span className="myle-nav__copy">
+                <span className="myle-nav__label"><ArrowLeft aria-hidden="true" /> {c.previous}</span>
+                <strong>{near.prev.name}</strong>
+                <small>{tr(near.prev.short)}</small>
+              </span>
             </Link>
+            <span className="myle-nav__brand" aria-hidden="true"><Pumpkin size={64} mood="wide" /></span>
             <Link className="myle-nav__next" to={`/projects/${near.next.slug}`}>
-              <span>{c.next} <ArrowRight aria-hidden="true" /></span>
-              <strong>{near.next.name}</strong>
+              <span className="myle-nav__copy">
+                <span className="myle-nav__label">{c.next} <ArrowRight aria-hidden="true" /></span>
+                <strong>{near.next.name}</strong>
+                <small>{tr(near.next.short)}</small>
+              </span>
+              <ProjectThumb project={near.next} />
             </Link>
           </nav>
         )}
