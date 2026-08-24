@@ -45,3 +45,6 @@ desktop.ini
 # src/assets/fonts/*.woff2 are generated (gen:assets, gen:og, gen:font) but are
 # committed on purpose — `npm run build` does not regenerate them, so a clean
 # checkout has to already contain them.
+
+# Wrangler local state
+.wrangler/

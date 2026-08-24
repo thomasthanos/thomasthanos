@@ -84,22 +84,30 @@ appear above 1424px, where there is actual gutter to draw in.
 
 ## Deploying
 
-Live at **https://me.thomast.uk** on Cloudflare Pages, built from this branch on
-every push.
+Live at **https://me.thomast.uk** as a Cloudflare Worker serving static assets,
+rebuilt from this branch on every push.
 
-| Pages setting | Value |
+| Workers Builds setting | Value |
 |---|---|
-| Production branch | `portfolio` |
+| Production branch | `portfolio` — spelled without the second `o` |
 | Build command | `npm run build` |
-| Output directory | `dist` |
+| Deploy command | `npx wrangler deploy` |
 | Root directory | `/` |
+| Builds for non-production branches | off — `main` and `assets` have no `package.json` |
 
-`.nvmrc` pins Node 22 — Vite 7 refuses to build on the Node 18 that Pages
+`wrangler.jsonc` is the deploy config. It has no `main`, because there is no
+Worker script: the `assets` block is the whole thing. Its `name` **must** match
+the Worker in the dashboard, or a deploy quietly creates a second Worker that
+the domain does not point at.
+
+`.nvmrc` pins Node 22 — Vite 7 refuses to build on the Node 18 the build image
 otherwise defaults to.
 
 Two files in `public/` configure the host and are copied into `dist/` verbatim:
 
-- **`_redirects`** — `/* /index.html 200`. Without it a hard refresh on
+- **`_redirects`** — `/* /index.html 200`. Duplicates what
+  `not_found_handling` already does on Workers, and is kept so the same `dist/`
+  drops onto Pages or Netlify unchanged. Without either, a hard refresh on
   `/projects/steam-idler` is answered by `404.html` with a 404 status, so
   crawlers record every deep link as missing.
 - **`_headers`** — CSP, `X-Frame-Options`, `Permissions-Policy` and cache

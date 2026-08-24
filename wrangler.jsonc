@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+
+  // Must match the Worker this repository is connected to in the Cloudflare
+  // dashboard. Deploying with a different name creates a second Worker instead
+  // of updating the one me.thomast.uk points at.
+  "name": "portofolio",
+  "compatibility_date": "2026-08-24",
+
+  // The site tells visitors it runs no telemetry. Shipping it with a build tool
+  // that phones home would be a small lie.
+  "send_metrics": false,
+
+  // No "main": there is no Worker script. This is a static site, so the assets
+  // are the whole thing and Cloudflare serves them straight off its edge.
+  "assets": {
+    "directory": "./dist",
+
+    // The app routes on the client. Without this, /projects/steam-idler is a
+    // path with no matching file and comes back 404 on a hard refresh.
+    // public/_redirects says the same thing and stays in the build so this can
+    // still be dropped onto Pages or Netlify unchanged.
+    "not_found_handling": "single-page-application"
+  }
+}
