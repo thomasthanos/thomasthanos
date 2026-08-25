@@ -33,10 +33,19 @@ const JOBS = [
   // Project captures. `out` puts them in a per-project folder, so the flat top
   // level stays for brand artwork. These are UI, not photographs, so they get a
   // high quality setting — banding across a settings panel is very visible.
-  { src: 'nxb-popup.png', out: 'projects/nexusmods-bypass/popup.webp', width: null, mode: 'lossy', quality: 92 },
   { src: 'nxb-collection-idle.png', out: 'projects/nexusmods-bypass/collection-idle.webp', width: 1792, mode: 'lossy', quality: 88 },
   { src: 'nxb-collection-running.png', out: 'projects/nexusmods-bypass/collection-running.webp', width: 1794, mode: 'lossy', quality: 88 },
-  { src: 'nxb-settings.png', out: 'projects/nexusmods-bypass/settings.webp', width: null, mode: 'lossy', quality: 90 },
+  { src: 'nxb-popup-settings.png', out: 'projects/nexusmods-bypass/popup-settings.webp', width: 2730, mode: 'lossy', quality: 92 },
+
+  // Discord Package Viewer. The dashboard is the one capture on the site that
+  // is displayed at full container width and opens in an overlay, so it keeps
+  // its native pixels and the highest quality of the three — it is a wall of
+  // 11px UI text and any banding shows immediately.
+  { src: 'dpv-generator.png', out: 'projects/discord-package-viewer/generator.webp', width: 1400, mode: 'lossy', quality: 90 },
+  { src: 'dpv-dashboard.png', out: 'projects/discord-package-viewer/dashboard.webp', width: 2400, mode: 'lossy', quality: 92 },
+  // Flat surfaces and hard-edged text: lossy WebP came out LARGER than the
+  // source PNG here, so this one is encoded losslessly.
+  { src: 'dpv-language-warning.png', out: 'projects/discord-package-viewer/language-warning.webp', width: null, mode: 'lossless' },
 ]
 
 let before = 0

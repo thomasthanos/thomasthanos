@@ -617,6 +617,7 @@ export const flagship: Project[] = [
   {
     slug: 'discord-package-viewer',
     name: 'Discord Package Viewer',
+    codename: 'Discord Archive Viewer v4',
     category: 'discord',
     alsoIn: ['automation', 'desktop'],
     status: 'maintained',
@@ -625,139 +626,168 @@ export const flagship: Project[] = [
     year: '2026 — now',
     repo: `${GH}/discord_package_viewer`,
     repoLabel: 'discord_package_viewer',
-    tech: ['Python', 'HTML', 'CSS', 'JavaScript', 'PyInstaller'],
+    tech: ['Python', 'HTML', 'CSS', 'JavaScript', 'CustomTkinter', 'PyInstaller'],
     metrics: [
-      { value: '0', label: { en: 'dependencies', el: 'εξαρτήσεις' } },
-      { value: '1', label: { en: 'output file', el: 'αρχείο εξόδου' } },
-      { value: '7,760', label: { en: 'lines, one script', el: 'γραμμές, ένα script' } },
+      { value: '20', label: { en: 'export loaders', el: 'loaders του export' } },
+      { value: '1', label: { en: 'self-contained HTML', el: 'αυτόνομο HTML' } },
+      { value: '0', label: { en: 'uploads', el: 'uploads' } },
+      { value: '100%', label: { en: 'local processing', el: 'τοπική επεξεργασία' } },
     ],
     short: {
-      en: 'Turns your Discord data export into one offline HTML archive with full search, charts and a word cloud. No server, no upload, no dependencies.',
-      el: 'Παίρνει το Discord data export σου και το κάνει ένα offline HTML με πλήρη αναζήτηση, γραφήματα και word cloud. Μηδέν server, μηδέν upload, μηδέν εξαρτήσεις.',
+      en: 'Turns your Discord data export into one offline HTML archive with search, charts and a word cloud. No server, no account, nothing uploaded anywhere.',
+      el: 'Παίρνει το Discord data export σου και το κάνει ένα offline HTML με αναζήτηση, γραφήματα και word cloud. Μηδέν server, μηδέν λογαριασμός, τίποτα δεν ανεβαίνει πουθενά.',
     },
     summary: {
-      en: 'When you request your data from Discord you get a ZIP full of JSON. This turns that ZIP into a single `discord_viewer.html` that works completely offline — no server, no installation, no internet connection required after generation. Because scrolling through four years of DMs in Notepad is not a personality trait.',
-      el: 'Όταν ζητάς τα δεδομένα σου από το Discord παίρνεις ένα ZIP γεμάτο JSON. Αυτό μετατρέπει το ZIP σε ένα `discord_viewer.html` που δουλεύει εντελώς offline — χωρίς server, χωρίς εγκατάσταση, χωρίς σύνδεση μετά τη δημιουργία. Επειδή το να σκρολάρεις τέσσερα χρόνια DM στο Notepad δεν είναι προσωπικότητα.',
+      en: 'When you request your data from Discord you get a ZIP full of JSON that no human was meant to read. This turns that ZIP into a single discord_viewer.html you open in any browser — every DM, every server channel, your statistics, and the parts of the export nobody ever scrolls to. Because reading four years of your own messages in Notepad is not a personality trait.',
+      el: 'Όταν ζητάς τα δεδομένα σου από το Discord παίρνεις ένα ZIP γεμάτο JSON που δεν προοριζόταν για ανθρώπινα μάτια. Αυτό το κάνει ένα discord_viewer.html που ανοίγει σε οποιονδήποτε browser — κάθε DM, κάθε server channel, τα στατιστικά σου, και τα κομμάτια του export που δεν σκρολάρει ποτέ κανείς. Επειδή το να διαβάζεις τέσσερα χρόνια δικών σου μηνυμάτων στο Notepad δεν είναι προσωπικότητα.',
     },
     why: {
-      en: 'Every online "Discord package viewer" asks you to upload the single most personal file you own to a stranger\'s server. That is an absurd trade for a bit of convenience. So this one never leaves your disk, and the proof is that it works with the Wi-Fi off.',
-      el: 'Κάθε online "Discord package viewer" σου ζητάει να ανεβάσεις το πιο προσωπικό αρχείο που έχεις στον server ενός αγνώστου. Παράλογη ανταλλαγή για λίγη ευκολία. Οπότε αυτό δεν φεύγει ποτέ από τον δίσκο σου, και η απόδειξη είναι ότι δουλεύει με το Wi-Fi κλειστό.',
+      en: 'Every online "Discord package viewer" asks you to upload the single most personal file you own to a stranger\'s server. Four years of private messages, your payment history and your IP log, handed to a domain you found on Google. That is an absurd trade for a bit of convenience, so this one runs on your machine and the ZIP never moves.',
+      el: 'Κάθε online "Discord package viewer" σου ζητάει να ανεβάσεις το πιο προσωπικό αρχείο που έχεις στον server ενός αγνώστου. Τέσσερα χρόνια προσωπικά μηνύματα, το ιστορικό πληρωμών σου και το log των IP σου, δώρο σε ένα domain που βρήκες στο Google. Παράλογη ανταλλαγή για λίγη ευκολία, οπότε αυτό τρέχει στο μηχάνημά σου και το ZIP δεν κουνιέται από τη θέση του.',
     },
     what: {
-      en: 'Point it at the ZIP and it produces one HTML file containing every DM and server channel you have written in, with Discord markdown, spoilers, mentions, custom emoji and attachments rendered properly — plus statistics, charts, a word cloud and live search over everything.',
-      el: 'Του δείχνεις το ZIP και βγάζει ένα HTML αρχείο με κάθε DM και server channel που έγραψες ποτέ, με σωστό Discord markdown, spoilers, mentions, custom emoji και attachments — συν στατιστικά, γραφήματα, word cloud και live αναζήτηση σε όλα.',
+      en: 'You point it at the ZIP and it hands back one HTML file: every DM and server channel with Discord markdown, spoilers, mentions, custom emoji and attachments rendered properly, plus charts, a word cloud, and twenty different sections of the export decoded — including the ones Discord would rather you skimmed, like what its ad system thinks you are into.',
+      el: 'Του δείχνεις το ZIP και σου δίνει ένα HTML αρχείο: κάθε DM και server channel με σωστό Discord markdown, spoilers, mentions, custom emoji και attachments, συν γραφήματα, word cloud, και είκοσι διαφορετικά κομμάτια του export αποκωδικοποιημένα — μαζί με αυτά που το Discord θα προτιμούσε να προσπεράσεις, όπως το τι νομίζει το διαφημιστικό του σύστημα ότι σου αρέσει.',
     },
     features: [
       {
-        title: { en: 'Full message history', el: 'Πλήρες ιστορικό μηνυμάτων' },
+        title: { en: 'Every message, rendered like Discord', el: 'Κάθε μήνυμα, σαν Discord' },
         body: {
-          en: 'Every DM and server channel, with Discord markdown, spoilers, @mentions, custom emoji and attachments. Consecutive messages from the same author group together with mini avatars, exactly like the real client.',
-          el: 'Κάθε DM και server channel, με Discord markdown, spoilers, @mentions, custom emoji και attachments. Τα διαδοχικά μηνύματα του ίδιου ατόμου ομαδοποιούνται με mini avatars, ακριβώς όπως ο κανονικός client.',
+          en: 'All DMs and server channels, with markdown, spoilers, @mentions resolved to real names, custom emoji and attachments. Consecutive messages from the same author group under one avatar, exactly like the client you already know.',
+          el: 'Όλα τα DM και τα server channels, με markdown, spoilers, @mentions που γίνονται κανονικά ονόματα, custom emoji και attachments. Τα διαδοχικά μηνύματα του ίδιου ατόμου μπαίνουν κάτω από ένα avatar, ακριβώς όπως στον client που ήδη ξέρεις.',
         },
       },
       {
-        title: { en: 'Media playback', el: 'Αναπαραγωγή media' },
+        title: { en: 'Media, and an honest grave for the rest', el: 'Media, και τίμιος τάφος για τα υπόλοιπα' },
         body: {
-          en: 'Image previews, a custom video player, an audio player for voice messages, and Tenor GIF thumbnails pre-fetched during generation.',
-          el: 'Προεπισκόπηση εικόνων, custom video player, audio player για voice messages, και Tenor GIF thumbnails που κατεβαίνουν κατά τη δημιουργία.',
+          en: 'A hand-written video player with fullscreen and picture-in-picture, an audio player for voice messages, an image lightbox, and Tenor thumbnails fetched during generation. Discord attachment links expire; when one is dead the viewer says so and offers the original URL instead of showing a broken frame.',
+          el: 'Video player γραμμένος στο χέρι με fullscreen και picture-in-picture, audio player για voice messages, lightbox για εικόνες, και Tenor thumbnails που κατεβαίνουν κατά τη δημιουργία. Τα attachment links του Discord λήγουν· όταν ένα είναι νεκρό, ο viewer το λέει και σου δίνει το αρχικό URL αντί για σπασμένο πλαίσιο.',
         },
       },
       {
-        title: { en: 'Statistics and charts', el: 'Στατιστικά και γραφήματα' },
+        title: { en: 'Statistics you did not ask for', el: 'Στατιστικά που δεν ζήτησες' },
         body: {
-          en: 'Dynamic graphs for hourly, daily and all-time messaging activity, top emoji usage, most active servers, and a word cloud of what you actually say.',
-          el: 'Δυναμικά γραφήματα για ωριαία, ημερήσια και συνολική δραστηριότητα, top emoji, πιο ενεργοί servers, και word cloud με αυτά που όντως λες.',
+          en: 'Hourly, daily and all-time activity charts, top emoji, most active servers, top DM contacts, and a word cloud of the forty words you actually type. It will tell you your peak messaging hour. You will not enjoy it.',
+          el: 'Γραφήματα δραστηριότητας ανά ώρα, ανά μέρα και συνολικά, top emoji, πιο ενεργοί servers, top DM επαφές, και word cloud με τις σαράντα λέξεις που όντως γράφεις. Θα σου πει και την ώρα αιχμής σου. Δεν θα σου αρέσει.',
         },
       },
       {
-        title: { en: 'Live search', el: 'Live αναζήτηση' },
+        title: { en: 'Search and date filtering', el: 'Αναζήτηση και φίλτρα ημερομηνίας' },
         body: {
-          en: 'Instant search across every message with keyword highlighting and quick date-range filters.',
-          el: 'Άμεση αναζήτηση σε κάθε μήνυμα με highlight λέξεων και γρήγορα φίλτρα ημερομηνίας.',
+          en: 'Instant highlighted search across the channel you have open, with next/previous jumps and a match counter, plus a date-range picker — calendar and all — written from scratch because the native one does not exist in a file with no framework.',
+          el: 'Άμεση αναζήτηση με highlight μέσα στο κανάλι που έχεις ανοιχτό, με next/previous και μετρητή αποτελεσμάτων, συν date-range picker — με ημερολόγιο — γραμμένος από το μηδέν, γιατί το native δεν υπάρχει σε ένα αρχείο χωρίς framework.',
         },
       },
       {
-        title: { en: 'Account detail', el: 'Στοιχεία λογαριασμού' },
+        title: { en: 'The parts of the export nobody reads', el: 'Τα κομμάτια που δεν διαβάζει κανείς' },
         body: {
-          en: 'Creation date, badges (HypeSquad, Active Developer and the rest), device info, Nitro history, linked accounts and payment history.',
-          el: 'Ημερομηνία δημιουργίας, badges (HypeSquad, Active Developer και τα λοιπά), στοιχεία συσκευών, ιστορικό Nitro, συνδεδεμένοι λογαριασμοί και ιστορικό πληρωμών.',
+          en: 'Account creation date, badges, devices and IP sessions, Nitro history, payments, linked accounts, quests, developer apps, support tickets, past data requests — and `Ads/traits.json`, the file where Discord keeps its guesses about who you are.',
+          el: 'Ημερομηνία δημιουργίας, badges, συσκευές και IP sessions, ιστορικό Nitro, πληρωμές, συνδεδεμένοι λογαριασμοί, quests, developer apps, support tickets, παλιά αιτήματα δεδομένων — και το `Ads/traits.json`, το αρχείο όπου το Discord κρατάει τις εικασίες του για το ποιος είσαι.',
         },
       },
       {
-        title: { en: 'Built for big exports', el: 'Φτιαγμένο για μεγάλα exports' },
+        title: { en: 'Survives a genuinely huge export', el: 'Αντέχει τεράστιο export' },
         body: {
-          en: 'Floating jump-to-top/bottom, incremental "Load More" so the browser never chokes, and a loading progress bar for the first paint.',
-          el: 'Floating jump-to-top/bottom, σταδιακό "Load More" ώστε να μην πνιγεί ο browser, και progress bar φόρτωσης για το πρώτο render.',
+          en: 'Channels render 250 messages at a time and older pages arrive in 200-message chunks across animation frames, so the tab keeps breathing. Scroll position is anchored on load so the page never yanks under your thumb, and a progress strip shows what is happening.',
+          el: 'Τα κανάλια κάνουν render 250 μηνύματα τη φορά και οι παλιότερες σελίδες έρχονται σε κομμάτια των 200 ανά animation frame, ώστε το tab να συνεχίζει να αναπνέει. Η θέση του scroll κρατιέται σταθερή στη φόρτωση για να μη σου φεύγει η σελίδα κάτω από το δάχτυλο, και μια μπάρα δείχνει τι γίνεται.',
+        },
+      },
+      {
+        title: { en: 'Two languages, and a check before you waste ten minutes', el: 'Δύο γλώσσες, κι ένας έλεγχος πριν χάσεις δέκα λεπτά' },
+        body: {
+          en: 'The generated viewer switches between English and Greek at runtime. The desktop app peeks inside the ZIP first and refuses politely if your export was downloaded in another language, because the folder names change and everything downstream would break.',
+          el: 'Ο viewer που παράγεται αλλάζει ανάμεσα σε Αγγλικά και Ελληνικά την ώρα που τρέχει. Η εφαρμογή κοιτάζει πρώτα μέσα στο ZIP και αρνείται ευγενικά αν το export σου κατέβηκε σε άλλη γλώσσα, γιατί αλλάζουν τα ονόματα των φακέλων και σπάει ό,τι ακολουθεί.',
         },
       },
     ],
     challenges: [
       {
-        title: { en: 'One file, no dependencies', el: 'Ένα αρχείο, μηδέν εξαρτήσεις' },
+        title: { en: 'Years of messages, one page, one thread', el: 'Χρόνια μηνυμάτων, μία σελίδα, ένα thread' },
         body: {
-          en: 'The generator is a single 7,760-line Python script that imports nothing outside the standard library, and the output is a single HTML file. Charts, the word cloud, the video player and the search index are all hand-rolled, because pulling in a chart library would have meant shipping a CDN link into a file that is supposed to work offline.',
-          el: 'Ο generator είναι ένα script Python 7.760 γραμμών που δεν κάνει import τίποτα εκτός standard library, και η έξοδος είναι ένα HTML αρχείο. Τα γραφήματα, το word cloud, ο video player και το search index είναι όλα γραμμένα στο χέρι, γιατί μια chart library θα σήμαινε CDN link μέσα σε ένα αρχείο που υποτίθεται δουλεύει offline.',
+          en: 'A large export is hundreds of thousands of messages, and putting them all in the DOM freezes the tab. Each channel is embedded as its own `application/json` block and parsed only when opened, older pages arrive in 200-message chunks across animation frames, and the scroll height difference is re-applied so nothing moves under what you were reading.',
+          el: 'Ένα μεγάλο export είναι εκατοντάδες χιλιάδες μηνύματα, και το να τα ρίξεις όλα στο DOM παγώνει το tab. Κάθε κανάλι μπαίνει ως δικό του `application/json` block και γίνεται parse μόνο όταν το ανοίξεις, οι παλιότερες σελίδες έρχονται ανά 200 σε κάθε frame, και η διαφορά ύψους ξαναμπαίνει ώστε να μη σου κουνιέται αυτό που διαβάζεις.',
         },
       },
       {
-        title: { en: 'Years of messages in one page', el: 'Χρόνια μηνυμάτων σε μία σελίδα' },
+        title: { en: 'Not running out of RAM while writing the file', el: 'Να μη σκάσει η RAM όσο γράφεται το αρχείο' },
         body: {
-          en: 'A large export is hundreds of thousands of messages. Rendering all of it at once locks the tab, so channels load incrementally and the search index is built ahead of time during generation rather than on the fly in the browser.',
-          el: 'Ένα μεγάλο export είναι εκατοντάδες χιλιάδες μηνύματα. Το να τα κάνεις render όλα μαζί κολλάει το tab, οπότε τα κανάλια φορτώνουν σταδιακά και το search index χτίζεται από πριν κατά τη δημιουργία αντί για on the fly στον browser.',
+          en: 'Serialising every message at once meant holding the whole archive twice — once as Python objects, once as a JSON string. Channels are now popped from the dictionary as they are encoded, and the HTML streams straight to disk instead of being returned as one enormous string.',
+          el: 'Το να σειριοποιείς όλα τα μηνύματα μαζί σήμαινε ότι κρατάς το αρχείο δύο φορές — μία ως Python objects και μία ως JSON string. Τώρα τα κανάλια βγαίνουν από το dictionary καθώς κωδικοποιούνται, και το HTML γράφεται κατευθείαν στον δίσκο αντί να επιστρέφεται ως ένα τεράστιο string.',
         },
       },
       {
         title: { en: 'Discord markdown is not markdown', el: 'Το Discord markdown δεν είναι markdown' },
         body: {
-          en: 'Spoilers, custom emoji IDs, mention resolution, channel links and inline code all need their own parsing rules, and the export gives you raw text with none of the client-side context.',
-          el: 'Spoilers, IDs για custom emoji, ανάλυση mentions, channel links και inline code θέλουν όλα δικούς τους κανόνες parsing, και το export σου δίνει σκέτο κείμενο χωρίς κανένα από τα συμφραζόμενα του client.',
+          en: 'Spoilers, custom emoji IDs, channel links and `<@123…>` mentions each need their own rules, and the export is raw text with none of the client context. Mentions resolve against a table built from your relationships list, so a DM reads with names instead of eighteen-digit numbers.',
+          el: 'Spoilers, IDs για custom emoji, channel links και `<@123…>` mentions θέλουν το καθένα δικούς του κανόνες, και το export είναι σκέτο κείμενο χωρίς τα συμφραζόμενα του client. Τα mentions λύνονται με πίνακα από τη λίστα επαφών σου, ώστε ένα DM να διαβάζεται με ονόματα αντί για δεκαοκταψήφιους αριθμούς.',
+        },
+      },
+      {
+        title: { en: 'A rate limiter that must never hang the build', el: 'Rate limiter που δεν πρέπει να κολλήσει το build' },
+        body: {
+          en: 'Tenor thumbnails are fetched in parallel: fifty workers, four attempts each, exponential backoff with jitter on HTTP 429, and a hard 120-second cap after which pending work is cancelled outright. A flaky network costs you a few GIF previews, never the archive.',
+          el: 'Τα Tenor thumbnails κατεβαίνουν παράλληλα: πενήντα workers, τέσσερις προσπάθειες το καθένα, exponential backoff με jitter στο HTTP 429, και σκληρό όριο 120 δευτερολέπτων μετά το οποίο ό,τι εκκρεμεί ακυρώνεται. Ένα προβληματικό δίκτυο σου κοστίζει μερικά GIF previews, ποτέ το αρχείο.',
         },
       },
     ],
     architecture: [
       {
         name: { en: 'Input', el: 'Είσοδος' },
-        items: ['Discord data package (.zip)', 'messages/ · account/ · servers/'],
+        items: ['Discord data package (.zip)', 'Account/user.json', 'Messages/index.json', 'Servers/ · Activity/ · Ads/'],
+        note: {
+          en: 'Extracted in place, unwrapped if the ZIP has a single top folder, and rejected early if the two files it needs are missing.',
+          el: 'Γίνεται extract επιτόπου, ξετυλίγεται αν το ZIP έχει έναν φάκελο-περιτύλιγμα, και απορρίπτεται νωρίς αν λείπουν τα δύο αρχεία που χρειάζεται.',
+        },
       },
       {
         name: { en: 'Generator', el: 'Generator' },
-        items: ['generate_discord_viewer.py', 'stdlib only', 'PyInstaller build'],
+        items: ['generate_discord_viewer.py', '20 loaders · stdlib only', 'ThreadPoolExecutor · Tenor', 'CustomTkinter GUI · PyInstaller'],
         note: {
-          en: 'Also ships as a standalone .exe for people who do not have Python.',
-          el: 'Διατίθεται και ως αυτόνομο .exe για όσους δεν έχουν Python.',
+          en: 'The command-line path imports nothing outside the standard library. The desktop window adds CustomTkinter, and the shipped .exe bundles it so nobody has to install Python.',
+          el: 'Το command-line μονοπάτι δεν κάνει import τίποτα εκτός standard library. Το παράθυρο προσθέτει CustomTkinter, και το .exe το κουβαλάει μέσα του ώστε να μη χρειαστεί κανείς να εγκαταστήσει Python.',
         },
       },
       {
         name: { en: 'Output', el: 'Έξοδος' },
-        items: ['discord_viewer.html', 'inlined CSS + JS', 'prebuilt search index'],
+        items: ['discord_viewer.html', 'inlined CSS + JS', 'per-channel JSON blocks', 'EN / EL runtime toggle'],
+        note: {
+          en: 'One file, written straight to disk, opened by double-clicking it.',
+          el: 'Ένα αρχείο, γραμμένο κατευθείαν στον δίσκο, που ανοίγει με διπλό κλικ.',
+        },
       },
     ],
     privacy: {
-      en: 'Everything runs locally and the script never sends your data anywhere. The generated HTML makes exactly three kinds of outbound request, all optional to its function: Google Fonts for the UI typeface, the Discord CDN to load custom server emoji by ID, and Tenor for GIF thumbnails that were pre-fetched during generation. Your messages, account info and personal data never leave your computer.',
-      el: 'Όλα τρέχουν τοπικά και το script δεν στέλνει ποτέ τα δεδομένα σου πουθενά. Το HTML που παράγεται κάνει ακριβώς τριών ειδών εξωτερικά requests, όλα προαιρετικά για τη λειτουργία του: Google Fonts για τη γραμματοσειρά, το CDN του Discord για custom server emoji ανά ID, και το Tenor για GIF thumbnails που κατέβηκαν ήδη κατά τη δημιουργία. Τα μηνύματα, τα στοιχεία λογαριασμού και τα προσωπικά σου δεδομένα δεν φεύγουν ποτέ από τον υπολογιστή σου.',
+      en: 'The generator runs entirely on your machine and never sends your data anywhere — no server, no account, no telemetry, nothing uploaded. The page it writes reaches out to exactly four hosts, none of which receive anything about you: Google Fonts for the typeface, the Discord CDN for custom emoji and server icons by ID, Tenor for GIF thumbnails already resolved during generation, and jsDelivr for the charting library. Pull the network cable and every message, every filter and the word cloud still work; the activity charts are the one thing that will not draw.',
+      el: 'Ο generator τρέχει εξ ολοκλήρου στο μηχάνημά σου και δεν στέλνει ποτέ τα δεδομένα σου πουθενά — χωρίς server, χωρίς λογαριασμό, χωρίς telemetry, χωρίς κανένα upload. Η σελίδα που γράφει επικοινωνεί με ακριβώς τέσσερις hosts, και κανένας τους δεν μαθαίνει τίποτα για σένα: Google Fonts για τη γραμματοσειρά, το CDN του Discord για custom emoji και server icons ανά ID, το Tenor για GIF thumbnails που έχουν ήδη λυθεί κατά τη δημιουργία, και το jsDelivr για τη βιβλιοθήκη γραφημάτων. Βγάλε το καλώδιο του δικτύου και κάθε μήνυμα, κάθε φίλτρο και το word cloud δουλεύουν κανονικά· τα γραφήματα δραστηριότητας είναι το μόνο που δεν θα ζωγραφιστεί.',
     },
     lessons: {
       en: [
-        'The strongest privacy claim is a demonstrable one: unplug the network and the archive still works.',
-        'Zero dependencies is a real constraint, not a flex. It forced simpler charts, and the simpler charts were better.',
-        'Ship the .exe. Asking a non-developer to install Python is where a good tool goes to die.',
+        'The strongest privacy claim is one you can demonstrate: unplug the network and almost the whole archive still works. Almost — and saying which part does not is worth more than pretending.',
+        'One CDN link is how a genuinely offline file stops being offline. It bought me nice charts and cost me the clean version of the sentence.',
+        'Rendering is a budget, not a loop. Two hundred messages per animation frame with the scroll height re-anchored beats any amount of clever virtualisation I could have hand-rolled.',
+        'Ship the .exe. Asking someone who just wants to read their own DMs to install Python is where a good tool goes to die.',
       ],
       el: [
-        'Ο πιο δυνατός ισχυρισμός για privacy είναι αυτός που αποδεικνύεται: βγάζεις το δίκτυο και το αρχείο δουλεύει.',
-        'Το μηδέν εξαρτήσεις είναι πραγματικός περιορισμός, όχι επίδειξη. Ανάγκασε πιο απλά γραφήματα, και τα πιο απλά γραφήματα ήταν καλύτερα.',
-        'Δώσε το .exe. Το να ζητάς από μη-προγραμματιστή να εγκαταστήσει Python είναι εκεί που πεθαίνει ένα καλό εργαλείο.',
+        'Ο πιο δυνατός ισχυρισμός για privacy είναι αυτός που αποδεικνύεται: βγάζεις το δίκτυο και σχεδόν όλο το αρχείο δουλεύει. Σχεδόν — και το να λες ποιο κομμάτι δεν δουλεύει αξίζει περισσότερο από το να το κρύβεις.',
+        'Ένα CDN link είναι αρκετό για να πάψει να είναι offline ένα offline αρχείο. Μου αγόρασε ωραία γραφήματα και μου κόστισε την καθαρή εκδοχή της πρότασης.',
+        'Το rendering είναι budget, όχι loop. Διακόσια μηνύματα ανά animation frame με ξανα-καρφωμένο scroll κερδίζουν κάθε έξυπνο virtualisation που θα έγραφα στο χέρι.',
+        'Δώσε το .exe. Το να ζητάς από κάποιον που θέλει απλώς να διαβάσει τα DM του να εγκαταστήσει Python είναι εκεί που πεθαίνει ένα καλό εργαλείο.',
       ],
     },
+    disclaimer: {
+      en: 'Not affiliated with Discord. It reads the official data package Discord gives you, on your own machine, and nothing else — there is no login, no token and no API call to Discord anywhere in it.',
+      el: 'Καμία σχέση με το Discord. Διαβάζει το επίσημο data package που σου δίνει το Discord, στο δικό σου μηχάνημα, και τίποτε άλλο — δεν υπάρχει login, token ή κλήση στο API του Discord πουθενά μέσα.',
+    },
     sketch: {
-      title: 'discord_viewer.html — offline',
+      title: 'discord_viewer.html — file://',
       kind: 'browser',
       rows: [
         { label: 'Channels indexed', value: '412', hot: true },
         { label: 'Messages parsed', value: '286,431' },
-        { label: 'Search', value: 'live · highlighted' },
+        { label: 'Top word', value: '"lol" · 4,112×' },
         { label: 'Peak hour', value: '02:00 — 03:00' },
-        { label: 'Network required', value: 'no' },
-        { label: 'Generating', bar: 88 },
+        { label: 'Uploaded anywhere', value: 'no' },
+        { label: 'Writing archive', bar: 88 },
       ],
     },
   },

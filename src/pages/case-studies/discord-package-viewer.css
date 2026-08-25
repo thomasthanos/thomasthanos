@@ -1,0 +1,2038 @@
+/* ============================================================================
+   Discord Package Viewer — case study
+   ----------------------------------------------------------------------------
+   Its own identity, deliberately not the other two.
+
+   MYLE is a desktop control centre: a centred OS window, calm vertical
+   stacking. NexusMods Bypass is a browser queue: things move left to right
+   behind browser chrome. This one is an EDITORIAL piece about a tool that
+   respects you — so it is built out of prose and real captures, not tiles.
+
+   The rule that shapes everything below: a border has to earn its place. The
+   page carries exactly three enclosed objects (the metrics strip, the flow,
+   the archive index) and every other section is typography on the page
+   background. That is what stops it reading as a specification sheet.
+
+   Three colours carry meaning:
+     blurple  the tool and everything it produces
+     lime     what survives with the network unplugged
+     amber    the friction — what the websites ask for, and the one caveat
+   ========================================================================= */
+
+.dpv {
+  /* The tinted bands below break out to the full viewport width. "clip" keeps
+     that from producing horizontal scroll, and unlike "hidden" it does not
+     turn this into a scroll container. */
+  overflow-x: clip;
+
+  --dpv-blurple: #5865f2;
+  --dpv-blurple-bright: #99a1ff;
+  --dpv-blurple-deep: #3f49c9;
+  --dpv-blurple-a08: rgba(88, 101, 242, 0.09);
+  --dpv-blurple-a14: rgba(88, 101, 242, 0.14);
+  --dpv-blurple-a24: rgba(88, 101, 242, 0.26);
+  --dpv-amber: #ffa04d;
+  --dpv-amber-a10: rgba(255, 160, 77, 0.1);
+  --dpv-amber-a30: rgba(255, 160, 77, 0.3);
+  --dpv-line: var(--c-line);
+  --dpv-panel: color-mix(in srgb, var(--c-surface) 78%, transparent);
+
+  /* One measure for every run of prose on the page. Long lines are most of
+     why the previous version read as a datasheet on a wide monitor. */
+  --dpv-measure: 62ch;
+}
+
+.dpv__container {
+  position: relative;
+  /* The page is prose and screenshots, not a dashboard. Past roughly this
+     width nothing gains from the extra room and the reading gets worse. */
+  max-width: 1500px;
+}
+
+.dpv__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: clamp(1rem, 0.8rem + 1vw, 1.75rem);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+  transition: color var(--d-fast) var(--e-out);
+}
+
+.dpv__back:hover {
+  color: var(--dpv-blurple-bright);
+}
+
+.dpv__back svg {
+  width: 14px;
+  transition: transform var(--d-fast) var(--e-out);
+}
+
+.dpv__back:hover svg {
+  transform: translateX(-3px);
+}
+
+/* --- Sections --------------------------------------------------------------- */
+.dpv-section {
+  position: relative;
+  padding-top: clamp(2rem, 1.6rem + 1.4vw, 3rem);
+}
+
+.dpv-section__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-6);
+  margin-bottom: clamp(1rem, 0.85rem + 0.75vw, 1.5rem);
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--dpv-line);
+}
+
+.dpv-section__head h2 {
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: var(--ls-head);
+  text-transform: uppercase;
+  color: var(--c-text);
+}
+
+.dpv-section__aside {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 48ch;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.55;
+  color: var(--c-text-4);
+  text-align: right;
+}
+
+/* --- 1. Hero ---------------------------------------------------------------- */
+.dpv-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(400px, 1.14fr);
+  align-items: center;
+  gap: clamp(1.5rem, 2.2vw, 3rem);
+  padding: clamp(0.5rem, 1vw, 1.25rem) 0 clamp(1.75rem, 2.2vw, 2.5rem);
+  border-bottom: 1px solid var(--dpv-line);
+}
+
+/* No capture on disk yet: the copy takes the full width rather than sitting
+   in a half-empty two-column grid. */
+.dpv-hero[data-solo='y'] {
+  grid-template-columns: 1fr;
+}
+
+.dpv-hero::before {
+  content: '';
+  position: absolute;
+  inset: auto 4% 4% auto;
+  width: min(38vw, 480px);
+  aspect-ratio: 1.4;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--dpv-blurple-a14), transparent 70%);
+  filter: blur(34px);
+  pointer-events: none;
+}
+
+.dpv-hero__copy {
+  position: relative;
+  z-index: 2;
+  max-width: 52ch;
+}
+
+.dpv-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-4);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+
+.dpv-hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--dpv-blurple-a24);
+  border-radius: var(--r-pill);
+  background: var(--dpv-blurple-a08);
+  color: var(--dpv-blurple-bright);
+}
+
+.dpv-hero__status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--dpv-blurple);
+  box-shadow: 0 0 8px var(--dpv-blurple);
+}
+
+.dpv-hero h1 {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--f-display);
+  font-size: clamp(2.5rem, 1.5rem + 3.3vw, 4.6rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: var(--c-text);
+}
+
+.dpv-hero__line2 {
+  color: var(--dpv-blurple-bright);
+}
+
+.dpv-hero__tagline {
+  margin-top: var(--s-4);
+  font-family: var(--f-mono);
+  font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.18rem);
+  line-height: 1.4;
+  color: var(--dpv-blurple-bright);
+}
+
+.dpv-hero__summary {
+  margin-top: var(--s-4);
+  max-width: 52ch;
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--c-text-2);
+}
+
+.dpv-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+}
+
+/* The generator, presented as a capture rather than dressed in fake chrome —
+   it already has its own title bar in the screenshot.
+
+   It is the first thing the eye should land on after the title, so it is
+   oversized: it bleeds toward the container edge and slides slightly under
+   the copy column, which sits above it on z-index. */
+.dpv-hero__shot {
+  position: relative;
+  z-index: 0;
+  min-width: 0;
+  margin-inline: calc(-1 * clamp(0px, 3vw, 70px)) calc(-1 * clamp(0px, 2.5vw, 56px));
+}
+
+.dpv-hero__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--dpv-line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-lg);
+}
+
+.dpv-hero__shot p {
+  margin-top: 0.7rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  line-height: 1.5;
+  color: var(--c-text-4);
+}
+
+/* --- 2. Metrics ------------------------------------------------------------- */
+.dpv-section--tight {
+  padding-top: clamp(1.75rem, 1.5rem + 1.2vw, 2.6rem);
+}
+
+.dpv-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--dpv-line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.dpv-stat {
+  padding: clamp(1rem, 1.5vw, 1.5rem);
+  border-right: 1px solid var(--dpv-line);
+  background: var(--dpv-panel);
+}
+
+.dpv-stat:last-child {
+  border-right: 0;
+}
+
+.dpv-stat dt {
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 1.4rem + 2.2vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--dpv-blurple-bright);
+}
+
+.dpv-stat dd {
+  margin-top: 0.5rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  letter-spacing: 0.04em;
+  color: var(--c-text-3);
+}
+
+/* The line-count is a good fact and a weak headline, so it lives down here
+   rather than taking a quarter of the strip. */
+.dpv-nerd {
+  margin-top: 0.85rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.04em;
+  color: var(--c-text-ghost);
+}
+
+/* --- 3. The trade ------------------------------------------------------------
+   A choice, so it is drawn as one: two tinted halves with a hard VS between
+   them. The colours do the arguing — amber for the deal you are being offered,
+   lime for the one you should take — and the sentence underneath lands after
+   the picture has already made the point. */
+.dpv-versus {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.dpv-versus__vs {
+  align-self: center;
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 1.2rem + 2.6vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--c-text-ghost);
+}
+
+.dpv-versus__side {
+  min-width: 0;
+  padding: clamp(1rem, 1.8vw, 1.75rem);
+  border-radius: var(--r-lg);
+  /* The accent bar is the treatment; the tint is barely there so the two
+     halves still read as one comparison rather than two cards. */
+  border-left: 3px solid;
+}
+
+.dpv-versus__side--them {
+  border-left-color: var(--dpv-amber);
+  background: linear-gradient(100deg, var(--dpv-amber-a10), transparent 72%);
+}
+
+.dpv-versus__side--us {
+  border-left-color: var(--c-lime);
+  background: linear-gradient(100deg, var(--c-lime-a08), transparent 72%);
+}
+
+.dpv-versus__side h3 {
+  margin-bottom: 0.9rem;
+  font-family: var(--f-display);
+  font-size: clamp(1.05rem, 0.92rem + 0.55vw, 1.5rem);
+  font-weight: 640;
+  letter-spacing: -0.02em;
+}
+
+.dpv-versus__side--them h3 { color: var(--dpv-amber); }
+.dpv-versus__side--us h3 { color: var(--c-lime); }
+
+.dpv-versus li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.35rem 0;
+  font-size: clamp(0.85rem, 0.8rem + 0.22vw, 0.98rem);
+  line-height: 1.5;
+  color: var(--c-text-2);
+}
+
+.dpv-versus li svg {
+  width: 13px;
+  height: 13px;
+  transform: translateY(2px);
+}
+
+.dpv-versus__side--them li svg { color: var(--dpv-amber); }
+.dpv-versus__side--us li svg { color: var(--c-lime); }
+
+/* The one sentence the section exists for. */
+.dpv-statement {
+  max-width: var(--dpv-measure);
+  margin-top: clamp(1.5rem, 2.4vw, 2.5rem);
+  padding-left: clamp(1rem, 2vw, 1.75rem);
+  border-left: 2px solid var(--dpv-blurple);
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.45rem);
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+  color: var(--c-text);
+}
+
+/* --- 4. Real output ----------------------------------------------------------
+   The capture is the argument here, so it gets the full container and no
+   decorative frame — one hairline, so it separates from the page without
+   being presented as a card. */
+.dpv-showcase {
+  position: relative;
+}
+
+.dpv-showcase__frame {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--dpv-line);
+  border-radius: var(--r-lg);
+  background: var(--c-bg-elev);
+  box-shadow: var(--sh-lg);
+  overflow: hidden;
+  cursor: zoom-in;
+  transition: border-color var(--d-base) var(--e-out);
+}
+
+.dpv-showcase__frame:hover,
+.dpv-showcase__frame:focus-visible {
+  border-color: var(--dpv-blurple-a24);
+}
+
+.dpv-showcase__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dpv-showcase__expand {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--dpv-blurple-a24);
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--c-void) 78%, transparent);
+  backdrop-filter: blur(6px);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dpv-blurple-bright);
+  opacity: 0;
+  transition: opacity var(--d-base) var(--e-out);
+}
+
+.dpv-showcase__frame:hover .dpv-showcase__expand,
+.dpv-showcase__frame:focus-visible .dpv-showcase__expand {
+  opacity: 1;
+}
+
+.dpv-showcase__caption {
+  max-width: var(--dpv-measure);
+  margin-top: 0.85rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.55;
+  color: var(--c-text-4);
+}
+
+/* The three pillars. Columns of text with a number and a rule, not cards —
+   this is where seven boxes used to be. */
+.dpv-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+  margin-top: clamp(1.75rem, 2.6vw, 2.75rem);
+}
+
+.dpv-pillar {
+  min-width: 0;
+  padding-top: 0.9rem;
+  border-top: 2px solid var(--dpv-blurple-a24);
+}
+
+.dpv-pillar__n {
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.14em;
+  color: var(--dpv-blurple);
+}
+
+.dpv-pillar h3 {
+  margin-top: 0.4rem;
+  font-family: var(--f-display);
+  font-size: clamp(1.1rem, 0.98rem + 0.5vw, 1.5rem);
+  font-weight: 640;
+  letter-spacing: -0.02em;
+  color: var(--c-text);
+}
+
+.dpv-pillar > p {
+  margin-top: 0.4rem;
+  font-size: clamp(0.9rem, 0.85rem + 0.25vw, 1.05rem);
+  line-height: 1.5;
+  color: var(--c-text-2);
+}
+
+.dpv-pillar ul {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.dpv-pillar li {
+  position: relative;
+  padding-left: 0.95rem;
+  font-size: clamp(0.78rem, 0.75rem + 0.16vw, 0.86rem);
+  line-height: 1.5;
+  color: var(--c-text-4);
+}
+
+.dpv-pillar li::before {
+  content: '';
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 5px;
+  height: 1px;
+  background: var(--dpv-blurple);
+}
+
+/* --- 5. What it finds ---------------------------------------------------------
+   Six scannable blocks rather than a table. Each one is a label and a single
+   dot-separated line, so the eye takes a category per fixation instead of
+   tracking across a row. */
+.dpv-index {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+
+.dpv-cat {
+  min-width: 0;
+  padding: clamp(0.9rem, 1.4vw, 1.35rem);
+  border: 1px solid var(--dpv-line);
+  border-radius: var(--r-md);
+  background: var(--dpv-panel);
+}
+
+.dpv-cat h3 {
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dpv-blurple-bright);
+}
+
+.dpv-cat p {
+  margin-top: 0.55rem;
+  font-size: clamp(0.82rem, 0.78rem + 0.2vw, 0.94rem);
+  line-height: 1.55;
+  color: var(--c-text-3);
+}
+
+/* The ad-targeting block is the one people are surprised by, so it is the
+   only thing in the grid that changes colour. */
+.dpv-cat--creepy {
+  border-color: var(--dpv-amber-a30);
+  background: linear-gradient(150deg, var(--dpv-amber-a10), transparent 70%), var(--dpv-panel);
+}
+
+.dpv-cat--creepy h3 {
+  color: var(--dpv-amber);
+}
+
+/* --- 6. How it works ---------------------------------------------------------
+   One connected strip, but not six equal cards. The whole selling point is
+   ZIP in, one HTML out, so the two ends are lit and the four stages between
+   them are deliberately quiet — the shape should be readable in one glance,
+   without reading a word of it. */
+.dpv-flow {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: stretch;
+  border: 1px solid var(--dpv-line);
+  border-radius: var(--r-lg);
+  background: var(--dpv-panel);
+  overflow: hidden;
+}
+
+.dpv-flow__stage {
+  position: relative;
+  min-width: 0;
+  padding: clamp(1rem, 1.5vw, 1.5rem) clamp(0.75rem, 1.2vw, 1.2rem);
+  border-right: 1px solid var(--dpv-line);
+}
+
+.dpv-flow__stage:last-child {
+  border-right: 0;
+}
+
+/* The endpoints. */
+.dpv-flow__stage[data-end='in'] {
+  background: linear-gradient(180deg, var(--dpv-blurple-a14), transparent 75%);
+}
+
+.dpv-flow__stage[data-end='out'] {
+  background: linear-gradient(180deg, var(--c-lime-a14), transparent 75%);
+}
+
+/* The connector. A chevron sitting on the divider is what makes the row read
+   as a flow rather than six adjacent columns. */
+.dpv-flow__stage:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 1.7rem;
+  right: -5px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid var(--dpv-blurple);
+  border-right: 1px solid var(--dpv-blurple);
+  rotate: 45deg;
+  background: var(--c-bg);
+}
+
+.dpv-flow__name {
+  display: block;
+  font-family: var(--f-display);
+  font-size: clamp(0.9rem, 0.82rem + 0.28vw, 1.08rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+
+.dpv-flow__stage[data-end] .dpv-flow__name {
+  font-size: clamp(1.15rem, 0.95rem + 0.7vw, 1.75rem);
+  font-weight: 700;
+}
+
+.dpv-flow__stage[data-end='in'] .dpv-flow__name {
+  color: var(--dpv-blurple-bright);
+}
+
+.dpv-flow__stage[data-end='out'] .dpv-flow__name {
+  color: var(--c-lime);
+}
+
+.dpv-flow__stage code {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--f-mono);
+  font-size: clamp(0.64rem, 0.62rem + 0.12vw, 0.72rem);
+  line-height: 1.4;
+  color: var(--c-text-ghost);
+  overflow-wrap: anywhere;
+}
+
+.dpv-flow__stage[data-end] code {
+  color: var(--c-text-3);
+}
+
+/* --- 7. Engineering challenges -----------------------------------------------
+   Numbered editorial rows, two columns, no card around any of them. Each one
+   states the problem in a sentence; the full technical account is one click
+   away rather than permanently on screen. */
+.dpv-hard {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(2rem, 4vw, 4.5rem);
+}
+
+.dpv-hard__row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(0.9rem, 1.8vw, 1.75rem);
+  padding: clamp(1rem, 1.6vw, 1.5rem) 0;
+  border-top: 1px solid var(--c-line-soft);
+}
+
+.dpv-hard__row:nth-child(-n + 2) {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.dpv-hard__row > span {
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--dpv-blurple-a24);
+}
+
+.dpv-hard__row h3 {
+  font-size: clamp(1.02rem, 0.94rem + 0.35vw, 1.28rem);
+  font-weight: 640;
+  letter-spacing: -0.015em;
+  color: var(--c-text);
+}
+
+.dpv-hard__row > div > p {
+  max-width: var(--dpv-measure);
+  margin-top: 0.5rem;
+  font-size: clamp(0.9rem, 0.85rem + 0.24vw, 1.02rem);
+  line-height: 1.6;
+  color: var(--c-text-2);
+}
+
+.dpv-hard__row details {
+  margin-top: 0.7rem;
+}
+
+.dpv-hard__row summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dpv-blurple);
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--d-fast) var(--e-out);
+}
+
+.dpv-hard__row summary::-webkit-details-marker {
+  display: none;
+}
+
+.dpv-hard__row summary::before {
+  content: '+';
+  font-size: 1.1em;
+  line-height: 0;
+}
+
+.dpv-hard__row details[open] summary::before {
+  content: '−';
+}
+
+.dpv-hard__row summary:hover {
+  color: var(--dpv-blurple-bright);
+}
+
+.dpv-hard__row details p {
+  max-width: var(--dpv-measure);
+  margin-top: 0.55rem;
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--dpv-blurple-a24);
+  font-size: clamp(0.82rem, 0.78rem + 0.2vw, 0.92rem);
+  line-height: 1.6;
+  color: var(--c-text-4);
+}
+
+/* --- 8. The one stupid requirement ------------------------------------------- */
+.dpv-limit {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+}
+
+.dpv-limit[data-solo='y'] {
+  grid-template-columns: 1fr;
+}
+
+.dpv-limit__icon {
+  display: inline-flex;
+  padding: 0.5rem;
+  border: 1px solid var(--dpv-amber-a30);
+  border-radius: var(--r-sm);
+  background: var(--dpv-amber-a10);
+  color: var(--dpv-amber);
+}
+
+.dpv-limit__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* The joke is the headline of this section, so it is set like one. */
+.dpv-limit__lead {
+  font-family: var(--f-display);
+  font-size: clamp(1.15rem, 0.98rem + 0.75vw, 1.85rem) !important;
+  font-weight: 640;
+  line-height: 1.3 !important;
+  letter-spacing: -0.02em;
+  color: var(--dpv-amber) !important;
+}
+
+.dpv-limit__copy p {
+  max-width: var(--dpv-measure);
+  margin-top: 0.9rem;
+  font-size: clamp(0.9rem, 0.85rem + 0.28vw, 1.08rem);
+  line-height: 1.65;
+  color: var(--c-text-2);
+}
+
+.dpv-limit__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--dpv-line);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-md);
+}
+
+.dpv-limit__shot p {
+  margin-top: 0.65rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  line-height: 1.5;
+  color: var(--c-text-4);
+}
+
+/* --- 9. Privacy conclusion ---------------------------------------------------
+   The end of the argument, so this is the biggest text on the page, title
+   included. The four short lines beneath it are the drumbeat; the three
+   explanations after that are the evidence. */
+.dpv-verdict {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.dpv-verdict > p {
+  max-width: 14ch;
+  font-family: var(--f-display);
+  font-size: clamp(2.6rem, 1.4rem + 4.6vw, 6rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  color: var(--dpv-blurple-bright);
+}
+
+.dpv-chant {
+  display: grid;
+  gap: 0.15rem;
+  padding-bottom: 0.5rem;
+  text-align: right;
+}
+
+.dpv-chant li {
+  font-family: var(--f-display);
+  font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--c-text-3);
+}
+
+.dpv-chant li:last-child {
+  color: var(--c-lime);
+}
+
+.dpv-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+  margin-top: clamp(1.75rem, 3vw, 3rem);
+}
+
+.dpv-point {
+  min-width: 0;
+}
+
+.dpv-point__icon {
+  display: inline-flex;
+  color: var(--c-lime);
+}
+
+.dpv-point__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.dpv-point:nth-child(2) .dpv-point__icon { color: var(--dpv-blurple-bright); }
+.dpv-point:nth-child(3) .dpv-point__icon { color: var(--dpv-amber); }
+
+.dpv-point h3 {
+  margin-top: 0.6rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-text);
+}
+
+.dpv-point p {
+  margin-top: 0.55rem;
+  font-size: clamp(0.85rem, 0.8rem + 0.24vw, 0.98rem);
+  line-height: 1.65;
+  color: var(--c-text-3);
+}
+
+/* --- Rhythm: full-bleed tinted bands ------------------------------------------
+   Section, rule, section, rule for the whole page is what made it read flat.
+   Three sections get a very dark wash that runs the full viewport width, so
+   the page moves in beats instead of one continuous column. The tint is
+   deliberately near-invisible: it should register as a change of temperature,
+   not as a panel. */
+.dpv-section--tinted::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset-block: calc(-1 * clamp(1rem, 2vw, 2rem)) calc(-1 * clamp(1rem, 2vw, 2rem));
+  inset-inline: calc(50% - 50vw);
+  pointer-events: none;
+}
+
+.dpv-section--output::before {
+  background: linear-gradient(180deg, transparent, var(--dpv-blurple-a08) 22%, var(--dpv-blurple-a08) 78%, transparent);
+}
+
+.dpv-section--annoying::before {
+  background: linear-gradient(180deg, transparent, var(--dpv-amber-a10) 22%, var(--dpv-amber-a10) 78%, transparent);
+}
+
+.dpv-section--privacy::before {
+  background: linear-gradient(180deg, transparent, var(--dpv-blurple-a14) 22%, var(--dpv-blurple-a14) 78%, transparent);
+}
+
+/* --- 12. Final statement ------------------------------------------------------
+   The page had no ending: it stopped at a tag list. This is the last thing
+   read before the prev/next rail, so it is one line and two buttons. */
+.dpv-finale {
+  margin-top: clamp(2.5rem, 4vw, 5rem);
+  padding: clamp(2rem, 4vw, 4rem) 0;
+  border-top: 1px solid var(--dpv-line);
+  border-bottom: 1px solid var(--dpv-line);
+  text-align: center;
+}
+
+.dpv-finale p {
+  max-width: 22ch;
+  margin-inline: auto;
+  font-family: var(--f-display);
+  font-size: clamp(1.6rem, 1rem + 2.4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: var(--c-text);
+}
+
+.dpv-finale__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-3);
+  margin-top: clamp(1.25rem, 2vw, 2rem);
+}
+
+/* --- Full-size overlay ------------------------------------------------------ */
+.dpv-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 3rem);
+  background: color-mix(in srgb, var(--c-void) 92%, transparent);
+  backdrop-filter: blur(8px);
+  overflow: auto;
+  animation: dpv-zoom-in 180ms var(--e-out);
+}
+
+@keyframes dpv-zoom-in {
+  from { opacity: 0; }
+}
+
+/* The point of the overlay is detail, so the image is allowed past the
+   viewport and the container scrolls rather than shrinking it to fit. */
+.dpv-zoom img {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  border: 1px solid var(--dpv-line);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-lg);
+}
+
+.dpv-zoom__close {
+  position: fixed;
+  top: clamp(0.75rem, 2vw, 1.5rem);
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--dpv-line);
+  border-radius: 50%;
+  background: var(--c-surface);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--c-text-2);
+  transition: border-color var(--d-fast) var(--e-out), color var(--d-fast) var(--e-out);
+}
+
+.dpv-zoom__close:hover {
+  border-color: var(--dpv-blurple-a24);
+  color: var(--dpv-blurple-bright);
+}
+
+/* --- 9. Lessons, stack, disclaimer ------------------------------------------ */
+.dpv-endgrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+  align-items: start;
+}
+
+.dpv-lessons {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.dpv-lessons li {
+  position: relative;
+  max-width: var(--dpv-measure);
+  padding-left: 1.4rem;
+  font-size: clamp(0.88rem, 0.83rem + 0.24vw, 1rem);
+  line-height: 1.6;
+  color: var(--c-text-2);
+}
+
+.dpv-lessons li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  font-family: var(--f-mono);
+  color: var(--dpv-blurple);
+}
+
+.dpv-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.dpv-stack span {
+  padding: 0.32rem 0.6rem;
+  border: 1px solid var(--dpv-line);
+  border-radius: var(--r-sm);
+  background: var(--dpv-panel);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  color: var(--c-text-3);
+}
+
+.dpv-links {
+  margin-top: var(--s-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+.dpv-disclaimer {
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--dpv-line);
+  font-size: var(--t-tiny);
+  line-height: 1.55;
+  color: var(--c-text-4);
+}
+
+.dpv-disclaimer strong {
+  color: var(--c-text-3);
+}
+
+/* --- Prev / next ------------------------------------------------------------ */
+.dpv-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: var(--s-3);
+  margin-top: clamp(2.5rem, 2rem + 2vw, 4.5rem);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--dpv-line);
+}
+
+.dpv-nav a {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-width: 0;
+  padding: clamp(0.75rem, 1.2vw, 1.1rem);
+  border: 1px solid var(--dpv-line);
+  border-radius: var(--r-md);
+  background: var(--dpv-panel);
+  transition: border-color var(--d-fast) var(--e-out), background var(--d-fast) var(--e-out);
+}
+
+.dpv-nav a:hover {
+  border-color: var(--dpv-blurple-a24);
+  background: var(--dpv-blurple-a08);
+}
+
+.dpv-nav__next {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.dpv-nav__thumb {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-sm);
+  background: var(--c-surface-3);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  font-weight: 700;
+  color: var(--accent, var(--dpv-blurple-bright));
+}
+
+.dpv-nav__copy {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.dpv-nav__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+
+.dpv-nav__next .dpv-nav__label {
+  justify-content: flex-end;
+}
+
+.dpv-nav__label svg {
+  width: 12px;
+  height: 12px;
+}
+
+.dpv-nav__copy strong {
+  font-size: clamp(0.85rem, 0.8rem + 0.2vw, 1rem);
+  color: var(--c-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dpv-nav__copy small {
+  font-size: var(--t-micro);
+  line-height: 1.4;
+  color: var(--c-text-4);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dpv-nav__brand {
+  display: grid;
+  place-items: center;
+  padding-inline: var(--s-3);
+  opacity: 0.55;
+}
+
+/* --- Annotations: page-specific anchors -------------------------------------
+   Mechanics live in annotations.css; this file only says where each of the
+   seven notes goes.
+
+   Every position below was placed by hand in the on-page editor, per
+   resolution, and the offsets are relative to the section each note annotates
+   — never to the viewport. That is why they survive the page growing: a note
+   is anchored to the thing it is about.
+
+   Two things have to be true for hand-placed coordinates to work at all:
+
+   1. The competing offsets have to be cleared. annotations.css positions
+      notes with a `bottom`/`right` pair in its inset mode, and an absolutely
+      positioned box given both `top` and `bottom` stretches to fill the space
+      between them instead of hugging its text. Hence the reset below.
+   2. The rotation has to have a base. The editor only emits `--n-rot` when a
+      note was actually turned, so each note carries a default here and the
+      profiles override it only where it was changed.
+
+   Widths between 620px and 1099px in portrait are deliberately not calibrated
+   — annotations.css drops the notes to the foot of each section there, which
+   is the right answer for a narrow tablet and needs no help. */
+.dpv__container {
+  --n-cw: min(1500px, 100vw);
+}
+
+/* Colour and resting rotation are placement-independent, so they sit outside
+   every profile. */
+.dpv-note--hero { --n-rot: -6deg; }
+.dpv-note--metrics { color: var(--dpv-blurple-bright); --n-rot: 4deg; }
+.dpv-note--trade { color: var(--dpv-amber); --n-rot: -7deg; }
+.dpv-note--output { color: var(--dpv-blurple-bright); --n-rot: 5deg; }
+.dpv-note--how { color: var(--c-lime); --n-rot: 5deg; }
+.dpv-note--annoying { color: var(--dpv-amber); --n-rot: -7deg; }
+.dpv-note--privacy { color: var(--c-lime); --n-rot: 4deg; }
+
+/* The union of every calibrated range. See (1) above. */
+@media (min-width: 1100px),
+       (max-width: 619px),
+       (min-width: 620px) and (max-width: 1099px) and (max-height: 559px) {
+  .dpv-note {
+    right: auto;
+    bottom: auto;
+  }
+}
+
+/* 4K — measured on 2560x1440. */
+@media (min-width: 2560px) {
+  .dpv-note--hero {
+    top: 716px;
+    left: 338px;
+  }
+
+  .dpv-note--metrics {
+    top: -106px;
+    left: 1436px;
+  }
+
+  .dpv-note--trade {
+    top: 299px;
+    left: -193px;
+  }
+
+  .dpv-note--output {
+    top: 1102px;
+    left: 1226px;
+  }
+
+  .dpv-note--how {
+    top: 241px;
+    left: 1370px;
+  }
+
+  .dpv-note--annoying {
+    top: 499px;
+    left: -206px;
+    --n-rot: -11deg;
+  }
+
+  .dpv-note--privacy {
+    top: 501px;
+    left: 626px;
+    --n-rot: 7deg;
+  }
+}
+
+/* 1440p — measured on 2552x1308. */
+@media (min-width: 2000px) and (max-width: 2559px) {
+  .dpv-note--hero {
+    top: 716px;
+    left: 358px;
+  }
+
+  .dpv-note--metrics {
+    top: 223px;
+    left: 1379px;
+  }
+
+  .dpv-note--trade {
+    top: 310px;
+    left: -171px;
+  }
+
+  .dpv-note--output {
+    top: 1112px;
+    left: 1225px;
+  }
+
+  .dpv-note--how {
+    top: 247px;
+    left: 1371px;
+  }
+
+  .dpv-note--annoying {
+    top: 508px;
+    left: -179px;
+  }
+
+  .dpv-note--privacy {
+    top: 503px;
+    left: 578px;
+  }
+}
+
+/* 1080p — measured on 1920x1080. */
+@media (min-width: 1600px) and (max-width: 1999px) {
+  .dpv-note--hero {
+    top: 696px;
+    left: 404px;
+  }
+
+  .dpv-note--metrics {
+    top: 223px;
+    left: 1395px;
+    --n-rot: 8deg;
+  }
+
+  .dpv-note--trade {
+    top: 305px;
+    left: -147px;
+  }
+
+  .dpv-note--output {
+    top: 1108px;
+    left: 1242px;
+  }
+
+  .dpv-note--how {
+    top: 244px;
+    left: 1398px;
+  }
+
+  .dpv-note--annoying {
+    top: 499px;
+    left: -149px;
+  }
+
+  .dpv-note--privacy {
+    top: 504px;
+    left: 622px;
+    --n-rot: 7deg;
+  }
+}
+
+/* 720p — measured on 1280x720. */
+@media (min-width: 1100px) and (max-width: 1599px) {
+  .dpv-note--hero {
+    top: 635px;
+    left: 281px;
+    --n-rot: 0deg;
+  }
+
+  .dpv-note--metrics {
+    top: 234px;
+    left: 957px;
+  }
+
+  .dpv-note--trade {
+    top: 304px;
+    left: 24px;
+    --n-rot: 5deg;
+  }
+
+  .dpv-note--output {
+    top: 1024px;
+    left: 937px;
+  }
+
+  .dpv-note--how {
+    top: 327px;
+    left: 1027px;
+  }
+
+  .dpv-note--annoying {
+    top: 468px;
+    left: 46px;
+    --n-rot: 2deg;
+  }
+
+  .dpv-note--privacy {
+    top: 469px;
+    left: 464px;
+  }
+}
+
+/* Phone, portrait — measured on 430x932.
+
+   A note here is free to wrap, so its width is whatever the text wants up to
+   the shared cap — which means a note placed well to the right can still run
+   off the screen even though its left edge is correct. The two that did were
+   the metrics and how-it-works notes.
+
+   Rather than hand-tuning a width per note, each one repeats its own left
+   offset as --n-x and the cap becomes "whatever is left in the section from
+   there". Positions stay exactly as placed; only the wrap point moves. */
+@media (max-width: 619px) {
+  .dpv-note {
+    max-width: min(22rem, calc(100% - var(--n-x, 0px) - 0.5rem));
+  }
+
+  .dpv-note--hero {
+    top: 786px;
+    left: 33px;
+    --n-x: 33px;
+    --n-rot: 5deg;
+  }
+
+  .dpv-note--metrics {
+    top: 265px;
+    left: 216px;
+    --n-x: 216px;
+  }
+
+  .dpv-note--trade {
+    top: 502px;
+    left: 24px;
+    --n-x: 24px;
+    --n-rot: 3deg;
+  }
+
+  .dpv-note--output {
+    top: 865px;
+    left: 114px;
+    --n-x: 114px;
+    --n-rot: -6deg;
+  }
+
+  .dpv-note--how {
+    top: 257px;
+    left: 231px;
+    --n-x: 231px;
+  }
+
+  .dpv-note--annoying {
+    top: 606px;
+    left: 36px;
+    --n-x: 36px;
+    --n-rot: 2deg;
+  }
+
+  .dpv-note--privacy {
+    top: 721px;
+    left: 60px;
+    --n-x: 60px;
+    --n-rot: -6deg;
+  }
+}
+
+/* Phone, landscape — measured on 932x430.
+
+   annotations.css is in inset mode at this size, which forces nowrap: right
+   for a note sitting on a foot rail, wrong for one placed by hand two thirds
+   of the way across. The hero note ran 51px past the edge. Same fix as the
+   portrait profile — let them wrap, and cap each one at the room actually
+   left in its section. */
+@media (min-width: 620px) and (max-width: 1099px) and (max-height: 559px) {
+  .dpv-note {
+    white-space: normal;
+    max-width: min(24rem, calc(100% - var(--n-x, 0px) - 0.5rem));
+  }
+
+  .dpv-note--hero {
+    top: 1205px;
+    left: 634px;
+    --n-x: 634px;
+    --n-rot: 3deg;
+  }
+
+  .dpv-note--metrics {
+    top: 204px;
+    left: 632px;
+    --n-x: 632px;
+  }
+
+  .dpv-note--trade {
+    top: 363px;
+    left: 24px;
+    --n-x: 24px;
+    --n-rot: 0deg;
+  }
+
+  .dpv-note--output {
+    top: 1285px;
+    left: 10px;
+    --n-x: 10px;
+  }
+
+  .dpv-note--how {
+    top: 276px;
+    left: 654px;
+    --n-x: 654px;
+  }
+
+  .dpv-note--annoying {
+    top: 1157px;
+    left: 504px;
+    --n-x: 504px;
+    --n-rot: 4deg;
+  }
+
+  .dpv-note--privacy {
+    top: 648px;
+    left: 52px;
+    --n-x: 52px;
+  }
+}
+
+/* INSET mode reserve. annotations.css drops each note to the foot of its
+   section on viewports with no usable side band; the padding it lands in has
+   to be reserved here, and only while the notes are actually on. The query
+   mirrors the one in annotations.css exactly. */
+@media (max-height: 1100px) and (max-width: 1875px),
+       (min-height: 1101px) and (max-width: 2295px) {
+  :root[data-chaos='on'] .dpv-hero,
+  :root[data-chaos='on'] .dpv-section--tight,
+  :root[data-chaos='on'] .dpv-section--trade,
+  :root[data-chaos='on'] .dpv-section--output,
+  :root[data-chaos='on'] .dpv-section--how,
+  :root[data-chaos='on'] .dpv-section--annoying,
+  :root[data-chaos='on'] .dpv-section--privacy {
+    padding-bottom: calc(var(--n-fs) * 4.6);
+  }
+}
+
+/* Phones. The shared inset rule sets `white-space: nowrap`, which is right
+   when there is width to spare and wrong here: these notes run to about 400px
+   in Greek, so on a 390px screen a nowrap note hangs off the edge. Let them
+   wrap to two lines and reserve the extra line. */
+@media (max-width: 619px) {
+  .dpv-note {
+    white-space: normal;
+  }
+
+  :root[data-chaos='on'] .dpv-hero,
+  :root[data-chaos='on'] .dpv-section--tight,
+  :root[data-chaos='on'] .dpv-section--trade,
+  :root[data-chaos='on'] .dpv-section--output,
+  :root[data-chaos='on'] .dpv-section--how,
+  :root[data-chaos='on'] .dpv-section--annoying,
+  :root[data-chaos='on'] .dpv-section--privacy {
+    padding-bottom: calc(var(--n-fs) * 6.4);
+  }
+}
+
+/* --- Responsive ------------------------------------------------------------- */
+
+/* 1080p and 720p landscape: the hero must not need a scroll to be understood. */
+@media (min-width: 1100px) and (max-width: 1999px) and (max-height: 1100px) {
+  .dpv-hero {
+    padding-top: 0.25rem;
+    gap: clamp(1.5rem, 2.2vw, 2.5rem);
+  }
+
+  .dpv-hero h1 {
+    font-size: clamp(2.3rem, 1.4rem + 2.4vw, 3.6rem);
+  }
+
+  .dpv-hero__summary {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+}
+
+/* The flow wraps to two rows, so the connectors and dividers follow it. Each
+   range is bounded at BOTH ends: `:nth-child()` outranks the bare element
+   rule, so a wider range left open would keep painting a divider the narrower
+   layout has already decided against. */
+@media (min-width: 900px) and (max-width: 1399px) {
+  .dpv-flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .dpv-flow__stage:nth-child(3n) {
+    border-right: 0;
+  }
+
+  .dpv-flow__stage:nth-child(3n)::after {
+    display: none;
+  }
+
+  .dpv-flow__stage:nth-child(n + 4) {
+    border-top: 1px solid var(--dpv-line);
+  }
+}
+
+@media (min-width: 620px) and (max-width: 899px) {
+  .dpv-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dpv-flow__stage:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .dpv-flow__stage:nth-child(2n)::after {
+    display: none;
+  }
+
+  .dpv-flow__stage:nth-child(n + 3) {
+    border-top: 1px solid var(--dpv-line);
+  }
+}
+
+/* Tablet. */
+@media (max-width: 1099px) {
+  .dpv-hero,
+  .dpv-limit,
+  .dpv-endgrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dpv-hero {
+    gap: var(--s-6);
+  }
+
+  .dpv-hero__shot {
+    margin-inline: 0;
+  }
+
+  .dpv-hero__copy {
+    max-width: 100%;
+  }
+
+  .dpv-pillars,
+  .dpv-points {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
+
+  .dpv-index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dpv-hard {
+    grid-template-columns: 1fr;
+  }
+
+  .dpv-hard__row:nth-child(2) {
+    border-top: 1px solid var(--c-line-soft);
+    padding-top: clamp(1rem, 1.6vw, 1.5rem);
+  }
+
+  .dpv-section__head {
+    flex-wrap: wrap;
+    row-gap: var(--s-2);
+  }
+
+  .dpv-section__aside {
+    flex-basis: 100%;
+    text-align: left;
+    max-width: 60ch;
+  }
+}
+
+@media (max-width: 899px) {
+  .dpv-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dpv-stat:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .dpv-stat:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--dpv-line);
+  }
+
+  /* Stacked, so the VS stops being a divider between two columns and becomes
+     a beat between two blocks. */
+  .dpv-versus {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+
+  .dpv-versus__vs {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 719px) {
+  /* Four stacked rows cost four screens of nothing. A 2x2 block reads at a
+     glance and takes a quarter of the height. */
+  .dpv-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dpv-stat {
+    padding: 0.8rem 0.9rem;
+  }
+
+  .dpv-stat:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .dpv-stat:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--dpv-line);
+  }
+
+  .dpv-stat dt {
+    font-size: 1.85rem;
+  }
+
+  /* Six stacked stages is a scroll for something the reader takes in as a
+     shape. Two columns, and the four middle stages drop their file paths —
+     ZIP in, one HTML out is the whole message, and only the ends carry it. */
+  .dpv-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dpv-flow__stage {
+    padding: 0.7rem 0.75rem;
+  }
+
+  .dpv-flow__stage:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .dpv-flow__stage:nth-child(n + 3) {
+    border-top: 1px solid var(--dpv-line);
+  }
+
+  .dpv-flow__stage:not([data-end]) code {
+    display: none;
+  }
+
+  /* The chevron only reads along a row, and there is no room for it here. */
+  .dpv-flow__stage::after {
+    display: none;
+  }
+
+  /* Six one-line categories fit two-up comfortably. */
+  .dpv-index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-2);
+  }
+
+  .dpv-cat {
+    padding: 0.7rem 0.8rem;
+  }
+
+  .dpv-cat p {
+    margin-top: 0.4rem;
+    font-size: 0.76rem;
+    line-height: 1.45;
+  }
+
+  .dpv-hard__row {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.75rem;
+    padding-block: 0.9rem;
+  }
+
+  .dpv-hard__row > span {
+    font-size: 1.15rem;
+  }
+
+  .dpv-verdict {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+
+  .dpv-chant {
+    text-align: left;
+  }
+
+  .dpv-finale__actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .dpv-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .dpv-nav__brand {
+    display: none;
+  }
+
+  .dpv-nav__next {
+    justify-content: flex-start;
+    text-align: left;
+    flex-direction: row-reverse;
+  }
+
+  .dpv-nav__next .dpv-nav__label {
+    justify-content: flex-start;
+  }
+
+  .dpv-hero__actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  /* A hover-revealed affordance is invisible on touch. */
+  .dpv-showcase__expand {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dpv-showcase__frame,
+  .dpv-showcase__expand,
+  .dpv-nav a {
+    transition: none;
+  }
+
+  .dpv-zoom {
+    animation: none;
+  }
+}
+
+/* --- Phone density -----------------------------------------------------------
+   The page is a long read on a desktop and was a genuinely punishing one on a
+   phone: everything collapses to a single column, so eleven sections of
+   comfortable desktop spacing turn into twenty-odd screens of scrolling.
+
+   Nothing here removes content. It removes air: smaller section gaps, tighter
+   leading on the display type, and captions that the alt text already covers.
+   The handwritten notes shrink too — they reserve padding in every section
+   they annotate, which on a phone was costing more height than the metrics
+   strip. */
+@media (max-width: 619px) {
+  .dpv-section,
+  .dpv-section--tight,
+  .dpv-section--panel {
+    padding-top: 1.5rem;
+  }
+
+  .dpv-section__head {
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .dpv-section__head h2 {
+    font-size: 1.35rem;
+  }
+
+  /* The asides are editorial garnish: every one of them restates something
+     the section title and its content already say. Eleven of them cost about
+     four hundred pixels of phone scroll to add nothing the reader needs. */
+  .dpv-section__aside {
+    display: none;
+  }
+
+  /* Hero: the capture carries itself, and its caption repeats the alt text. */
+  .dpv-hero {
+    gap: 1.25rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .dpv-hero h1 {
+    font-size: 2.35rem;
+  }
+
+  .dpv-hero__tagline {
+    margin-top: 0.7rem;
+    font-size: 0.92rem;
+  }
+
+  .dpv-hero__summary {
+    margin-top: 0.7rem;
+    font-size: 0.93rem;
+    line-height: 1.55;
+  }
+
+  .dpv-hero__actions {
+    margin-top: 1rem;
+  }
+
+  .dpv-hero__shot p,
+  .dpv-limit__shot p {
+    display: none;
+  }
+
+  .dpv-nerd {
+    margin-top: 0.6rem;
+  }
+
+  /* Trade: the two halves keep their accent bar, lose the padding. */
+  .dpv-versus {
+    gap: 0.9rem;
+  }
+
+  .dpv-versus__side {
+    padding: 0.8rem 0.9rem;
+  }
+
+  .dpv-versus__side h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+  }
+
+  .dpv-versus li {
+    padding: 0.25rem 0;
+    font-size: 0.85rem;
+  }
+
+  .dpv-versus__vs {
+    font-size: 1.75rem;
+  }
+
+  .dpv-statement {
+    margin-top: 1.1rem;
+    padding-left: 0.85rem;
+    font-size: 1.05rem;
+    line-height: 1.45;
+  }
+
+  /* Real output: three pillars, tightened rather than trimmed. */
+  .dpv-pillars,
+  .dpv-points {
+    gap: 1.5rem;
+    margin-top: 1.35rem;
+  }
+
+  .dpv-pillar {
+    padding-top: 0.6rem;
+  }
+
+  .dpv-pillar h3 {
+    font-size: 1.1rem;
+  }
+
+  .dpv-pillar > p {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  /* Three bullets become one flowing line, the same treatment the archive
+     index already uses. Same words, three fewer line boxes per pillar. */
+  .dpv-pillar ul {
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .dpv-pillar li {
+    display: inline;
+    padding-left: 0;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .dpv-pillar li::before {
+    display: none;
+  }
+
+  .dpv-pillar li:not(:last-child)::after {
+    content: ' · ';
+    color: var(--dpv-blurple);
+  }
+
+  .dpv-endgrid {
+    gap: 1.5rem;
+  }
+
+  .dpv-stack span {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .dpv-disclaimer {
+    margin-top: 0.9rem;
+    padding-top: 0.7rem;
+  }
+
+  .dpv-showcase__caption {
+    margin-top: 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  /* Challenges: the summary stays, the leading tightens. */
+  .dpv-hard__row h3 {
+    font-size: 1rem;
+  }
+
+  .dpv-hard__row > div > p {
+    margin-top: 0.35rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .dpv-hard__row details {
+    margin-top: 0.5rem;
+  }
+
+  /* The one stupid requirement. */
+  .dpv-limit {
+    gap: 1.1rem;
+  }
+
+  /* The warning dialog is a fixed-size modal, not a full screen: at 100% of a
+     phone viewport it is bigger than it ever appears in real life. */
+  .dpv-limit__shot img {
+    width: 76%;
+    min-width: 240px;
+  }
+
+  .dpv-limit__lead {
+    font-size: 1.15rem !important;
+  }
+
+  .dpv-limit__copy p {
+    margin-top: 0.65rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  /* Privacy: still the loudest thing on the page, just not three screens. */
+  .dpv-verdict {
+    gap: 1rem;
+  }
+
+  .dpv-verdict > p {
+    max-width: none;
+    font-size: 2.4rem;
+    line-height: 0.98;
+  }
+
+  .dpv-chant li {
+    font-size: 1.05rem;
+  }
+
+  .dpv-point p {
+    margin-top: 0.4rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .dpv-lessons {
+    gap: 0.55rem;
+  }
+
+  .dpv-lessons li {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .dpv-finale {
+    margin-top: 1.75rem;
+    padding-block: 1.75rem;
+  }
+
+  .dpv-finale p {
+    font-size: 1.5rem;
+  }
+
+  .dpv-nav {
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+  }
+
+  /* The notes reserve padding in every section they sit in. At the desktop
+     size that was 123px a section on a phone — more than the metrics strip
+     costs. Smaller type, one line of reserve less. */
+  .cs-scope {
+    --n-fs: 0.95rem;
+    --n-arrow: 1.35rem;
+  }
+
+  :root[data-chaos='on'] .dpv-hero,
+  :root[data-chaos='on'] .dpv-section--tight,
+  :root[data-chaos='on'] .dpv-section--trade,
+  :root[data-chaos='on'] .dpv-section--output,
+  :root[data-chaos='on'] .dpv-section--how,
+  :root[data-chaos='on'] .dpv-section--annoying,
+  :root[data-chaos='on'] .dpv-section--privacy {
+    padding-bottom: calc(var(--n-fs) * 5);
+  }
+}

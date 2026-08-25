@@ -126,8 +126,7 @@ const copy = {
     shots: [
       'Before a run: 1,954 mods detected, Vortex or the browser, one button.',
       'Mid-run. Adaptive pacing, a live log, and an honest line about what the browser cannot see.',
-      'The popup. Four switches people actually reach for, and a bug report that copies the error out for you.',
-      'Settings. Every toggle saves instantly, and the pacing values drive the queue.',
+      'Popup and settings. The controls people actually use, instant saves, queue pacing, and a bug report that copies the error out for you.',
     ],
 
     lessons: 'What shipping it taught me',
@@ -242,8 +241,7 @@ const copy = {
     shots: [
       'Πριν το run: 1.954 mods εντοπισμένα, Vortex ή browser, ένα κουμπί.',
       'Στη μέση του run. Adaptive pacing, ζωντανό log, και μια τίμια γραμμή για ό,τι δεν βλέπει ο browser.',
-      'Το popup. Τέσσερις διακόπτες που όντως πειράζει ο κόσμος, και bug report που αντιγράφει μόνο του το σφάλμα.',
-      'Settings. Κάθε διακόπτης σώζεται αμέσως, και οι τιμές του pacing οδηγούν την ουρά.',
+      'Popup και settings μαζί. Τα controls που όντως χρησιμοποιούνται, άμεσο save, queue pacing και bug report που αντιγράφει μόνο του το σφάλμα.',
     ],
 
     lessons: 'Τι μου έμαθε το shipping',
@@ -268,21 +266,17 @@ const copy = {
 } as const
 
 /**
- * The four real captures, in the order they tell the story. Intrinsic sizes are
+ * The three real captures, in the order they tell the story. Intrinsic sizes are
  * the originals, so the browser reserves the right box and nothing shifts as
  * they decode. Filenames match the jobs in tools/optimise-assets.mjs.
  */
 /**
- * Ordered so the two wide captures share a row and the two tall ones share the
- * next. Mixing a 2.5:1 capture with a 0.56:1 one in the same row makes the grid
- * stretch the short cell to the tall one's height, which is a lot of empty
- * card for no reason.
+ * The popup and settings are presented as one combined landscape capture.
  */
 const SHOTS = [
   { file: 'collection-idle', w: 1792, h: 726 },
   { file: 'collection-running', w: 1794, h: 805 },
-  { file: 'popup', w: 531, h: 679 },
-  { file: 'settings', w: 972, h: 1747 },
+  { file: 'popup-settings', w: 2730, h: 1536 },
 ] as const
 
 const featureIcons = [ListOrdered, Gauge, History, Archive, EyeOff, Globe, Languages]

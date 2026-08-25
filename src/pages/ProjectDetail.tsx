@@ -20,6 +20,7 @@ import { useI18n } from '../i18n/i18n'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
 import { getProject, neighbours } from '../data/projects'
 import { external } from '../utils'
+import { DiscordPackageViewerCaseStudy } from './case-studies/DiscordPackageViewerCaseStudy'
 import { MakeYourLifeEasierCaseStudy } from './case-studies/MakeYourLifeEasierCaseStudy'
 import { NexusModsBypassCaseStudy } from './case-studies/NexusModsBypassCaseStudy'
 import './detail.css'
@@ -46,6 +47,10 @@ export function ProjectDetail() {
 
   if (p.slug === 'nexusmods-bypass') {
     return <NexusModsBypassCaseStudy project={p} near={near} />
+  }
+
+  if (p.slug === 'discord-package-viewer') {
+    return <DiscordPackageViewerCaseStudy project={p} near={near} />
   }
 
   return (
