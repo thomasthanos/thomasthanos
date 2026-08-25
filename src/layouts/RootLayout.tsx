@@ -1,12 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import { Header } from '../components/layout/Header'
-import { Footer } from '../components/layout/Footer'
-import { BackToTop } from '../components/ui/BackToTop'
-import { ChaosLayer } from '../components/chaos/ChaosLayer'
-import { useI18n } from '../i18n/i18n'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { BackToTop } from '@/components/ui/BackToTop'
+import { ChaosLayer } from '@/features/chaos/ChaosLayer'
+import { useI18n } from '@/i18n/i18n'
 
-/** Resets scroll and moves focus to the main region on every navigation. */
 function useRouteChange(mainRef: React.RefObject<HTMLElement | null>) {
   const { pathname } = useLocation()
   const first = useRef(true)
@@ -17,8 +16,6 @@ function useRouteChange(mainRef: React.RefObject<HTMLElement | null>) {
       return
     }
     window.scrollTo({ top: 0, behavior: 'auto' })
-    // Focus main so keyboard and screen-reader users land in the new page,
-    // not back at the top of the (unchanged) header.
     mainRef.current?.focus({ preventScroll: true })
   }, [pathname, mainRef])
 

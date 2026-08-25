@@ -7,7 +7,7 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import { useLocalStorage } from './useLocalStorage'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
 
 const KONAMI = [
   'ArrowUp',
@@ -26,7 +26,6 @@ interface ChaosValue {
   chaos: boolean
   setChaos: (on: boolean) => void
   toggle: () => void
-  /** True for a few seconds after the Konami code fires. */
   justUnlocked: boolean
 }
 
@@ -44,7 +43,6 @@ export function ChaosProvider({ children }: { children: ReactNode }) {
 
   const toggle = useCallback(() => setChaos(!chaos), [chaos, setChaos])
 
-  // Konami code turns it on (never off — turning it off by accident is worse).
   useEffect(() => {
     let i = 0
     const onKey = (e: KeyboardEvent) => {

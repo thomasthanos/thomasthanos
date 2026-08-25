@@ -1,22 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, Check, Copy, Github, Mail, MessageSquare } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import { PageHeader } from '../components/ui/PageHeader'
-import { Section } from '../components/ui/Section'
-import { Annotation } from '../components/ui/Annotation'
-import { useI18n } from '../i18n/i18n'
-import { useDocumentMeta } from '../hooks/useDocumentMeta'
-import { site } from '../data/site'
-import { notes } from '../data/notes'
-import { external } from '../utils'
-import './contact.css'
+import { PageHeader } from '@/components/ui/PageHeader'
+import { Section } from '@/components/ui/Section'
+import { Annotation } from '@/components/ui/Annotation'
+import { useI18n } from '@/i18n/i18n'
+import { useDocumentMeta } from '@/hooks/useDocumentMeta'
+import { site } from '@/data/site'
+import { notes } from '@/data/notes'
+import { external } from '@/utils'
+import '@/pages/contact.css'
 
 interface MethodProps {
   index: string
   icon: LucideIcon
   label: string
   value: string
-  /** When present the card also links out. */
   href?: string
   accent: 'lime' | 'violet' | 'blue'
 }
@@ -35,7 +34,6 @@ function Method({ index, icon: Icon, label, value, href, accent }: MethodProps) 
       window.clearTimeout(timer.current)
       timer.current = window.setTimeout(() => setCopied(false), 1800)
     } catch {
-      /* clipboard blocked — the value is selectable on screen anyway */
     }
   }
 

@@ -1,18 +1,3 @@
-/**
- * Mynerve is used for exactly two margin notes, but the shipped Latin + Greek
- * files come to 74 KB. This cuts them to ~28 KB by keeping only:
- *
- *   1. every character that actually appears inside an <Annotation> in src/,
- *   2. plus a safety set — lowercase Latin, lowercase Greek with accents, and
- *      common punctuation — so editing an annotation does not silently drop
- *      glyphs before anyone remembers to re-run this.
- *
- * Output is committed, so this is a manual step, not part of the build:
- *   npm run gen:font
- *
- * Uppercase Latin and digits are included because translated asides can contain
- * standalone "I" and project counts even when most handwriting is lowercase.
- */
 import subsetFont from 'subset-font'
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from 'node:fs'
 import { join, dirname, resolve, extname, sep } from 'node:path'
@@ -27,14 +12,13 @@ const range = (from, to) => {
 }
 
 const SAFETY =
-  range(0x41, 0x5a) + // A–Z
-  range(0x61, 0x7a) + // a–z
-  range(0x30, 0x39) + // 0–9
-  range(0x3b1, 0x3c9) + // α–ω
-  'άέήίόύώϊϋΐΰς' + // accented Greek + final sigma
+  range(0x41, 0x5a) + 
+  range(0x61, 0x7a) + 
+  range(0x30, 0x39) + 
+  range(0x3b1, 0x3c9) + 
+  'άέήίόύώϊϋΐΰς' + 
   " ,.!?'’-–—«»…·"
 
-/** Every character in the notes data, plus any literal <Annotation> child. */
 function charsFromSource() {
   let found = ''
   const walk = (dir) => {

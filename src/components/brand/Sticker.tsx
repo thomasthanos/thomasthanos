@@ -1,13 +1,12 @@
-import { cx } from '../../utils'
-import { useI18n } from '../../i18n/i18n'
-import './sticker.css'
+import { cx } from '@/utils'
+import { useI18n } from '@/i18n/i18n'
+import '@/components/brand/sticker.css'
 
 interface StickerProps {
   tilt?: number
   className?: string
 }
 
-/** The exact SpongeBob sticker, with a locale-aware sign layered over the art. */
 export function Sticker({ tilt = -7, className }: StickerProps) {
   const { lang } = useI18n()
   const file = lang === 'en' ? 'spongebob-pame-gta_en.webp' : 'spongebob-pame-gta_gr.webp'

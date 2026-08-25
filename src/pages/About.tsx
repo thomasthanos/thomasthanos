@@ -1,20 +1,20 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import { PageHeader } from '../components/ui/PageHeader'
-import { Section } from '../components/ui/Section'
-import { Reveal } from '../components/ui/Reveal'
-import { SwipeHint } from '../components/ui/SwipeHint'
-import { Annotation } from '../components/ui/Annotation'
-import { useI18n } from '../i18n/i18n'
-import { useChaos } from '../hooks/useChaos'
-import { useDocumentMeta } from '../hooks/useDocumentMeta'
-import { bio, likes, principles, timeline } from '../data/about'
-import { site } from '../data/site'
-import { logoWhispers } from '../data/eggs'
-import { notes } from '../data/notes'
-import { cx, pick } from '../utils'
-import './about.css'
+import { PageHeader } from '@/components/ui/PageHeader'
+import { Section } from '@/components/ui/Section'
+import { Reveal } from '@/components/ui/Reveal'
+import { SwipeHint } from '@/components/ui/SwipeHint'
+import { Annotation } from '@/components/ui/Annotation'
+import { useI18n } from '@/i18n/i18n'
+import { useChaos } from '@/hooks/useChaos'
+import { useDocumentMeta } from '@/hooks/useDocumentMeta'
+import { bio, likes, principles, timeline } from '@/data/about'
+import { site } from '@/data/site'
+import { logoWhispers } from '@/data/eggs'
+import { notes } from '@/data/notes'
+import { cx, pick } from '@/utils'
+import '@/pages/about.css'
 
 export function About() {
   const { t, tr } = useI18n()
@@ -28,7 +28,6 @@ export function About() {
     path: '/about',
   })
 
-  // Chaos Mode makes the logo whisper on hover. Off, it stays quiet.
   const whisper = chaos ? tr(pick(logoWhispers)) : undefined
 
   useEffect(() => {
@@ -174,7 +173,6 @@ export function About() {
           </div>
         </div>
 
-        {/* --- Timeline ---------------------------------------------------- */}
         <Section className="ab__section ab__section--timeline" title={t.about.timelineTitle}>
           <p className="label ab__section-kicker">
             <span className="label__tick" aria-hidden="true" />
@@ -204,7 +202,6 @@ export function About() {
           </ol>
         </Section>
 
-        {/* --- Principles ----------------------------------------------------- */}
         <Section className="ab__section ab__section--principles" title={t.about.principlesTitle}>
           <div className="ab__rail-head">
             <p className="label ab__section-kicker">
@@ -228,7 +225,6 @@ export function About() {
           </ul>
         </Section>
 
-        {/* --- What I like building --------------------------------------------- */}
         <Section className="ab__section ab__section--likes" title={t.about.likesTitle}>
           <div className="ab__rail-head">
             <p className="label ab__section-kicker">

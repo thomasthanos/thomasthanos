@@ -1,32 +1,18 @@
-/**
- * Redacts the Discord Package Viewer dashboard capture before it is published.
- *
- * The capture is a real archive, which is the whole point of showing it — and
- * also the problem. It contains the author's email, the Discord handles of
- * about fifteen other people, real linked-account names and a handful of
- * server names. Two of those are the author's to publish; the handles of other
- * people are not, under any reading.
- *
- * So every identifying string is painted over with a colour sampled from the
- * surrounding surface and replaced with a plausible stand-in at the same size
- * and weight. Blurring would have been faster and would have wrecked the one
- * thing the screenshot is there to prove: that this is a dense, real, working
- * interface. Photographic server icons are blurred rather than replaced,
- * because a solid block where an avatar should be reads as a bug.
- *
- * The source stays untouched on disk. Run this, then `npm run gen:assets`:
- *   node tools/redact-dpv-dashboard.mjs
- */
 import sharp from 'sharp'
 import { statSync } from 'node:fs'
 import { join, dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const SRC = join(root, 'assets-src/image-1787646942595.webp')
-const OUT = join(root, 'assets-src/dpv-dashboard.png')
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
+const SRC = join(root, 'tools/workbench/image-1787646942595.webp')
+const OUT = join(root, 'tools/assets-src/dpv-dashboard.png')
 
-/** Surfaces sampled out of the capture itself, so the patches disappear. */
+import fs from 'node:fs'
+if (!fs.existsSync(SRC)) {
+  console.error(`\nError: Missing input file ${SRC}\nPlease place the unredacted screenshot there before running this tool.`)
+  process.exit(1)
+}
+
 const BG = {
   sidebar: '#080b1a',
   header: '#111532',
@@ -37,10 +23,6 @@ const BG = {
 const FONT =
   "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
 
-/**
- * One patch: fill the box, then draw the replacement.
- * `size`/`weight`/`fill` mirror what the real element used.
- */
 function patch({ x, y, w, h, bg, text, size = 13, weight = 400, fill = '#dbdee1', dx = 0 }) {
   const escaped = String(text ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;')
   const label = text
@@ -57,7 +39,6 @@ function patch({ x, y, w, h, bg, text, size = 13, weight = 400, fill = '#dbdee1'
   }
 }
 
-/** Contacts get generic handles. Counts and avatars stay — those are the UI. */
 const DM_NAMES = [
   'friend_01', 'friend_02', 'friend_03', 'friend_04', 'friend_05',
   'friend_06', 'friend_07', 'friend_08', 'friend_09', 'friend_10',
@@ -65,15 +46,12 @@ const DM_NAMES = [
   'Unknown Participant', 'friend_14', 'friend_15', 'friend_16',
 ]
 
-/** The first sidebar row sits at y=133 and they repeat every 45.4px. */
 const ROW_0 = 124
 const ROW_STEP = 45.4
 
 const composites = [
-  // --- Header: the email. The @handle beside it is the author's own. -------
   patch({ x: 487, y: 56, w: 180, h: 20, bg: BG.header, text: 'you@example.com', size: 12, fill: '#8b8fa3' }),
 
-  // --- Sidebar: every contact name ----------------------------------------
   ...DM_NAMES.map((name, i) =>
     patch({
       x: 110,
@@ -87,7 +65,6 @@ const composites = [
     }),
   ),
 
-  // --- Top servers: eight names, two columns ------------------------------
   ...[
     ['Modding Hub', 358, 321],
     ['Study Group', 358, 392],
@@ -101,7 +78,6 @@ const composites = [
     patch({ x, y, w: 300, h: 19, bg: BG.panel, text, size: 13, weight: 700, fill: '#f2f3f5' }),
   ),
 
-  // --- Linked accounts: the values, not the service labels -----------------
   ...[
     ['Real Name', 332],
     ['epic-handle', 474],
@@ -112,7 +88,6 @@ const composites = [
   ),
 ]
 
-/** Photographic icons — blurred in place, because a filled box reads as a bug. */
 const BLUR_ICONS = [
   { left: 310, top: 320, width: 42, height: 42 },
   { left: 1158, top: 390, width: 42, height: 42 },

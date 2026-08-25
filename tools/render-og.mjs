@@ -1,13 +1,3 @@
-/**
- * Rasterises tools/og-card.html to public/og.png using whichever Chromium is
- * already installed.
- *
- * Favicons and app icons are not made here — they come straight from the
- * artwork via tools/gen-icons.mjs, which needs no browser.
- *
- * Run after editing the template:  npm run gen:og
- * The PNG is committed, so this is not part of the normal build.
- */
 import { execFileSync } from 'node:child_process'
 import { existsSync } from 'node:fs'
 import { join, dirname, resolve } from 'node:path'

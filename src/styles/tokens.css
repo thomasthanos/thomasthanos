@@ -1,35 +1,18 @@
-/* ============================================================================
-   Design tokens — the whole visual identity lives here.
-   Nothing in the app hardcodes a colour, radius or duration.
-   ========================================================================= */
-
 :root {
-  /* --- Surfaces: near-black charcoal, very slightly cool ------------------ */
   --c-void: #08090a;
   --c-bg: #0a0b0d;
   --c-bg-elev: #0e1013;
   --c-surface: #121417;
   --c-surface-2: #171a1e;
   --c-surface-3: #1d2126;
-
-  /* --- Lines ------------------------------------------------------------- */
   --c-line: #22262c;
   --c-line-soft: #191d22;
   --c-line-strong: #303740;
-
-  /* --- Text ---------------------------------------------------------------
-     Every tier here clears WCAG AA (4.5:1) against --c-surface, which is the
-     lightest background any of them ever sits on. Hierarchy comes from size,
-     weight and case — not from making the dim tiers unreadable.
-       text-2  9.0:1   text-3  6.5:1   text-4  4.8:1  */
   --c-text: #e9ece7;
   --c-text-2: #b6bcc4;
   --c-text-3: #949aa4;
   --c-text-4: #7c838d;
-  /* Decorative only — never carries text a reader needs. */
   --c-text-ghost: #4e555e;
-
-  /* --- Primary accent: acid lime ----------------------------------------- */
   --c-lime: #c8fa4b;
   --c-lime-bright: #d8ff6b;
   --c-lime-deep: #9ec92e;
@@ -38,28 +21,19 @@
   --c-lime-a14: rgba(200, 250, 75, 0.14);
   --c-lime-a24: rgba(200, 250, 75, 0.24);
   --c-lime-a40: rgba(200, 250, 75, 0.4);
-
-  /* --- Secondary accent: violet ------------------------------------------ */
   --c-violet: #a78bfa;
   --c-violet-bright: #c4b1ff;
   --c-violet-deep: #7c5ce6;
   --c-violet-a10: rgba(167, 139, 250, 0.1);
   --c-violet-a20: rgba(167, 139, 250, 0.2);
   --c-violet-a35: rgba(167, 139, 250, 0.35);
-
-  /* --- Category accents --------------------------------------------------- */
   --c-blue: #5cc8f5;
   --c-orange: #ffa04d;
   --c-pink: #f472b6;
   --c-red: #ff6b6b;
-
-  /* --- Semantic ----------------------------------------------------------- */
   --c-ok: var(--c-lime);
   --c-warn: var(--c-orange);
   --c-danger: var(--c-red);
-
-  /* --- Typography ---------------------------------------------------------- */
-  /* Squared techno display — headlines only, never body copy. */
   --f-display:
     'Tektur Variable', 'Tektur', 'Inter Tight Variable', system-ui, sans-serif;
   --f-sans:
@@ -68,35 +42,28 @@
   --f-mono:
     'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular,
     'SF Mono', Menlo, Consolas, monospace;
-  /* Margin notes only. One of the very few handwriting faces with Greek. */
   --f-hand: 'Mynerve', 'Segoe Script', 'Bradley Hand', cursive;
-
-  /* Fluid type scale — clamp()s so nothing needs a media query to breathe */
-  --t-micro: 0.6875rem; /* 11px  — mono labels */
-  --t-tiny: 0.75rem; /* 12px */
-  --t-xs: 0.8125rem; /* 13px */
-  --t-sm: 0.875rem; /* 14px */
-  --t-base: 0.9375rem; /* 15px */
-  --t-md: 1rem; /* 16px */
+  --t-micro: 0.6875rem; 
+  --t-tiny: 0.75rem; 
+  --t-xs: 0.8125rem; 
+  --t-sm: 0.875rem; 
+  --t-base: 0.9375rem; 
+  --t-md: 1rem; 
   --t-lg: clamp(1.0625rem, 0.99rem + 0.36vw, 1.1875rem);
   --t-xl: clamp(1.25rem, 1.13rem + 0.55vw, 1.5rem);
   --t-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
   --t-3xl: clamp(1.875rem, 1.5rem + 1.7vw, 2.75rem);
   --t-4xl: clamp(2.25rem, 1.6rem + 3.1vw, 4rem);
   --t-hero: clamp(2.4rem, 1.35rem + 4.6vw, 5.25rem);
-
   --lh-tight: 1.03;
   --lh-snug: 1.2;
   --lh-normal: 1.55;
   --lh-relaxed: 1.7;
-
   --ls-hero: -0.045em;
   --ls-head: -0.03em;
   --ls-tight: -0.015em;
   --ls-mono: 0.1em;
   --ls-label: 0.16em;
-
-  /* --- Spacing (4px base) --------------------------------------------------- */
   --s-1: 0.25rem;
   --s-2: 0.5rem;
   --s-3: 0.75rem;
@@ -109,27 +76,19 @@
   --s-10: 4rem;
   --s-11: 5rem;
   --s-12: 6.5rem;
-
-  /* Vertical rhythm between page blocks, shrinks on small screens */
   --gap-section: clamp(3rem, 2rem + 5vw, 6rem);
   --gap-page: clamp(2.5rem, 1.6rem + 4vw, 5rem);
-
-  /* --- Radii ------------------------------------------------------------------ */
   --r-xs: 4px;
   --r-sm: 6px;
   --r-md: 10px;
   --r-lg: 14px;
   --r-xl: 20px;
   --r-pill: 999px;
-
-  /* --- Elevation --------------------------------------------------------------- */
   --sh-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
   --sh-md: 0 6px 24px -8px rgba(0, 0, 0, 0.7);
   --sh-lg: 0 20px 60px -20px rgba(0, 0, 0, 0.85);
   --sh-lime: 0 0 0 1px var(--c-lime-a24), 0 10px 40px -14px var(--c-lime-a40);
   --sh-inset-top: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-
-  /* --- Motion -------------------------------------------------------------------- */
   --e-out: cubic-bezier(0.22, 1, 0.36, 1);
   --e-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --e-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -137,14 +96,10 @@
   --d-base: 200ms;
   --d-slow: 380ms;
   --d-slower: 600ms;
-
-  /* --- Layout ---------------------------------------------------------------------- */
   --w-page: 1920px;
   --w-prose: 68ch;
   --h-header: 60px;
   --pad-x: clamp(1.125rem, 0.6rem + 2.2vw, 4rem);
-
-  /* --- Z ---------------------------------------------------------------------------- */
   --z-base: 1;
   --z-sticky: 40;
   --z-header: 50;
@@ -152,17 +107,11 @@
   --z-toast: 70;
   --z-skip: 80;
 }
-
-/* Chaos Mode nudges the palette a touch warmer/louder without breaking it. */
 :root[data-chaos='on'] {
   --c-lime: #d9ff3d;
   --c-violet: #b79bff;
   --c-line: #2a2f36;
 }
-
-/* Phones use their own density scale. Desktop spacing values are intentionally
-   generous; carrying them unchanged into a single-column layout makes every
-   route feel like a sequence of empty screens. */
 @media (max-width: 899px) {
   :root {
     --pad-x: clamp(0.875rem, 0.7rem + 0.8vw, 1rem);
@@ -171,8 +120,6 @@
     --h-header: 56px;
   }
 }
-
-/* Category accent helper — set --accent on any subtree. */
 [data-accent='lime'] {
   --accent: var(--c-lime);
   --accent-ink: var(--c-lime-ink);
@@ -192,4 +139,4 @@
 [data-accent='pink'] {
   --accent: var(--c-pink);
   --accent-ink: #1d0512;
-}
+}

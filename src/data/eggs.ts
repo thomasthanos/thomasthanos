@@ -1,12 +1,6 @@
-import type { L } from './types'
+import type { L } from '@/data/types'
 
-/**
- * The hidden layer. Nothing in here is visible on a first pass — it shows up
- * in the console, behind Chaos Mode, after a Konami code, or on the rare
- * hover. The joke should reward exploration, not ambush the homepage.
- */
 
-/** Printed to the devtools console on first load. */
 export const consoleLines = [
   'Καλώς ήρθες στο console. Το ήξερα ότι θα το άνοιγες.',
   'Τίποτα δεν είναι minified. Διάβασε ό,τι θες.',
@@ -16,7 +10,6 @@ export const consoleLines = [
   'γιο γιο κατσαρίδα με μαγιό σου πήρα 5 ευρώ',
 ]
 
-/** Terminal panel lines on the homepage. Cycled, EN/EL aware. */
 export const terminalIdle: L[] = [
   {
     en: 'listening for annoying problems...',
@@ -31,7 +24,6 @@ export const terminalIdle: L[] = [
   { en: 'coffee: critical', el: 'καφές: επικίνδυνα χαμηλά' },
 ]
 
-/** Chaos Mode replaces the terminal idle lines with these. */
 export const terminalChaos: L[] = [
   { en: "let's play GTA", el: 'πάμε GTA' },
   { en: 'I need money', el: 'θέλω λεφτά' },
@@ -41,13 +33,11 @@ export const terminalChaos: L[] = [
   { en: 'blue caramel dicks', el: 'πούτσες μπλε καραμελέ' },
 ]
 
-/** Handwritten notes floating in the outer gutters while Chaos Mode is on. */
 export const chaosNotes = [
   { en: 'I need money', el: 'θέλω λεφτά' },
   { en: "I'm bored", el: 'βαριέμαι' },
 ] as const satisfies readonly L[]
 
-/** Homepage status chips. Two are picked per load. */
 export const statusChips: L[] = [
   { en: 'works on my machine', el: 'σε μένα δούλευε πάντως' },
   { en: 'probably debugging something', el: 'κάτι debugάρω τώρα σίγουρα' },
@@ -59,7 +49,6 @@ export const statusChips: L[] = [
   { en: 'source-available on purpose', el: 'ο κώδικας ανοιχτός, επίτηδες' },
 ]
 
-/** Rare hover text on the logo. Chaos Mode makes these much more likely. */
 export const logoWhispers: L[] = [
   { en: 'kolokithes A.E. — est. whenever', el: 'kolokithes A.E. — ιδρύθηκε κάποια στιγμή' },
   { en: 'come on, asshole', el: 'άντε ρε μαλάκα' },
@@ -67,7 +56,6 @@ export const logoWhispers: L[] = [
   { en: "let's play GTA", el: 'πάμε GTA' },
 ]
 
-/** Shown when a filter returns nothing. */
 export const emptyStates: L[] = [
   {
     en: 'Nothing here. Either I have not built it yet or I built it and deleted it in shame.',
@@ -75,7 +63,6 @@ export const emptyStates: L[] = [
   },
 ]
 
-/** 404 copy. */
 export const notFound = {
   code: '404',
   title: {
@@ -88,7 +75,6 @@ export const notFound = {
   } satisfies L,
 }
 
-/** Fired by the Konami code. */
 export const konamiMessage: L = {
   en: 'Chaos Mode unlocked. You have too much free time. Respect.',
   el: 'Ξεκλείδωσες το Chaos Mode. Έχεις πάρα πολύ ελεύθερο χρόνο. Σέβομαι.',

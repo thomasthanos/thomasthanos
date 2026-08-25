@@ -1,8 +1,3 @@
-/* ============================================================================
-   Animation — deliberately small. Everything here is opt-in and every
-   keyframe is neutralised by the reduced-motion block in base.css.
-   ========================================================================= */
-
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -13,7 +8,6 @@
     transform: none;
   }
 }
-
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -22,7 +16,6 @@
     opacity: 1;
   }
 }
-
 @keyframes blink {
   0%,
   49% {
@@ -33,7 +26,6 @@
     opacity: 0;
   }
 }
-
 @keyframes pulse-ring {
   0% {
     box-shadow: 0 0 0 0 var(--c-lime-a40);
@@ -45,7 +37,6 @@
     box-shadow: 0 0 0 0 rgba(200, 250, 75, 0);
   }
 }
-
 @keyframes sweep {
   from {
     transform: translateX(-110%);
@@ -54,7 +45,6 @@
     transform: translateX(210%);
   }
 }
-
 @keyframes wobble {
   0%,
   100% {
@@ -64,13 +54,9 @@
     transform: rotate(1.4deg);
   }
 }
-
-/* --- Route transition ------------------------------------------------------- */
 .route-enter {
   animation: fade-up var(--d-slow) var(--e-out) both;
 }
-
-/* --- Scroll reveal ---------------------------------------------------------- */
 .reveal {
   opacity: 0;
   transform: translate3d(0, 16px, 0);
@@ -79,20 +65,16 @@
     transform var(--d-slower) var(--e-out);
   transition-delay: var(--reveal-delay, 0ms);
 }
-
 .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
-
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
     transform: none;
   }
 }
-
-/* --- Terminal caret --------------------------------------------------------- */
 .caret {
   display: inline-block;
   width: 0.55em;
@@ -102,8 +84,6 @@
   background: var(--c-lime);
   animation: blink 1.05s steps(1) infinite;
 }
-
-/* --- Live status dot -------------------------------------------------------- */
 .live-dot {
   width: 7px;
   height: 7px;
@@ -112,15 +92,6 @@
   background: var(--c-lime);
   animation: pulse-ring 2.4s var(--e-out) infinite;
 }
-
-/* ============================================================================
-   Language swap
-   Driven by data-lang-anim on <html>, set by I18nProvider. The whole page
-   takes part: header, main and footer settle out together, then the new copy
-   arrives with a short stagger down the page so it reads as one movement
-   rather than eleven independent fades.
-   ========================================================================= */
-
 @keyframes lang-out {
   to {
     opacity: 0.18;
@@ -128,7 +99,6 @@
     filter: blur(2.5px);
   }
 }
-
 @keyframes lang-in {
   from {
     opacity: 0;
@@ -141,8 +111,6 @@
     filter: none;
   }
 }
-
-/* The accent line that crosses the page while the text is being replaced. */
 @keyframes lang-sweep {
   0% {
     transform: translate3d(-100%, 0, 0);
@@ -151,25 +119,19 @@
     transform: translate3d(100%, 0, 0);
   }
 }
-
 :root[data-lang-anim='out'] .hdr__inner,
 :root[data-lang-anim='out'] main,
 :root[data-lang-anim='out'] .ftr {
   animation: lang-out 150ms var(--e-in-out) both;
 }
-
 :root[data-lang-anim='in'] .hdr__inner,
 :root[data-lang-anim='in'] .ftr {
   animation: lang-in 380ms var(--e-out) both;
 }
-
-/* Stagger the main column's top-level blocks. Anything past the sixth shares
-   the last delay — by then it is below the fold anyway. */
 :root[data-lang-anim='in'] main > * > .container > *,
 :root[data-lang-anim='in'] main > * > .container--narrow > * {
   animation: lang-in 460ms var(--e-out) both;
 }
-
 :root[data-lang-anim='in'] main > * > .container > *:nth-child(1) {
   animation-delay: 0ms;
 }
@@ -185,12 +147,9 @@
 :root[data-lang-anim='in'] main > * > .container > *:nth-child(n + 5) {
   animation-delay: 210ms;
 }
-
-/* Fallback for pages whose main content is not wrapped in a .container. */
 :root[data-lang-anim='in'] main:not(:has(.container)) {
   animation: lang-in 420ms var(--e-out) both;
 }
-
 .lang-sweep {
   position: fixed;
   inset-inline: 0;
@@ -207,7 +166,6 @@
   );
   animation: lang-sweep 560ms var(--e-in-out) both;
 }
-
 @media (prefers-reduced-motion: reduce) {
   :root[data-lang-anim] .hdr__inner,
   :root[data-lang-anim] main,
@@ -215,8 +173,7 @@
   :root[data-lang-anim] main > * > .container > * {
     animation: none;
   }
-
   .lang-sweep {
     display: none;
   }
-}
+}

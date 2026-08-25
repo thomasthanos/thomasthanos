@@ -1,11 +1,3 @@
-/**
- * Generates the two static files that have to know every route:
- *   public/sitemap.xml   — one <url> per page, project slugs included
- *   dist/404.html        — SPA fallback for static hosts (GitHub Pages, etc.)
- *
- * Slugs are read straight out of the data files, so adding a project to
- * src/data/projects/ is the only edit needed — this stays in step by itself.
- */
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -59,7 +51,6 @@ ${urls
 writeFileSync(join(root, 'public/sitemap.xml'), sitemap)
 console.log(`sitemap.xml — ${urls.length} urls (${slugs.length} projects)`)
 
-// The 404 copy only exists once dist has been built.
 const indexHtml = join(root, 'dist/index.html')
 if (existsSync(indexHtml)) {
   writeFileSync(join(root, 'dist/404.html'), readFileSync(indexHtml))

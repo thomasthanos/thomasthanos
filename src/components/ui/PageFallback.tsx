@@ -1,9 +1,5 @@
-import { useI18n } from '../../i18n/i18n'
+import { useI18n } from '@/i18n/i18n'
 
-/**
- * Shown while a route chunk loads. Sized to roughly a page so the layout does
- * not jump when the real content arrives.
- */
 export function PageFallback() {
   const { t } = useI18n()
 

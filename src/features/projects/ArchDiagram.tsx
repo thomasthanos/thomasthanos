@@ -1,11 +1,7 @@
-import { useI18n } from '../../i18n/i18n'
-import type { ArchLayer } from '../../data/types'
-import './arch.css'
+import { useI18n } from '@/i18n/i18n'
+import type { ArchLayer } from '@/data/types'
+import '@/features/projects/arch.css'
 
-/**
- * Layers stack top to bottom with a connector between them. Module names are
- * the real ones from each repository.
- */
 export function ArchDiagram({ layers }: { layers: ArchLayer[] }) {
   const { tr } = useI18n()
 

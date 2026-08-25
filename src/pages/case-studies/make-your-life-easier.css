@@ -1,20 +1,14 @@
-/* Dedicated Make Your Life Easier case study. The generic project template
-   stays untouched; this page earns its density from real product material. */
-
 .myle {
   --myle-lime-wash: color-mix(in srgb, var(--c-lime) 7%, var(--c-surface));
   --myle-violet-wash: color-mix(in srgb, var(--c-violet) 7%, var(--c-surface));
   padding-bottom: 0;
 }
-
 main:has(> .myle) + .ftr {
   margin-top: var(--s-4);
 }
-
 .myle__container {
   position: relative;
 }
-
 .myle__back {
   display: inline-flex;
   align-items: center;
@@ -27,21 +21,16 @@ main:has(> .myle) + .ftr {
   color: var(--c-text-4);
   transition: color var(--d-fast) var(--e-out);
 }
-
 .myle__back:hover {
   color: var(--c-lime);
 }
-
 .myle__back svg {
   width: 14px;
   transition: transform var(--d-fast) var(--e-out);
 }
-
 .myle__back:hover svg {
   transform: translateX(-3px);
 }
-
-/* Hero */
 .myle-hero {
   position: relative;
   display: grid;
@@ -52,7 +41,6 @@ main:has(> .myle) + .ftr {
   padding: 0 0 clamp(2.5rem, 3.5vw, 4.5rem);
   border-bottom: 1px solid var(--c-line);
 }
-
 .myle-hero::before {
   content: '';
   position: absolute;
@@ -65,14 +53,12 @@ main:has(> .myle) + .ftr {
   filter: blur(28px);
   pointer-events: none;
 }
-
 .myle-hero__copy {
   position: relative;
   z-index: 2;
   min-width: 0;
   padding-top: clamp(2.5rem, 4vw, 6rem);
 }
-
 .myle-hero__meta {
   display: flex;
   flex-wrap: wrap;
@@ -86,7 +72,6 @@ main:has(> .myle) + .ftr {
   text-transform: uppercase;
   color: var(--c-violet-bright);
 }
-
 .myle-hero__status {
   display: inline-flex;
   align-items: center;
@@ -97,7 +82,6 @@ main:has(> .myle) + .ftr {
   color: var(--c-text-3);
   letter-spacing: 0.08em;
 }
-
 .myle-hero__status i {
   width: 6px;
   height: 6px;
@@ -105,7 +89,6 @@ main:has(> .myle) + .ftr {
   background: var(--c-lime);
   box-shadow: 0 0 10px var(--c-lime);
 }
-
 .myle-hero h1 {
   max-width: 9ch;
   font-family: var(--f-display);
@@ -115,20 +98,17 @@ main:has(> .myle) + .ftr {
   letter-spacing: -0.065em;
   text-transform: uppercase;
 }
-
 .myle-hero h1::after {
   content: '_';
   color: var(--c-lime);
   animation: myle-cursor 1.1s steps(1) infinite;
 }
-
 .myle-hero__tagline {
   margin-top: var(--s-4);
   font-family: var(--f-mono);
   font-size: clamp(0.78rem, 0.7rem + 0.25vw, 0.95rem);
   color: var(--c-lime);
 }
-
 .myle-hero__summary {
   max-width: 55ch;
   margin-top: var(--s-4);
@@ -137,14 +117,12 @@ main:has(> .myle) + .ftr {
   color: var(--c-text-2);
   text-wrap: pretty;
 }
-
 .myle-hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-3);
   margin-top: var(--s-6);
 }
-
 .myle-window {
   position: relative;
   z-index: 1;
@@ -157,7 +135,6 @@ main:has(> .myle) + .ftr {
   transform: perspective(1400px) rotateY(-1.5deg);
   transform-origin: center right;
 }
-
 .myle-window::after {
   content: '';
   position: absolute;
@@ -165,7 +142,6 @@ main:has(> .myle) + .ftr {
   pointer-events: none;
   background: linear-gradient(115deg, rgba(255, 255, 255, 0.035), transparent 28%);
 }
-
 .myle-window__bar {
   display: flex;
   align-items: center;
@@ -180,13 +156,11 @@ main:has(> .myle) + .ftr {
   color: var(--c-text-4);
   background: var(--c-bg-elev);
 }
-
 .myle-window__bar span:first-child {
   display: flex;
   align-items: center;
   gap: var(--s-2);
 }
-
 .myle-window__bar i {
   width: 7px;
   height: 7px;
@@ -194,13 +168,11 @@ main:has(> .myle) + .ftr {
   background: var(--c-lime);
   box-shadow: 0 0 8px var(--c-lime);
 }
-
 .myle-window img {
   width: 100%;
   aspect-ratio: 1100 / 750;
   object-fit: cover;
 }
-
 .myle-window__caption {
   position: absolute;
   right: var(--s-3);
@@ -217,24 +189,19 @@ main:has(> .myle) + .ftr {
   background: color-mix(in srgb, var(--c-void) 88%, transparent);
   backdrop-filter: blur(10px);
 }
-
-/* Shared section shell */
 .myle-section {
   position: relative;
   padding-top: clamp(2.75rem, 2rem + 2.2vw, 4.75rem);
 }
-
 .myle-section--tight {
   padding-top: var(--s-5);
 }
-
 .myle-section__head {
   display: flex;
   align-items: center;
   gap: var(--s-5);
   margin-bottom: var(--s-5);
 }
-
 .myle-section__head::after {
   content: '';
   flex: 1;
@@ -242,7 +209,6 @@ main:has(> .myle) + .ftr {
   height: 1px;
   background: linear-gradient(90deg, var(--c-line-strong), transparent);
 }
-
 .myle-section__head h2 {
   flex: 0 0 auto;
   font-family: var(--f-mono);
@@ -252,13 +218,11 @@ main:has(> .myle) + .ftr {
   text-transform: uppercase;
   color: var(--c-text-3);
 }
-
 .myle-section__head h2::before {
   content: '◆';
   margin-right: var(--s-3);
   color: var(--c-lime);
 }
-
 .myle-section__aside {
   order: 3;
   max-width: 52ch;
@@ -269,8 +233,6 @@ main:has(> .myle) + .ftr {
   text-align: right;
   color: var(--c-text-4);
 }
-
-/* Metrics */
 .myle-stats {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -281,13 +243,11 @@ main:has(> .myle) + .ftr {
   background: var(--c-line);
   box-shadow: var(--sh-inset-top);
 }
-
 .myle-stat {
   min-width: 0;
   padding: clamp(1rem, 1.2vw, 1.6rem);
   background: linear-gradient(145deg, var(--c-surface-2), var(--c-surface));
 }
-
 .myle-stat dt {
   overflow: hidden;
   font-family: var(--f-display);
@@ -297,11 +257,9 @@ main:has(> .myle) + .ftr {
   color: var(--c-lime);
   text-overflow: ellipsis;
 }
-
 .myle-stat:nth-child(2n) dt {
   color: var(--c-violet-bright);
 }
-
 .myle-stat dd {
   margin-top: 0.5rem;
   font-family: var(--f-mono);
@@ -309,14 +267,11 @@ main:has(> .myle) + .ftr {
   line-height: 1.45;
   color: var(--c-text-3);
 }
-
-/* Feature grid */
 .myle-features {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: var(--s-3);
 }
-
 .myle-feature {
   height: 100%;
   min-height: 220px;
@@ -330,13 +285,11 @@ main:has(> .myle) + .ftr {
     border-color var(--d-base) var(--e-out),
     background var(--d-base) var(--e-out);
 }
-
 .myle-feature:hover {
   transform: translateY(-4px);
   border-color: color-mix(in srgb, var(--c-lime) 35%, var(--c-line));
   background: var(--myle-lime-wash);
 }
-
 .myle-feature__top {
   display: flex;
   align-items: center;
@@ -344,40 +297,33 @@ main:has(> .myle) + .ftr {
   margin-bottom: var(--s-5);
   color: var(--c-violet-bright);
 }
-
 .myle-feature__top svg {
   width: 22px;
   height: 22px;
 }
-
 .myle-feature__top span {
   font-family: var(--f-mono);
   font-size: 10px;
   color: var(--c-text-ghost);
 }
-
 .myle-feature h3 {
   font-family: var(--f-display);
   font-size: var(--t-lg);
   font-weight: 700;
   color: var(--c-text);
 }
-
 .myle-feature p {
   margin-top: var(--s-3);
   font-size: var(--t-xs);
   line-height: 1.65;
   color: var(--c-text-3);
 }
-
-/* Architecture + hard parts */
 .myle-engineering {
   display: grid;
   grid-template-columns: minmax(520px, 1.08fr) minmax(380px, 0.92fr);
   gap: var(--s-5);
   align-items: start;
 }
-
 .myle-arch,
 .myle-challenges-wrap {
   min-width: 0;
@@ -387,13 +333,11 @@ main:has(> .myle) + .ftr {
   background: linear-gradient(145deg, var(--myle-violet-wash), var(--c-surface));
   box-shadow: var(--sh-inset-top);
 }
-
 .myle-arch {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 .myle-arch__node {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -407,14 +351,12 @@ main:has(> .myle) + .ftr {
   border-radius: var(--r-sm);
   background: var(--c-bg-elev);
 }
-
 .myle-arch__node > svg {
   grid-area: icon;
   width: 20px;
   height: 20px;
   color: var(--c-violet-bright);
 }
-
 .myle-arch__node strong {
   grid-area: title;
   min-width: 0;
@@ -422,7 +364,6 @@ main:has(> .myle) + .ftr {
   font-size: var(--t-xs);
   color: var(--c-text);
 }
-
 .myle-arch__node span {
   grid-area: note;
   min-width: 0;
@@ -432,34 +373,28 @@ main:has(> .myle) + .ftr {
   line-height: 1.4;
   color: var(--c-text-4);
 }
-
 .myle-arch__node--renderer {
   width: min(100%, 620px);
   border-color: color-mix(in srgb, var(--c-violet) 50%, var(--c-line));
 }
-
 .myle-arch__node--bridge {
   width: min(78%, 480px);
   border-color: color-mix(in srgb, var(--c-lime) 45%, var(--c-line));
 }
-
 .myle-arch__node--main {
   width: min(78%, 480px);
   border-color: color-mix(in srgb, var(--c-lime) 45%, var(--c-line));
 }
-
 .myle-arch__node--bridge > svg,
 .myle-arch__node--main > svg {
   color: var(--c-lime);
 }
-
 .myle-arch__route {
   position: relative;
   width: 1px;
   height: 36px;
   background: var(--c-line-strong);
 }
-
 .myle-arch__route::after {
   content: '';
   position: absolute;
@@ -471,7 +406,6 @@ main:has(> .myle) + .ftr {
   border-bottom: 1px solid var(--c-text-4);
   transform: rotate(45deg);
 }
-
 .myle-arch__route span {
   position: absolute;
   top: 50%;
@@ -482,7 +416,6 @@ main:has(> .myle) + .ftr {
   font-size: 8px;
   color: var(--c-text-ghost);
 }
-
 .myle-arch__branches {
   width: 75%;
   height: 34px;
@@ -490,7 +423,6 @@ main:has(> .myle) + .ftr {
   border-bottom: 1px solid var(--c-line-strong);
   border-left: 1px solid var(--c-line-strong);
 }
-
 .myle-arch__leaves {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -498,13 +430,11 @@ main:has(> .myle) + .ftr {
   width: 100%;
   margin-top: var(--s-3);
 }
-
 .myle-challenges-wrap {
   padding: 0;
   overflow: hidden;
   background: var(--c-line);
 }
-
 .myle-challenges__head {
   display: flex;
   align-items: center;
@@ -513,7 +443,6 @@ main:has(> .myle) + .ftr {
   padding: var(--s-5);
   background: var(--c-surface-2);
 }
-
 .myle-challenges__head h3 {
   font-family: var(--f-mono);
   font-size: var(--t-micro);
@@ -522,14 +451,12 @@ main:has(> .myle) + .ftr {
   text-transform: uppercase;
   color: var(--c-violet-bright);
 }
-
 .myle-challenges {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   background: var(--c-line);
 }
-
 .myle-challenge {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -539,33 +466,27 @@ main:has(> .myle) + .ftr {
   padding: var(--s-5);
   background: var(--c-surface);
 }
-
 .myle-challenge > span {
   padding-top: 0.15rem;
   font-family: var(--f-mono);
   font-size: 10px;
   color: var(--c-lime);
 }
-
 .myle-challenge h4 {
   font-size: var(--t-md);
 }
-
 .myle-challenge p {
   margin-top: 0.35rem;
   font-size: var(--t-xs);
   line-height: 1.58;
   color: var(--c-text-3);
 }
-
-/* Verified history */
 .myle-evolution {
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--s-4);
 }
-
 .myle-evolution::before {
   content: '';
   position: absolute;
@@ -576,7 +497,6 @@ main:has(> .myle) + .ftr {
   background: linear-gradient(90deg, var(--c-violet), var(--c-lime));
   opacity: 0.45;
 }
-
 .myle-era {
   position: relative;
   height: 100%;
@@ -586,7 +506,6 @@ main:has(> .myle) + .ftr {
   background: linear-gradient(155deg, var(--c-surface-2), var(--c-surface));
   box-shadow: var(--sh-inset-top);
 }
-
 .myle-era::before {
   content: '';
   position: absolute;
@@ -599,11 +518,9 @@ main:has(> .myle) + .ftr {
   background: var(--c-lime);
   box-shadow: 0 0 0 1px var(--c-lime-a40), 0 0 16px var(--c-lime-a40);
 }
-
 .myle-evolution li:nth-child(2) .myle-era::before {
   background: var(--c-violet);
 }
-
 .myle-era__version {
   font-family: var(--f-mono);
   font-size: 10px;
@@ -612,31 +529,25 @@ main:has(> .myle) + .ftr {
   text-transform: uppercase;
   color: var(--c-lime);
 }
-
 .myle-era h3 {
   margin-top: var(--s-3);
   font-family: var(--f-display);
   font-size: var(--t-xl);
 }
-
 .myle-era p {
   margin-top: var(--s-3);
   font-size: var(--t-sm);
   line-height: 1.65;
   color: var(--c-text-3);
 }
-
-/* Real screenshots */
 .myle-section--gallery {
   overflow: visible;
 }
-
 .myle-gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--s-5);
 }
-
 .myle-shot {
   min-width: 0;
   overflow: hidden;
@@ -645,18 +556,15 @@ main:has(> .myle) + .ftr {
   background: var(--c-surface);
   box-shadow: var(--sh-lg);
 }
-
 .myle-shot img {
   width: 100%;
   aspect-ratio: 1100 / 750;
   object-fit: cover;
   transition: transform var(--d-slow) var(--e-out);
 }
-
 .myle-shot:hover img {
   transform: scale(1.012);
 }
-
 .myle-shot figcaption {
   display: flex;
   align-items: flex-start;
@@ -669,37 +577,29 @@ main:has(> .myle) + .ftr {
   line-height: 1.5;
   color: var(--c-text-3);
 }
-
 .myle-shot figcaption span {
   color: var(--c-lime);
 }
-
-/* Ending panels */
 .myle-endgrid {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: var(--s-5);
 }
-
 .myle-section--panel {
   display: flex;
   min-width: 0;
   flex-direction: column;
 }
-
 .myle-section--panel > .myle-privacy {
   flex: 1;
 }
-
 .myle-section--lessons {
   align-self: start;
 }
-
 .myle-section--lessons > .myle-lessons {
   flex: none;
   height: auto;
 }
-
 .myle-privacy,
 .myle-lessons {
   height: 100%;
@@ -709,20 +609,17 @@ main:has(> .myle) + .ftr {
   background: linear-gradient(145deg, var(--myle-lime-wash), var(--c-surface));
   box-shadow: var(--sh-inset-top);
 }
-
 .myle-privacy > svg {
   width: 34px;
   height: 34px;
   color: var(--c-lime);
 }
-
 .myle-privacy p {
   margin-top: var(--s-5);
   font-size: var(--t-sm);
   line-height: 1.7;
   color: var(--c-text-2);
 }
-
 .myle-privacy strong {
   display: block;
   margin-top: var(--s-5);
@@ -734,7 +631,6 @@ main:has(> .myle) + .ftr {
   transform: rotate(-1deg);
   transform-origin: left center;
 }
-
 .myle-lessons {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -743,7 +639,6 @@ main:has(> .myle) + .ftr {
   overflow: hidden;
   background: var(--c-line);
 }
-
 .myle-lessons li {
   position: relative;
   min-height: 104px;
@@ -753,7 +648,6 @@ main:has(> .myle) + .ftr {
   color: var(--c-text-3);
   background: var(--c-surface);
 }
-
 .myle-lessons li::before {
   content: '—';
   position: absolute;
@@ -761,17 +655,14 @@ main:has(> .myle) + .ftr {
   left: 1.25rem;
   color: var(--c-lime);
 }
-
 .myle-section--links {
   padding-bottom: var(--s-4);
 }
-
 .myle-stack {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-2);
 }
-
 .myle-stack span {
   padding: 0.48rem 0.68rem;
   border: 1px solid var(--c-line-strong);
@@ -781,14 +672,12 @@ main:has(> .myle) + .ftr {
   color: var(--c-text-3);
   background: var(--c-bg-elev);
 }
-
 .myle-links {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-3);
   margin-top: var(--s-5);
 }
-
 .myle-nav {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 116px minmax(0, 1fr);
@@ -799,7 +688,6 @@ main:has(> .myle) + .ftr {
   background: linear-gradient(145deg, var(--c-surface-2), var(--c-surface));
   box-shadow: var(--sh-inset-top);
 }
-
 .myle-nav a {
   display: grid;
   grid-template-columns: 66px minmax(0, 1fr);
@@ -812,11 +700,9 @@ main:has(> .myle) + .ftr {
     border-color var(--d-base) var(--e-out),
     background var(--d-base) var(--e-out);
 }
-
 .myle-nav a:hover {
   background: var(--myle-lime-wash);
 }
-
 .myle-nav__thumb {
   display: grid;
   place-items: center;
@@ -833,14 +719,12 @@ main:has(> .myle) + .ftr {
     var(--c-bg-elev);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
-
 .myle-nav__copy {
   display: flex;
   min-width: 0;
   flex-direction: column;
   gap: 0.25rem;
 }
-
 .myle-nav__label {
   display: flex;
   align-items: center;
@@ -851,18 +735,15 @@ main:has(> .myle) + .ftr {
   text-transform: uppercase;
   color: var(--c-text-4);
 }
-
 .myle-nav__label svg {
   width: 13px;
   height: 13px;
 }
-
 .myle-nav strong {
   font-family: var(--f-display);
   font-size: var(--t-lg);
   color: var(--c-text);
 }
-
 .myle-nav small {
   overflow: hidden;
   font-size: var(--t-xs);
@@ -871,7 +752,6 @@ main:has(> .myle) + .ftr {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .myle-nav__brand {
   display: grid;
   place-items: center;
@@ -880,115 +760,82 @@ main:has(> .myle) + .ftr {
   border-left: 1px solid var(--c-line);
   background: radial-gradient(circle, var(--c-lime-a08), transparent 68%);
 }
-
 .myle-nav__next {
   grid-template-columns: minmax(0, 1fr) 66px !important;
   text-align: right;
 }
-
 .myle-nav__next .myle-nav__label {
   justify-content: flex-end;
 }
-
-/* MYLE caps its container at 1500px on short viewports, so the shared gutter
-   maths has to be told. If that cap changes, this follows it. */
 @media (max-height: 1100px) {
   .myle__container {
     --n-cw: min(1500px, 100vw);
   }
 }
-
-/* --- Anchors: RAIL mode ---------------------------------------------------
-   Left-rail notes point right at their section; right-rail notes point left.
-   Vertical offsets are rem from the section's own top or bottom edge. */
 .myle-note--hero {
   top: 4.25rem;
   left: var(--n-rail);
   --n-rot: -6deg;
 }
-
 .myle-note--admin {
   right: var(--n-rail);
   bottom: 6.5rem;
   color: var(--c-lime);
   --n-rot: 5deg;
 }
-
 .myle-note--metrics {
   top: 4.5rem;
   right: var(--n-rail);
   color: var(--c-lime);
   --n-rot: 3deg;
 }
-
 .myle-note--ipc {
   top: 15rem;
   left: var(--n-rail);
   --n-rot: -7deg;
 }
-
 .myle-note--evolution {
   right: var(--n-rail);
   bottom: 3rem;
   color: var(--c-lime);
   --n-rot: 4deg;
 }
-
 .myle-note--gallery {
   top: 9rem;
   right: var(--n-rail);
   --n-rot: -4deg;
 }
-
 .myle-note--privacy {
   bottom: 2.5rem;
   left: var(--n-rail);
   color: var(--c-orange);
   --n-rot: -4deg;
 }
-
-/* The lessons panel is the second column of `.myle-endgrid`, so its left edge
-   is mid-page — a rail offset would land in the middle of the layout. This one
-   always sits under the panel, in space the section reserves for it. */
 .myle-note--ship {
   right: 1.5rem;
   bottom: 0.25rem;
   color: var(--c-lime);
   --n-rot: 2deg;
 }
-
 :root[data-chaos='on'] .myle-section--lessons {
   padding-bottom: calc(var(--n-fs) * 5.4);
 }
-
 @keyframes myle-cursor {
   50% { opacity: 0; }
 }
-
-/* --- INSET mode -------------------------------------------------------------
-   No usable side band. Every note drops to the foot of the section it
-   annotates, into padding reserved for it, and its arrow turns to point back
-   up at the target. Left-rail notes stay left, right-rail notes stay right, so
-   the reading order and the semantic anchor survive the move. */
 @media (max-height: 1100px) and (max-width: 1875px),
        (min-height: 1101px) and (max-width: 2295px) {
-  /* Restated here, not just inherited from annotations.css: that file is
-     imported first, so the unconditional rail anchors above would otherwise
-     win and leave the notes in a band too narrow to hold them. The arrows do
-     come from the shared file — nothing here competes with those. */
   .myle-note {
     inset: auto auto 0.35rem auto;
     max-width: none;
     white-space: nowrap;
   }
-
   .myle-note--hero,
   .myle-note--ipc,
   .myle-note--privacy {
     left: 0.25rem;
     right: auto;
   }
-
   .myle-note--admin,
   .myle-note--metrics,
   .myle-note--evolution,
@@ -1000,250 +847,179 @@ main:has(> .myle) + .ftr {
   :root[data-chaos='on'] .myle-hero {
     padding-bottom: calc(var(--n-fs) * 5.0);
   }
-
   :root[data-chaos='on'] .myle-section--tight,
   :root[data-chaos='on'] .myle-section--gallery,
   :root[data-chaos='on'] .myle-section--note-space {
     padding-bottom: calc(var(--n-fs) * 4.8);
   }
-
   :root[data-chaos='on'] .myle-section--lessons {
     padding-bottom: calc(var(--n-fs) * 5.2);
   }
-
-  /* The hero is taller than a 720p viewport, so its foot is below the fold.
-     This one goes to the band of empty space between the back link and the
-     eyebrow instead — still upper-left, still pointing at the title. */
-  /* The band this note lives in is bounded by the back link above and the
-     eyebrow below. Greek runs to two lines here, so the band is widened to
-     suit rather than letting the note creep onto either neighbour. */
-  /* Only the 720p tier needs this. There the hero is taller than the viewport,
-     so its foot is below the fold and the note goes to the band between the
-     back link and the eyebrow instead. Wider viewports have a visible hero
-     foot and were landing the note on the eyebrow.
-     Verified at 1700x950, where it used to overlap by 24px. */
   @media (max-width: 1599px) {
     :root[data-chaos='on'] .myle__back {
       margin-bottom: calc(var(--n-fs) * 3.2);
     }
-
     .myle-note--hero {
       inset: calc(var(--n-fs) * 0.5) auto auto 0.25rem;
     }
   }
-
-
 }
-
-
-
-
-
-/* ============================================================================
-   Hand-placed positions
-   ----------------------------------------------------------------------------
-   Captured with the Sticker Edit Mode overlay and written back here. They come
-   last on purpose: they override the computed rail/inset placement above, which
-   now only decides where a note goes at a width nobody tuned by hand.
-
-   `right` and `bottom` are the captured value plus a correction. The overlay
-   measured those two against the rotated bounding box while measuring top and
-   left against the layout box, so they came out short by however much the
-   rotation inflates the element — 47px on the 18-degree lessons note. Each
-   value below shows the raw capture and the correction that was added.
-
-   Horizontal offsets inside the anchor are percentages of it so they hold
-   across a tier; offsets into the side band stay in px, clamped to the band.
-   ========================================================================= */
-
-
-/* 4K — captured at 2644x1285, rail mode. The container caps at 1920 so the
-   anchors stop growing past 2048; these hold for any width from here up. */
 @media (min-width: 2560px) {
   .myle-note--hero {
     top: 741px;
     bottom: auto;
-    left: 26.842%; /* 481px at capture width */
+    left: 26.842%; 
     right: auto;
     --n-rot: -6deg;
   }
-
   .myle-note--admin {
-    bottom: 43px; /* from left:1788 top:768 */
+    bottom: 43px; 
     top: auto;
     right: max(-203px, calc(-1 * (var(--n-gutter) - 0.75rem)));
     left: auto;
     --n-rot: 7deg;
   }
-
   .myle-note--metrics {
     top: 85px;
     bottom: auto;
-    right: max(-209px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -216 captured + 7 rotation */
+    right: max(-209px, calc(-1 * (var(--n-gutter) - 0.75rem))); 
     left: auto;
     --n-rot: 5deg;
   }
-
   .myle-note--ipc {
     top: 340px;
     bottom: auto;
-    left: 0.781%; /* 14px at capture width */
+    left: 0.781%; 
     right: auto;
     --n-rot: -20deg;
   }
-
   .myle-note--evolution {
-    bottom: -33px; /* from left:1785 top:267 */
+    bottom: -33px; 
     top: auto;
     right: max(-201px, calc(-1 * (var(--n-gutter) - 0.75rem)));
     left: auto;
     --n-rot: 14deg;
   }
-
   .myle-note--gallery {
     top: 554px;
     bottom: auto;
-    right: 7.745%; /* 139px = 128 captured + 11 rotation */
+    right: 7.745%; 
     left: auto;
     --n-rot: 17deg;
   }
-
   .myle-note--privacy {
-    bottom: 46px; /* from left:403 top:286 */
+    bottom: 46px; 
     top: auto;
-    left: 53.519%; /* 403px at capture width */
+    left: 53.519%; 
     right: auto;
     --n-rot: -19deg;
   }
-
   .myle-note--ship {
-    bottom: 24px; /* from left:782 top:332 */
+    bottom: 24px; 
     top: auto;
-    right: 2.846%; /* 29px */
+    right: 2.846%; 
     left: auto;
     --n-rot: -13deg;
   }
 }
-
-/* 1440p — captured at 2552x1308, rail mode. Gated to widths where a rail
-   actually exists; below that the computed inset placement takes over. */
 @media (min-width: 2296px) and (max-width: 2559px) and (min-height: 1101px),
        (min-width: 2000px) and (max-width: 2559px) and (max-height: 1100px) {
   .myle-note--hero {
     top: 738px;
     bottom: auto;
-    left: 28.627%; /* 513px at capture width */
+    left: 28.627%; 
     right: auto;
     --n-rot: -1deg;
   }
-
   .myle-note--admin {
-    bottom: 30px; /* -16 captured + 46 rotation */
+    bottom: 30px; 
     top: auto;
-    right: max(-180px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -184 captured + 4 rotation */
+    right: max(-180px, calc(-1 * (var(--n-gutter) - 0.75rem))); 
     left: auto;
     --n-rot: 15deg;
   }
-
   .myle-note--metrics {
     top: 97px;
     bottom: auto;
-    right: max(-189px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -193 captured + 4 rotation */
+    right: max(-189px, calc(-1 * (var(--n-gutter) - 0.75rem))); 
     left: auto;
     --n-rot: 3deg;
   }
-
   .myle-note--ipc {
     top: 322px;
     bottom: auto;
-    left: 1.395%; /* 25px at capture width */
+    left: 1.395%; 
     right: auto;
     --n-rot: -27deg;
   }
-
   .myle-note--evolution {
-    bottom: -41px; /* -84 captured + 43 rotation */
+    bottom: -41px; 
     top: auto;
-    right: max(-190px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -199 captured + 9 rotation */
+    right: max(-190px, calc(-1 * (var(--n-gutter) - 0.75rem))); 
     left: auto;
     --n-rot: 14deg;
   }
-
   .myle-note--gallery {
     top: 568px;
     bottom: auto;
-    right: 5.597%; /* 100px = 91 captured + 9 rotation */
+    right: 5.597%; 
     left: auto;
     --n-rot: -14deg;
   }
-
   .myle-note--privacy {
-    bottom: 26px; /* -42 captured + 68 rotation */
+    bottom: 26px; 
     top: auto;
-    left: 50.465%; /* 380px at capture width */
+    left: 50.465%; 
     right: auto;
     --n-rot: -24deg;
   }
-
   .myle-note--ship {
-    bottom: 39px; /* 14 captured + 25 rotation */
+    bottom: 39px; 
     top: auto;
-    right: 2.691%; /* 27px = 21 captured + 6 rotation */
+    right: 2.691%; 
     left: auto;
     --n-rot: -8deg;
   }
 }
-
-/* Compact the complete 1080p presentation instead of carrying the larger
-   1440p/4K vertical rhythm into a shorter viewport. */
 @media (min-width: 1600px) and (max-width: 1999px) and (max-height: 1100px) {
   .myle {
     padding-top: 1.25rem;
   }
-
   .myle-hero__copy {
     padding-top: 1.25rem;
   }
-
   .myle-section {
     padding-top: 3rem;
   }
-
   .myle-section--tight {
     padding-top: 1.25rem;
   }
-
   .myle-section__head {
     margin-bottom: 1rem;
   }
 }
-
-/* 1080p — captured at 1920x1080, rail mode on a short viewport. */
 @media (min-width: 1876px) and (max-width: 1999px) and (max-height: 1100px) {
   .myle-note--hero {
     top: 570px;
     bottom: auto;
-    left: 29.011%; /* 405px at capture width */
+    left: 29.011%; 
     right: auto;
     --n-rot: -5.2deg;
   }
-
   .myle-note--admin {
-    bottom: -6px; /* -43 captured + 37 rotation */
+    bottom: -6px; 
     top: auto;
-    right: max(-169px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -178 captured + 9 rotation */
+    right: max(-169px, calc(-1 * (var(--n-gutter) - 0.75rem))); 
     left: auto;
     --n-rot: 14deg;
   }
-
   .myle-note--metrics {
     top: 103px;
     bottom: auto;
-    right: max(-159px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -171 captured + 12 rotation */
+    right: max(-159px, calc(-1 * (var(--n-gutter) - 0.75rem))); 
     left: auto;
     --n-rot: 13deg;
   }
-
   .myle-note--ipc {
     top: 339px;
     bottom: auto;
@@ -1251,265 +1027,214 @@ main:has(> .myle) + .ftr {
     right: auto;
     --n-rot: -17deg;
   }
-
   .myle-note--evolution {
-    bottom: -33px; /* -68 captured + 35 rotation */
+    bottom: -33px; 
     top: auto;
-    right: max(-156px, calc(-1 * (var(--n-gutter) - 0.75rem))); /* -164 captured + 8 rotation */
+    right: max(-156px, calc(-1 * (var(--n-gutter) - 0.75rem))); 
     left: auto;
     --n-rot: 13deg;
   }
-
   .myle-note--gallery {
     top: 454px;
     bottom: auto;
-    right: 7.456%; /* 104px = 95 captured + 9 rotation */
+    right: 7.456%; 
     left: auto;
     --n-rot: 21deg;
   }
-
   .myle-note--privacy {
-    bottom: 23px; /* -14 captured + 37 rotation */
+    bottom: 23px; 
     top: auto;
-    left: 57.094%; /* 334px at capture width */
+    left: 57.094%; 
     right: auto;
     --n-rot: -14deg;
   }
-
   .myle-note--ship {
-    bottom: 21px; /* -26 captured + 47 rotation */
+    bottom: 21px; 
     top: auto;
-    right: 1.878%; /* 15px = 6 captured + 9 rotation */
+    right: 1.878%; 
     left: auto;
     --n-rot: -18deg;
   }
 }
-
-/* 720p — captured at 1280x720. One tier again: the 1180 sample differed by
-   the same 42px the export bug accounted for, not by genuine drift. */
 @media (min-width: 1100px) and (max-width: 1599px) {
   .myle {
     padding-top: 1rem;
   }
-
   :root[data-chaos='on'] .myle__back {
     margin-bottom: 0.5rem;
   }
-
   .myle-hero__copy {
     padding-top: 1rem;
   }
-
   .myle-note--hero {
     top: 502px;
     bottom: auto;
-    left: 25.975%; /* 313px at capture width */
+    left: 25.975%; 
     right: auto;
     --n-rot: -6deg;
   }
-
   .myle-note--hero::after {
     --n-flip: 1;
     --n-arrow-rot: -12deg;
     order: 0;
     margin: -0.15em -0.9em 0 auto;
   }
-
   .myle-note--admin {
-    bottom: 23px; /* -3 captured + 26 rotation */
+    bottom: 23px; 
     top: auto;
-    right: 0.280%; /* 3px = 0 captured + 3 rotation */
+    right: 0.280%; 
     left: auto;
     --n-rot: -10deg;
   }
-
   .myle-note--metrics {
     top: 144px;
     bottom: auto;
-    right: 1.717%; /* 21px = 19 captured + 2 rotation */
+    right: 1.717%; 
     left: auto;
     --n-rot: -9deg;
   }
-
   .myle-note--ipc {
     top: 299px;
     bottom: auto;
-    left: 37.593%; /* 453px at capture width */
+    left: 37.593%; 
     right: auto;
     --n-rot: -13deg;
   }
-
   .myle-note--evolution {
-    bottom: 29px; /* -14 captured + 43 rotation */
+    bottom: 29px; 
     top: auto;
-    right: 1.586%; /* 19px = 17 captured + 2 rotation */
+    right: 1.586%; 
     left: auto;
     --n-rot: -11deg;
   }
-
   .myle-note--gallery {
     top: 398px;
     bottom: auto;
-    right: 5.640%; /* 68px = 66 captured + 2 rotation */
+    right: 5.640%; 
     left: auto;
     --n-rot: -13deg;
   }
-
   .myle-note--privacy {
-    bottom: 69px; /* 23 captured + 46 rotation */
+    bottom: 69px; 
     top: auto;
-    left: 58.449%; /* 294px at capture width */
+    left: 58.449%; 
     right: auto;
     --n-rot: 8deg;
   }
-
   .myle-note--ship {
-    bottom: 35px; /* -9 captured + 44 rotation */
+    bottom: 35px; 
     top: auto;
-    right: 4.750%; /* 32px = 30 captured + 2 rotation */
+    right: 4.750%; 
     left: auto;
     --n-rot: -13deg;
   }
 }
-
-/* Standard 1080p landscape needs less theatrical vertical spacing than 1440p/4K. */
 @media (min-width: 1100px) and (max-width: 2559px) and (max-height: 1100px) {
   .myle__container {
     max-width: 1500px;
   }
-
   .myle__back {
     margin-bottom: 0.25rem;
   }
-
   .myle-hero {
     grid-template-columns: minmax(340px, 0.78fr) minmax(500px, 1.22fr);
     gap: clamp(1.75rem, 2vw, 2.5rem);
     min-height: 0;
     padding: 0.5rem 0 1.75rem;
   }
-
   .myle-hero__copy {
     max-width: 540px;
   }
-
   .myle-hero h1 {
     font-size: clamp(3.5rem, 2rem + 2.2vw, 4.6rem);
   }
-
   .myle-hero__meta {
     margin-bottom: var(--s-3);
   }
-
   .myle-hero__summary {
     font-size: 0.925rem;
     line-height: 1.45;
   }
-
   .myle-hero__actions {
     margin-top: var(--s-4);
   }
-
   .myle-window {
     width: 100%;
     max-width: 850px;
     justify-self: end;
   }
-
   .myle-window__bar {
     min-height: 34px;
   }
 }
-
 @media (max-width: 1399px) {
   .myle-hero {
     grid-template-columns: minmax(300px, 0.78fr) minmax(500px, 1.22fr);
     min-height: auto;
   }
-
   .myle-features {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
   .myle-feature {
     min-height: 190px;
   }
-
 }
-
 @media (max-width: 1099px) {
-  /* Tablet/mobile: handwritten callouts are hidden, so do not keep the
-     desktop inset rails that were reserving empty space for them. */
   :root[data-chaos='on'] .myle-hero {
     padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
   }
-
   :root[data-chaos='on'] .myle-section--tight,
   :root[data-chaos='on'] .myle-section--gallery,
   :root[data-chaos='on'] .myle-section--note-space,
   :root[data-chaos='on'] .myle-section--lessons {
     padding-bottom: 0;
   }
-
   :root[data-chaos='on'] .myle__back {
     margin-bottom: 0.5rem;
   }
-
   .myle-note {
     display: none !important;
   }
-
   .myle-hero__copy {
     padding-top: 0;
   }
-
   .myle-hero {
     grid-template-columns: 1fr;
     gap: clamp(1.25rem, 3vw, 2rem);
   }
-
   .myle-hero h1 {
     max-width: 13ch;
     font-size: clamp(3.2rem, 2.4rem + 5vw, 5.5rem);
   }
-
   .myle-window {
     width: 100%;
     transform: none;
   }
-
   .myle-stats {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
   .myle-engineering {
     grid-template-columns: 1fr;
   }
-
   .myle-endgrid {
     grid-template-columns: 1fr;
   }
 }
-
 @media (max-width: 899px) {
   .myle-hero {
     padding-top: 0;
   }
-
   .myle-section {
     padding-top: clamp(1.75rem, 5vw, 2.25rem);
   }
-
   .myle-section--tight {
     padding-top: var(--s-4);
   }
-
   .myle-section__head {
     flex-wrap: wrap;
     row-gap: var(--s-2);
     margin-bottom: var(--s-4);
   }
-
   .myle-section__aside {
     flex-basis: 100%;
     order: 4;
@@ -1517,7 +1242,6 @@ main:has(> .myle) + .ftr {
     padding-left: calc(var(--s-3) + 0.8rem);
     text-align: left;
   }
-
   .myle-feature p,
   .myle-challenge p,
   .myle-era p,
@@ -1525,58 +1249,45 @@ main:has(> .myle) + .ftr {
   .myle-lessons li {
     font-size: 0.8125rem;
   }
-
   .myle-nav a {
     min-height: 100px;
   }
-
 }
-
 @media (max-width: 719px) {
   .myle__back {
     margin-bottom: 0.5rem;
   }
-
   .myle-hero {
     gap: var(--s-4);
     padding-bottom: var(--s-5);
   }
-
   .myle-hero__meta {
     margin-bottom: var(--s-4);
   }
-
   .myle-hero h1 {
     max-width: 10ch;
     font-size: clamp(2.65rem, 1.55rem + 9vw, 4.25rem);
   }
-
   .myle-hero__summary {
     font-size: 0.95rem;
   }
-
   .myle-hero__actions .btn {
     flex: 1 1 150px;
   }
-
   .myle-window__bar {
     min-height: 32px;
     padding-inline: var(--s-3);
     font-size: 8px;
   }
-
   .myle-window__caption {
     display: none;
   }
-
   .myle-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .myle-stat {
     padding: var(--s-4);
   }
-
   .myle-features,
   .myle-evolution,
   .myle-gallery,
@@ -1595,7 +1306,6 @@ main:has(> .myle) + .ftr {
     scroll-snap-type: inline mandatory;
     scrollbar-width: none;
   }
-
   .myle-features::-webkit-scrollbar,
   .myle-evolution::-webkit-scrollbar,
   .myle-gallery::-webkit-scrollbar,
@@ -1603,7 +1313,6 @@ main:has(> .myle) + .ftr {
   .myle-lessons::-webkit-scrollbar {
     display: none;
   }
-
   .myle-features > li,
   .myle-evolution > li,
   .myle-gallery > figure,
@@ -1611,41 +1320,33 @@ main:has(> .myle) + .ftr {
   .myle-lessons > li {
     scroll-snap-align: start;
   }
-
   .myle-feature {
     min-height: 0;
   }
-
   .myle-evolution::before {
     display: none;
   }
-
   .myle-era {
     min-height: 0;
   }
-
   .myle-arch {
     padding: var(--s-4);
   }
-
   .myle-challenges-wrap {
     overflow: visible;
     border: 0;
     background: transparent;
     box-shadow: none;
   }
-
   .myle-challenges__head {
     min-height: 0;
     padding: 0 0 var(--s-3);
     background: transparent;
   }
-
   .myle-challenges {
     padding-bottom: var(--s-3);
     background: transparent;
   }
-
   .myle-challenge {
     min-height: 0;
     border: 1px solid var(--c-line);
@@ -1653,29 +1354,24 @@ main:has(> .myle) + .ftr {
     background: linear-gradient(145deg, var(--myle-violet-wash), var(--c-surface));
     box-shadow: var(--sh-inset-top);
   }
-
   .myle-arch__node--bridge,
   .myle-arch__node--main {
     width: 88%;
   }
-
   .myle-arch__leaves {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--s-2);
   }
-
   .myle-arch__leaves .myle-arch__node {
     grid-template-columns: 1fr;
     grid-template-areas: 'icon' 'title' 'note';
     gap: 0.35rem;
     padding: var(--s-3);
   }
-
   .myle-arch__leaves .myle-arch__node > svg {
     width: 17px;
     height: 17px;
   }
-
   .myle-arch__branches {
     width: 1px;
     height: 24px;
@@ -1683,15 +1379,12 @@ main:has(> .myle) + .ftr {
     border-bottom: 0;
     border-left: 1px solid var(--c-line-strong);
   }
-
   .myle-shot figcaption {
     min-height: 74px;
   }
-
   .myle-section--panel > .swipe-hint {
     margin-bottom: var(--s-3);
   }
-
   .myle-lessons {
     height: auto;
     padding-bottom: var(--s-3);
@@ -1700,19 +1393,16 @@ main:has(> .myle) + .ftr {
     background: transparent;
     box-shadow: none;
   }
-
   .myle-lessons li {
     min-height: 0;
     border: 1px solid var(--c-line);
     border-radius: var(--r-md);
     background: linear-gradient(145deg, var(--myle-lime-wash), var(--c-surface));
   }
-
   .myle-nav {
     grid-template-columns: minmax(0, 1fr) 52px minmax(0, 1fr);
     border-radius: var(--r-md);
   }
-
   .myle-nav a,
   .myle-nav__next {
     grid-template-columns: 38px minmax(0, 1fr) !important;
@@ -1720,123 +1410,98 @@ main:has(> .myle) + .ftr {
     min-height: 78px;
     padding: var(--s-3);
   }
-
   .myle-nav a.myle-nav__next {
     grid-template-columns: minmax(0, 1fr) 38px !important;
   }
-
   .myle-nav__thumb {
     width: 38px;
     height: 38px;
     border-radius: var(--r-sm);
     font-size: 0.82rem;
   }
-
   .myle-nav__brand {
     min-height: 78px;
   }
-
   .myle-nav__brand svg {
     width: 42px;
     height: 42px;
   }
-
   .myle-nav__label {
     font-size: 7px;
   }
-
   .myle-nav strong {
     overflow: hidden;
     font-size: 0.86rem;
     line-height: 1.1;
     text-overflow: ellipsis;
   }
-
   .myle-nav small {
     display: none;
   }
 }
-
 @media (max-width: 419px) {
   .myle-hero__actions {
     flex-direction: column;
   }
-
   .myle-hero__actions .btn {
     flex: none;
     width: 100%;
   }
-
   .myle-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .myle-stat dt {
     font-size: 1.1rem;
   }
-
   .myle-stat dd {
     font-size: 9px;
   }
-
   .myle-engineering {
     min-width: 0;
   }
-
   .myle-arch__node {
     padding: var(--s-3);
   }
-
   .myle-challenge {
     padding: var(--s-4);
   }
-
   .myle-nav {
     grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr);
   }
-
   .myle-nav a,
   .myle-nav__next {
     grid-template-columns: 32px minmax(0, 1fr) !important;
     gap: 0.45rem;
     padding: 0.6rem;
   }
-
   .myle-nav a.myle-nav__next {
     grid-template-columns: minmax(0, 1fr) 32px !important;
   }
-
   .myle-nav__thumb {
     width: 32px;
     height: 32px;
     font-size: 0.7rem;
   }
-
   .myle-nav__brand svg {
     width: 36px;
     height: 36px;
   }
-
   .myle-nav__label {
     gap: 0.2rem;
     letter-spacing: 0.06em;
   }
-
   .myle-nav strong {
     font-size: 0.75rem;
   }
-
   .myle-links .btn {
     width: 100%;
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .myle-hero h1::after,
   .myle-note {
     animation: none;
   }
-
   .myle-window,
   .myle-feature,
   .myle-shot img,

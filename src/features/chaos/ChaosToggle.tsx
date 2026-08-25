@@ -1,5 +1,5 @@
-import { useChaos } from '../../hooks/useChaos'
-import { useI18n } from '../../i18n/i18n'
+import { useChaos } from '@/hooks/useChaos'
+import { useI18n } from '@/i18n/i18n'
 import { Zap } from 'lucide-react'
 
 export function ChaosToggle() {

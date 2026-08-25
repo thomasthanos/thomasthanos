@@ -3,16 +3,12 @@
   margin-bottom: var(--s-8);
   border-bottom: 1px solid var(--c-line);
 }
-
-/* Stacked until there is genuinely room for two columns — a squeezed lede
-   beside a meta column reads worse than the meta simply sitting below it. */
 .phead__row {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--s-5);
 }
-
 .phead__main {
   display: flex;
   flex-direction: column;
@@ -20,14 +16,12 @@
   min-width: 0;
   flex: 1 1 min(100%, 30ch);
 }
-
 .phead__title {
   font-size: var(--t-4xl);
   font-weight: 780;
   letter-spacing: var(--ls-hero);
   line-height: 1.02;
 }
-
 .phead__lede {
   max-width: 62ch;
   color: var(--c-text-2);
@@ -35,14 +29,12 @@
   line-height: var(--lh-normal);
   text-wrap: pretty;
 }
-
 .phead__meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--s-2);
 }
-
 @media (min-width: 860px) {
   .phead__row {
     flex-direction: row;
@@ -50,35 +42,29 @@
     justify-content: space-between;
     gap: var(--s-6);
   }
-
   .phead__meta {
     flex-direction: column;
     align-items: flex-end;
     padding-bottom: 0.35rem;
   }
 }
-
 @media (max-width: 899px) {
   .phead {
     padding-bottom: var(--s-5);
     margin-bottom: var(--s-5);
   }
-
   .phead__row {
     gap: var(--s-4);
   }
-
   .phead__main {
     gap: var(--s-3);
   }
-
   .phead__title,
   :root:lang(el) .phead__title {
     font-size: clamp(1.9rem, 8.6vw, 2.35rem);
   }
-
   .phead__lede {
     font-size: var(--t-md);
     line-height: 1.48;
   }
-}
+}

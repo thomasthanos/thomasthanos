@@ -9,7 +9,6 @@
   background: color-mix(in srgb, var(--c-surface) 82%, transparent);
   box-shadow: var(--sh-inset-top);
 }
-
 .proj__result {
   display: flex;
   align-items: center;
@@ -17,7 +16,6 @@
   gap: var(--s-4);
   min-height: 34px;
 }
-
 .proj__count {
   display: inline-flex;
   align-items: baseline;
@@ -29,31 +27,25 @@
   color: var(--c-text-4);
   white-space: nowrap;
 }
-
 .proj__count strong {
   font-size: var(--t-sm);
   font-weight: 650;
   letter-spacing: 0.03em;
   color: var(--c-lime);
 }
-
 .proj__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: var(--s-4);
 }
-
-/* Reveal wraps each card, so the card must fill its list cell. */
 .proj__grid > li,
 .proj__grid .reveal {
   display: flex;
   height: 100%;
 }
-
 .proj__grid .pcard {
   flex: 1;
 }
-
 .proj__empty {
   padding: var(--s-9) var(--s-5);
   border: 1px dashed var(--c-line-strong);
@@ -64,19 +56,16 @@
   max-width: 52ch;
   margin-inline: auto;
 }
-
 .proj__more {
   width: 100%;
   margin-top: var(--s-3);
   border-style: dashed;
 }
-
 .proj__more span {
   font-family: var(--f-mono);
   font-size: 10px;
   color: var(--c-lime);
 }
-
 @media (min-width: 780px) {
   .proj__controls {
     flex-direction: row;
@@ -85,46 +74,38 @@
     gap: var(--s-5);
     padding: 0.7rem;
   }
-
   .proj__result {
     flex: none;
   }
 }
-
 .proj__note {
   display: none;
 }
-
 @media (min-width: 720px) {
   .proj__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-
 @media (min-width: 1000px) {
   .proj__note {
     display: inline-block;
     margin-right: var(--s-2);
     font-size: 0.95rem;
   }
-
   .proj__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
-
 @media (min-width: 1180px) {
   .proj__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
-
 @media (min-width: 1600px) {
   .proj__grid {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
-
 @media (max-width: 899px) {
   .proj__controls {
     gap: 0.65rem;
@@ -132,26 +113,22 @@
     padding: 0.65rem;
     border-radius: var(--r-md);
   }
-
   .proj__result {
     min-height: 0;
     padding-inline: 0.15rem;
   }
-
   .proj__grid {
     align-items: start;
     gap: var(--s-3);
   }
-
   .proj__grid > li,
   .proj__grid .reveal {
     display: block;
     width: 100%;
     height: auto;
   }
-
   .proj__grid .pcard {
     width: 100%;
     flex: none;
   }
-}
+}

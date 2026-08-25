@@ -1,15 +1,14 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
-import { Logo } from '../brand/Logo'
-import { useI18n } from '../../i18n/i18n'
-import { footerLines, site } from '../../data/site'
-import { external, pick } from '../../utils'
-import './footer.css'
+import { Logo } from '@/components/brand/Logo'
+import { useI18n } from '@/i18n/i18n'
+import { footerLines, site } from '@/data/site'
+import { external, pick } from '@/utils'
+import '@/components/layout/footer.css'
 
 export function Footer() {
   const { t, tr } = useI18n()
-  // Chosen once per mount so it does not flicker on every re-render.
   const line = useMemo(() => pick(footerLines), [])
 
   return (

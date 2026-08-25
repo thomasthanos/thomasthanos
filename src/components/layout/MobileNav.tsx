@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ArrowUpRight, Github, X } from 'lucide-react'
-import { Logo } from '../brand/Logo'
-import { Annotation } from '../ui/Annotation'
-import { useI18n } from '../../i18n/i18n'
-import { nav, site } from '../../data/site'
-import { notes } from '../../data/notes'
-import { external } from '../../utils'
+import { Logo } from '@/components/brand/Logo'
+import { Annotation } from '@/components/ui/Annotation'
+import { useI18n } from '@/i18n/i18n'
+import { nav, site } from '@/data/site'
+import { notes } from '@/data/notes'
+import { external } from '@/utils'
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
@@ -30,7 +30,6 @@ export function MobileNav({ onClose }: { onClose: () => void }) {
       }
       if (e.key !== 'Tab') return
 
-      // Trap focus inside the drawer.
       const nodes = panelRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE)
       if (!nodes || nodes.length === 0) return
       const first = nodes[0]

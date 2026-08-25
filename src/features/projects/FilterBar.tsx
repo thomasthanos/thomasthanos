@@ -1,8 +1,8 @@
-import { useI18n } from '../../i18n/i18n'
-import type { Category } from '../../data/types'
-import { activeCategories, countIn, projects } from '../../data/projects'
-import { SwipeHint } from '../ui/SwipeHint'
-import './filter-bar.css'
+import { useI18n } from '@/i18n/i18n'
+import type { Category } from '@/data/types'
+import { activeCategories, countIn, projects } from '@/data/projects'
+import { SwipeHint } from '@/components/ui/SwipeHint'
+import '@/features/projects/filter-bar.css'
 
 interface FilterBarProps {
   value: Category | 'all'

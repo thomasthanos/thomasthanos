@@ -1,5 +1,5 @@
-import { useI18n } from '../../i18n/i18n'
-import type { Locale } from '../../data/types'
+import { useI18n } from '@/i18n/i18n'
+import type { Locale } from '@/data/types'
 
 const OPTIONS: { code: Locale; short: string }[] = [
   { code: 'en', short: 'EN' },

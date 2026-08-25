@@ -1,10 +1,8 @@
-import type { L } from './types'
+import type { L } from '@/data/types'
 
 export interface StackItem {
   name: string
-  /** A human comment, not a percentage. */
   note: L
-  /** Where in this portfolio's own projects it actually shows up. */
   usedIn?: string[]
 }
 
@@ -229,7 +227,6 @@ export const stackGroups: StackGroup[] = [
 export interface AreaItem {
   title: L
   body: L
-  /** Slugs used as evidence. */
   proof: string[]
 }
 
@@ -284,7 +281,6 @@ export const areas: AreaItem[] = [
   },
 ]
 
-/** The honest disclaimer at the bottom of /stack. */
 export const stackNote: L = {
   en: 'No percentage bars. A number next to a language name has never told anyone anything true. If you want to know whether I can do the thing, the repositories are right there.',
   el: 'Χωρίς μπάρες ποσοστών. Ένα νούμερο δίπλα σε όνομα γλώσσας δεν έχει πει ποτέ σε κανέναν κάτι αληθινό. Αν θες να μάθεις αν μπορώ να κάνω το πράγμα, τα repositories είναι από πάνω.',

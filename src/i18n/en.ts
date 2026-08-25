@@ -1,7 +1,3 @@
-/**
- * English is the source of truth: the `Dict` type is derived from this object,
- * so a missing Greek key is a compile error rather than a blank label.
- */
 export const en = {
   nav: {
     home: 'Home',
@@ -15,7 +11,6 @@ export const en = {
     openMenu: 'Open navigation',
     closeMenu: 'Close navigation',
     primary: 'Primary',
-    /** One-line descriptors under each row of the mobile menu. */
     hint: {
       home: 'start here',
       projects: 'everything that shipped',
@@ -195,10 +190,6 @@ export const en = {
   },
 } as const
 
-/**
- * Widens the `as const` literal types back to plain strings, so el.ts must
- * match the *shape* of en.ts without being forced to repeat the English text.
- */
 type Widen<T> = T extends string
   ? string
   : T extends readonly (infer U)[]

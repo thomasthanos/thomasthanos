@@ -1,21 +1,17 @@
 import { useId } from 'react'
-import { cx } from '../../utils'
-import './annotation.css'
+import { cx } from '@/utils'
+import '@/components/ui/annotation.css'
 
 type ArrowShape = 'sw' | 'se' | 'nw' | 'ne' | 'none'
 
 interface AnnotationProps {
   children: string
-  /** Which way the arrow curls out of the text. */
   arrow?: ArrowShape
-  /** Degrees of tilt. Small numbers only — this is a margin note, not a sticker. */
   tilt?: number
   accent?: 'lime' | 'violet'
   className?: string
 }
 
-/* The solid marker follows the tangent of the curve automatically. Unlike the
-   old open V it cannot collapse visually into an L-shaped corner. */
 const ARROWS: Record<Exclude<ArrowShape, 'none'>, string> = {
   sw: 'M65 7C55 18 41 29 15 36',
   se: 'M7 7C17 18 31 29 57 36',
@@ -23,11 +19,6 @@ const ARROWS: Record<Exclude<ArrowShape, 'none'>, string> = {
   ne: 'M7 49C17 38 31 27 57 20',
 }
 
-/**
- * A margin note in the author's handwriting, with a curl pointing at whatever
- * it is commenting on. Decorative: hidden from assistive tech, because the
- * joke is not information anyone needs read aloud.
- */
 export function Annotation({
   children,
   arrow = 'sw',

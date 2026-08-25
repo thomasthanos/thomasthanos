@@ -1,7 +1,6 @@
 .swipe-hint {
   display: none;
 }
-
 @media (max-width: 899px) {
   .swipe-hint {
     display: flex;
@@ -16,20 +15,17 @@
     text-transform: uppercase;
     color: var(--c-violet);
   }
-
   .swipe-hint svg {
     width: 16px;
     height: 16px;
     animation: swipe-hint-nudge 1.8s var(--e-in-out) infinite;
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .swipe-hint svg {
     animation: none;
   }
 }
-
 @keyframes swipe-hint-nudge {
   0%,
   100% {
@@ -38,4 +34,4 @@
   50% {
     transform: translateX(4px);
   }
-}
+}

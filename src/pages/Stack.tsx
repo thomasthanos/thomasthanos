@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom'
 import { ChevronDown, Info } from 'lucide-react'
-import { PageHeader } from '../components/ui/PageHeader'
-import { Section } from '../components/ui/Section'
-import { Reveal } from '../components/ui/Reveal'
-import { SwipeHint } from '../components/ui/SwipeHint'
-import { Annotation } from '../components/ui/Annotation'
-import { useI18n } from '../i18n/i18n'
-import { useDocumentMeta } from '../hooks/useDocumentMeta'
-import { areas, stackGroups, stackNote } from '../data/stack'
-import { getProject } from '../data/projects'
-import { notes } from '../data/notes'
-import './stack.css'
+import { PageHeader } from '@/components/ui/PageHeader'
+import { Section } from '@/components/ui/Section'
+import { Reveal } from '@/components/ui/Reveal'
+import { SwipeHint } from '@/components/ui/SwipeHint'
+import { Annotation } from '@/components/ui/Annotation'
+import { useI18n } from '@/i18n/i18n'
+import { useDocumentMeta } from '@/hooks/useDocumentMeta'
+import { areas, stackGroups, stackNote } from '@/data/stack'
+import { getProject } from '@/data/projects'
+import { notes } from '@/data/notes'
+import '@/pages/stack.css'
 
-/** Small inline links to the projects a tool is actually used in. */
 function UsedIn({ slugs }: { slugs: string[] }) {
   const { t } = useI18n()
   const found = slugs.map(getProject).filter((p) => p !== undefined)

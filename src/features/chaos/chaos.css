@@ -1,0 +1,141 @@
+.chaos-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  --gutter: calc((100vw - min(var(--w-page), 100vw)) / 2);
+}
+.doodle,
+.sticker-note {
+  display: none;
+  position: absolute;
+  opacity: 0;
+  animation: fade-in var(--d-slower) var(--e-out) 200ms forwards;
+}
+.chaos-layer {
+  --band: calc(max(0px, var(--gutter)) + var(--pad-x));
+}
+@media (max-height: 1100px) {
+  body:has(.myle) .chaos-layer {
+    --gutter: max(0px, (100vw - 1500px) / 2);
+  }
+}
+.doodle {
+  width: var(--doodle-w, 44px);
+  height: auto;
+  color: var(--c-violet);
+}
+.doodle--1 {
+  --doodle-w: 44px;
+  top: 26vh;
+  left: max(2px, calc((var(--band) - var(--doodle-w) * 1.2) / 2));
+  rotate: -12deg;
+}
+.doodle--2 {
+  --doodle-w: 46px;
+  top: 44vh;
+  right: max(2px, calc((var(--band) - var(--doodle-w) * 1.2) / 2));
+  rotate: 9deg;
+  color: var(--c-lime);
+}
+.doodle--3 {
+  --doodle-w: 36px;
+  top: 68vh;
+  left: max(2px, calc((var(--band) - var(--doodle-w) * 1.2) / 2));
+  rotate: 18deg;
+  color: var(--c-orange);
+}
+.sticker-note {
+  --sticker-w: 7.5rem;
+  padding: 0.28rem 0.55rem;
+  border: 1px dashed var(--c-violet-a35);
+  border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--c-bg) 88%, transparent);
+  font-family: var(--f-hand);
+  font-size: 1rem;
+  color: var(--c-violet);
+  white-space: nowrap;
+}
+.sticker-note--a {
+  top: 62vh;
+  right: max(2px, calc((var(--band) - var(--sticker-w) * 1.15) / 2));
+  rotate: -6deg;
+}
+.sticker-note--b {
+  top: 44vh;
+  left: max(2px, calc((var(--band) - var(--sticker-w) * 1.15) / 2));
+  rotate: 5deg;
+}
+@media (min-width: 1100px) {
+  .doodle,
+  .sticker-note {
+    display: block;
+  }
+}
+@media (min-width: 1100px) and (max-width: 1875px),
+       (min-height: 1101px) and (max-width: 2295px) {
+  .doodle--1 { --doodle-w: 26px; }
+  .doodle--2 { --doodle-w: 28px; }
+  .doodle--3 { --doodle-w: 22px; }
+  .sticker-note {
+    --sticker-w: 1.7rem;
+    writing-mode: vertical-rl;
+    padding: 0.5rem 0.18rem;
+    font-size: 0.78rem;
+    rotate: 0deg;
+  }
+}
+@media (min-width: 1876px) and (max-width: 2559px) {
+  .doodle--1 { --doodle-w: 52px; }
+  .doodle--2 { --doodle-w: 54px; }
+  .doodle--3 { --doodle-w: 42px; }
+  .sticker-note {
+    font-size: 0.9rem;
+  }
+}
+@media (min-width: 2560px) {
+  .doodle--1 { --doodle-w: 64px; }
+  .doodle--2 { --doodle-w: 68px; }
+  .doodle--3 { --doodle-w: 50px; }
+}
+.chaos-toast {
+  position: fixed;
+  left: 50%;
+  bottom: var(--s-6);
+  translate: -50% 0;
+  z-index: var(--z-toast);
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  max-width: min(92vw, 480px);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--c-violet-a35);
+  border-radius: var(--r-md);
+  background: var(--c-surface-2);
+  box-shadow: var(--sh-lg);
+  font-size: var(--t-xs);
+  color: var(--c-text-2);
+  animation: fade-up var(--d-slow) var(--e-spring) both;
+}
+.chaos-toast__led {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 2px;
+  background: var(--c-violet);
+  box-shadow: 0 0 12px var(--c-violet);
+}
+:root[data-chaos='on'] .brand__mark,
+:root[data-chaos='on'] .logo__pk {
+  animation: wobble 3.2s var(--e-in-out) infinite;
+}
+:root[data-chaos='on'] .label__tick {
+  rotate: 45deg;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-chaos='on'] .brand__mark,
+  :root[data-chaos='on'] .logo__pk {
+    animation: none;
+  }
+}

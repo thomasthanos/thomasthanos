@@ -1,9 +1,8 @@
-import { cx } from '../../utils'
-import './logo.css'
+import { cx } from '@/utils'
+import '@/components/brand/logo.css'
 
 interface LogoProps {
   size?: number
-  /** Drops the seal, leaving just the pumpkin. */
   bare?: boolean
   className?: string
   title?: string

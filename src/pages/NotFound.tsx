@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, Home } from 'lucide-react'
-import { Pumpkin } from '../components/brand/Pumpkin'
-import { useI18n } from '../i18n/i18n'
-import { useDocumentMeta } from '../hooks/useDocumentMeta'
-import { notFound } from '../data/eggs'
-import './not-found.css'
+import { Pumpkin } from '@/components/brand/Pumpkin'
+import { useI18n } from '@/i18n/i18n'
+import { useDocumentMeta } from '@/hooks/useDocumentMeta'
+import { notFound } from '@/data/eggs'
+import '@/pages/not-found.css'
 
 export function NotFound() {
   const { t, tr } = useI18n()

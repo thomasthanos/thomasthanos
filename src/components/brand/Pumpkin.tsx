@@ -1,4 +1,4 @@
-import { cx } from '../../utils'
+import { cx } from '@/utils'
 import {
   EYE_LEFT,
   EYE_RIGHT,
@@ -8,20 +8,15 @@ import {
   MOUTH,
   NOSE,
   toPath,
-} from './face'
-import './pumpkin.css'
+} from '@/components/brand/face'
+import '@/components/brand/pumpkin.css'
 
 export type Mood = 'grin' | 'wide' | 'sleepy'
 
 interface PumpkinProps {
   size?: number
-  /**
-   * `mark` uses the simplified face — bigger eyes, three teeth — so it still
-   * reads at 24–32px. `full` uses the six-tooth ribbon.
-   */
   detail?: 'mark' | 'full'
   mood?: Mood
-  /** The lit-from-inside glow. Off for tiny marks, where it just smears. */
   glow?: boolean
   className?: string
   title?: string
@@ -56,7 +51,6 @@ export function Pumpkin({
     mouth = toPath(MARK_MOUTH)
   }
 
-  // The manic grin is the normal one, pushed wider and taller.
   const faceScale = mood === 'wide' ? 1.07 : 1
 
   return (
@@ -72,7 +66,6 @@ export function Pumpkin({
       aria-hidden={title ? undefined : true}
       focusable="false"
     >
-      {/* crooked stalk, matching the hand-drawn kolokithes mark */}
       <path
         className="pk__stem"
         d="M29.5 17.5c1-5.5-.5-10-2.5-13.5l4-2.5c3 4.5 4.5 9.5 4 15"
@@ -81,14 +74,12 @@ export function Pumpkin({
         strokeLinejoin="round"
       />
 
-      {/* deliberately imperfect outline; a perfect ellipse looked like an icon */}
       <path
         className="pk__body"
         d="M32 15.5C17 14.8 6 23 5.5 37.5 5 51.7 15.3 60 32 60.5 48.7 60 59 51.7 58.5 37.5 58 23 47 14.8 32 15.5Z"
         strokeWidth={full ? 3.6 : 4.2}
       />
 
-      {/* ribs — outer thirds only, so they never cross the face */}
       {full && (
         <path
           className="pk__rib"

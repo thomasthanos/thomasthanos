@@ -1,14 +1,8 @@
-import type { Project } from '../types'
+import type { Project } from '@/data/types'
 
 const GH = 'https://github.com/thomasthanos'
 
-/**
- * Smaller tools, experiments and older work. These get a project page too —
- * the detail template renders whatever fields exist — but they carry a Labs
- * badge instead of a full case study.
- */
 export const more: Project[] = [
-  // --- Browser -------------------------------------------------------------
   {
     slug: 'an1me-speed-control',
     name: 'An1me.to Speed Control',
@@ -301,7 +295,6 @@ export const more: Project[] = [
     },
   },
 
-  // --- Windows / desktop ----------------------------------------------------
   {
     slug: 'autoclicker-premium',
     name: 'AutoClicker Premium',
@@ -634,7 +627,6 @@ export const more: Project[] = [
     },
   },
 
-  // --- Discord ---------------------------------------------------------------
   {
     slug: 'discord-bot-dashboard',
     name: 'Discord Bot & Dashboard',

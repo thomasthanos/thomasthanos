@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Github, Menu } from 'lucide-react'
-import { Logo } from '../brand/Logo'
-import { LangSwitch } from '../ui/LangSwitch'
-import { ChaosToggle } from '../chaos/ChaosToggle'
-import { MobileNav } from './MobileNav'
-import { useI18n } from '../../i18n/i18n'
-import { nav, site } from '../../data/site'
-import { external } from '../../utils'
-import './header.css'
+import { Logo } from '@/components/brand/Logo'
+import { LangSwitch } from '@/components/ui/LangSwitch'
+import { ChaosToggle } from '@/features/chaos/ChaosToggle'
+import { MobileNav } from '@/components/layout/MobileNav'
+import { useI18n } from '@/i18n/i18n'
+import { nav, site } from '@/data/site'
+import { external } from '@/utils'
+import '@/components/layout/header.css'
 
 export function Header() {
   const { t } = useI18n()
   const [open, setOpen] = useState(false)
   const location = useLocation()
 
-  // Close the drawer whenever the route changes.
   useEffect(() => setOpen(false), [location.pathname])
 
   return (

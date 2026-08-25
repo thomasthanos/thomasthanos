@@ -1,11 +1,10 @@
 import type { ReactNode } from 'react'
-import './page-header.css'
+import '@/components/ui/page-header.css'
 
 interface PageHeaderProps {
   kicker: string
   title: string
   lede?: string
-  /** Mono metadata shown on the right, e.g. a count. */
   meta?: ReactNode
   children?: ReactNode
 }

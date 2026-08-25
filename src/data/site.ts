@@ -1,4 +1,4 @@
-import type { L } from './types'
+import type { L } from '@/data/types'
 
 export const site = {
   name: 'Thomas Thanos',
@@ -25,7 +25,6 @@ export const site = {
 export interface NavItem {
   to: string
   key: 'home' | 'projects' | 'stack' | 'labs' | 'about' | 'contact'
-  /** Shown as a mono index in the nav drawer. */
   index: string
 }
 
@@ -38,7 +37,6 @@ export const nav: NavItem[] = [
   { to: '/contact', key: 'contact', index: '06' },
 ]
 
-/** Rotating footer micro-messages. Index is chosen per page load. */
 export const footerLines: L[] = [
   { en: 'Code. Coffee. Regret. Repeat.', el: 'Κώδικας. Καφές. Μετάνοια. Επανάληψη.' },
   { en: 'Still probably debugging something.', el: 'Κάτι θα debugάρω κι αυτή την ώρα.' },

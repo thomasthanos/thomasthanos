@@ -1,13 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 
-/**
- * useState backed by localStorage. Guards against private-mode throws and
- * keeps two tabs in step via the `storage` event.
- */
 export function useLocalStorage<T>(
   key: string,
   initial: T,
-  /** Rejects values that are no longer valid (e.g. a renamed option). */
   validate?: (value: unknown) => value is T,
 ): [T, (value: T) => void] {
   const read = useCallback((): T => {
@@ -31,7 +26,6 @@ export function useLocalStorage<T>(
       try {
         window.localStorage.setItem(key, JSON.stringify(next))
       } catch {
-        /* private mode / quota — the in-memory value still works */
       }
     },
     [key],

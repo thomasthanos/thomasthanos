@@ -1,10 +1,9 @@
-import type { L } from './types'
+import type { L } from '@/data/types'
 
 export interface TimelineEntry {
   period: string
   title: L
   body: L
-  /** Marks the entries that changed direction rather than just continued it. */
   pivot?: boolean
 }
 
@@ -118,7 +117,6 @@ export const principles: Principle[] = [
   },
 ]
 
-/** The lead paragraphs on /about. */
 export const bio: L[] = [
   {
     en: 'I am a self-taught developer from Athens who builds tools because doing the same thing manually twice feels like a personal insult. Browser extensions, Windows utilities, desktop apps and automations — small software that removes a specific piece of friction and then gets maintained for years, which is the part nobody warns you about.',
@@ -130,7 +128,6 @@ export const bio: L[] = [
   },
 ]
 
-/** Short "what I like building" cards on /about. */
 export const likes: { title: L; body: L }[] = [
   {
     title: { en: 'Utilities', el: 'Utilities' },

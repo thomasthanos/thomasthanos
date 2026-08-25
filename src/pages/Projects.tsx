@@ -1,19 +1,19 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { ChevronDown } from 'lucide-react'
-import { PageHeader } from '../components/ui/PageHeader'
-import { FilterBar } from '../components/projects/FilterBar'
-import { Annotation } from '../components/ui/Annotation'
-import { ProjectCard } from '../components/projects/ProjectCard'
-import { Reveal } from '../components/ui/Reveal'
-import { useI18n } from '../i18n/i18n'
-import { useDocumentMeta } from '../hooks/useDocumentMeta'
-import { useMediaQuery } from '../hooks/useMediaQuery'
-import { activeCategories, inCategory, projects } from '../data/projects'
-import { emptyStates } from '../data/eggs'
-import { notes } from '../data/notes'
-import type { Category } from '../data/types'
-import './projects.css'
+import { PageHeader } from '@/components/ui/PageHeader'
+import { FilterBar } from '@/features/projects/FilterBar'
+import { Annotation } from '@/components/ui/Annotation'
+import { ProjectCard } from '@/features/projects/ProjectCard'
+import { Reveal } from '@/components/ui/Reveal'
+import { useI18n } from '@/i18n/i18n'
+import { useDocumentMeta } from '@/hooks/useDocumentMeta'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { activeCategories, inCategory, projects } from '@/data/projects'
+import { emptyStates } from '@/data/eggs'
+import { notes } from '@/data/notes'
+import type { Category } from '@/data/types'
+import '@/pages/projects.css'
 
 function isCategory(value: string | null): value is Category {
   return value !== null && (activeCategories as string[]).includes(value)
@@ -25,8 +25,6 @@ export function Projects() {
   const { t, tr } = useI18n()
   const compact = useMediaQuery('(max-width: 899px)')
   const [visibleCount, setVisibleCount] = useState(PROJECT_BATCH)
-  // The filter lives in the URL, so a filtered view is shareable and the back
-  // button does what people expect.
   const [params, setParams] = useSearchParams()
   const raw = params.get('filter')
   const filter: Category | 'all' = isCategory(raw) ? raw : 'all'

@@ -1,11 +1,6 @@
-import type { Sketch as SketchData } from '../../data/types'
-import './sketch.css'
+import type { Sketch as SketchData } from '@/data/types'
+import '@/features/projects/sketch.css'
 
-/**
- * An honest illustration: the window chrome and row states come from the
- * project's own data, so it shows the shape of the real interface without
- * pretending to be a screenshot.
- */
 export function Sketch({ data, accent }: { data: SketchData; accent: string }) {
   return (
     <figure className="sketch" data-accent={accent} data-kind={data.kind}>

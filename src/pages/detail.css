@@ -1,8 +1,3 @@
-/* ============================================================================
-   Project detail — long-form, but broken into cards so it never becomes a
-   wall of text.
-   ========================================================================= */
-
 .dback {
   display: inline-flex;
   align-items: center;
@@ -15,33 +10,23 @@
   color: var(--c-text-4);
   transition: color var(--d-fast) var(--e-out);
 }
-
 .dback:hover {
   color: var(--c-lime);
 }
-
 .dback svg {
   width: 13px;
   height: 13px;
   transition: transform var(--d-fast) var(--e-out);
 }
-
 .dback:hover svg {
   transform: translateX(-2px);
 }
-
-/* Detail routes carry more sections than the index pages. Their own rhythm
-   keeps long case studies connected without turning a 4K screen into a stack
-   of large empty bands. */
 .page[data-accent] .dsec {
   margin-top: clamp(2.75rem, 2rem + 2vw, 4.75rem);
 }
-
 .page[data-accent] .dsec__body {
   min-width: 0;
 }
-
-/* --- Hero ------------------------------------------------------------------- */
 .dhero {
   display: grid;
   gap: clamp(1.75rem, 1rem + 3vw, 3rem);
@@ -49,21 +34,18 @@
   padding-bottom: var(--s-8);
   border-bottom: 1px solid var(--c-line);
 }
-
 .dhero__main {
   display: flex;
   flex-direction: column;
   gap: var(--s-5);
   min-width: 0;
 }
-
 .dhero__eyebrow {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--s-3);
 }
-
 .dhero__cat {
   font-family: var(--f-mono);
   font-size: var(--t-micro);
@@ -71,14 +53,12 @@
   text-transform: uppercase;
   color: var(--accent, var(--c-lime));
 }
-
 .dhero__title {
   font-size: var(--t-4xl);
   font-weight: 780;
   letter-spacing: var(--ls-hero);
   line-height: 1.03;
 }
-
 .dhero__codename {
   display: block;
   margin-top: var(--s-3);
@@ -88,12 +68,10 @@
   letter-spacing: 0.06em;
   color: var(--c-text-4);
 }
-
 .dhero__codename::before {
   content: '// ';
   color: var(--accent, var(--c-lime));
 }
-
 .dhero__summary {
   max-width: 58ch;
   font-size: var(--t-lg);
@@ -101,24 +79,19 @@
   color: var(--c-text-2);
   text-wrap: pretty;
 }
-
 .dhero__cta {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-3);
 }
-
 .dhero__aside {
   min-width: 0;
 }
-
 @media (min-width: 900px) {
   .dhero {
     grid-template-columns: minmax(0, 1fr) minmax(0, 0.86fr);
   }
 }
-
-/* --- Spec strip ---------------------------------------------------------------- */
 .dspec {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
@@ -129,7 +102,6 @@
   background: var(--c-line);
   overflow: hidden;
 }
-
 .dspec__cell {
   display: flex;
   flex-direction: column;
@@ -137,7 +109,6 @@
   padding: var(--s-4);
   background: var(--c-surface);
 }
-
 .dspec__k {
   font-family: var(--f-mono);
   font-size: 10px;
@@ -145,25 +116,20 @@
   text-transform: uppercase;
   color: var(--c-text-4);
 }
-
 .dspec__v {
   font-size: var(--t-sm);
   font-weight: 600;
   color: var(--c-text);
 }
-
 .dspec__v--accent {
   color: var(--accent, var(--c-lime));
 }
-
-/* --- Metrics ---------------------------------------------------------------------- */
 .dmetrics {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
   gap: var(--s-4);
   align-items: stretch;
 }
-
 .dmetric {
   display: flex;
   min-width: 0;
@@ -175,7 +141,6 @@
   border-radius: var(--r-md);
   background: color-mix(in srgb, var(--accent, var(--c-lime)) 6%, var(--c-surface));
 }
-
 .dmetric__n {
   display: block;
   font-size: var(--t-3xl);
@@ -184,32 +149,26 @@
   line-height: 1;
   color: var(--accent, var(--c-lime));
 }
-
 .dmetric__l {
   display: block;
   margin-top: var(--s-2);
   font-size: var(--t-xs);
   color: var(--c-text-3);
 }
-
-/* --- Two-up prose ---------------------------------------------------------------- */
 .dsplit {
   display: grid;
   align-items: stretch;
   gap: var(--s-5);
   grid-template-columns: 1fr;
 }
-
 .dsplit > .reveal {
   width: 100%;
 }
-
 @media (min-width: 820px) {
   .dsplit {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-
 .dblock {
   width: 100%;
   height: 100%;
@@ -219,7 +178,6 @@
   background: var(--c-surface);
   box-shadow: var(--sh-inset-top);
 }
-
 .dblock__t {
   display: flex;
   align-items: center;
@@ -229,22 +187,18 @@
   font-weight: 660;
   letter-spacing: var(--ls-tight);
 }
-
 .dblock__t svg {
   width: 16px;
   height: 16px;
   flex: none;
   color: var(--accent, var(--c-lime));
 }
-
 .dblock p {
   color: var(--c-text-2);
   font-size: var(--t-sm);
   line-height: var(--lh-relaxed);
   text-wrap: pretty;
 }
-
-/* Emphasised variants for privacy and impact. */
 .dblock--accent {
   border-color: color-mix(in srgb, var(--accent, var(--c-lime)) 30%, var(--c-line));
   background: linear-gradient(
@@ -253,8 +207,6 @@
     var(--c-surface)
   );
 }
-
-/* --- Feature / challenge grids ------------------------------------------------------ */
 .dgrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -262,7 +214,6 @@
   align-items: stretch;
   gap: clamp(0.75rem, 0.55rem + 0.45vw, 1.25rem);
 }
-
 .dgrid > li,
 .dgrid > li > .reveal {
   display: flex;
@@ -270,7 +221,6 @@
   min-width: 0;
   height: 100%;
 }
-
 .dcard {
   display: flex;
   width: 100%;
@@ -288,13 +238,11 @@
     border-color var(--d-base) var(--e-out),
     background var(--d-base) var(--e-out);
 }
-
 .dcard:hover {
   transform: translateY(-2px);
   border-color: var(--c-line-strong);
   background: color-mix(in srgb, var(--accent, var(--c-lime)) 3%, var(--c-surface));
 }
-
 .dcard__t {
   display: flex;
   align-items: flex-start;
@@ -306,7 +254,6 @@
   letter-spacing: var(--ls-tight);
   line-height: 1.28;
 }
-
 .dcard__n {
   margin-top: 0.18em;
   font-family: var(--f-mono);
@@ -315,7 +262,6 @@
   color: var(--accent, var(--c-lime));
   flex: none;
 }
-
 .dcard__b {
   max-width: 62ch;
   font-size: var(--t-xs);
@@ -323,18 +269,13 @@
   color: var(--c-text-3);
   text-wrap: pretty;
 }
-
-/* Laptop: two readable columns. Odd final cards sit in the visual centre
-   rather than hanging from the left edge on their own. */
 @media (min-width: 900px) and (max-width: 1399px) {
   .dgrid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-
   .dgrid > li {
     grid-column: span 2;
   }
-
   .dgrid[data-count='1'] > li,
   .dgrid[data-count='3'] > li:last-child,
   .dgrid[data-count='5'] > li:last-child,
@@ -342,53 +283,40 @@
     grid-column: 2 / span 2;
   }
 }
-
-/* Desktop and 4K: select the column count from the actual amount of content.
-   This prevents 6+1 orphan layouts and keeps every project detail balanced. */
 @media (min-width: 1400px) {
   .dgrid[data-count='1'] {
     grid-template-columns: minmax(0, 1fr);
   }
-
   .dgrid[data-count='2'] {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .dgrid[data-count='3'],
   .dgrid[data-count='6'] {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
   .dgrid[data-count='4'],
   .dgrid[data-count='8'] {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-
   .dgrid[data-count='5'] {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
-
   .dgrid[data-count='5'] > li {
     grid-column: span 2;
   }
-
   .dgrid[data-count='5'] > li:nth-child(4) {
     grid-column: 2 / span 2;
   }
-
   .dgrid[data-count='7'] {
     grid-template-columns: repeat(8, minmax(0, 1fr));
   }
-
   .dgrid[data-count='7'] > li {
     grid-column: span 2;
   }
-
   .dgrid[data-count='7'] > li:nth-child(5) {
     grid-column: 2 / span 2;
   }
 }
-
 .dcard__b code {
   padding: 0.08em 0.3em;
   border: 1px solid var(--c-line);
@@ -397,8 +325,6 @@
   color: var(--c-text-2);
   font-size: 0.9em;
 }
-
-/* --- Disclaimer ------------------------------------------------------------------- */
 .ddisclaimer {
   display: flex;
   align-items: flex-start;
@@ -412,7 +338,6 @@
   line-height: var(--lh-normal);
   color: var(--c-text-3);
 }
-
 .ddisclaimer svg {
   width: 15px;
   height: 15px;
@@ -420,14 +345,11 @@
   margin-top: 2px;
   color: var(--c-orange);
 }
-
-/* --- Gallery placeholder ------------------------------------------------------------ */
 .dshots {
   display: grid;
   gap: var(--s-4);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
 }
-
 .dshot {
   margin: 0;
   border: 1px solid var(--c-line);
@@ -435,21 +357,17 @@
   overflow: hidden;
   background: var(--c-bg-elev);
 }
-
 .dshot img {
   width: 100%;
   height: auto;
   display: block;
 }
-
 .dshot figcaption {
   padding: var(--s-3) var(--s-4);
   border-top: 1px solid var(--c-line);
   font-size: var(--t-xs);
   color: var(--c-text-3);
 }
-
-/* --- Prev / next ---------------------------------------------------------------------- */
 .dnav {
   position: relative;
   display: grid;
@@ -464,7 +382,6 @@
     var(--c-surface);
   box-shadow: var(--sh-inset-top), var(--sh-sm);
 }
-
 .dnav::before {
   content: '';
   position: absolute;
@@ -477,7 +394,6 @@
   background: var(--accent, var(--c-lime));
   box-shadow: 0 0 12px color-mix(in srgb, var(--accent, var(--c-lime)) 45%, transparent);
 }
-
 .dnav__link {
   position: relative;
   display: flex;
@@ -493,26 +409,21 @@
     background var(--d-base) var(--e-out),
     color var(--d-base) var(--e-out);
 }
-
 .dnav__link + .dnav__link {
   border-top: 1px solid var(--c-line);
 }
-
 .dnav__link:hover {
   background: color-mix(in srgb, var(--accent, var(--c-lime)) 7%, var(--c-surface));
 }
-
 .dnav__link:focus-visible {
   z-index: 1;
   outline: 2px solid var(--accent, var(--c-lime));
   outline-offset: -3px;
 }
-
 .dnav__link--next {
   text-align: right;
   align-items: flex-end;
 }
-
 .dnav__k {
   display: inline-flex;
   align-items: center;
@@ -523,7 +434,6 @@
   text-transform: uppercase;
   color: var(--c-text-4);
 }
-
 .dnav__k svg {
   width: 24px;
   height: 24px;
@@ -536,7 +446,6 @@
     border-color var(--d-fast) var(--e-out),
     background var(--d-fast) var(--e-out);
 }
-
 .dnav__n {
   min-width: 0;
   overflow-wrap: anywhere;
@@ -545,35 +454,28 @@
   letter-spacing: var(--ls-tight);
   line-height: var(--lh-snug);
 }
-
 .dnav__link:hover .dnav__n {
   color: var(--accent, var(--c-lime));
 }
-
 .dnav__link:hover .dnav__k svg {
   border-color: color-mix(in srgb, var(--accent, var(--c-lime)) 55%, var(--c-line));
   background: color-mix(in srgb, var(--accent, var(--c-lime)) 10%, transparent);
 }
-
 .dnav__link:not(.dnav__link--next):hover .dnav__k svg {
   transform: translateX(-2px);
 }
-
 .dnav__link--next:hover .dnav__k svg {
   transform: translateX(2px);
 }
-
 @media (min-width: 640px) {
   .dnav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .dnav__link + .dnav__link {
     border-top: 0;
     border-left: 1px solid var(--c-line);
   }
 }
-
 .dhero__sketch-note {
   margin-top: var(--s-3);
   font-size: var(--t-micro);
@@ -582,83 +484,65 @@
   color: var(--c-text-4);
   text-align: center;
 }
-
 @media (max-width: 899px) {
   .page[data-accent] .dsec {
     margin-top: 2rem;
   }
-
   .dback {
     margin-bottom: var(--s-4);
   }
-
   .dhero {
     gap: var(--s-5);
     padding-bottom: var(--s-6);
   }
-
   .dhero__main {
     gap: var(--s-4);
   }
-
   .dhero__title,
   :root:lang(el) .dhero__title {
     font-size: clamp(1.9rem, 9vw, 2.45rem);
   }
-
   .dhero__summary {
     font-size: var(--t-md);
     line-height: 1.5;
   }
-
   .dhero__cta {
     gap: var(--s-2);
   }
-
   .dhero__cta .btn {
     flex: 1 1 140px;
   }
-
   .dspec {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-top: var(--s-4);
   }
-
   .dspec__cell {
     padding: var(--s-3);
   }
-
   .dspec__cell:last-child {
     grid-column: 1 / -1;
   }
-
   .dspec__v {
     overflow-wrap: anywhere;
   }
-
   .dmetrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--s-2);
   }
-
   .dmetric {
     padding: var(--s-4);
   }
-
   .dmetric__n {
     font-size: var(--t-2xl);
   }
-
   .dmetric:last-child:nth-child(odd) {
     grid-column: 1 / -1;
   }
-
   .dsplit,
   .dgrid,
   .dshots {
     gap: var(--s-3);
   }
-
   .dgrid,
   .dshots {
     grid-template-columns: none;
@@ -672,69 +556,56 @@
     scroll-snap-type: inline proximity;
     scrollbar-width: none;
   }
-
   .dgrid::-webkit-scrollbar,
   .dshots::-webkit-scrollbar {
     display: none;
   }
-
   .dgrid > li {
     display: flex;
     height: 100%;
     scroll-snap-align: start;
   }
-
   .dgrid .reveal {
     display: flex;
     width: 100%;
     height: 100%;
   }
-
   .dgrid .dcard {
     width: 100%;
     height: 100%;
   }
-
   .dcard__t {
     min-block-size: 2.4em;
   }
-
   .dshots > * {
     height: 100%;
     scroll-snap-align: start;
   }
-
   .dshot {
     display: flex;
     flex-direction: column;
   }
-
   .dblock,
   .dcard,
   .dnav__link {
     padding: var(--s-4);
   }
-
   .dcard {
     min-height: 0;
   }
-
   .dblock__t {
     margin-bottom: var(--s-3);
   }
-
   .dnav {
     gap: 0;
     margin-top: 1.75rem;
   }
-
   .ddisclaimer {
     padding: var(--s-3);
   }
 }
-
 @media (max-width: 329px) {
   .dmetrics {
     grid-template-columns: 1fr;
   }
-}
+}

@@ -1,13 +1,5 @@
-import type { L } from './types'
+import type { L } from '@/data/types'
 
-/**
- * Handwritten margin notes. Kept together so the tone stays consistent and so
- * the font subsetter (tools/subset-hand-font.mjs) has one file to scan for
- * the characters it needs to keep.
- *
- * These are asides in the author's own voice, not translations of each other —
- * the Greek is allowed to be blunter, because that is how it actually sounds.
- */
 export const notes = {
   heroTerminal: {
     en: 'works on my machine',

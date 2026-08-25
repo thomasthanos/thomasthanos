@@ -17,14 +17,14 @@ import {
   ShieldCheck,
   Wrench,
 } from 'lucide-react'
-import { Reveal } from '../../components/ui/Reveal'
-import { SwipeHint } from '../../components/ui/SwipeHint'
-import { Pumpkin } from '../../components/brand/Pumpkin'
-import type { Project } from '../../data/types'
-import { useI18n } from '../../i18n/i18n'
-import { external } from '../../utils'
-import './annotations.css'
-import './make-your-life-easier.css'
+import { Reveal } from '@/components/ui/Reveal'
+import { SwipeHint } from '@/components/ui/SwipeHint'
+import { Pumpkin } from '@/components/brand/Pumpkin'
+import type { Project } from '@/data/types'
+import { useI18n } from '@/i18n/i18n'
+import { external } from '@/utils'
+import '@/pages/case-studies/annotations.css'
+import '@/pages/case-studies/make-your-life-easier.css'
 
 interface Props {
   project: Project

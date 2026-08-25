@@ -13,26 +13,20 @@ import {
   Languages,
   TriangleAlert,
 } from 'lucide-react'
-import { Reveal } from '../../components/ui/Reveal'
-import { SwipeHint } from '../../components/ui/SwipeHint'
-import { Pumpkin } from '../../components/brand/Pumpkin'
-import type { Project } from '../../data/types'
-import { useI18n } from '../../i18n/i18n'
-import { external } from '../../utils'
-import './annotations.css'
-import './discord-package-viewer.css'
+import { Reveal } from '@/components/ui/Reveal'
+import { SwipeHint } from '@/components/ui/SwipeHint'
+import { Pumpkin } from '@/components/brand/Pumpkin'
+import type { Project } from '@/data/types'
+import { useI18n } from '@/i18n/i18n'
+import { external } from '@/utils'
+import '@/pages/case-studies/annotations.css'
+import '@/pages/case-studies/discord-package-viewer.css'
 
 interface Props {
   project: Project
   near: { prev: Project; next: Project } | null
 }
 
-/**
- * The three real captures. Intrinsic sizes are the originals so the browser
- * reserves the right box and nothing shifts as they decode. Filenames match
- * the jobs in tools/optimise-assets.mjs; the dashboard is the redacted copy
- * produced by tools/redact-dpv-dashboard.mjs.
- */
 const SHOTS = {
   generator: { file: 'generator', w: 1092, h: 907 },
   dashboard: { file: 'dashboard', w: 2000, h: 1011 },
@@ -333,13 +327,6 @@ const copy = {
 
 const ASSETS = `${import.meta.env.BASE_URL}assets/projects/discord-package-viewer/`
 
-/**
- * A real capture that removes itself if the file is not there.
- *
- * A missing file does not always 404: an SPA host answers with index.html and
- * a 200, which loads but decodes to nothing — hence the naturalWidth check
- * alongside onError.
- */
 function useShot(file: string) {
   const [broken, setBroken] = useState(false)
   const props = {
@@ -409,7 +396,6 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
           {c.back}
         </Link>
 
-        {/* --- 1. Hero, with the real generator ------------------------ */}
         <header className="dpv-hero" data-solo={generator.broken ? 'y' : undefined}>
           <Reveal className="dpv-hero__copy">
             <div className="dpv-hero__meta">
@@ -453,7 +439,6 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
           <span className="cs-note cs-note--to-r dpv-note dpv-note--hero">{c.notes[0]}</span>
         </header>
 
-        {/* --- 2. Metrics ---------------------------------------------- */}
         <DpvSection id="dpv-metrics" label={c.metrics} aside={c.metricsNote} className="dpv-section--tight">
           <dl className="dpv-stats">
             {p.metrics?.map((m) => (
@@ -467,7 +452,6 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
           <span className="cs-note cs-note--to-l dpv-note dpv-note--metrics">{c.notes[1]}</span>
         </DpvSection>
 
-        {/* --- 3. The trade -------------------------------------------- */}
         <DpvSection id="dpv-trade" label={c.trade} className="dpv-section--trade">
           <Reveal className="dpv-versus">
             <div className="dpv-versus__side dpv-versus__side--them">
@@ -501,7 +485,6 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
           <span className="cs-note cs-note--to-r dpv-note dpv-note--trade">{c.notes[2]}</span>
         </DpvSection>
 
-        {/* --- 4. Real output + the three pillars ---------------------- */}
         <DpvSection id="dpv-output" label={c.output} aside={c.outputNote} className="dpv-section--output dpv-section--tinted">
           {!dashboard.broken && (
             <Reveal className="dpv-showcase">
@@ -541,13 +524,10 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
           <span className="cs-note cs-note--to-l dpv-note dpv-note--output">{c.notes[3]}</span>
         </DpvSection>
 
-        {/* --- 5. What it finds ---------------------------------------- */}
         <DpvSection id="dpv-index" label={c.index} aside={c.indexNote} className="dpv-section--index">
           <SwipeHint className="dpv-swipe" />
           <div className="dpv-index">
             {c.indexGroups.map(([group, items], i) => (
-              /* Reveal only forwards className, so the highlight on the last
-                 group is a modifier class rather than a data attribute. */
               <Reveal
                 className={`dpv-cat${i === c.indexGroups.length - 1 ? ' dpv-cat--creepy' : ''}`}
                 delay={Math.min(i, 5) * 45}
@@ -560,7 +540,6 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
           </div>
         </DpvSection>
 
-        {/* --- 6. How it works ----------------------------------------- */}
         <DpvSection id="dpv-how" label={c.how} aside={c.howNote} className="dpv-section--how">
           <SwipeHint className="dpv-swipe" />
           <Reveal className="dpv-flow">
@@ -578,7 +557,6 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
           <span className="cs-note cs-note--to-l dpv-note dpv-note--how">{c.notes[4]}</span>
         </DpvSection>
 
-        {/* --- 7. Engineering challenges ------------------------------- */}
         {p.challenges && (
           <DpvSection id="dpv-hard" label={c.hard} aside={c.hardNote} className="dpv-section--hard">
             <SwipeHint className="dpv-swipe" />
@@ -600,7 +578,6 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
           </DpvSection>
         )}
 
-        {/* --- 8. The one stupid requirement --------------------------- */}
         <DpvSection
           id="dpv-annoying"
           label={c.annoying}
@@ -632,7 +609,6 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
           <span className="cs-note cs-note--to-r dpv-note dpv-note--annoying">{c.notes[5]}</span>
         </DpvSection>
 
-        {/* --- 9. Privacy conclusion ----------------------------------- */}
         <DpvSection id="dpv-privacy" label={c.privacy} className="dpv-section--privacy dpv-section--tinted">
           <Reveal className="dpv-verdict">
             <p>{c.privacyHeadline}</p>
@@ -657,7 +633,6 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
           <span className="cs-note cs-note--to-l dpv-note dpv-note--privacy">{c.notes[6]}</span>
         </DpvSection>
 
-        {/* --- 10. Lessons, stack, links ------------------------------- */}
         <div className="dpv-endgrid">
           {p.lessons && (
             <DpvSection id="dpv-lessons" label={c.lessons} className="dpv-section--panel">
@@ -684,7 +659,6 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
           </DpvSection>
         </div>
 
-        {/* --- 11. Final statement ------------------------------------- */}
         <Reveal className="dpv-finale" as="section">
           <p>{c.finale}</p>
           <div className="dpv-finale__actions" aria-label={c.links}>
@@ -700,7 +674,6 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
           </div>
         </Reveal>
 
-        {/* --- Prev / next --------------------------------------------- */}
         {near && (
           <nav className="dpv-nav" aria-label={c.more}>
             <Link to={`/projects/${near.prev.slug}`}>
@@ -730,8 +703,6 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
         )}
       </div>
 
-      {/* The dashboard is the one capture worth a real overlay: at container
-          width its 11px UI text is legible but its detail is not. */}
       {zoomed && !dashboard.broken && typeof document !== 'undefined' &&
         createPortal(
           <div

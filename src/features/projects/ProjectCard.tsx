@@ -1,21 +1,16 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
-import { useI18n } from '../../i18n/i18n'
-import type { Project } from '../../data/types'
-import { cx } from '../../utils'
-import { Sketch } from './Sketch'
-import './project-card.css'
+import { useI18n } from '@/i18n/i18n'
+import type { Project } from '@/data/types'
+import { cx } from '@/utils'
+import { Sketch } from '@/features/projects/Sketch'
+import '@/features/projects/project-card.css'
 
 interface ProjectCardProps {
   project: Project
   variant?: 'default' | 'lead' | 'compact' | 'featured' | 'catalog'
   index?: number
-  /** Shows the Labs badge and note instead of metrics. */
   labs?: boolean
-  /**
-   * Heading level for the card title. Cards sitting directly under a page h1
-   * need h2; cards inside a titled section keep the default h3.
-   */
   as?: 'h2' | 'h3'
 }
 

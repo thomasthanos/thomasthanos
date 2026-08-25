@@ -1,21 +1,21 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Mail } from 'lucide-react'
-import { Terminal } from '../components/ui/Terminal'
-import { Annotation } from '../components/ui/Annotation'
-import { Sticker } from '../components/brand/Sticker'
-import { ProjectCard } from '../components/projects/ProjectCard'
-import { Reveal } from '../components/ui/Reveal'
-import { SwipeHint } from '../components/ui/SwipeHint'
-import { useI18n } from '../i18n/i18n'
-import { useChaos } from '../hooks/useChaos'
-import { useDocumentMeta } from '../hooks/useDocumentMeta'
-import { featuredProjects } from '../data/projects'
-import { site } from '../data/site'
-import { statusChips } from '../data/eggs'
-import { notes } from '../data/notes'
-import { pick } from '../utils'
-import './home.css'
+import { Terminal } from '@/components/ui/Terminal'
+import { Annotation } from '@/components/ui/Annotation'
+import { Sticker } from '@/components/brand/Sticker'
+import { ProjectCard } from '@/features/projects/ProjectCard'
+import { Reveal } from '@/components/ui/Reveal'
+import { SwipeHint } from '@/components/ui/SwipeHint'
+import { useI18n } from '@/i18n/i18n'
+import { useChaos } from '@/hooks/useChaos'
+import { useDocumentMeta } from '@/hooks/useDocumentMeta'
+import { featuredProjects } from '@/data/projects'
+import { site } from '@/data/site'
+import { statusChips } from '@/data/eggs'
+import { notes } from '@/data/notes'
+import { pick } from '@/utils'
+import '@/pages/home.css'
 
 export function Home() {
   const { t, tr } = useI18n()
@@ -27,7 +27,6 @@ export function Home() {
     path: '/',
   })
 
-  // Two chips, chosen once per mount so the page does not reshuffle on render.
   const chips = useMemo(() => {
     const first = pick(statusChips)
     const rest = statusChips.filter((c) => c !== first)
@@ -37,7 +36,6 @@ export function Home() {
   return (
     <div className="page">
       <div className="container">
-        {/* --- Hero ------------------------------------------------------- */}
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero__left">
             <p className="label label--accent">
@@ -74,21 +72,16 @@ export function Home() {
           </div>
 
           <div className="hero__right">
-            {/* Margin note pointing at the terminal, and the sticker slapped
-                on its corner. Both decorative and both hidden on narrow
-                screens, where there is no margin to write in. */}
             <Annotation className="hero__note" arrow="se" tilt={-6}>
               {tr(notes.heroTerminal)}
             </Annotation>
 
             <Terminal />
 
-            {/* Locale-aware sticker: Greek sign in EL, English sign in EN. */}
             <Sticker className="hero__sticker" tilt={chaos ? -3 : -7} />
           </div>
         </section>
 
-        {/* --- Proof ------------------------------------------------------- */}
         <Reveal as="section" className="proof" aria-label={t.detail.metrics}>
           <div className="proof__cell">
             <span className="proof__n">8K+</span>
@@ -104,7 +97,6 @@ export function Home() {
           </div>
         </Reveal>
 
-        {/* --- Featured ---------------------------------------------------- */}
         <section className="section featured" aria-labelledby="featured-title">
           <header className="featured__head">
             <h2 className="featured__title" id="featured-title">

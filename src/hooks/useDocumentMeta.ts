@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
-import { site } from '../data/site'
+import { site } from '@/data/site'
 
 interface Meta {
   title: string
   description: string
-  /** Route path, e.g. "/projects/steam-idler". */
   path: string
 }
 
@@ -33,10 +32,6 @@ function setMeta(attr: 'name' | 'property', key: string, content: string) {
   )
 }
 
-/**
- * Per-route document metadata. There is no SSR here, so crawlers that execute
- * JS get the right tags and the static index.html carries a sensible default.
- */
 export function useDocumentMeta({ title, description, path }: Meta) {
   useEffect(() => {
     const full = title === site.name ? title : `${title} — ${site.name}`

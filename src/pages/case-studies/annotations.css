@@ -1,61 +1,21 @@
-/* ============================================================================
-   Case-study annotations — shared mechanics
-   ----------------------------------------------------------------------------
-   Every bespoke case study gets handwritten margin notes. This file owns how
-   they behave; each page owns where they go.
-
-   One system, two placement modes:
-
-   RAIL   the note sits in the empty band beside the container, used whenever
-          that band provably fits it.
-   INSET  no usable band, so the note drops to the foot of the section it
-          annotates, into padding the page reserves for it, and its arrow turns
-          to point back up at the target. Nothing is hidden, nothing lands on
-          content.
-
-   A note is absolutely positioned against the section it annotates, so its
-   offsets are section-relative and stay correct however tall that section
-   grows. No note is ever placed with a viewport coordinate.
-
-   To use on a page:
-     - put `cs-scope` on the container that establishes the tokens
-     - put `cs-note` plus a direction modifier on each note
-     - set `--n-cw` if the page narrows its container, so the gutter maths
-       matches what is actually on screen
-     - give each note its own position rules in the page's own stylesheet
-   ========================================================================= */
-
 .cs-scope {
-  /* Note metrics. Only the tier blocks below override these. */
   --n-fs: 1.2rem;
   --n-w: 13rem;
   --n-arrow: 1.8rem;
   --n-gap: 1.5rem;
-
-  /* Width the container actually occupies, and the free band beside it.
-     Clamped at zero so a narrow viewport cannot produce a negative gutter.
-     A page that caps its container lower than --w-page overrides --n-cw. */
   --n-cw: min(var(--w-page), 100vw);
   --n-gutter: max(0px, (100vw - var(--n-cw)) / 2);
-
-  /* How far outside the container edge a rail note starts: as far as it needs,
-     but never further than the gutter can hold. Both operands are negative, so
-     max() picks the one closer to the container — which is what keeps a note
-     on screen if a zoom level lands between two tiers. */
   --n-rail: max(
     calc(-1 * (var(--n-w) + var(--n-gap))),
     calc(-1 * (var(--n-gutter) - 0.75rem))
   );
 }
-
 .cs-note {
   display: none;
   position: absolute;
   z-index: 3;
   flex-direction: column;
   align-items: flex-start;
-  /* Hug the text. A fixed width leaves the arrow stranded at the right edge of
-     an empty box whenever the last line wraps short. */
   width: max-content;
   max-width: var(--n-w);
   font-family: var(--f-hand);
@@ -65,15 +25,10 @@
   rotate: var(--n-rot, -5deg);
   pointer-events: none;
 }
-
 :root[data-chaos='on'] .cs-note {
   display: flex;
   animation: cs-note-in 500ms var(--e-spring) both;
 }
-
-/* The arrow is one glyph steered by two properties, so a note can be re-aimed
-   from a single rule instead of needing its own SVG. `↝` points right at rest.
-   Transforms apply right to left: the rotation happens first, then the flip. */
 .cs-note::after {
   content: '↝';
   display: block;
@@ -84,23 +39,17 @@
   color: currentColor;
   transform: scaleX(var(--n-flip, 1)) rotate(var(--n-arrow-rot, 0deg));
 }
-
-/* Direction modifiers — the arrow sits on the edge facing its target. */
 .cs-note--to-r::after {
   margin-left: auto;
 }
-
 .cs-note--to-l::after {
   --n-flip: -1;
   margin-right: auto;
 }
-
 .cs-note--to-d::after {
   --n-arrow-rot: 58deg;
   margin-left: auto;
 }
-
-/* Pointing up means the arrow leads, so it moves above the text. */
 .cs-note--to-u::after {
   --n-arrow-rot: -58deg;
   order: -1;
@@ -108,7 +57,6 @@
   margin-bottom: -0.1em;
   margin-left: auto;
 }
-
 .cs-note--to-ul::after {
   --n-flip: -1;
   --n-arrow-rot: 58deg;
@@ -117,17 +65,10 @@
   margin-bottom: -0.1em;
   margin-right: auto;
 }
-
 @keyframes cs-note-in {
   from { opacity: 0; translate: 0 8px; }
   to { opacity: 1; }
 }
-
-/* --- Size tiers -------------------------------------------------------------
-   Size only. The rail/inset switch is separate and lives below, because it
-   cannot be a plain width breakpoint — see the note there. */
-
-/* 1440p */
 @media (min-width: 2000px) and (max-width: 2559px) {
   .cs-scope {
     --n-fs: 1.06rem;
@@ -136,8 +77,6 @@
     --n-gap: 1.25rem;
   }
 }
-
-/* 1080p */
 @media (min-width: 1600px) and (max-width: 1999px) {
   .cs-scope {
     --n-fs: 0.97rem;
@@ -146,8 +85,6 @@
     --n-gap: 1rem;
   }
 }
-
-/* 720p landscape */
 @media (min-width: 1100px) and (max-width: 1599px) {
   .cs-scope {
     --n-fs: 0.9rem;
@@ -156,68 +93,40 @@
     --n-gap: 0.75rem;
   }
 }
-
-/* Greek runs roughly a fifth longer than English for the same note, so it gets
-   a wider column — never a different position. */
 :root:lang(el) .cs-scope {
   --n-w: 15rem;
 }
-
 @media (min-width: 2000px) and (max-width: 2559px) {
   :root:lang(el) .cs-scope { --n-w: 13rem; }
 }
-
-/* The side band is 188px here and a 184px note leaves it no margin, so the
-   Greek column is narrowed rather than letting the rail push it onto the
-   container. Rail mode has vertical room to spare, so the extra line is free. */
 @media (min-width: 1600px) and (max-width: 1999px) {
   :root:lang(el) .cs-scope { --n-w: 9.5rem; }
 }
-
 @media (min-width: 1100px) and (max-width: 1599px) {
   :root:lang(el) .cs-scope { --n-w: 12.5rem; }
 }
-
-/* --- INSET mode -------------------------------------------------------------
-   The switch cannot be a plain width breakpoint. A container is normally
-   var(--w-page) wide but pages narrow themselves on short viewports, so the
-   width at which the side band becomes big enough differs between the two
-   cases. Keying on width alone is what made notes drift onto content, so both
-   queries below carry a height condition.
-
-   Left-pointing notes stay left, right-pointing ones stay right, so reading
-   order and the semantic anchor survive the move. */
 @media (max-height: 1100px) and (max-width: 1875px),
        (min-height: 1101px) and (max-width: 2295px) {
-  /* One line each. Wrapping is what made Greek notes outgrow the space
-     reserved for them; on a foot rail there is width to spare and almost no
-     height, so trading one for the other makes the reserve deterministic and
-     identical in both languages. */
   .cs-note {
     inset: auto auto 0.35rem auto;
     max-width: none;
     white-space: nowrap;
   }
-
   .cs-note--to-r {
     left: 0.25rem;
     right: auto;
   }
-
   .cs-note--to-l,
   .cs-note--to-u {
     right: 1rem;
     left: auto;
   }
-
-  /* Arrows now lead upward, back to the element each note is about. */
   .cs-note--to-r::after {
     --n-flip: -1;
     --n-arrow-rot: -58deg;
     order: -1;
     margin: 0 auto -0.1em 0;
   }
-
   .cs-note--to-l::after,
   .cs-note--to-u::after {
     --n-flip: 1;
@@ -226,7 +135,6 @@
     margin: 0 0 -0.1em auto;
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
   :root[data-chaos='on'] .cs-note {
     animation: none;

@@ -1,24 +1,15 @@
-/* ============================================================================
-   Home — deliberately light. Establish who, prove it briefly, then get out
-   of the way and let people navigate.
-   ========================================================================= */
-
 .hero {
   display: grid;
   gap: clamp(2rem, 1rem + 5vw, 4rem);
-  /* Top-aligned, not centred: the terminal is taller than the copy, and
-     centring it pushes the headline below the fold. */
   align-items: start;
   padding-block: clamp(1.5rem, 0.8rem + 3vw, 3rem) clamp(2.5rem, 1.5rem + 4vw, 4rem);
 }
-
 .hero__left {
   display: flex;
   flex-direction: column;
   gap: var(--s-5);
   min-width: 0;
 }
-
 .hero__title {
   font-size: var(--t-hero);
   font-weight: 800;
@@ -26,9 +17,6 @@
   letter-spacing: var(--ls-hero);
   text-wrap: balance;
 }
-
-/* text-decoration (not a pseudo-element) so the rule follows the phrase
-   across a line break, which it does at most widths. */
 .hero__accent {
   color: var(--c-lime);
   text-decoration: underline;
@@ -37,7 +25,6 @@
   text-underline-offset: 0.16em;
   text-decoration-skip-ink: none;
 }
-
 .hero__lede {
   max-width: 52ch;
   font-size: var(--t-lg);
@@ -45,44 +32,35 @@
   color: var(--c-text-2);
   text-wrap: pretty;
 }
-
 .hero__cta {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-3);
   margin-top: var(--s-2);
 }
-
 .hero__chips {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-2);
   margin-top: var(--s-2);
 }
-
-/* These chips carry short sentences, not one-word statuses, so they wrap. */
 .hero__chips .chip {
   max-width: 100%;
   align-items: flex-start;
   white-space: normal;
   text-align: left;
 }
-
 .hero__chips .chip__dot {
   margin-top: 0.42em;
 }
-
 .hero__right {
   min-width: 0;
 }
-
 @media (min-width: 940px) {
   .hero {
     grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
   }
 }
-
-/* --- Proof bar ---------------------------------------------------------------- */
 .proof {
   display: grid;
   grid-template-columns: 1fr;
@@ -92,7 +70,6 @@
   background: var(--c-line);
   overflow: hidden;
 }
-
 .proof__cell {
   display: flex;
   align-items: baseline;
@@ -100,7 +77,6 @@
   padding: var(--s-4) var(--s-5);
   background: var(--c-surface);
 }
-
 .proof__n {
   font-size: var(--t-2xl);
   font-weight: 760;
@@ -109,32 +85,25 @@
   color: var(--c-lime);
   flex: none;
 }
-
 .proof__cell:nth-child(2) .proof__n {
   color: var(--c-violet);
 }
-
 .proof__cell:nth-child(3) .proof__n {
   color: var(--c-blue);
 }
-
 .proof__t {
   font-size: var(--t-xs);
   color: var(--c-text-3);
   line-height: var(--lh-snug);
 }
-
 @media (min-width: 700px) {
   .proof {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
-/* --- Featured projects: five-card horizontal rail -------------------------- */
 .proof + .featured {
   margin-top: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem);
 }
-
 .featured__head {
   display: flex;
   align-items: center;
@@ -144,7 +113,6 @@
   padding-bottom: var(--s-4);
   border-bottom: 1px solid var(--c-line-soft);
 }
-
 .featured__title {
   display: inline-flex;
   align-items: center;
@@ -155,7 +123,6 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-
 .featured__title > span {
   width: 7px;
   height: 7px;
@@ -164,7 +131,6 @@
   background: var(--c-violet);
   box-shadow: 0 0 0 4px var(--c-violet-a10), 0 0 10px var(--c-violet);
 }
-
 .featured__all {
   display: inline-flex;
   align-items: center;
@@ -177,22 +143,18 @@
   color: var(--c-text-4);
   transition: color var(--d-base) var(--e-out);
 }
-
 .featured__all:hover,
 .featured__all:focus-visible {
   color: var(--c-violet-bright);
 }
-
 .featured__all svg {
   width: 15px;
   height: 15px;
   transition: transform var(--d-base) var(--e-out);
 }
-
 .featured__all:hover svg {
   transform: translateX(3px);
 }
-
 .featured__grid {
   display: grid;
   grid-auto-flow: column;
@@ -205,24 +167,20 @@
   scroll-snap-type: inline proximity;
   scrollbar-width: thin;
 }
-
 .featured__grid > * {
   min-width: 0;
   height: auto;
   align-self: stretch;
   scroll-snap-align: start;
 }
-
 .featured__grid .reveal {
   display: flex;
   height: auto;
   align-self: stretch;
 }
-
 .featured__grid .pcard {
   flex: 1;
 }
-
 @media (min-width: 1200px) {
   .featured__grid {
     grid-auto-flow: initial;
@@ -231,8 +189,6 @@
     overflow: visible;
   }
 }
-
-/* --- Closing row ----------------------------------------------------------------- */
 .home__more {
   display: flex;
   flex-wrap: wrap;
@@ -243,32 +199,24 @@
   padding-top: var(--s-6);
   border-top: 1px solid var(--c-line);
 }
-
 .home__more-note {
   font-family: var(--f-mono);
   font-size: var(--t-micro);
   letter-spacing: 0.06em;
   color: var(--c-text-4);
 }
-
 .home__more-links {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-3);
 }
-
-/* --- Hero decorations ------------------------------------------------------
-   Absolutely positioned so they never affect the terminal's box, and hidden
-   below 1100px where there is no margin to write in. */
 .hero__right {
   position: relative;
 }
-
 .hero__note,
 .hero__sticker {
   display: none;
 }
-
 @media (min-width: 1100px) {
   .hero__note {
     display: inline-block;
@@ -277,39 +225,30 @@
     left: -6.5rem;
     z-index: 3;
   }
-
   .hero__sticker {
     display: inline-block;
     position: absolute;
     width: clamp(126px, 10vw, 158px);
-    /* Sits on the terminal corner instead of floating in the page gutter. */
     right: -0.65rem;
     bottom: -1.1rem;
     z-index: 3;
   }
 }
-
-/* At the widest sizes there is room to push them further out of the way. */
 @media (min-width: 1400px) {
   .hero__note {
     left: -9rem;
     top: -2.25rem;
   }
 }
-
-/* Right-hand cluster of the featured section header: the margin note sits
-   above the "all projects" button, out of the heading's way. */
 .featured__aside {
   position: relative;
   display: flex;
   align-items: center;
   gap: var(--s-4);
 }
-
 .featured__note {
   display: none;
 }
-
 @media (min-width: 1000px) {
   .featured__note {
     display: inline-block;
@@ -320,45 +259,36 @@
     margin-bottom: 0.2rem;
   }
 }
-
 @media (max-width: 939px) {
   .hero {
     gap: var(--s-5);
     padding-block: 0.5rem var(--s-6);
   }
-
   .hero__left {
     gap: var(--s-4);
   }
-
   .hero__title,
   :root:lang(el) .hero__title {
     font-size: clamp(2.15rem, 10.8vw, 3rem);
   }
-
   .hero__lede {
     font-size: var(--t-md);
     line-height: 1.48;
   }
-
   .hero__cta {
     gap: var(--s-2);
     margin-top: 0;
   }
-
   .hero__cta .btn {
     flex: 1 1 135px;
   }
-
   .hero__chips {
     gap: 0.4rem;
     margin-top: 0;
   }
-
   .proof {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
   .proof__cell {
     flex-direction: column;
     align-items: flex-start;
@@ -366,36 +296,29 @@
     min-width: 0;
     padding: 0.72rem 0.65rem;
   }
-
   .proof__n {
     font-size: clamp(1.25rem, 6vw, 1.6rem);
   }
-
   .proof__t {
     font-size: 10px;
   }
-
   .proof + .featured {
     margin-top: var(--s-6);
   }
-
   .featured__head {
     align-items: flex-end;
     gap: var(--s-3);
     margin-bottom: var(--s-4);
     padding-bottom: var(--s-3);
   }
-
   .featured__title {
     gap: var(--s-2);
     font-size: var(--t-xs);
   }
-
   .featured__all {
     gap: 0.35rem;
     font-size: 9px;
   }
-
   .featured__grid {
     grid-auto-columns: minmax(238px, 84vw);
     align-items: start;
@@ -404,26 +327,22 @@
     padding-right: var(--pad-x);
     padding-bottom: var(--s-2);
   }
-
   .featured__grid > *,
   .featured__grid .reveal {
     display: block;
     height: auto;
   }
-
   .featured__grid .pcard {
     width: 100%;
     flex: none;
   }
 }
-
 @media (max-width: 329px) {
   .proof {
     grid-template-columns: 1fr;
   }
-
   .proof__cell {
     flex-direction: row;
     align-items: baseline;
   }
-}
+}

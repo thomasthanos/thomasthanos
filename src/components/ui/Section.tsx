@@ -1,16 +1,14 @@
 import { useId, type ReactNode } from 'react'
-import { cx } from '../../utils'
-import './section.css'
+import { cx } from '@/utils'
+import '@/components/ui/section.css'
 
 interface SectionProps {
   title: string
-  /** Optional short line under the title. */
   note?: string
   children: ReactNode
   className?: string
 }
 
-/** A titled block with a mono heading, used throughout the detail pages. */
 export function Section({ title, note, children, className }: SectionProps) {
   const id = useId()
 

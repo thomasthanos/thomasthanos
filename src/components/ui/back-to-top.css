@@ -37,7 +37,6 @@
     opacity var(--d-base) var(--e-out),
     transform var(--d-base) var(--e-out);
 }
-
 @media (max-width: 899px) {
   .backtop {
     right: max(var(--s-3), env(safe-area-inset-right));
@@ -45,13 +44,11 @@
     height: 42px;
   }
 }
-
 .backtop--visible {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0) scale(1);
 }
-
 .backtop__icon {
   width: 12px;
   flex: none;
@@ -59,11 +56,9 @@
     transform var(--d-base) var(--e-out),
     opacity var(--d-fast) var(--e-out);
 }
-
 .backtop__icon path {
   fill: var(--c-lime);
 }
-
 .backtop__label {
   position: absolute;
   opacity: 0;
@@ -77,12 +72,10 @@
     transform var(--d-base) var(--e-out),
     opacity var(--d-fast) var(--e-out);
 }
-
 .backtop:focus-visible {
   outline: 2px solid var(--c-lime);
   outline-offset: 4px;
 }
-
 @media (hover: hover) and (pointer: fine) {
   .backtop--visible:hover {
     width: 132px;
@@ -93,22 +86,19 @@
       0 0 0 3px var(--c-violet-a20),
       0 14px 34px -12px rgba(0, 0, 0, 0.9);
   }
-
   .backtop:hover .backtop__icon {
     opacity: 0;
     transform: translateY(-28px);
   }
-
   .backtop:hover .backtop__label {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .backtop,
   .backtop__icon,
   .backtop__label {
     transition-duration: 0.01ms;
   }
-}
+}

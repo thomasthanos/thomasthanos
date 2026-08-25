@@ -1,8 +1,3 @@
-/* ============================================================================
-   Primitives — the small set of classes every page is built from.
-   ========================================================================= */
-
-/* --- Layout ---------------------------------------------------------------- */
 .container {
   width: 100%;
   max-width: var(--w-page);
@@ -10,26 +5,20 @@
   padding-left: max(var(--pad-x), env(safe-area-inset-left));
   padding-right: max(var(--pad-x), env(safe-area-inset-right));
 }
-
 .container--narrow {
   max-width: 940px;
 }
-
 .stack {
   display: flex;
   flex-direction: column;
 }
-
 .page {
   flex: 1;
   padding-block: clamp(2rem, 1.2rem + 3vw, 3.5rem) var(--gap-page);
 }
-
 .section + .section {
   margin-top: var(--gap-section);
 }
-
-/* Skip link */
 .skip-link {
   position: absolute;
   left: var(--s-4);
@@ -44,13 +33,10 @@
   font-size: var(--t-sm);
   transition: transform var(--d-base) var(--e-out);
 }
-
 .skip-link:focus-visible {
   transform: translateY(0);
   outline-offset: 2px;
 }
-
-/* --- Mono label — the small tracked caps used everywhere ------------------- */
 .label {
   display: inline-flex;
   align-items: center;
@@ -63,16 +49,12 @@
   color: var(--c-text-3);
   line-height: 1;
 }
-
 .label--accent {
   color: var(--c-lime);
 }
-
 .label--violet {
   color: var(--c-violet);
 }
-
-/* A tiny lime tick that precedes section labels */
 .label__tick {
   width: 6px;
   height: 6px;
@@ -80,8 +62,6 @@
   background: currentColor;
   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
 }
-
-/* --- Section heading ------------------------------------------------------- */
 .sec-head {
   display: flex;
   align-items: flex-end;
@@ -92,26 +72,21 @@
   padding-bottom: var(--s-5);
   border-bottom: 1px solid var(--c-line);
 }
-
 .sec-head__main {
   display: flex;
   flex-direction: column;
   gap: var(--s-3);
   min-width: 0;
 }
-
 .sec-head__title {
   font-size: var(--t-2xl);
   font-weight: 720;
 }
-
 .sec-head__sub {
   color: var(--c-text-3);
   font-size: var(--t-sm);
   max-width: 56ch;
 }
-
-/* --- Buttons ---------------------------------------------------------------- */
 .btn {
   --btn-bg: transparent;
   --btn-fg: var(--c-text);
@@ -138,72 +113,57 @@
     transform var(--d-fast) var(--e-out),
     box-shadow var(--d-base) var(--e-out);
 }
-
 .btn:hover {
   transform: translateY(-1px);
 }
-
 .btn:active {
   transform: translateY(0) scale(0.985);
 }
-
 .btn svg {
   flex: none;
   width: 16px;
   height: 16px;
 }
-
 .btn--primary {
   --btn-bg: var(--c-lime);
   --btn-fg: var(--c-lime-ink);
   --btn-bd: var(--c-lime);
   font-weight: 680;
 }
-
 .btn--primary:hover {
   --btn-bg: var(--c-lime-bright);
   --btn-bd: var(--c-lime-bright);
   box-shadow: 0 8px 30px -12px var(--c-lime-a40);
 }
-
 .btn--ghost {
   --btn-bg: var(--c-surface);
   --btn-bd: var(--c-line);
 }
-
 .btn--ghost:hover {
   --btn-bg: var(--c-surface-2);
   --btn-bd: var(--c-line-strong);
 }
-
 .btn--outline:hover {
   --btn-bd: var(--c-lime-a40);
   --btn-fg: var(--c-lime);
   background: var(--c-lime-a08);
 }
-
 .btn--sm {
   padding: 0.5rem 0.85rem;
   font-size: var(--t-xs);
 }
-
 .btn--sm svg {
   width: 14px;
   height: 14px;
 }
-
 .btn--block {
   width: 100%;
 }
-
-/* For labels that are a path or URL rather than a phrase. */
 .btn--path {
   white-space: normal;
   overflow-wrap: anywhere;
   text-align: center;
 }
-
-/* --- Chips (tiny status pills) ----------------------------------------------- */
 .chip {
   display: inline-flex;
   align-items: center;
@@ -217,12 +177,9 @@
   letter-spacing: 0.04em;
   color: var(--c-text-3);
   line-height: 1.35;
-  /* Short chips never wrap because they fit; the ones carrying a sentence
-     must, or they push a 320px page sideways. */
   max-width: 100%;
   white-space: normal;
 }
-
 .chip__dot {
   width: 5px;
   height: 5px;
@@ -231,26 +188,21 @@
   background: var(--c-lime);
   box-shadow: 0 0 0 3px var(--c-lime-a14);
 }
-
 .chip--accent {
   border-color: var(--c-lime-a24);
   color: var(--c-lime);
   background: var(--c-lime-a08);
 }
-
 .chip--violet {
   border-color: var(--c-violet-a20);
   color: var(--c-violet);
   background: var(--c-violet-a10);
 }
-
-/* --- Tech tags ------------------------------------------------------------------ */
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-2);
 }
-
 .tag {
   padding: 0.22rem 0.5rem;
   border: 1px solid var(--c-line);
@@ -263,8 +215,6 @@
   line-height: 1.5;
   white-space: nowrap;
 }
-
-/* --- Metrics (the social-proof numbers) ------------------------------------------ */
 .metric {
   display: inline-flex;
   align-items: baseline;
@@ -280,14 +230,11 @@
   line-height: 1.5;
   white-space: nowrap;
 }
-
 .metric--muted {
   border-color: var(--c-line);
   background: var(--c-bg-elev);
   color: var(--c-text-3);
 }
-
-/* --- Card ------------------------------------------------------------------------- */
 .card {
   position: relative;
   background: var(--c-surface);
@@ -295,27 +242,21 @@
   border-radius: var(--r-lg);
   box-shadow: var(--sh-inset-top);
 }
-
 .card--pad {
   padding: clamp(1.1rem, 0.9rem + 0.8vw, 1.6rem);
 }
-
-/* --- Prose ------------------------------------------------------------------------- */
 .prose {
   max-width: var(--w-prose);
   color: var(--c-text-2);
   line-height: var(--lh-relaxed);
 }
-
 .prose p + p {
   margin-top: var(--s-4);
 }
-
 .prose strong {
   color: var(--c-text);
   font-weight: 620;
 }
-
 .prose a {
   color: var(--c-lime);
   text-decoration: underline;
@@ -323,11 +264,9 @@
   text-underline-offset: 3px;
   transition: text-decoration-color var(--d-fast) var(--e-out);
 }
-
 .prose a:hover {
   text-decoration-color: var(--c-lime);
 }
-
 .prose code {
   padding: 0.1em 0.36em;
   border: 1px solid var(--c-line);
@@ -335,14 +274,11 @@
   background: var(--c-bg-elev);
   color: var(--c-lime);
 }
-
-/* --- Bullet list with a lime marker -------------------------------------------------- */
 .bullets {
   display: flex;
   flex-direction: column;
   gap: var(--s-3);
 }
-
 .bullets li {
   position: relative;
   padding-left: 1.4rem;
@@ -350,7 +286,6 @@
   font-size: var(--t-sm);
   line-height: var(--lh-normal);
 }
-
 .bullets li::before {
   content: '';
   position: absolute;
@@ -360,27 +295,20 @@
   height: 1px;
   background: var(--c-lime);
 }
-
 .bullets strong {
   color: var(--c-text);
   font-weight: 620;
 }
-
-/* --- Grids ----------------------------------------------------------------------------- */
 .grid {
   display: grid;
   gap: var(--s-5);
 }
-
 .grid--2 {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
 }
-
 .grid--3 {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
 }
-
-/* --- Utility --------------------------------------------------------------------------- */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -392,19 +320,15 @@
   white-space: nowrap;
   border: 0;
 }
-
 .mono {
   font-family: var(--f-mono);
 }
-
 .accent {
   color: var(--c-lime);
 }
-
 .muted {
   color: var(--c-text-3);
 }
-
 .rule {
   height: 1px;
   background: linear-gradient(
@@ -414,11 +338,6 @@
     transparent
   );
 }
-
-/* ============================================================================
-   Display type — Tektur, the squared techno face. Headlines only. Body copy
-   stays Inter Tight, because a whole page of this is unreadable.
-   ========================================================================= */
 .hero__title,
 .phead__title,
 .dhero__title,
@@ -428,71 +347,53 @@
 .nf__title {
   font-family: var(--f-display);
   text-transform: uppercase;
-  /* Tektur is wide and already squared off; it needs less negative tracking
-     than a grotesque, and none of the optical looseness. */
   letter-spacing: -0.005em;
   font-weight: 700;
 }
-
 .hero__title,
 .phead__title,
 .dhero__title {
   letter-spacing: -0.015em;
 }
-
-/* Greek set in caps is noticeably wider than Latin — give it room rather than
-   letting the hero run to five lines. */
 :root:lang(el) .hero__title {
   font-size: clamp(2rem, 1.1rem + 4vw, 4.25rem);
 }
-
 :root:lang(el) .phead__title,
 :root:lang(el) .dhero__title {
   font-size: clamp(1.9rem, 1.35rem + 2.6vw, 3.25rem);
 }
-
-/* Compact mobile rhythm: one column should read as one continuous page, not
-   as desktop panels separated by desktop-sized air. */
 @media (max-width: 899px) {
   .page {
     padding-block: 1.25rem var(--gap-page);
   }
-
   .grid {
     gap: var(--s-3);
   }
-
   .sec-head {
     gap: var(--s-3);
     margin-bottom: var(--s-5);
     padding-bottom: var(--s-3);
   }
-
   .sec-head__main {
     gap: var(--s-2);
   }
-
   .btn {
     min-height: 42px;
     padding: 0.62rem 0.9rem;
   }
-
   .btn--sm {
     min-height: 38px;
     padding: 0.48rem 0.72rem;
   }
-
   .tags {
     gap: 0.35rem;
     min-width: 0;
   }
-
   .tag {
     padding: 0.18rem 0.4rem;
     font-size: 10px;
   }
-
   .card--pad {
     padding: var(--s-4);
   }
-}
+}

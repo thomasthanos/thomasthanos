@@ -1,24 +1,3 @@
-/* ============================================================================
-   Sticker Edit Mode  —  paste into the browser Console on case study pages
-   (e.g. /projects/nexusmods-bypass or /projects/make-your-life-easier) or any
-   route with Chaos Mode ON.
-
-   Drag every handwritten note, sticker and doodle into place, rotate it, then
-   hit "Copy CSS". Nothing is written to disk, nothing is committed, and a
-   refresh throws it all away.
-
-   Positions are reported against each element's own anchor — the section it
-   lives in for the notes, the viewport band for the global marks — never
-   against raw screen coordinates, so the numbers stay meaningful when you redo
-   them at a different resolution.
-
-   MOVE     drag, or click then arrow keys (Shift = 10px)
-   ROTATE   wheel over an element (Shift = 5 deg), or Alt+drag sideways,
-            or the , and . keys once something is selected
-   RESET    R resets the selected item's angle, the button resets everything
-
-   Run it a second time to switch it off.
-   ========================================================================= */
 (() => {
   if (window.__stickerEdit) {
     window.__stickerEdit.destroy()
@@ -30,10 +9,7 @@
   const LIME = '#c8fa4b'
   const VIOLET = '#a78bfa'
 
-  /* Which edges each element is anchored from in the stylesheet. Export writes
-     the values back in the same form, so a copied rule drops straight in. */
   const ANCHORS = {
-    /* Make Your Life Easier case study */
     'myle-note--hero': ['top', 'left'],
     'myle-note--admin': ['bottom', 'right'],
     'myle-note--metrics': ['top', 'right'],
@@ -43,7 +19,6 @@
     'myle-note--privacy': ['bottom', 'left'],
     'myle-note--ship': ['bottom', 'right'],
 
-    /* NexusMods Bypass case study */
     'nxb-note--hero': ['top', 'left'],
     'nxb-note--console': ['bottom', 'right'],
     'nxb-note--stats': ['top', 'right'],
@@ -53,14 +28,12 @@
     'nxb-note--privacy': ['bottom', 'left'],
     'nxb-note--origin': ['bottom', 'right'],
 
-    /* Global Chaos marks & doodles */
     'doodle--1': ['top', 'left'],
     'doodle--2': ['top', 'right'],
     'doodle--3': ['top', 'left'],
     'sticker-note--a': ['top', 'right'],
     'sticker-note--b': ['top', 'left'],
 
-    /* Home hero */
     'hero__note': ['top', 'left'],
     'hero__sticker': ['bottom', 'right'],
   }
@@ -88,10 +61,6 @@
     name.startsWith('cs-note') ||
     name.includes('-note--')
 
-  /* The doodles are SVG, and offsetTop/offsetParent are HTMLElement-only, so
-     those read back as undefined. The computed top/left of a positioned
-     element is its used offset in px and works for both, which also keeps the
-     numbers free of the rotation each mark carries. */
   const anchorOf = (el) => {
     if (el.offsetParent) return el.offsetParent
     let p = el.parentElement
@@ -127,7 +96,6 @@
     return Number.isFinite(deg) ? deg : 0
   }
 
-  /* --- state ------------------------------------------------------------- */
   const items = nodes.map((el) => {
     const parent = anchorOf(el)
     const r = el.getBoundingClientRect()
@@ -153,7 +121,6 @@
   const byEl = new Map(items.map((i) => [i.el, i]))
   let selected = null
 
-  /* --- overlay ----------------------------------------------------------- */
   const layer = document.createElement('div')
   layer.style.cssText =
     'position:fixed;inset:0;z-index:2147483000;pointer-events:none;' +
@@ -163,8 +130,6 @@
   const badges = new Map()
   for (const it of items) {
     const b = document.createElement('div')
-    // Positioned with a transform rather than left/top: moving it then costs a
-    // composite instead of a layout pass, which is most of the drag budget.
     b.style.cssText =
       'position:absolute;left:0;top:0;pointer-events:none;white-space:nowrap;' +
       `padding:2px 5px;border-radius:3px;background:${VIOLET};color:#0a0b0d;` +
@@ -190,8 +155,6 @@
     b.style.background = it === selected ? LIME : VIOLET
   }
 
-  /* Reading 13 rects is a full layout pass, so it only happens when the whole
-     page may have shifted — never inside a drag. */
   function paintAll() {
     for (const it of items) paintOne(it)
   }
@@ -205,10 +168,7 @@
     })
   }
 
-  /* --- writing ----------------------------------------------------------- */
   function apply(it) {
-    // Order matters: clearing the `inset` shorthand also clears the four
-    // longhands, so it has to happen before they are written, not after.
     it.el.style.inset = ''
     it.el.style.top = `${Math.round(it.top)}px`
     it.el.style.left = `${Math.round(it.left)}px`
@@ -216,15 +176,12 @@
     it.el.style.bottom = 'auto'
   }
 
-  /* Notes are turned through --n-rot so the stylesheet's own `rotate` rule
-     keeps working; everything else sets `rotate` directly. */
   function applyRot(it) {
     const deg = `${it.rot.toFixed(1)}deg`
     if (isNote(it.name)) it.el.style.setProperty('--n-rot', deg)
     else it.el.style.rotate = deg
   }
 
-  /* --- interaction ------------------------------------------------------- */
   let drag = null
   let frame = 0
 
@@ -265,8 +222,6 @@
     paintAll()
   }
 
-  // Coalesce every move into one frame. Without this each mousemove wrote a
-  // style and then read 13 rects back, which is what made it crawl.
   const onMove = (e) => {
     if (!drag) return
     e.preventDefault()
@@ -334,13 +289,6 @@
   window.addEventListener('scroll', paintSoon, true)
   window.addEventListener('resize', paintSoon)
 
-  /* --- export ------------------------------------------------------------ */
-  /* The layout box, which is what CSS offsets are measured against.
-     getBoundingClientRect() returns the *rotated* box, and every note here
-     carries a rotation, so using it to derive `right`/`bottom` put those out
-     by tens of pixels — the note then landed low and right of where it was
-     dropped. offsetWidth/Height are layout values and ignore the transform;
-     SVG has neither, so the rotation is undone by hand there. */
   function layoutBox(el) {
     if (Number.isFinite(el.offsetWidth) && el.offsetWidth > 0) {
       return { w: el.offsetWidth, h: el.offsetHeight }
@@ -449,7 +397,6 @@
     }
   }
 
-  /* --- panel ------------------------------------------------------------- */
   const panel = document.createElement('div')
   panel.style.cssText =
     'position:fixed;right:12px;bottom:12px;z-index:2147483001;pointer-events:auto;' +
@@ -510,7 +457,6 @@
   panel.append(head, tier, hint, row)
   document.body.appendChild(panel)
 
-  /* --- teardown ---------------------------------------------------------- */
   window.__stickerEdit = {
     css: toCSS,
     json: toJSON,

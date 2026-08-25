@@ -5,7 +5,6 @@
   flex: none;
   isolation: isolate;
 }
-
 .logo__image {
   display: block;
   width: 100%;
@@ -15,4 +14,4 @@
   filter: drop-shadow(0 0 6px var(--c-lime-a40));
   user-select: none;
   pointer-events: none;
-}
+}

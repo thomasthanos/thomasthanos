@@ -8,21 +8,15 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import { useLocalStorage } from '../hooks/useLocalStorage'
-import type { L, LList, Locale } from '../data/types'
-import { en, type Dict } from './en'
-import { el } from './el'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import type { L, LList, Locale } from '@/data/types'
+import { en, type Dict } from '@/i18n/en'
+import { el } from '@/i18n/el'
 
 const DICTS: Record<Locale, Dict> = { en, el }
 
 const isLocale = (v: unknown): v is Locale => v === 'en' || v === 'el'
 
-/**
- * Swapping language rewrites nearly every string on screen at once. Doing that
- * on a single frame reads as a glitch, so the page plays a two-beat handoff:
- * it settles out, the text is replaced while nothing is legible anyway, then it
- * comes back with a short stagger.
- */
 const OUT_MS = 150
 const IN_MS = 460
 
@@ -32,13 +26,9 @@ interface I18nValue {
   lang: Locale
   setLang: (lang: Locale) => void
   toggle: () => void
-  /** 'out' while the old copy leaves, 'in' while the new copy arrives. */
   phase: LangPhase
-  /** The UI dictionary for the active language. */
   t: Dict
-  /** Resolve a localized value from the data layer. */
   tr: (value: L) => string
-  /** Resolve a localized list from the data layer. */
   trList: (value: LList) => string[]
 }
 
@@ -49,13 +39,10 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   const [phase, setPhase] = useState<LangPhase>('idle')
   const timers = useRef<number[]>([])
 
-  // Keep <html lang> honest — screen readers and browser translation use it.
   useEffect(() => {
     document.documentElement.lang = lang === 'el' ? 'el' : 'en'
   }, [lang])
 
-  // Drive the animation from one attribute so the CSS can reach every part of
-  // the page without any component knowing a swap is happening.
   useEffect(() => {
     const root = document.documentElement
     if (phase === 'idle') delete root.dataset.langAnim
@@ -77,7 +64,6 @@ export function I18nProvider({ children }: { children: ReactNode }) {
         return
       }
 
-      // A second click mid-swap should not queue a second animation.
       timers.current.forEach(window.clearTimeout)
       timers.current = []
 

@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from 'react'
-import { useI18n } from '../../i18n/i18n'
-import './back-to-top.css'
+import { useI18n } from '@/i18n/i18n'
+import '@/components/ui/back-to-top.css'
 
 export function BackToTop() {
   const { t } = useI18n()

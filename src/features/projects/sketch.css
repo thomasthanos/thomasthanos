@@ -1,0 +1,161 @@
+.sketch {
+  margin: 0;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-lg);
+  background: linear-gradient(180deg, var(--c-surface-2), var(--c-bg-elev));
+  box-shadow: var(--sh-md), var(--sh-inset-top);
+  overflow: hidden;
+}
+.sketch__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--c-line);
+  background: color-mix(in srgb, var(--c-void) 45%, transparent);
+}
+.sketch__dots {
+  display: inline-flex;
+  gap: 5px;
+  flex: none;
+}
+.sketch__dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-line-strong);
+}
+.sketch__url {
+  flex: 1;
+  min-width: 0;
+  padding: 0.22rem 0.6rem;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-pill);
+  background: var(--c-bg);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  color: var(--c-text-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sketch__chip {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 3px;
+  background: var(--accent, var(--c-lime));
+}
+.sketch__title {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.05em;
+  color: var(--c-text-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sketch__win {
+  display: inline-flex;
+  gap: 9px;
+  flex: none;
+  opacity: 0.4;
+}
+.sketch__win i {
+  width: 9px;
+  height: 1px;
+  background: var(--c-text-3);
+}
+.sketch__win i:nth-child(2) {
+  height: 8px;
+  border: 1px solid var(--c-text-3);
+  background: none;
+}
+.sketch__win i:last-child {
+  height: 9px;
+  width: 1px;
+  rotate: 45deg;
+  box-shadow: 0 0 0 0 transparent;
+  position: relative;
+}
+.sketch__win i:last-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--c-text-3);
+  rotate: 90deg;
+}
+.sketch__body {
+  display: flex;
+  flex-direction: column;
+}
+.sketch__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 0.62rem 0.85rem;
+  border-bottom: 1px solid var(--c-line-soft);
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+}
+.sketch__row:last-child {
+  border-bottom: 0;
+}
+.sketch__row.is-hot {
+  background: color-mix(in srgb, var(--accent, var(--c-lime)) 7%, transparent);
+  box-shadow: inset 2px 0 0 var(--accent, var(--c-lime));
+}
+.sketch__label {
+  color: var(--c-text-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sketch__row.is-hot .sketch__label {
+  color: var(--c-text);
+}
+.sketch__value {
+  color: var(--c-text-4);
+  white-space: nowrap;
+  justify-self: end;
+}
+.sketch__row.is-hot .sketch__value {
+  color: var(--accent, var(--c-lime));
+}
+.sketch__row:has(.sketch__bar-track) {
+  grid-template-columns: minmax(0, 1fr) minmax(60px, 110px) auto;
+}
+.sketch__bar-track {
+  height: 5px;
+  border-radius: var(--r-pill);
+  background: var(--c-surface-3);
+  overflow: hidden;
+}
+.sketch__bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent, var(--c-lime)) 55%, transparent),
+    var(--accent, var(--c-lime))
+  );
+}
+@supports not selector(:has(*)) {
+  .sketch__bar-track {
+    grid-column: 2;
+    min-width: 60px;
+  }
+}
+@media (max-width: 420px) {
+  .sketch__row {
+    font-size: 10.5px;
+    padding: 0.55rem 0.65rem;
+  }
+  .sketch__row:has(.sketch__bar-track) {
+    grid-template-columns: minmax(0, 1fr) 48px auto;
+  }
+}

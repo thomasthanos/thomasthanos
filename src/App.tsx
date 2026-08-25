@@ -1,26 +1,25 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { RootLayout } from './layouts/RootLayout'
-import { I18nProvider } from './i18n/i18n'
-import { ChaosProvider } from './hooks/useChaos'
-import { PageFallback } from './components/ui/PageFallback'
-import { Home } from './pages/Home'
+import { RootLayout } from '@/layouts/RootLayout'
+import { I18nProvider } from '@/i18n/i18n'
+import { ChaosProvider } from '@/hooks/useChaos'
+import { PageFallback } from '@/components/ui/PageFallback'
+import { Home } from '@/pages/Home'
 
-// Home ships in the entry chunk; everything else loads on navigation.
 const Projects = lazy(() =>
-  import('./pages/Projects').then((m) => ({ default: m.Projects })),
+  import('@/pages/Projects').then((m) => ({ default: m.Projects })),
 )
 const ProjectDetail = lazy(() =>
-  import('./pages/ProjectDetail').then((m) => ({ default: m.ProjectDetail })),
+  import('@/pages/ProjectDetail').then((m) => ({ default: m.ProjectDetail })),
 )
-const Stack = lazy(() => import('./pages/Stack').then((m) => ({ default: m.Stack })))
-const Labs = lazy(() => import('./pages/Labs').then((m) => ({ default: m.Labs })))
-const About = lazy(() => import('./pages/About').then((m) => ({ default: m.About })))
+const Stack = lazy(() => import('@/pages/Stack').then((m) => ({ default: m.Stack })))
+const Labs = lazy(() => import('@/pages/Labs').then((m) => ({ default: m.Labs })))
+const About = lazy(() => import('@/pages/About').then((m) => ({ default: m.About })))
 const Contact = lazy(() =>
-  import('./pages/Contact').then((m) => ({ default: m.Contact })),
+  import('@/pages/Contact').then((m) => ({ default: m.Contact })),
 )
 const NotFound = lazy(() =>
-  import('./pages/NotFound').then((m) => ({ default: m.NotFound })),
+  import('@/pages/NotFound').then((m) => ({ default: m.NotFound })),
 )
 
 export default function App() {

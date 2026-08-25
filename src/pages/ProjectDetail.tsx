@@ -11,19 +11,19 @@ import {
   TrendingUp,
   Wrench,
 } from 'lucide-react'
-import { Section } from '../components/ui/Section'
-import { Sketch } from '../components/projects/Sketch'
-import { ArchDiagram } from '../components/projects/ArchDiagram'
-import { Reveal } from '../components/ui/Reveal'
-import { SwipeHint } from '../components/ui/SwipeHint'
-import { useI18n } from '../i18n/i18n'
-import { useDocumentMeta } from '../hooks/useDocumentMeta'
-import { getProject, neighbours } from '../data/projects'
-import { external } from '../utils'
-import { DiscordPackageViewerCaseStudy } from './case-studies/DiscordPackageViewerCaseStudy'
-import { MakeYourLifeEasierCaseStudy } from './case-studies/MakeYourLifeEasierCaseStudy'
-import { NexusModsBypassCaseStudy } from './case-studies/NexusModsBypassCaseStudy'
-import './detail.css'
+import { Section } from '@/components/ui/Section'
+import { Sketch } from '@/features/projects/Sketch'
+import { ArchDiagram } from '@/features/projects/ArchDiagram'
+import { Reveal } from '@/components/ui/Reveal'
+import { SwipeHint } from '@/components/ui/SwipeHint'
+import { useI18n } from '@/i18n/i18n'
+import { useDocumentMeta } from '@/hooks/useDocumentMeta'
+import { getProject, neighbours } from '@/data/projects'
+import { external } from '@/utils'
+import { DiscordPackageViewerCaseStudy } from '@/pages/case-studies/DiscordPackageViewerCaseStudy'
+import { MakeYourLifeEasierCaseStudy } from '@/pages/case-studies/MakeYourLifeEasierCaseStudy'
+import { NexusModsBypassCaseStudy } from '@/pages/case-studies/NexusModsBypassCaseStudy'
+import '@/pages/detail.css'
 
 export function ProjectDetail() {
   const { slug = '' } = useParams()
@@ -61,7 +61,6 @@ export function ProjectDetail() {
           {t.common.backToProjects}
         </Link>
 
-        {/* --- Hero ------------------------------------------------------- */}
         <header className="dhero">
           <div className="dhero__main">
             <div className="dhero__eyebrow">
@@ -121,7 +120,6 @@ export function ProjectDetail() {
           )}
         </header>
 
-        {/* --- Metrics ---------------------------------------------------- */}
         {p.metrics && p.metrics.length > 0 && (
           <Section title={t.detail.metrics}>
             <div className="dmetrics">
@@ -135,7 +133,6 @@ export function ProjectDetail() {
           </Section>
         )}
 
-        {/* --- Why / what -------------------------------------------------- */}
         {(p.why || p.what) && (
           <Section title={t.detail.overview}>
             <div className="dsplit">
@@ -161,7 +158,6 @@ export function ProjectDetail() {
           </Section>
         )}
 
-        {/* --- Features ----------------------------------------------------- */}
         {p.features && p.features.length > 0 && (
           <Section title={t.detail.features} className="dsec--cards">
             {p.features.length > 1 && <SwipeHint />}
@@ -183,7 +179,6 @@ export function ProjectDetail() {
           </Section>
         )}
 
-        {/* --- Challenges ----------------------------------------------------- */}
         {p.challenges && p.challenges.length > 0 && (
           <Section title={t.detail.challenges} className="dsec--cards">
             {p.challenges.length > 1 && <SwipeHint />}
@@ -205,14 +200,12 @@ export function ProjectDetail() {
           </Section>
         )}
 
-        {/* --- Architecture ---------------------------------------------------- */}
         {p.architecture && p.architecture.length > 0 && (
           <Section title={t.detail.architecture}>
             <ArchDiagram layers={p.architecture} />
           </Section>
         )}
 
-        {/* --- Screens (only when real files exist) ----------------------------- */}
         {p.shots && p.shots.length > 0 && (
           <Section title={t.detail.gallery}>
             {p.shots.length > 1 && <SwipeHint />}
@@ -234,7 +227,6 @@ export function ProjectDetail() {
           </Section>
         )}
 
-        {/* --- Privacy / impact ------------------------------------------------- */}
         {(p.privacy || p.impact) && (
           <Section title={p.privacy ? t.detail.privacy : t.detail.impact}>
             <div className="dsplit">
@@ -260,7 +252,6 @@ export function ProjectDetail() {
           </Section>
         )}
 
-        {/* --- Lessons ------------------------------------------------------------ */}
         {p.lessons && (
           <Section title={t.detail.lessons}>
             <ul className="bullets" style={{ maxWidth: 'var(--w-prose)' }}>
@@ -271,7 +262,6 @@ export function ProjectDetail() {
           </Section>
         )}
 
-        {/* --- Tech --------------------------------------------------------------- */}
         <Section title={t.detail.tech}>
           <ul className="tags">
             {p.tech.map((tech) => (
@@ -282,7 +272,6 @@ export function ProjectDetail() {
           </ul>
         </Section>
 
-        {/* --- Disclaimer ----------------------------------------------------------- */}
         {p.disclaimer && (
           <Section title={t.detail.disclaimer}>
             <p className="ddisclaimer">
@@ -292,7 +281,6 @@ export function ProjectDetail() {
           </Section>
         )}
 
-        {/* --- Links ------------------------------------------------------------------ */}
         <Section title={t.detail.links}>
           <div className="dhero__cta">
             <a className="btn btn--outline btn--path" href={p.repo} {...external}>
@@ -313,7 +301,6 @@ export function ProjectDetail() {
           </div>
         </Section>
 
-        {/* --- Prev / next --------------------------------------------------------------- */}
         {near && (
           <nav className="dnav" aria-label={t.detail.moreProjects}>
             <Link className="dnav__link" to={`/projects/${near.prev.slug}`}>

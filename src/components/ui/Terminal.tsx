@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
-import { useI18n } from '../../i18n/i18n'
-import './terminal.css'
+import { useI18n } from '@/i18n/i18n'
+import '@/components/ui/terminal.css'
 
 interface TerminalLine {
   id: string

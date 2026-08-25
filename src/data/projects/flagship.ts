@@ -1,14 +1,8 @@
-import type { Project } from '../types'
+import type { Project } from '@/data/types'
 
 const GH = 'https://github.com/thomasthanos'
 
-/**
- * The six projects that get a full case study.
- * Every technical claim here comes from the repository itself — manifests,
- * package.json, source tree or README. Nothing is invented.
- */
 export const flagship: Project[] = [
-  // ==========================================================================
   {
     slug: 'nexusmods-bypass',
     name: 'NexusMods Bypass',
@@ -215,7 +209,6 @@ export const flagship: Project[] = [
     },
   },
 
-  // ==========================================================================
   {
     slug: 'make-your-life-easier',
     name: 'Make Your Life Easier',
@@ -427,7 +420,6 @@ export const flagship: Project[] = [
     },
   },
 
-  // ==========================================================================
   {
     slug: 'an1me-tracker',
     name: 'An1me.to Tracker',
@@ -613,7 +605,6 @@ export const flagship: Project[] = [
     },
   },
 
-  // ==========================================================================
   {
     slug: 'discord-package-viewer',
     name: 'Discord Package Viewer',
@@ -792,7 +783,6 @@ export const flagship: Project[] = [
     },
   },
 
-  // ==========================================================================
   {
     slug: 'steam-idler',
     name: 'Steam Idler',
@@ -977,7 +967,6 @@ export const flagship: Project[] = [
     },
   },
 
-  // ==========================================================================
   {
     slug: 'gta-academy',
     name: 'GTA Academy',
