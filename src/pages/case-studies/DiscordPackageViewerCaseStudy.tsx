@@ -14,6 +14,7 @@ import {
   TriangleAlert,
 } from 'lucide-react'
 import { Reveal } from '../../components/ui/Reveal'
+import { SwipeHint } from '../../components/ui/SwipeHint'
 import { Pumpkin } from '../../components/brand/Pumpkin'
 import type { Project } from '../../data/types'
 import { useI18n } from '../../i18n/i18n'
@@ -519,6 +520,7 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
             </Reveal>
           )}
 
+          <SwipeHint className="dpv-swipe" />
           <div className="dpv-pillars">
             {c.pillars.map((pillar, i) => (
               <Reveal className="dpv-pillar" delay={i * 60} key={pillar.title}>
@@ -541,6 +543,7 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
 
         {/* --- 5. What it finds ---------------------------------------- */}
         <DpvSection id="dpv-index" label={c.index} aside={c.indexNote} className="dpv-section--index">
+          <SwipeHint className="dpv-swipe" />
           <div className="dpv-index">
             {c.indexGroups.map(([group, items], i) => (
               /* Reveal only forwards className, so the highlight on the last
@@ -559,6 +562,7 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
 
         {/* --- 6. How it works ----------------------------------------- */}
         <DpvSection id="dpv-how" label={c.how} aside={c.howNote} className="dpv-section--how">
+          <SwipeHint className="dpv-swipe" />
           <Reveal className="dpv-flow">
             {c.flow.map(([name, sub], i) => (
               <div
@@ -577,6 +581,7 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
         {/* --- 7. Engineering challenges ------------------------------- */}
         {p.challenges && (
           <DpvSection id="dpv-hard" label={c.hard} aside={c.hardNote} className="dpv-section--hard">
+            <SwipeHint className="dpv-swipe" />
             <ol className="dpv-hard">
               {p.challenges.map((ch, i) => (
                 <Reveal className="dpv-hard__row" delay={i * 50} key={ch.title.en} as="li">
@@ -637,6 +642,7 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
               ))}
             </ul>
           </Reveal>
+          <SwipeHint className="dpv-swipe" />
           <div className="dpv-points">
             {c.privacyPoints.map(([title, body], i) => (
               <Reveal className="dpv-point" delay={i * 60} key={title}>
@@ -655,6 +661,7 @@ export function DiscordPackageViewerCaseStudy({ project: p, near }: Props) {
         <div className="dpv-endgrid">
           {p.lessons && (
             <DpvSection id="dpv-lessons" label={c.lessons} className="dpv-section--panel">
+              <SwipeHint className="dpv-swipe" />
               <ul className="dpv-lessons">
                 {trList(p.lessons).map((lesson) => (
                   <li key={lesson}>{lesson}</li>

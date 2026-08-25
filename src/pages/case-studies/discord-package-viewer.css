@@ -985,6 +985,12 @@
 }
 
 /* --- 9. Lessons, stack, disclaimer ------------------------------------------ */
+/* The columns need min-width:0, or the lessons rail on a phone pushes this
+   grid wider than the page instead of scrolling inside its own track. */
+.dpv-endgrid > * {
+  min-width: 0;
+}
+
 .dpv-endgrid {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
@@ -1388,15 +1394,20 @@
     --n-rot: 3deg;
   }
 
+  /* INTERIM — re-drag me. Placed at 865px against a 936px section; the
+     pillars rail took that section down to 651px, so this is the same
+     proportion of the new height rather than a fresh measurement. */
   .dpv-note--output {
-    top: 865px;
+    top: 560px;
     left: 114px;
     --n-x: 114px;
     --n-rot: -6deg;
   }
 
+  /* INTERIM — re-drag me. 338px section became 245px when the flow strip
+     started scrolling inside its own frame. */
   .dpv-note--how {
-    top: 257px;
+    top: 175px;
     left: 231px;
     --n-x: 231px;
   }
@@ -1408,8 +1419,10 @@
     --n-rot: 2deg;
   }
 
+  /* INTERIM — re-drag me. 796px section became 574px once the three privacy
+     points became a rail. */
   .dpv-note--privacy {
-    top: 721px;
+    top: 495px;
     left: 60px;
     --n-x: 60px;
     --n-rot: -6deg;
@@ -1958,10 +1971,12 @@
   }
 
   /* The warning dialog is a fixed-size modal, not a full screen: at 100% of a
-     phone viewport it is bigger than it ever appears in real life. */
+     phone viewport it is bigger than it ever appears in real life. Narrowing
+     it without re-centring is what left it hanging off the left margin. */
   .dpv-limit__shot img {
     width: 76%;
     min-width: 240px;
+    margin-inline: auto;
   }
 
   .dpv-limit__lead {
@@ -2034,5 +2049,138 @@
   :root[data-chaos='on'] .dpv-section--annoying,
   :root[data-chaos='on'] .dpv-section--privacy {
     padding-bottom: calc(var(--n-fs) * 5);
+  }
+}
+
+/* --- Phone: swipe rails ------------------------------------------------------
+   Six collections stack on a phone, and stacked is what turns this page into
+   twenty screens. Each one becomes a horizontal snap rail instead: the reader
+   swipes through three pillars or four challenges in the height of one.
+
+   Native scroll-snap, no JS. The rails bleed to the viewport edges so the
+   half-visible next card is the affordance, and SwipeHint says so out loud.
+
+   .dpv-flow is the exception: it is a bordered strip that reads as one object,
+   so it scrolls inside its own frame rather than bleeding past it. */
+@media (max-width: 619px) {
+  .dpv-pillars,
+  .dpv-index,
+  .dpv-hard,
+  .dpv-points,
+  .dpv-lessons {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(78vw, 300px);
+    grid-template-columns: none;
+    gap: var(--s-3);
+    margin-inline: calc(var(--pad-x) * -1);
+    padding-inline: var(--pad-x);
+    padding-bottom: var(--s-3);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+  }
+
+  .dpv-pillars::-webkit-scrollbar,
+  .dpv-index::-webkit-scrollbar,
+  .dpv-hard::-webkit-scrollbar,
+  .dpv-points::-webkit-scrollbar,
+  .dpv-lessons::-webkit-scrollbar,
+  .dpv-flow::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dpv-pillars > *,
+  .dpv-index > *,
+  .dpv-hard > *,
+  .dpv-points > *,
+  .dpv-lessons > *,
+  .dpv-flow > * {
+    scroll-snap-align: start;
+  }
+
+  /* Rail cards need a floor and a ceiling: a card that grows with its text
+     makes the rail as tall as its longest item, which is the height the rail
+     was supposed to save. */
+  .dpv-pillar,
+  .dpv-point,
+  .dpv-cat,
+  .dpv-hard__row {
+    min-height: 100%;
+  }
+
+  /* Off the rail these rely on a rule above them for separation; on it they
+     are side by side, so each one needs its own edge. */
+  .dpv-hard__row {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 0.9rem 0.95rem;
+    border-top: 2px solid var(--dpv-blurple-a24);
+    border-radius: var(--r-md);
+    background: var(--dpv-panel);
+  }
+
+  .dpv-hard__row:nth-child(-n + 2) {
+    padding-top: 0.9rem;
+    border-top: 2px solid var(--dpv-blurple-a24);
+  }
+
+  .dpv-lessons li {
+    padding: 0.85rem 0.9rem 0.85rem 2rem;
+    border-top: 2px solid var(--dpv-blurple-a24);
+    border-radius: var(--r-md);
+    background: var(--dpv-panel);
+  }
+
+  .dpv-lessons li::before {
+    left: 0.9rem;
+    top: 0.85rem;
+  }
+
+  /* The flow keeps its frame and scrolls inside it, so the strip still reads
+     as one pipeline rather than six loose tiles. */
+  .dpv-flow {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 46%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+  }
+
+  .dpv-flow__stage {
+    border-top: 0;
+  }
+
+  .dpv-flow__stage:nth-child(2n) {
+    border-right: 1px solid var(--dpv-line);
+  }
+
+  .dpv-flow__stage:last-child {
+    border-right: 0;
+  }
+
+  /* Back to pointing along the row now that the stages sit in one. */
+  .dpv-flow__stage:not(:last-child)::after {
+    display: block;
+    top: 1.5rem;
+    right: -5px;
+    bottom: auto;
+    left: auto;
+    rotate: 45deg;
+  }
+
+  /* The hint belongs to the rail it introduces, not to the page. */
+  .dpv-swipe {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Above the rails there is nothing to swipe, so the hint would be a lie.
+   SwipeHint shows itself up to 899px; this page only rails below 620px. */
+@media (min-width: 620px) {
+  .dpv-swipe {
+    display: none;
   }
 }
