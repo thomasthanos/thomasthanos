@@ -808,12 +808,15 @@ export const flagship: Project[] = [
       'React 18',
       'TypeScript',
       'Vite',
+      'esbuild',
       'Tailwind',
       'steamworks.js',
     ],
     metrics: [
-      { value: '9.7K', label: { en: 'lines across 36 files', el: 'γραμμές σε 36 αρχεία' } },
-      { value: 'TS', label: { en: 'end to end', el: 'από άκρη σε άκρη' } },
+      { value: '36', label: { en: 'TypeScript files', el: 'αρχεία TypeScript' } },
+      { value: '3', label: { en: 'build targets, one command', el: 'build targets, μία εντολή' } },
+      { value: '1', label: { en: 'child process per game', el: 'διεργασία ανά παιχνίδι' } },
+      { value: '0', label: { en: 'passwords, ever', el: 'κωδικοί, ποτέ' } },
     ],
     short: {
       en: 'Achievement manager and game idler for Steam. For the achievements you earned emotionally but never quite managed technically.',
@@ -842,29 +845,29 @@ export const flagship: Project[] = [
       {
         title: { en: 'Game idler', el: 'Game idler' },
         body: {
-          en: 'Idle one or many titles for playtime, driven by `steam-user` sessions rather than launching the actual games.',
-          el: 'Idle σε ένα ή πολλά παιχνίδια για playtime, μέσω `steam-user` sessions αντί να ανοίγει τα ίδια τα παιχνίδια.',
+          en: 'Idle one or many titles for playtime without launching the actual games. Each title gets its own child process with `SteamAppId` set, and `sw.init(appId)` is what makes Steam advertise it as currently playing.',
+          el: 'Idle σε ένα ή πολλά παιχνίδια για playtime, χωρίς να ανοίγουν τα ίδια τα παιχνίδια. Κάθε τίτλος παίρνει δική του child process με `SteamAppId`, και το `sw.init(appId)` είναι αυτό που κάνει το Steam να το δείχνει ως currently playing.',
         },
       },
       {
         title: { en: 'Auto-invisible', el: 'Auto-invisible' },
         body: {
-          en: 'Flips your Steam presence to invisible for the duration of a session and puts it back afterwards.',
-          el: 'Γυρνάει το Steam presence σε invisible όσο κρατάει το session και το επαναφέρει μετά.',
+          en: 'Flips your Steam presence to invisible for the duration of a session and puts it back afterwards. The switch goes through the `steam://` URL protocol — handled by the Steam client already running on the machine — so it costs no network traffic and cannot collide with the worker’s session. Your previous state is read from `localconfig.vdf` first and written to disk, so a crash still restores the right one.',
+          el: 'Γυρνάει το Steam presence σε invisible όσο κρατάει το session και το επαναφέρει μετά. Η αλλαγή περνάει από το πρωτόκολλο `steam://` — το χειρίζεται ο ίδιος ο Steam client που ήδη τρέχει — οπότε δεν κοστίζει καθόλου δικτυακή κίνηση και δεν μπορεί να συγκρουστεί με το session του worker. Η προηγούμενη κατάστασή σου διαβάζεται πρώτα από το `localconfig.vdf` και γράφεται στον δίσκο, ώστε ακόμα και ένα crash να επαναφέρει τη σωστή.',
         },
       },
       {
-        title: { en: 'QR sign-in', el: 'Σύνδεση με QR' },
+        title: { en: 'Sign-in without a password', el: 'Σύνδεση χωρίς κωδικό' },
         body: {
-          en: 'Authentication through `steam-session` with a generated QR code, so credentials never pass through the app.',
-          el: 'Authentication μέσω `steam-session` με QR code, ώστε τα credentials να μην περνούν ποτέ από την εφαρμογή.',
+          en: 'Two ways in, neither of which is a password: scan a QR code with the Steam mobile app through `steam-session`, or paste a refresh token. The app only ever holds a token, so there is no password for it to mishandle.',
+          el: 'Δύο τρόποι εισόδου, κανένας τους κωδικός: σκανάρεις QR code με την εφαρμογή Steam στο κινητό μέσω `steam-session`, ή κάνεις paste ένα refresh token. Η εφαρμογή κρατάει μόνο token, οπότε δεν υπάρχει κωδικός για να τον κακοδιαχειριστεί.',
         },
       },
       {
-        title: { en: 'A library that scrolls', el: 'Βιβλιοθήκη που σκρολάρει' },
+        title: { en: 'Your library, without an API key', el: 'Η βιβλιοθήκη σου, χωρίς API key' },
         body: {
-          en: 'Virtualised with `react-window`, so a 900-game account renders as fast as a 9-game one.',
-          el: 'Virtualised με `react-window`, οπότε ένας λογαριασμός με 900 παιχνίδια κάνει render το ίδιο γρήγορα με έναν με 9.',
+          en: 'The game list is read straight off disk from the `steamapps/*.acf` manifests across every library folder, parsed with a hand-written reader for Valve’s KeyValue format. Steam itself is found through the Windows registry, with common install paths as a fallback.',
+          el: 'Η λίστα παιχνιδιών διαβάζεται κατευθείαν από τον δίσκο, από τα manifests `steamapps/*.acf` σε κάθε φάκελο βιβλιοθήκης, με parser γραμμένο στο χέρι για τη μορφή KeyValue της Valve. Το ίδιο το Steam εντοπίζεται μέσω του registry των Windows, με τα συνηθισμένα paths ως εφεδρεία.',
         },
       },
       {
@@ -893,8 +896,15 @@ export const flagship: Project[] = [
       {
         title: { en: 'Failing gracefully when Steam is not there', el: 'Να μη σκάει όταν λείπει το Steam' },
         body: {
-          en: 'A dedicated setup screen and `steamPaths` resolution handle the case where Steam is installed somewhere unusual or not running at all, instead of showing an empty list and a shrug.',
-          el: 'Μια ειδική οθόνη setup και η επίλυση `steamPaths` καλύπτουν την περίπτωση που το Steam είναι εγκατεστημένο κάπου παράξενα ή δεν τρέχει καθόλου, αντί για άδεια λίστα και σήκωμα ώμων.',
+          en: 'A dedicated setup screen and `steamPaths` resolution handle the case where Steam is installed somewhere unusual or not running at all, instead of showing an empty list and a shrug. Auto-idle waits for the Steam process to actually appear before it starts, rather than assuming it is there.',
+          el: 'Μια ειδική οθόνη setup και η επίλυση `steamPaths` καλύπτουν την περίπτωση που το Steam είναι εγκατεστημένο κάπου παράξενα ή δεν τρέχει καθόλου, αντί για άδεια λίστα και σήκωμα ώμων. Το auto-idle περιμένει να εμφανιστεί όντως η διεργασία του Steam πριν ξεκινήσει, αντί να θεωρεί ότι είναι εκεί.',
+        },
+      },
+      {
+        title: { en: 'Fifteen seconds of being visible', el: 'Δεκαπέντε δευτερόλεπτα ορατός' },
+        body: {
+          en: 'Going invisible has to win a race against your own workers. If auto-idle spawned before the account session was up, the presence switch arrived two to fifteen seconds late — long enough for everyone to watch you come online playing four games at once. The startup sequence is now explicitly ordered: wait for Steam, log in, only then start idling, so the switch fires before the first worker announces itself. Shutdown runs the same logic backwards — restore presence first, while the session is still alive, and stop the workers after.',
+          el: 'Το να γίνεις invisible πρέπει να κερδίσει μια κούρσα απέναντι στους ίδιους σου τους workers. Αν το auto-idle ξεκινούσε πριν σηκωθεί το session του λογαριασμού, η αλλαγή παρουσίας ερχόταν δύο έως δεκαπέντε δευτερόλεπτα αργότερα — αρκετά ώστε να σε δουν όλοι να μπαίνεις online παίζοντας τέσσερα παιχνίδια μαζί. Η ακολουθία εκκίνησης είναι πλέον ρητά διατεταγμένη: περίμενε το Steam, κάνε login, και μόνο τότε ξεκίνα idle, ώστε η αλλαγή να προλάβει τον πρώτο worker. Ο τερματισμός τρέχει την ίδια λογική ανάποδα — πρώτα επαναφορά παρουσίας όσο ζει ακόμα το session, και μετά σταμάτημα των workers.',
         },
       },
     ],
@@ -918,10 +928,11 @@ export const flagship: Project[] = [
           'steam/steamUser.ts',
           'steam/steamPaths.ts',
           'steam/worker.ts',
+          'steam/workerPath.ts',
         ],
         note: {
-          en: 'The worker is bundled separately and isolated from the main process.',
-          el: 'Ο worker γίνεται bundle χωριστά και είναι απομονωμένος από τον main process.',
+          en: 'The worker is bundled separately, unpacked out of the asar, and talks to the main process over newline-delimited JSON on stdin and stdout.',
+          el: 'Ο worker γίνεται bundle χωριστά, βγαίνει έξω από το asar, και μιλάει με τον main process με JSON ανά γραμμή σε stdin και stdout.',
         },
       },
       {
@@ -941,19 +952,26 @@ export const flagship: Project[] = [
           'pages/IdlePage',
           'pages/AutoIdlePage',
           'pages/SettingsPage',
+          'pages/PortfolioPage',
         ],
+        note: {
+          en: '5,205 of the 9,711 lines live here. React, Tailwind and Framer Motion are dev dependencies — the renderer is bundled by Vite, so only the main process ships its packages.',
+          el: '5.205 από τις 9.711 γραμμές είναι εδώ. React, Tailwind και Framer Motion είναι dev dependencies — ο renderer γίνεται bundle από το Vite, οπότε μόνο ο main process κουβαλάει πακέτα.',
+        },
       },
     ],
     lessons: {
       en: [
         'Put anything native in its own process. The first version crashed the window; the second one only ever loses a worker.',
         'A single shared `types.ts` across main, preload and renderer catches more IPC bugs than any amount of runtime validation.',
-        'Virtualise the list before you need to. Retro-fitting it is much worse than starting with it.',
+        'Reach for the mechanism already running on the machine before you open a second connection to the same service. Switching presence through the `steam://` protocol is free and never conflicts; doing it over a second session cost me the worker every time.',
+        'Ordering is a feature. Half the bugs worth writing down here were not wrong logic, they were the right logic in the wrong sequence.',
       ],
       el: [
         'Βάλε ό,τι είναι native σε δική του διεργασία. Η πρώτη έκδοση έριχνε το παράθυρο· η δεύτερη το πολύ χάνει έναν worker.',
         'Ένα κοινό `types.ts` σε main, preload και renderer πιάνει περισσότερα IPC bugs από οποιοδήποτε runtime validation.',
-        'Κάνε virtualise τη λίστα πριν το χρειαστείς. Το να το προσθέσεις μετά είναι πολύ χειρότερο.',
+        'Πριν ανοίξεις δεύτερη σύνδεση στην ίδια υπηρεσία, δες τι τρέχει ήδη στο μηχάνημα. Η αλλαγή παρουσίας μέσω `steam://` είναι δωρεάν και δεν συγκρούεται ποτέ· μέσω δεύτερου session μου κόστιζε τον worker κάθε φορά.',
+        'Η σειρά είναι feature. Τα μισά bugs που άξιζε να γραφτούν εδώ δεν ήταν λάθος λογική, ήταν η σωστή λογική με λάθος σειρά.',
       ],
     },
     disclaimer: {
