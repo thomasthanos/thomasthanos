@@ -21,6 +21,13 @@ const JOBS = [
   { src: 'dpv-generator.png', out: 'projects/discord-package-viewer/generator.webp', width: 1400, mode: 'lossy', quality: 90 },
   { src: 'dpv-dashboard.png', out: 'projects/discord-package-viewer/dashboard.webp', width: 2400, mode: 'lossy', quality: 92 },
   { src: 'dpv-language-warning.png', out: 'projects/discord-package-viewer/language-warning.webp', width: null, mode: 'lossless' },
+
+  // Chrome Web Store listing art (v6.4.5), not raw captures — dark gradient render, lossy suits it.
+  { src: 'ant-panels.png', out: 'projects/an1me-tracker/panels.webp', width: 1448, mode: 'lossy', quality: 90 },
+  { src: 'ant-watch-page.png', out: 'projects/an1me-tracker/watch-page.webp', width: 1280, mode: 'lossy', quality: 90 },
+  { src: 'ant-library-detail.png', out: 'projects/an1me-tracker/library-detail.webp', width: 1280, mode: 'lossy', quality: 90 },
+  { src: 'ant-stats.png', out: 'projects/an1me-tracker/stats.webp', width: 1280, mode: 'lossy', quality: 90 },
+  { src: 'ant-settings.png', out: 'projects/an1me-tracker/settings.webp', width: 1280, mode: 'lossy', quality: 90 },
 ]
 
 let before = 0

@@ -20,6 +20,7 @@ import { useI18n } from '@/i18n/i18n'
 import { useDocumentMeta } from '@/hooks/useDocumentMeta'
 import { getProject, neighbours } from '@/data/projects'
 import { external } from '@/utils'
+import { An1meTrackerCaseStudy } from '@/pages/case-studies/An1meTrackerCaseStudy'
 import { DiscordPackageViewerCaseStudy } from '@/pages/case-studies/DiscordPackageViewerCaseStudy'
 import { MakeYourLifeEasierCaseStudy } from '@/pages/case-studies/MakeYourLifeEasierCaseStudy'
 import { NexusModsBypassCaseStudy } from '@/pages/case-studies/NexusModsBypassCaseStudy'
@@ -51,6 +52,10 @@ export function ProjectDetail() {
 
   if (p.slug === 'discord-package-viewer') {
     return <DiscordPackageViewerCaseStudy project={p} near={near} />
+  }
+
+  if (p.slug === 'an1me-tracker') {
+    return <An1meTrackerCaseStudy project={p} near={near} />
   }
 
   return (

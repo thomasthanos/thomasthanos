@@ -1,0 +1,1330 @@
+/* An1me.to Tracker — bespoke case study.
+   Identity device: the episode strip. The product speaks in "Ep 245/500 · 31%", so the page
+   does too — every section rule is a row of episode chips lit up to that section's position. */
+
+.ant {
+  overflow-x: clip;
+  --ant-cyan: #22d3ee;
+  --ant-cyan-bright: #7ee9f9;
+  --ant-cyan-deep: #0e94ad;
+  --ant-cyan-a08: rgba(34, 211, 238, 0.08);
+  --ant-cyan-a14: rgba(34, 211, 238, 0.14);
+  --ant-cyan-a24: rgba(34, 211, 238, 0.26);
+  --ant-amber: #ffb454;
+  --ant-amber-a10: rgba(255, 180, 84, 0.1);
+  --ant-amber-a30: rgba(255, 180, 84, 0.3);
+  --ant-line: var(--c-line);
+  --ant-panel: color-mix(in srgb, var(--c-surface) 78%, transparent);
+  --ant-measure: 62ch;
+  --ant-chip: 13px;
+  --ant-gap: 6px;
+}
+.ant__container {
+  position: relative;
+  max-width: 1500px;
+  --n-cw: min(1500px, 100vw);
+}
+.ant__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: clamp(1rem, 0.8rem + 1vw, 1.75rem);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+  transition: color var(--d-fast) var(--e-out);
+}
+.ant__back:hover {
+  color: var(--ant-cyan-bright);
+}
+.ant__back svg {
+  width: 14px;
+  transition: transform var(--d-fast) var(--e-out);
+}
+.ant__back:hover svg {
+  transform: translateX(-3px);
+}
+
+/* ── sections ─────────────────────────────────────────────────────── */
+
+.ant-section {
+  position: relative;
+  padding-top: clamp(2rem, 1.6rem + 1.4vw, 3rem);
+}
+.ant-section__head {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-6);
+  margin-bottom: clamp(1rem, 0.85rem + 0.75vw, 1.5rem);
+  padding-bottom: 0.8rem;
+}
+/* The episode strip: segmented chips, lit as far as this section sits in the page. */
+.ant-section__head::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ant-cyan) 0 var(--ant-lit, 30%),
+    var(--ant-line) var(--ant-lit, 30%) 100%
+  );
+  -webkit-mask-image: repeating-linear-gradient(
+    90deg,
+    #000 0 var(--ant-chip),
+    transparent var(--ant-chip) calc(var(--ant-chip) + var(--ant-gap))
+  );
+  mask-image: repeating-linear-gradient(
+    90deg,
+    #000 0 var(--ant-chip),
+    transparent var(--ant-chip) calc(var(--ant-chip) + var(--ant-gap))
+  );
+}
+.ant-section--tight { --ant-lit: 10%; }
+.ant-section--premise { --ant-lit: 22%; }
+.ant-section--output { --ant-lit: 35%; }
+.ant-section--pillars { --ant-lit: 48%; }
+.ant-section--hostile { --ant-lit: 61%; }
+.ant-section--hard { --ant-lit: 74%; }
+.ant-section--how { --ant-lit: 84%; }
+.ant-section--privacy { --ant-lit: 92%; }
+.ant-section--panel { --ant-lit: 100%; }
+
+.ant-section__head h2 {
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: var(--ls-head);
+  text-transform: uppercase;
+  color: var(--c-text);
+}
+.ant-section__aside {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 48ch;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.55;
+  color: var(--c-text-4);
+  text-align: right;
+}
+.ant-section--tinted {
+  isolation: isolate;
+}
+.ant-section--tinted::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset-block: calc(-1 * clamp(1rem, 2vw, 2rem)) calc(-1 * clamp(1rem, 2vw, 2rem));
+  inset-inline: calc(50% - 50vw);
+  pointer-events: none;
+}
+.ant-section--output::before {
+  background: linear-gradient(180deg, transparent, var(--ant-cyan-a08) 22%, var(--ant-cyan-a08) 78%, transparent);
+}
+.ant-section--hostile::before {
+  background: linear-gradient(180deg, transparent, var(--ant-amber-a10) 22%, var(--ant-amber-a10) 78%, transparent);
+}
+.ant-section--privacy::before {
+  background: linear-gradient(180deg, transparent, var(--ant-cyan-a14) 22%, var(--ant-cyan-a14) 78%, transparent);
+}
+
+/* ── hero ─────────────────────────────────────────────────────────── */
+
+.ant-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(380px, 1.08fr);
+  align-items: center;
+  gap: clamp(1.5rem, 2.2vw, 3rem);
+  padding: clamp(0.5rem, 1vw, 1.25rem) 0 clamp(1.75rem, 2.2vw, 2.5rem);
+  border-bottom: 1px solid var(--ant-line);
+}
+.ant-hero[data-solo='y'] {
+  grid-template-columns: 1fr;
+}
+.ant-hero::before {
+  content: '';
+  position: absolute;
+  inset: auto 2% 2% auto;
+  width: min(40vw, 520px);
+  aspect-ratio: 1.4;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--ant-cyan-a14), transparent 70%);
+  filter: blur(38px);
+  pointer-events: none;
+}
+.ant-hero__copy {
+  position: relative;
+  z-index: 2;
+  max-width: 52ch;
+}
+.ant-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-4);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+.ant-hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--ant-cyan-a24);
+  border-radius: var(--r-pill);
+  background: var(--ant-cyan-a08);
+  color: var(--ant-cyan-bright);
+}
+.ant-hero__status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ant-cyan);
+}
+.ant-hero h1 {
+  font-family: var(--f-display);
+  font-size: clamp(2.6rem, 1.6rem + 4.4vw, 5.4rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--c-text);
+}
+.ant-hero__line2 {
+  display: block;
+  color: var(--ant-cyan);
+}
+.ant-hero__tagline {
+  margin-top: 0.9rem;
+  max-width: 42ch;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.2rem);
+  line-height: 1.45;
+  color: var(--c-text-2);
+}
+.ant-hero__summary {
+  margin-top: 0.9rem;
+  max-width: var(--ant-measure);
+  font-size: 0.97rem;
+  line-height: 1.62;
+  color: var(--c-text-3);
+}
+.ant-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: 1.4rem;
+}
+.ant-hero__shot {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+.ant-hero__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-lg);
+}
+
+/* ── metrics ──────────────────────────────────────────────────────── */
+
+.ant-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--ant-line);
+  border-radius: var(--r-lg);
+  background: var(--ant-panel);
+  overflow: hidden;
+}
+.ant-stat {
+  position: relative;
+  padding: clamp(0.9rem, 0.7rem + 0.7vw, 1.4rem) clamp(0.85rem, 0.6rem + 0.7vw, 1.5rem);
+  border-right: 1px solid var(--ant-line);
+}
+.ant-stat:last-child {
+  border-right: 0;
+}
+.ant-stat::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  background: var(--ant-cyan);
+  opacity: 0.55;
+}
+.ant-stat:nth-child(2)::before { opacity: 0.4; }
+.ant-stat:nth-child(3)::before { opacity: 0.28; }
+.ant-stat:nth-child(4)::before { opacity: 0.16; }
+.ant-stat dt {
+  font-family: var(--f-display);
+  font-size: clamp(1.9rem, 1.3rem + 2vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ant-cyan);
+}
+.ant-stat dd {
+  margin-top: 0.35rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--c-text-4);
+}
+.ant-nerd {
+  margin-top: 0.8rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.6;
+  color: var(--c-text-4);
+}
+
+/* ── premise ──────────────────────────────────────────────────────── */
+
+.ant-premise {
+  max-width: 68ch;
+}
+.ant-premise__lead {
+  font-family: var(--f-display);
+  font-size: clamp(1.6rem, 1.1rem + 2.2vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+}
+.ant-premise__body {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.68;
+  color: var(--c-text-3);
+}
+
+/* ── output / gallery ─────────────────────────────────────────────── */
+
+.ant-disclosure {
+  display: flex;
+  gap: 0.7rem;
+  max-width: 78ch;
+  margin-bottom: clamp(1rem, 0.9rem + 0.6vw, 1.5rem);
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--ant-amber-a30);
+  border-left-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--ant-amber-a10);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--c-text-3);
+}
+.ant-disclosure svg {
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  margin-top: 0.15rem;
+  color: var(--ant-amber);
+}
+.ant-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.9rem, 0.7rem + 0.8vw, 1.5rem);
+}
+.ant-frame {
+  min-width: 0;
+}
+.ant-frame__btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--ant-line);
+  border-radius: var(--r-lg);
+  background: var(--ant-panel);
+  cursor: zoom-in;
+  overflow: hidden;
+  transition:
+    border-color var(--d-fast) var(--e-out),
+    transform var(--d-fast) var(--e-out);
+}
+.ant-frame__btn:hover,
+.ant-frame__btn:focus-visible {
+  border-color: var(--ant-cyan-a24);
+  transform: translateY(-2px);
+}
+.ant-frame__btn img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ant-frame__expand {
+  position: absolute;
+  inset: auto 0.6rem 0.6rem auto;
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--c-bg) 82%, transparent);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ant-cyan-bright);
+  opacity: 0;
+  transition: opacity var(--d-fast) var(--e-out);
+}
+.ant-frame__btn:hover .ant-frame__expand,
+.ant-frame__btn:focus-visible .ant-frame__expand {
+  opacity: 1;
+}
+.ant-frame__caption {
+  margin-top: 0.55rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.55;
+  color: var(--c-text-4);
+}
+
+/* ── pillars ──────────────────────────────────────────────────────── */
+
+.ant-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 0.8rem + 1vw, 2rem);
+}
+.ant-pillar {
+  position: relative;
+  min-width: 0;
+  padding-top: 1rem;
+  border-top: 2px solid var(--ant-cyan-a24);
+}
+.ant-pillar__ep {
+  display: inline-block;
+  padding: 0.16rem 0.5rem;
+  border: 1px solid var(--ant-cyan-a24);
+  border-radius: var(--r-sm);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  color: var(--ant-cyan);
+}
+.ant-pillar h3 {
+  margin-top: 0.7rem;
+  font-family: var(--f-display);
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.35rem);
+  font-weight: 600;
+  color: var(--c-text);
+}
+.ant-pillar > p {
+  margin-top: 0.45rem;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--c-text-3);
+}
+.ant-pillar ul {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.4rem;
+}
+.ant-pillar li {
+  position: relative;
+  padding-left: 1.05rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.5;
+  color: var(--c-text-4);
+}
+.ant-pillar li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 7px;
+  height: 2px;
+  background: var(--ant-cyan);
+}
+
+/* ── hostile site ─────────────────────────────────────────────────── */
+
+.ant-statement {
+  max-width: 76ch;
+  margin-bottom: clamp(1.2rem, 1rem + 0.8vw, 2rem);
+  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--c-text-2);
+}
+.ant-hostiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.85rem, 0.7rem + 0.7vw, 1.35rem);
+}
+.ant-hostile {
+  min-width: 0;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--ant-line);
+  border-top: 2px solid var(--ant-amber-a30);
+  border-radius: var(--r-md);
+  background: var(--ant-panel);
+}
+.ant-hostile__icon {
+  display: inline-flex;
+  color: var(--ant-amber);
+}
+.ant-hostile__icon svg {
+  width: 19px;
+  height: 19px;
+}
+.ant-hostile__problem {
+  margin-top: 0.5rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ant-amber);
+}
+.ant-hostile h3 {
+  margin-top: 0.3rem;
+  font-family: var(--f-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ant-cyan-bright);
+}
+.ant-hostile__body {
+  margin-top: 0.5rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--c-text-3);
+}
+
+/* ── engineering challenges ───────────────────────────────────────── */
+
+.ant-hard {
+  display: grid;
+}
+.ant-hard__row {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 1.2rem;
+  padding-block: clamp(1rem, 0.85rem + 0.7vw, 1.6rem);
+  border-top: 1px solid var(--ant-line);
+}
+.ant-hard__row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.ant-hard__row > span {
+  font-family: var(--f-display);
+  font-size: clamp(1.3rem, 1rem + 1vw, 2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ant-cyan);
+  opacity: 0.7;
+}
+.ant-hard__row h3 {
+  font-family: var(--f-display);
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.4rem);
+  font-weight: 600;
+  color: var(--c-text);
+}
+.ant-hard__row > div > p {
+  margin-top: 0.4rem;
+  max-width: 72ch;
+  font-size: 0.95rem;
+  line-height: 1.62;
+  color: var(--c-text-3);
+}
+.ant-hard details {
+  margin-top: 0.65rem;
+}
+.ant-hard summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ant-cyan);
+  cursor: pointer;
+  list-style: none;
+}
+.ant-hard summary::-webkit-details-marker {
+  display: none;
+}
+.ant-hard summary::before {
+  content: '+';
+  font-size: 1em;
+}
+.ant-hard details[open] summary::before {
+  content: '–';
+}
+.ant-hard details p {
+  margin-top: 0.5rem;
+  padding-left: 0.85rem;
+  border-left: 2px solid var(--ant-cyan-a24);
+  max-width: 74ch;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--c-text-4);
+}
+
+/* ── flow ─────────────────────────────────────────────────────────── */
+
+.ant-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border: 1px solid var(--ant-line);
+  border-radius: var(--r-lg);
+  background: var(--ant-panel);
+  overflow: hidden;
+}
+.ant-flow__stage {
+  position: relative;
+  min-width: 0;
+  padding: clamp(0.8rem, 0.7rem + 0.5vw, 1.2rem) clamp(0.7rem, 0.55rem + 0.5vw, 1.1rem);
+  border-right: 1px solid var(--ant-line);
+}
+.ant-flow__stage:last-child {
+  border-right: 0;
+}
+.ant-flow__stage::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--ant-cyan);
+  border-right: 2px solid var(--ant-cyan);
+  rotate: 45deg;
+  translate: 0 -50%;
+  opacity: 0.5;
+}
+.ant-flow__stage:last-child::after {
+  display: none;
+}
+.ant-flow__name {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-2);
+}
+.ant-flow__stage[data-end] .ant-flow__name {
+  color: var(--ant-cyan);
+}
+.ant-flow__stage code {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.45;
+  color: var(--c-text-4);
+  word-break: break-word;
+}
+.ant-flow__stage[data-end]::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  background: var(--ant-cyan);
+}
+
+/* ── privacy ──────────────────────────────────────────────────────── */
+
+.ant-verdict {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-6);
+  padding-bottom: clamp(1rem, 0.9rem + 0.6vw, 1.6rem);
+  border-bottom: 1px solid var(--ant-line);
+}
+.ant-verdict > p {
+  font-family: var(--f-display);
+  font-size: clamp(1.4rem, 1rem + 1.6vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--c-lime);
+}
+.ant-chant {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  text-align: right;
+}
+.ant-chant li {
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+.ant-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 0.8rem + 1vw, 2rem);
+  margin-top: clamp(1.2rem, 1rem + 0.8vw, 2rem);
+}
+.ant-point {
+  min-width: 0;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--ant-line);
+  border-top: 2px solid var(--ant-cyan-a24);
+  border-radius: var(--r-md);
+  background: var(--ant-panel);
+}
+.ant-point:nth-child(1) { border-top-color: var(--c-lime); }
+.ant-point:nth-child(2) { border-top-color: var(--ant-cyan); }
+.ant-point:nth-child(3) { border-top-color: var(--ant-amber); }
+.ant-point__icon {
+  display: inline-flex;
+  color: var(--ant-cyan);
+}
+.ant-point:nth-child(1) .ant-point__icon { color: var(--c-lime); }
+.ant-point:nth-child(3) .ant-point__icon { color: var(--ant-amber); }
+.ant-point__icon svg {
+  width: 19px;
+  height: 19px;
+}
+.ant-point h3 {
+  margin-top: 0.5rem;
+  font-family: var(--f-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--c-text);
+}
+.ant-point p {
+  margin-top: 0.45rem;
+  font-size: 0.88rem;
+  line-height: 1.62;
+  color: var(--c-text-3);
+}
+.ant-endpoints {
+  margin-top: clamp(1.2rem, 1rem + 0.8vw, 2rem);
+  padding: clamp(0.9rem, 0.8rem + 0.5vw, 1.3rem);
+  border: 1px solid var(--ant-line);
+  border-radius: var(--r-lg);
+  background: var(--ant-panel);
+}
+.ant-endpoints__title {
+  margin-bottom: 0.7rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+.ant-endpoints dl {
+  display: grid;
+  gap: 0;
+}
+.ant-endpoints dl > div {
+  display: grid;
+  grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+  gap: 0.5rem 1.2rem;
+  padding-block: 0.55rem;
+  border-top: 1px solid var(--ant-line);
+}
+.ant-endpoints dl > div:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.ant-endpoints dt {
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.5;
+  color: var(--ant-cyan-bright);
+  word-break: break-word;
+}
+.ant-endpoints dd {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--c-text-4);
+}
+
+/* ── end grid, lessons, stack ─────────────────────────────────────── */
+
+.ant-endgrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 1rem + 1.4vw, 3rem);
+}
+/* Grid items default to min-width:auto, which would let the lessons rail size itself to its
+   own content instead of scrolling inside the track. */
+.ant-endgrid > * {
+  min-width: 0;
+}
+.ant-lessons {
+  display: grid;
+  gap: 0.7rem;
+}
+.ant-lessons li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.94rem;
+  line-height: 1.62;
+  color: var(--c-text-3);
+}
+.ant-lessons li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 9px;
+  height: 2px;
+  background: var(--ant-cyan);
+}
+.ant-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.ant-stack span {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--ant-line);
+  border-radius: var(--r-pill);
+  background: var(--ant-panel);
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  color: var(--c-text-3);
+}
+.ant-disclaimer {
+  margin-top: 1rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.6;
+  color: var(--c-text-4);
+}
+.ant-disclaimer strong {
+  color: var(--c-text-3);
+}
+
+/* ── finale + nav ─────────────────────────────────────────────────── */
+
+.ant-finale {
+  margin-top: clamp(2.5rem, 4vw, 5rem);
+  padding: clamp(2rem, 4vw, 4rem) 0;
+  border-top: 1px solid var(--ant-line);
+  border-bottom: 1px solid var(--ant-line);
+  text-align: center;
+}
+.ant-finale p {
+  font-family: var(--f-display);
+  font-size: clamp(1.3rem, 1rem + 1.6vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--c-text);
+}
+.ant-finale__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-3);
+  margin-top: 1.5rem;
+}
+.ant-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--s-4);
+  margin-top: clamp(1.5rem, 3vw, 3rem);
+}
+.ant-nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--ant-line);
+  border-radius: var(--r-lg);
+  background: var(--ant-panel);
+  transition:
+    border-color var(--d-fast) var(--e-out),
+    transform var(--d-fast) var(--e-out);
+}
+.ant-nav a:hover {
+  border-color: var(--ant-cyan-a24);
+  transform: translateY(-2px);
+}
+.ant-nav__next {
+  justify-content: flex-end;
+  text-align: right;
+}
+.ant-nav__thumb {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-md);
+  background: var(--ant-cyan-a14);
+  font-family: var(--f-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ant-cyan-bright);
+}
+.ant-nav__copy {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.ant-nav__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+.ant-nav__next .ant-nav__label {
+  justify-content: flex-end;
+}
+.ant-nav__label svg {
+  width: 12px;
+}
+.ant-nav__copy strong {
+  font-family: var(--f-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--c-text);
+}
+.ant-nav__copy small {
+  overflow: hidden;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--c-text-4);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.ant-nav__brand {
+  opacity: 0.55;
+}
+
+/* ── zoom overlay ─────────────────────────────────────────────────── */
+
+.ant-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 3rem);
+  background: color-mix(in srgb, var(--c-bg) 92%, transparent);
+  backdrop-filter: blur(6px);
+  animation: ant-zoom-in 180ms var(--e-out) both;
+  cursor: zoom-out;
+}
+@keyframes ant-zoom-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.ant-zoom img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border: 1px solid var(--ant-cyan-a24);
+  border-radius: var(--r-lg);
+  object-fit: contain;
+}
+.ant-zoom__close {
+  position: absolute;
+  top: clamp(0.6rem, 2vw, 1.5rem);
+  right: clamp(0.6rem, 2vw, 1.5rem);
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--ant-line);
+  border-radius: 50%;
+  background: var(--c-surface);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--c-text-2);
+  cursor: pointer;
+}
+.ant-zoom__close:hover {
+  border-color: var(--ant-cyan-a24);
+  color: var(--ant-cyan-bright);
+}
+
+/* ── handwritten notes: base rotations and colours ────────────────── */
+
+.ant-note--hero { --n-rot: -5deg; }
+.ant-note--metrics { color: var(--ant-cyan-bright); --n-rot: 4deg; }
+.ant-note--premise { color: var(--ant-cyan-bright); --n-rot: -6deg; }
+.ant-note--output { color: var(--ant-amber); --n-rot: 5deg; }
+.ant-note--pillars { color: var(--ant-cyan-bright); --n-rot: -5deg; }
+.ant-note--hostile { color: var(--ant-amber); --n-rot: 6deg; }
+.ant-note--privacy { color: var(--c-lime); --n-rot: -4deg; }
+
+/* In inline-rail mode the shared 0.35rem bottom inset is measured on the unrotated box, so a
+   note tilted 4–6deg spills its corner a few pixels past the section edge. Sit it slightly
+   higher so the rotated bounding box stays inside the section it belongs to. */
+@media (max-height: 1100px) and (max-width: 1875px),
+       (min-height: 1101px) and (max-width: 2295px) {
+  .ant-note {
+    bottom: 1.15rem;
+  }
+}
+
+/* Notes are only lifted out into the page gutter where a gutter actually exists. That is the
+   exact inverse of the inline-rail range in annotations.css — below it, the shared rail mode
+   parks each note at the bottom of its own section, which is already correct and on-screen.
+   Per-resolution calibration blocks go after this one. */
+@media (max-height: 1100px) and (min-width: 1876px),
+       (min-height: 1101px) and (min-width: 2296px) {
+  .ant-note {
+    right: auto;
+    bottom: auto;
+  }
+  .ant-note--hero {
+    top: 62%;
+    left: var(--n-rail);
+  }
+  .ant-note--metrics {
+    top: 1.5rem;
+    left: calc(100% + var(--n-gap));
+  }
+  .ant-note--premise {
+    top: 45%;
+    left: calc(100% + var(--n-gap));
+  }
+  .ant-note--output {
+    top: 30%;
+    left: var(--n-rail);
+  }
+  .ant-note--pillars {
+    top: 25%;
+    left: calc(100% + var(--n-gap));
+  }
+  .ant-note--hostile {
+    top: 38%;
+    left: var(--n-rail);
+  }
+  .ant-note--privacy {
+    top: 30%;
+    left: calc(100% + var(--n-gap));
+  }
+}
+
+/* ── responsive layout ────────────────────────────────────────────── */
+
+@media (max-width: 1099px) {
+  .ant-hero {
+    grid-template-columns: 1fr;
+  }
+  .ant-hero__copy {
+    max-width: none;
+  }
+  .ant-hostiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ant-endgrid {
+    grid-template-columns: 1fr;
+  }
+  .ant-endpoints dl > div {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  }
+}
+@media (max-width: 899px) {
+  .ant-pillars {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ant-points {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ant-flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .ant-flow__stage:nth-child(3n) {
+    border-right: 0;
+  }
+  .ant-flow__stage:nth-child(n + 4) {
+    border-top: 1px solid var(--ant-line);
+  }
+  .ant-flow__stage:nth-child(3n)::after {
+    display: none;
+  }
+}
+@media (max-width: 719px) {
+  .ant-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ant-stat {
+    padding: 0.8rem 0.9rem;
+  }
+  .ant-stat:nth-child(2n) {
+    border-right: 0;
+  }
+  .ant-stat:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--ant-line);
+  }
+  .ant-stat dt {
+    font-size: 1.85rem;
+  }
+  .ant-gallery {
+    grid-template-columns: 1fr;
+  }
+  .ant-verdict {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+  .ant-chant {
+    text-align: left;
+  }
+  .ant-endpoints dl > div {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+  .ant-hard__row {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.75rem;
+    padding-block: 0.9rem;
+  }
+  .ant-hard__row > span {
+    font-size: 1.15rem;
+  }
+  .ant-finale__actions .btn,
+  .ant-hero__actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .ant-nav {
+    grid-template-columns: 1fr;
+  }
+  .ant-nav__brand {
+    display: none;
+  }
+  .ant-nav__next {
+    justify-content: flex-start;
+    text-align: left;
+    flex-direction: row-reverse;
+  }
+  .ant-nav__next .ant-nav__label {
+    justify-content: flex-start;
+  }
+  .ant-frame__expand {
+    opacity: 1;
+  }
+}
+
+/* ── mobile swipe rails ───────────────────────────────────────────── */
+
+@media (max-width: 619px) {
+  .ant-pillars,
+  .ant-hostiles,
+  .ant-hard,
+  .ant-points,
+  .ant-lessons,
+  .ant-gallery {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(78vw, 300px);
+    grid-template-columns: none;
+    gap: var(--s-3);
+    margin-inline: calc(var(--pad-x) * -1);
+    padding-inline: var(--pad-x);
+    padding-bottom: var(--s-3);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+  }
+  .ant-gallery {
+    grid-auto-columns: min(86vw, 340px);
+  }
+  .ant-pillars::-webkit-scrollbar,
+  .ant-hostiles::-webkit-scrollbar,
+  .ant-hard::-webkit-scrollbar,
+  .ant-points::-webkit-scrollbar,
+  .ant-lessons::-webkit-scrollbar,
+  .ant-gallery::-webkit-scrollbar,
+  .ant-flow::-webkit-scrollbar {
+    display: none;
+  }
+  .ant-pillars > *,
+  .ant-hostiles > *,
+  .ant-hard > *,
+  .ant-points > *,
+  .ant-lessons > *,
+  .ant-gallery > *,
+  .ant-flow > * {
+    scroll-snap-align: start;
+  }
+  .ant-pillar,
+  .ant-hostile,
+  .ant-point,
+  .ant-hard__row,
+  .ant-frame {
+    min-height: 100%;
+  }
+  /* Rail cards carry their own padding and background — nothing else gives it to them here. */
+  .ant-pillar {
+    padding: 0.9rem 0.95rem;
+    border: 1px solid var(--ant-line);
+    border-top: 2px solid var(--ant-cyan-a24);
+    border-radius: var(--r-md);
+    background: var(--ant-panel);
+  }
+  .ant-hard__row {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 0.9rem 0.95rem;
+    border: 1px solid var(--ant-line);
+    border-top: 2px solid var(--ant-cyan-a24);
+    border-radius: var(--r-md);
+    background: var(--ant-panel);
+  }
+  .ant-hard__row:first-child {
+    padding-top: 0.9rem;
+  }
+  .ant-lessons li {
+    padding: 0.85rem 0.9rem 0.85rem 2rem;
+    border: 1px solid var(--ant-line);
+    border-top: 2px solid var(--ant-cyan-a24);
+    border-radius: var(--r-md);
+    background: var(--ant-panel);
+  }
+  .ant-lessons li::before {
+    left: 0.9rem;
+    top: 1.35rem;
+  }
+  .ant-flow {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 46%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+  }
+  .ant-flow__stage {
+    border-top: 0;
+    border-right: 1px solid var(--ant-line);
+  }
+  .ant-flow__stage:last-child {
+    border-right: 0;
+  }
+  .ant-flow__stage:not(:last-child)::after {
+    display: block;
+    top: 1.5rem;
+    right: -5px;
+    bottom: auto;
+    left: auto;
+    rotate: 45deg;
+  }
+  .ant-swipe {
+    margin-bottom: 0.5rem;
+  }
+}
+@media (min-width: 620px) {
+  .ant-swipe {
+    display: none;
+  }
+}
+
+/* ── phone density ────────────────────────────────────────────────── */
+
+@media (max-width: 619px) {
+  .ant-section,
+  .ant-section--tight,
+  .ant-section--panel {
+    padding-top: 1.5rem;
+  }
+  .ant-section__head {
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.5rem;
+  }
+  .ant-section__head h2 {
+    font-size: 1.35rem;
+  }
+  .ant-section__aside {
+    display: none;
+  }
+  .ant {
+    --ant-chip: 10px;
+    --ant-gap: 5px;
+  }
+  .ant-hero {
+    gap: 1.25rem;
+    padding-bottom: 1.5rem;
+  }
+  .ant-hero h1 {
+    font-size: 2.5rem;
+  }
+  .ant-hero__tagline {
+    margin-top: 0.7rem;
+    font-size: 0.92rem;
+  }
+  .ant-hero__summary {
+    margin-top: 0.7rem;
+    font-size: 0.93rem;
+    line-height: 1.55;
+  }
+  .ant-hero__actions {
+    margin-top: 1rem;
+  }
+  .ant-nerd {
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+  .ant-premise__lead {
+    font-size: 1.6rem;
+  }
+  .ant-premise__body {
+    margin-top: 0.7rem;
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+  .ant-disclosure {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.83rem;
+    line-height: 1.55;
+  }
+  .ant-statement {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+  .ant-frame__caption {
+    font-size: 0.72rem;
+  }
+  .ant-verdict > p {
+    font-size: 1.4rem;
+  }
+  .ant-endpoints {
+    padding: 0.8rem 0.85rem;
+  }
+  .ant-endpoints dd {
+    font-size: 0.8rem;
+  }
+  .ant-finale {
+    margin-top: 2rem;
+    padding: 1.75rem 0;
+  }
+  .ant-finale p {
+    font-size: 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ant-frame__btn,
+  .ant-frame__expand,
+  .ant-nav a {
+    transition: none;
+  }
+  .ant-zoom {
+    animation: none;
+  }
+}

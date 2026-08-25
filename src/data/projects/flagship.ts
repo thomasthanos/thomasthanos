@@ -436,15 +436,16 @@ export const flagship: Project[] = [
     tech: [
       'JavaScript',
       'Manifest V3',
+      'Service worker',
       'Firebase',
       'Firestore',
       'GraphQL',
-      'Side Panel API',
     ],
     metrics: [
-      { value: '72', label: { en: 'ES modules', el: 'ES modules' } },
+      { value: '73', label: { en: 'modules, no bundler', el: 'modules, χωρίς bundler' } },
       { value: '0', label: { en: 'build step', el: 'build step' } },
-      { value: '39K', label: { en: 'lines of source', el: 'γραμμές κώδικα' } },
+      { value: '4', label: { en: 'APIs actually called', el: 'APIs που όντως καλούνται' } },
+      { value: '0', label: { en: 'analytics, ever', el: 'analytics, ποτέ' } },
     ],
     short: {
       en: 'Watches you watch anime so you do not have to remember anything. Auto progress, resume, library, cloud sync, achievements.',
@@ -508,31 +509,31 @@ export const flagship: Project[] = [
     ],
     challenges: [
       {
-        title: { en: 'Six metadata sources, one truth', el: 'Έξι πηγές metadata, μία αλήθεια' },
+        title: { en: 'Not counting a scrub as watched', el: 'Το scrub δεν είναι watched' },
         body: {
-          en: 'AniList, Jikan/MyAnimeList, AniSkip, AnimeFillerList and four separate CDNs for cover art all disagree about titles. Resolution is best-effort with a repair pass that revisits incomplete entries later rather than blocking the UI on a lookup.',
-          el: 'AniList, Jikan/MyAnimeList, AniSkip, AnimeFillerList και τέσσερα διαφορετικά CDN για covers διαφωνούν όλα για τους τίτλους. Η επίλυση γίνεται best-effort με ένα repair pass που ξαναπερνάει αργότερα από τις μισοτελειωμένες εγγραφές, αντί να μπλοκάρει το UI σε κάθε lookup.',
+          en: 'Dragging to the end of a video is not watching it. An episode only completes past 85% of its duration, and only after 120 seconds of real playback have accumulated — with a hard floor of 30 seconds before anything is recorded at all. Those three numbers exist because every one of them was, at some point, the reason a series jumped six episodes on its own.',
+          el: 'Το να σύρεις τη μπάρα στο τέλος δεν είναι παρακολούθηση. Ένα επεισόδιο ολοκληρώνεται μόνο πάνω από το 85% της διάρκειας, και μόνο αφού μαζευτούν 120 δευτερόλεπτα πραγματικής αναπαραγωγής — με απόλυτο κατώφλι 30 δευτερολέπτων πριν καταγραφεί οτιδήποτε. Αυτοί οι τρεις αριθμοί υπάρχουν επειδή ο καθένας τους ήταν κάποια στιγμή ο λόγος που μια σειρά πήδηξε μόνη της έξι επεισόδια.',
         },
       },
       {
-        title: { en: 'Not counting a scrub as watched', el: 'Το scrub δεν είναι watched' },
+        title: { en: 'Four APIs, one truth', el: 'Τέσσερα APIs, μία αλήθεια' },
         body: {
-          en: 'Dragging to the end of a video is not watching it. Progress only counts once real playback time accumulates, which sounds obvious and was the source of most early false positives.',
-          el: 'Το να σύρεις τη μπάρα στο τέλος δεν είναι παρακολούθηση. Η πρόοδος μετράει μόνο όταν μαζευτεί πραγματικός χρόνος αναπαραγωγής — ακούγεται προφανές και ήταν η πηγή των περισσότερων αρχικών false positives.',
+          en: 'AniList, Jikan, AniSkip and AnimeFillerList each know the same series under a different name, and the site itself uses a fifth. Nothing blocks the UI on a lookup: entries land incomplete and a repair pass revisits them later. AniList in particular is serialised behind a single queue with a 1.8-second gap, a parsed Retry-After capped at 65 seconds and a 20-second abort, because the alternative is a rate-limit ban halfway through importing a 300-title list.',
+          el: 'AniList, Jikan, AniSkip και AnimeFillerList ξέρουν το ίδιο anime με διαφορετικό όνομα το καθένα, και το ίδιο το site χρησιμοποιεί ένα πέμπτο. Τίποτα δεν μπλοκάρει το UI σε lookup: οι εγγραφές μπαίνουν μισοτελειωμένες και ένα repair pass ξαναπερνάει αργότερα. Ειδικά το AniList μπαίνει σε μία σειρά με κενό 1,8 δευτερολέπτου, Retry-After με πλαφόν 65 δευτερολέπτων και abort στα 20, γιατί η εναλλακτική είναι rate-limit ban στη μέση ενός import 300 τίτλων.',
+        },
+      },
+      {
+        title: { en: 'Three writers, one library', el: 'Τρεις γράφουν, μία βιβλιοθήκη' },
+        body: {
+          en: 'The popup, the content script on the watch page and the service worker all write to the same library at the same time — you can finish an episode while the popup is open and a sync is running. Every mutation is a compare-and-swap: it carries the revision it thinks it is editing, and the background rejects it outright if that revision has moved. A stale write comes back as a conflict and re-pulls instead of quietly overwriting the newer state.',
+          el: 'Το popup, το content script στη σελίδα παρακολούθησης και ο service worker γράφουν όλοι στην ίδια βιβλιοθήκη ταυτόχρονα — μπορείς να τελειώσεις επεισόδιο με το popup ανοιχτό ενώ τρέχει sync. Κάθε mutation είναι compare-and-swap: κουβαλάει το revision που νομίζει ότι επεξεργάζεται, και το background το απορρίπτει αν αυτό έχει προχωρήσει. Ένα παλιό write γυρνάει ως conflict και ξανατραβάει, αντί να σβήσει σιωπηλά τη νεότερη κατάσταση.',
         },
       },
       {
         title: { en: 'Storage quota', el: 'Όριο storage' },
         body: {
-          en: 'A library with hundreds of covers blows straight past the normal extension quota, which is why `unlimitedStorage` is in the manifest and why the cache has an eviction policy at all.',
-          el: 'Μια βιβλιοθήκη με εκατοντάδες covers ξεπερνάει άνετα το κανονικό quota του extension — γι᾽ αυτό υπάρχει `unlimitedStorage` στο manifest και γι᾽ αυτό η cache έχει καθόλου eviction policy.',
-        },
-      },
-      {
-        title: { en: '72 modules, no bundler', el: '72 modules, χωρίς bundler' },
-        body: {
-          en: 'Plain ES modules, no build step, nothing minified. Reviewing an extension should not require trusting a build pipeline — what you read is what runs.',
-          el: 'Σκέτα ES modules, χωρίς build step, τίποτα minified. Το να ελέγξεις ένα extension δεν πρέπει να απαιτεί εμπιστοσύνη σε build pipeline — αυτό που διαβάζεις είναι αυτό που τρέχει.',
+          en: 'A library with hundreds of covers blows straight past the normal extension quota, which is why `unlimitedStorage` is in the manifest. When it still fills up, recovery runs in three escalating passes and deliberately starts with expired caches — wiping fresh ones would only force a full re-fetch and put the pressure straight back. Freshness itself is decided in one 158-line file with no IO in it: six TTLs from 15 minutes for a retryable miss up to 30 days for a series that has finished airing, each invalidated by a schema version.',
+          el: 'Μια βιβλιοθήκη με εκατοντάδες covers ξεπερνάει άνετα το κανονικό quota του extension — γι᾽ αυτό υπάρχει `unlimitedStorage` στο manifest. Όταν πάλι γεμίσει, η ανάκτηση τρέχει σε τρία κλιμακούμενα περάσματα και ξεκινάει επίτηδες από τις ληγμένες caches — σβήνοντας τις φρέσκες θα ανάγκαζε πλήρες re-fetch και θα ξαναέφερνε αμέσως την πίεση. Η ίδια η φρεσκάδα κρίνεται σε ένα αρχείο 158 γραμμών χωρίς καθόλου IO: έξι TTL από 15 λεπτά για retryable αστοχία έως 30 μέρες για σειρά που τελείωσε, με schema version να τα ακυρώνει.',
         },
       },
     ],
@@ -551,7 +552,11 @@ export const flagship: Project[] = [
       },
       {
         name: { en: 'UI', el: 'UI' },
-        items: ['popup.html', 'Side Panel API', 'stats · goals · achievements'],
+        items: ['popup.html', '45 plain script tags', 'stats · goals · achievements'],
+        note: {
+          en: 'The same document is registered as the side panel, reachable from Chrome’s own menu.',
+          el: 'Το ίδιο document είναι δηλωμένο και ως side panel, προσβάσιμο από το μενού του Chrome.',
+        },
       },
       {
         name: { en: 'Sync', el: 'Sync' },
@@ -564,10 +569,10 @@ export const flagship: Project[] = [
       },
       {
         name: { en: 'Metadata', el: 'Metadata' },
-        items: ['Jikan / MAL', 'AniSkip', 'AnimeFillerList', 'cover CDNs × 5'],
+        items: ['Jikan v4 · MAL ids', 'AniSkip v2 · outro', 'AnimeFillerList', 'an1me.to · scrape'],
         note: {
-          en: 'These receive a title or an ID. Never your identity.',
-          el: 'Παίρνουν τίτλο ή ID. Ποτέ την ταυτότητά σου.',
+          en: 'These receive a title or an ID. Never your identity. MyAnimeList itself is never contacted — Jikan resolves its IDs.',
+          el: 'Παίρνουν τίτλο ή ID. Ποτέ την ταυτότητά σου. Το ίδιο το MyAnimeList δεν καλείται ποτέ — το Jikan βρίσκει τα ID του.',
         },
       },
     ],
@@ -578,13 +583,15 @@ export const flagship: Project[] = [
     lessons: {
       en: [
         'Optional sync is worth the complexity. Making sign-in required would have cost more users than the feature gained.',
-        'Metadata from five sources will never be clean. A background repair pass beats a blocking lookup every time.',
-        'A side panel is a better home for a busy popup than a bigger popup.',
+        'Metadata from four APIs will never be clean. A background repair pass beats a blocking lookup every time.',
+        'The popup is also registered as the side panel, which costs one line and gives a busy UI somewhere taller to live — but nothing in the code drives it, so it is only ever as discoverable as Chrome’s own menu.',
+        'Writing an extension with no build step means the load order is the architecture. A 39-line startup assertion that every namespace exists is not paranoia when nothing else will catch a bad script tag.',
       ],
       el: [
         'Το προαιρετικό sync αξίζει την πολυπλοκότητα. Αν το sign-in ήταν υποχρεωτικό θα έχανα περισσότερους χρήστες απ᾽ όσους κέρδιζε το feature.',
-        'Τα metadata από πέντε πηγές δεν θα είναι ποτέ καθαρά. Ένα repair pass στο παρασκήνιο κερδίζει πάντα από ένα blocking lookup.',
-        'Το side panel είναι καλύτερο σπίτι για ένα φορτωμένο popup απ᾽ ό,τι ένα μεγαλύτερο popup.',
+        'Τα metadata από τέσσερα APIs δεν θα είναι ποτέ καθαρά. Ένα repair pass στο παρασκήνιο κερδίζει πάντα από ένα blocking lookup.',
+        'Το popup είναι δηλωμένο και ως side panel — κοστίζει μία γραμμή και δίνει σε ένα φορτωμένο UI κάπου πιο ψηλά να ζήσει. Απλώς τίποτα στον κώδικα δεν το ανοίγει, οπότε είναι τόσο ευδιάκριτο όσο και το μενού του Chrome.',
+        'Χωρίς build step, η σειρά φόρτωσης είναι η αρχιτεκτονική. Ένα startup assertion 39 γραμμών που ελέγχει ότι κάθε namespace υπάρχει δεν είναι παράνοια όταν τίποτα άλλο δεν πρόκειται να πιάσει ένα λάθος script tag.',
       ],
     },
     disclaimer: {
