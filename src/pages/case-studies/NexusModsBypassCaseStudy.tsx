@@ -327,12 +327,6 @@ function Gallery({
   const dragRef = useRef({ pointerId: -1, startX: 0, startY: 0 })
 
   const shots = SHOTS.filter((s) => !broken.includes(s.file))
-  if (shots.length === 0) return null
-
-  const index = Math.min(active, shots.length - 1)
-  const shot = shots[index]
-  const shotNumber = SHOTS.indexOf(shot)
-  const shotRatio = shot.w / shot.h
 
   useEffect(() => {
     if (!expanded) return
@@ -350,6 +344,19 @@ function Gallery({
       window.removeEventListener('keydown', closeOnEscape)
     }
   }, [expanded])
+
+  useEffect(() => {
+    SHOTS.slice(1).forEach(({ file }) => {
+      const image = new Image()
+      image.src = `${import.meta.env.BASE_URL}assets/projects/nexusmods-bypass/${file}.webp`
+    })
+  }, [])
+
+  if (shots.length === 0) return null
+
+  const index = Math.min(active, shots.length - 1)
+  const shot = shots[index]
+  const shotNumber = SHOTS.indexOf(shot)
 
   const goTo = (i: number) => {
     const clamped = Math.max(0, Math.min(i, shots.length - 1))
@@ -411,8 +418,6 @@ function Gallery({
     <NxbSection id="nxb-gallery" label={label} aside={note} className="nxb-section--gallery">
       <div
         className="nxb-carousel-shell"
-        data-orientation={shotRatio < 0.65 ? 'tall' : shotRatio < 1 ? 'portrait' : 'landscape'}
-        style={{ '--nxb-shot-ratio': shotRatio } as React.CSSProperties}
       >
         <SwipeHint className="nxb-carousel__swipe" />
         <div className="nxb-carousel" role="group" aria-roledescription="carousel" aria-label={label}>
