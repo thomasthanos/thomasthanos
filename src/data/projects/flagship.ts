@@ -1021,16 +1021,16 @@ export const flagship: Project[] = [
       el: 'Wiki αντοχής οχημάτων για το GTA V, από πραγματικά in-game τεστ. Το project όπου κόλλησα με το CSS και δεν συνήλθα ποτέ.',
     },
     summary: {
-      en: 'A stylish, responsive in-game wiki for Grand Theft Auto V documenting how much damage each vehicle actually survives — cars, helicopters and planes. Every number came from repeated in-game experiments with fully upgraded vehicles, measuring hits from RPGs, homing missiles, railguns and the rest.',
-      el: 'Ένα στιλάτο, responsive in-game wiki για το Grand Theft Auto V που καταγράφει πόση ζημιά αντέχει πραγματικά κάθε όχημα — αυτοκίνητα, ελικόπτερα και αεροπλάνα. Κάθε νούμερο βγήκε από επαναλαμβανόμενα in-game πειράματα με πλήρως αναβαθμισμένα οχήματα, μετρώντας χτυπήματα από RPG, homing missiles, railguns και τα λοιπά.',
+      en: 'A stylish, responsive in-game wiki for Grand Theft Auto V documenting how much damage each vehicle actually survives — across cars, helicopters, planes and a fourth category for the things that fit nowhere else. Every number came from repeated in-game experiments with fully upgraded vehicles, measuring hits from RPGs, homing missiles, tank shells, railguns, explosive sniper rounds and anti-aircraft fire.',
+      el: 'Ένα στιλάτο, responsive in-game wiki για το Grand Theft Auto V που καταγράφει πόση ζημιά αντέχει πραγματικά κάθε όχημα — σε αυτοκίνητα, ελικόπτερα, αεροπλάνα και μια τέταρτη κατηγορία για όσα δεν χωράνε πουθενά αλλού. Κάθε νούμερο βγήκε από επαναλαμβανόμενα in-game πειράματα με πλήρως αναβαθμισμένα οχήματα, μετρώντας χτυπήματα από RPG, homing missiles, tank shells, railguns, εκρηκτικά sniper και αντιαεροπορικά.',
     },
     why: {
       en: 'The data did not exist anywhere in a form you could actually read, and getting blown up should not be a surprise. But the honest answer is that I wanted a project where design was the point. I spent far more hours on the CSS, the hierarchy and the mobile breakpoints than on the content — and that obsession is the reason every UI I have built since looks the way it does.',
       el: 'Τα δεδομένα δεν υπήρχαν πουθενά σε μορφή που να διαβάζεται, και το να ανατιναχτείς δεν πρέπει να είναι έκπληξη. Η ειλικρινής απάντηση όμως είναι ότι ήθελα ένα project όπου το design να είναι το ζητούμενο. Έφαγα πολύ περισσότερες ώρες στο CSS, στην ιεραρχία και στα mobile breakpoints απ᾽ ό,τι στο περιεχόμενο — και αυτή η εμμονή είναι ο λόγος που κάθε UI που έχω φτιάξει από τότε δείχνει έτσι.',
     },
     what: {
-      en: 'Damage statistics for 30+ vehicles, live search with dynamic filtering, an animated dark/light toggle whose choice persists in localStorage, and a layout tuned all the way down to very small phones.',
-      el: 'Στατιστικά ζημιάς για 30+ οχήματα, live αναζήτηση με δυναμικό φιλτράρισμα, animated dark/light toggle που θυμάται την επιλογή σου στο localStorage, και layout ρυθμισμένο μέχρι και σε πολύ μικρά κινητά.',
+      en: 'Damage statistics for 41 vehicles, live search that filters as you type, an animated dark/light toggle whose choice persists in localStorage and falls back to your system preference, and a layout that stops being a media query and becomes its own mode below 351 pixels.',
+      el: 'Στατιστικά ζημιάς για 41 οχήματα, live αναζήτηση που φιλτράρει καθώς πληκτρολογείς, animated dark/light toggle που θυμάται την επιλογή σου στο localStorage και πέφτει πίσω στην προτίμηση του συστήματος, και layout που κάτω από τα 351 pixel παύει να είναι media query και γίνεται δική του λειτουργία.',
     },
     features: [
       {
@@ -1043,15 +1043,22 @@ export const flagship: Project[] = [
       {
         title: { en: 'Live search', el: 'Live αναζήτηση' },
         body: {
-          en: 'Filtering happens as you type, with no page reload and no framework underneath it.',
-          el: 'Το φιλτράρισμα γίνεται καθώς πληκτρολογείς, χωρίς reload και χωρίς framework από κάτω.',
+          en: 'Filtering happens as you type, debounced at 300ms so a fast typist does not trigger forty passes over the card list. No page reload and no framework underneath it.',
+          el: 'Το φιλτράρισμα γίνεται καθώς πληκτρολογείς, με debounce στα 300ms ώστε ένας γρήγορος δακτυλογράφος να μην πυροδοτεί σαράντα περάσματα πάνω από τις κάρτες. Χωρίς reload και χωρίς framework από κάτω.',
         },
       },
       {
         title: { en: 'Animated theme toggle', el: 'Animated theme toggle' },
         body: {
-          en: 'Dark and light modes with a transition that is doing slightly more work than it needs to, on purpose.',
-          el: 'Dark και light mode με transition που κάνει λίγο παραπάνω δουλειά απ᾽ όση χρειάζεται, επίτηδες.',
+          en: 'Dark and light modes with a transition that is doing slightly more work than it needs to, on purpose. The choice is written to localStorage, and if you have never made one it follows your operating system instead of guessing.',
+          el: 'Dark και light mode με transition που κάνει λίγο παραπάνω δουλειά απ᾽ όση χρειάζεται, επίτηδες. Η επιλογή γράφεται στο localStorage, και αν δεν έχεις κάνει ποτέ επιλογή ακολουθεί το λειτουργικό σου αντί να μαντεύει.',
+        },
+      },
+      {
+        title: { en: 'A separate mode for tiny screens', el: 'Ξεχωριστή λειτουργία για μικροσκοπικές οθόνες' },
+        body: {
+          en: 'Below 351 pixels the page stops adjusting and switches character: an `ultra-mobile` class goes on the document, the whole thing is scaled to 85%, and animations are stripped out rather than left to stutter on a phone that cannot afford them.',
+          el: 'Κάτω από τα 351 pixel η σελίδα σταματάει να προσαρμόζεται και αλλάζει χαρακτήρα: μπαίνει κλάση `ultra-mobile` στο document, όλο το περιεχόμενο κλιμακώνεται στο 85%, και τα animations αφαιρούνται αντί να τα αφήσουμε να κολλάνε σε κινητό που δεν τα αντέχει.',
         },
       },
       {
@@ -1073,8 +1080,22 @@ export const flagship: Project[] = [
       {
         title: { en: 'Ultra-small screens', el: 'Πολύ μικρές οθόνες' },
         body: {
-          en: 'A dense stats table on a 320px phone is where responsive design stops being a media query and starts being a redesign.',
-          el: 'Ένας πυκνός πίνακας στατιστικών σε κινητό 320px είναι εκεί που το responsive design σταματάει να είναι media query και γίνεται ξανασχεδιασμός.',
+          en: 'A dense stats card on a 351-pixel phone is where responsive design stops being a media query and starts being a redesign. Below that threshold the page takes on an `ultra-mobile` class, scales itself to 85%, and deliberately strips its own animations — the honest admission being that the design was too heavy for the smallest screens and the fix was to serve them something quieter rather than pretend otherwise.',
+          el: 'Μια πυκνή κάρτα στατιστικών σε κινητό 351 pixel είναι εκεί που το responsive design σταματάει να είναι media query και γίνεται ξανασχεδιασμός. Κάτω από αυτό το όριο η σελίδα παίρνει κλάση `ultra-mobile`, κλιμακώνεται στο 85%, και αφαιρεί επίτηδες τα ίδια της τα animations — με την τίμια παραδοχή ότι το design ήταν πολύ βαρύ για τις μικρότερες οθόνες και η λύση ήταν να τους σερβίρουμε κάτι πιο ήσυχο αντί να κάνουμε πως δεν συμβαίνει.',
+        },
+      },
+      {
+        title: { en: 'Two people, 239 measurements', el: 'Δύο άνθρωποι, 239 μετρήσεις' },
+        body: {
+          en: 'There is no API for this. Every figure is someone sitting in a lobby with a fully upgraded vehicle, firing the same weapon at it until it dies, writing down the number, and doing it again to check. Forty-one vehicles across six weapon types is 239 separate readings, collected with Tony_greek over months. The numbers move by one now and then, which is why the small print says so instead of pretending to a precision the method does not have.',
+          el: 'Δεν υπάρχει API γι᾽ αυτό. Κάθε νούμερο είναι κάποιος που κάθεται σε ένα lobby με πλήρως αναβαθμισμένο όχημα, ρίχνει το ίδιο όπλο μέχρι να καταστραφεί, σημειώνει τον αριθμό, και το ξανακάνει για επαλήθευση. Σαράντα ένα οχήματα σε έξι τύπους όπλων είναι 239 ξεχωριστές μετρήσεις, μαζεμένες με τον Tony_greek επί μήνες. Τα νούμερα κουνιούνται κατά ένα πού και πού — γι᾽ αυτό τα ψιλά γράμματα το λένε, αντί να προσποιούνται ακρίβεια που η μέθοδος δεν έχει.',
+        },
+      },
+      {
+        title: { en: 'The lock on the front door', el: 'Η κλειδαριά στην εξώπορτα' },
+        body: {
+          en: 'There is a 279-line content-protection layer in here that disables right-click, long-press, multi-touch, clipboard access and tries to detect open developer tools. It was written to stop the data being lifted wholesale after months of collecting it, and it is the part of this project I would argue with today: anything the browser renders, the reader already has. It raises the effort slightly and costs real accessibility. I have left it in and said so rather than quietly deleting it before showing you the repository.',
+          el: 'Υπάρχει εδώ ένα στρώμα προστασίας 279 γραμμών που απενεργοποιεί δεξί κλικ, long-press, multi-touch, πρόσβαση στο clipboard και προσπαθεί να ανιχνεύσει ανοιχτά developer tools. Γράφτηκε για να μη σηκωθούν τα δεδομένα χύμα μετά από μήνες συλλογής, και είναι το κομμάτι αυτού του project που σήμερα θα το αμφισβητούσα: ό,τι κάνει render ο browser, ο αναγνώστης ήδη το έχει. Ανεβάζει ελαφρώς τον κόπο και κοστίζει πραγματική προσβασιμότητα. Το άφησα μέσα και το λέω, αντί να το σβήσω σιωπηλά πριν σου δείξω το repository.',
         },
       },
     ],
@@ -1083,11 +1104,15 @@ export const flagship: Project[] = [
         'Caring about the design of a small project is not wasted time. It set the bar for everything after it.',
         'Writing the state layer by hand once makes every framework afterwards make sense.',
         'Data is only useful if someone can read it on a phone.',
+        'You cannot lock a web page. I spent 279 lines learning that the browser hands the reader everything before my code gets a say, and that the accessibility I traded away was a real cost against an imaginary protection.',
+        'Collecting data by hand teaches you to publish the error bars. Two people firing rockets at a helicopter do not produce a constant, and saying so is worth more than a decimal place.',
       ],
       el: [
         'Το να νοιαστείς για το design ενός μικρού project δεν είναι χαμένος χρόνος. Έβαλε τον πήχη για όλα τα επόμενα.',
         'Το να γράψεις το state layer στο χέρι μία φορά κάνει κάθε framework μετά να βγάζει νόημα.',
         'Τα δεδομένα είναι χρήσιμα μόνο αν μπορεί κάποιος να τα διαβάσει σε κινητό.',
+        'Δεν κλειδώνεται μια ιστοσελίδα. Χρειάστηκαν 279 γραμμές για να μάθω ότι ο browser δίνει στον αναγνώστη τα πάντα πριν προλάβει να πει κουβέντα ο κώδικάς μου, και ότι η προσβασιμότητα που αντάλλαξα ήταν πραγματικό κόστος απέναντι σε φανταστική προστασία.',
+        'Η συλλογή δεδομένων στο χέρι σε μαθαίνει να δημοσιεύεις και το σφάλμα. Δύο άνθρωποι που ρίχνουν ρουκέτες σε ελικόπτερο δεν βγάζουν σταθερά, και το να το πεις αξίζει περισσότερο από ένα δεκαδικό.',
       ],
     },
     disclaimer: {
@@ -1099,11 +1124,11 @@ export const flagship: Project[] = [
       kind: 'browser',
       rows: [
         { label: 'Search', value: 'insur…', hot: true },
-        { label: 'Insurgent Pick-Up', value: 'RPG ×6' },
-        { label: 'Kuruma (Armored)', value: 'RPG ×3' },
-        { label: 'Akula', value: 'Homing ×5' },
+        { label: 'Insurgent Pick-Up Custom', value: 'RPG ×5' },
+        { label: 'APC', value: 'RPG ×8' },
+        { label: 'Akula', value: 'Homing ×3' },
         { label: 'Theme', value: 'dark · saved' },
-        { label: 'Viewport', value: '320px ok' },
+        { label: 'Viewport', value: '351px mode' },
       ],
     },
   },

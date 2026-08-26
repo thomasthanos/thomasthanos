@@ -14,17 +14,18 @@ export const more: Project[] = [
     repo: `${GH}/an1me-extensions/tree/main/an1me-speed-control`,
     repoLabel: 'an1me-extensions',
     repoPath: 'an1me-speed-control',
-    tech: ['JavaScript', 'Manifest V3'],
+    tech: ['JavaScript', 'Manifest V3', 'chrome.storage'],
     lab: {
       badge: { en: 'Surprisingly stable', el: 'Απρόσμενα σταθερό' },
       note: {
-        en: 'Two keys. Three years of not needing to touch it.',
-        el: 'Δύο πλήκτρα. Τρία χρόνια χωρίς να χρειαστεί να το πειράξω.',
+        en: 'Two keys, one permission, and nothing left to add.',
+        el: 'Δύο πλήκτρα, ένα permission, και τίποτα άλλο να προστεθεί.',
       },
     },
     metrics: [
       { value: '2', label: { en: 'hotkeys', el: 'hotkeys' } },
       { value: '5', label: { en: 'boost speeds', el: 'ταχύτητες boost' } },
+      { value: '1', label: { en: 'permission', el: 'permission' } },
       { value: '0', label: { en: 'network calls', el: 'κλήσεις δικτύου' } },
     ],
     short: {
@@ -70,7 +71,55 @@ export const more: Project[] = [
           el: 'Δηλωμένο με `all_frames`, επειδή ο player δεν είναι στο top-level document.',
         },
       },
+      {
+        title: { en: 'It never learns a boost', el: 'Δεν μαθαίνει ποτέ boost' },
+        body: {
+          en: 'Your default speed is only ever remembered when it is 2× or slower. Boost speeds are deliberately excluded, so a session at 8× cannot quietly become the speed every episode starts at.',
+          el: 'Η προεπιλεγμένη ταχύτητά σου αποθηκεύεται μόνο όταν είναι 2× ή πιο αργή. Οι ταχύτητες boost εξαιρούνται επίτηδες, ώστε μια βραδιά στα 8× να μη γίνει σιωπηλά η ταχύτητα με την οποία ξεκινάει κάθε επεισόδιο.',
+        },
+      },
+      {
+        title: { en: 'Hooks the site’s own player', el: 'Πιάνει τον player του site' },
+        body: {
+          en: 'The site runs ArtPlayer. When you change speed through its own settings menu, a capturing-phase listener catches the click before ArtPlayer handles it, so your choice is recorded rather than lost.',
+          el: 'Το site τρέχει ArtPlayer. Όταν αλλάζεις ταχύτητα από το δικό του μενού, ένας listener σε capturing phase πιάνει το κλικ πριν το χειριστεί ο ArtPlayer, ώστε η επιλογή σου να καταγραφεί αντί να χαθεί.',
+        },
+      },
     ],
+    challenges: [
+      {
+        title: { en: 'The keys go to whoever is focused', el: 'Τα πλήκτρα πάνε σε όποιον έχει focus' },
+        body: {
+          en: 'A keydown listener only fires in the document that has focus, and the player lives in an iframe. Until you click the video, the keystrokes land on the page around it and nothing happens. There is no way to fix that from an extension, so the extension says so instead: a toast appears reading “Click the video to activate speed controls,” with both keys drawn on it. Admitting the constraint in one line was cheaper than any workaround.',
+          el: 'Ένας listener keydown πυροδοτείται μόνο στο document που έχει focus, και ο player ζει μέσα σε iframe. Μέχρι να κάνεις κλικ στο βίντεο, τα πλήκτρα πέφτουν στη σελίδα γύρω του και δεν γίνεται τίποτα. Δεν διορθώνεται από extension, οπότε το extension απλώς το λέει: εμφανίζεται ένα toast «Click the video to activate speed controls», με τα δύο πλήκτρα σχεδιασμένα πάνω του. Το να παραδεχτείς τον περιορισμό σε μία γραμμή ήταν φθηνότερο από κάθε workaround.',
+        },
+      },
+      {
+        title: { en: 'The player overwrites you', el: 'Ο player σε ξαναγράφει' },
+        body: {
+          en: 'Setting playback rate and volume once does not hold — the player re-applies its own values as it initialises. Rather than fight for a single correct moment, the defaults are re-applied on `loadedmetadata`, `canplay` and `playing`, and then again at 500ms, 1s and 2s. It is brute force, and it is the thing that made the feature actually work.',
+          el: 'Το να ορίσεις ταχύτητα και ένταση μία φορά δεν κρατάει — ο player ξαναβάζει τις δικές του τιμές καθώς αρχικοποιείται. Αντί να ψάχνουμε τη μία σωστή στιγμή, οι προεπιλογές ξαναεφαρμόζονται σε `loadedmetadata`, `canplay` και `playing`, και ξανά στα 500ms, 1s και 2s. Είναι μπρούτε φορς, και είναι αυτό που έκανε το feature να δουλέψει στ᾽ αλήθεια.',
+        },
+      },
+      {
+        title: { en: 'No messaging between popup and page', el: 'Χωρίς messaging popup και σελίδας' },
+        body: {
+          en: 'The popup never talks to the content script directly. It writes the chosen speed to `chrome.storage.local`, and every frame listens on `storage.onChanged`. One write reaches every iframe at once, and the extension never needs the `tabs` permission to do it — which is why the permission list has exactly one entry on it.',
+          el: 'Το popup δεν μιλάει ποτέ απευθείας στο content script. Γράφει την επιλεγμένη ταχύτητα στο `chrome.storage.local`, και κάθε frame ακούει στο `storage.onChanged`. Ένα write φτάνει ταυτόχρονα σε όλα τα iframes, και το extension δεν χρειάζεται ποτέ permission `tabs` γι᾽ αυτό — γι᾽ αυτό η λίστα permissions έχει ακριβώς μία εγγραφή.',
+        },
+      },
+      {
+        title: { en: 'Knowing when to stop', el: 'Να ξέρεις πότε να σταματήσεις' },
+        body: {
+          en: 'The declared service worker is two lines long and one of them is a `console.log`. Nothing needs to run in the background, so nothing does. The whole extension is 707 lines, and 231 of them are the popup stylesheet — the interface is a third of the project because the logic genuinely did not need to be larger.',
+          el: 'Ο δηλωμένος service worker είναι δύο γραμμές και η μία είναι `console.log`. Τίποτα δεν χρειάζεται να τρέχει στο παρασκήνιο, οπότε δεν τρέχει τίποτα. Όλο το extension είναι 707 γραμμές, και οι 231 είναι το stylesheet του popup — το interface είναι το ένα τρίτο του project επειδή η λογική πραγματικά δεν χρειαζόταν να είναι μεγαλύτερη.',
+        },
+      },
+    ],
+    disclaimer: {
+      en: 'Not affiliated with an1me.to.',
+      el: 'Χωρίς σχέση με το an1me.to.',
+    },
     privacy: {
       en: 'Four preferences stay in local extension storage: boost speed, default speed, volume and mute state. There are no network requests, analytics, accounts, tabs access or browsing-history access.',
       el: 'Τέσσερις προτιμήσεις μένουν στο τοπικό storage του extension: boost speed, default speed, ένταση και mute state. Δεν υπάρχουν network requests, analytics, λογαριασμοί, πρόσβαση σε tabs ή ιστορικό περιήγησης.',
@@ -83,214 +132,14 @@ export const more: Project[] = [
       en: [
         'A tiny tool feels finished when it remembers the user’s preferred state, not when it gains another screen.',
         'Iframe-hosted media needs the content script registered for every frame, not just the top document.',
+        'Shared storage is a message bus. Writing one key and letting every frame listen removed the need for tab messaging, and with it the permission that would have come attached.',
+        'When a constraint cannot be engineered away, say it in the interface. One honest sentence about clicking the video saved more confusion than any amount of clever focus handling would have.',
       ],
       el: [
         'Ένα μικρό εργαλείο μοιάζει ολοκληρωμένο όταν θυμάται την προτιμώμενη κατάσταση του χρήστη, όχι όταν αποκτά άλλη μία οθόνη.',
         'Το media μέσα σε iframe χρειάζεται content script δηλωμένο για όλα τα frames, όχι μόνο για το κεντρικό document.',
-      ],
-    },
-  },
-
-  {
-    slug: 'auto-liker',
-    name: 'Auto Liker for Tinder & Boo',
-    category: 'browser',
-    alsoIn: ['automation'],
-    status: 'maintained',
-    accent: 'pink',
-    year: '2026',
-    version: '4.8',
-    repo: `${GH}/auto-liker-for-tinder-and-boo`,
-    repoLabel: 'auto-liker-for-tinder-and-boo',
-    tech: ['JavaScript', 'Manifest V3', 'i18n'],
-    lab: {
-      badge: { en: 'Questionable idea', el: 'Αμφίβολη ιδέα' },
-      note: {
-        en: 'It works. Whether it should is between you and your conscience.',
-        el: 'Δουλεύει. Το αν πρέπει είναι μεταξύ εσού και της συνείδησής σου.',
-      },
-    },
-    metrics: [
-      { value: '2', label: { en: 'platforms', el: 'πλατφόρμες' } },
-      { value: '3', label: { en: 'languages', el: 'γλώσσες' } },
-      { value: '1', label: { en: 'permission', el: 'permission' } },
-    ],
-    short: {
-      en: 'A neon on-page button that likes for you, with a live counter, a progress ring and a smart pause.',
-      el: 'Ένα neon κουμπί μέσα στη σελίδα που κάνει like για σένα, με live μετρητή, progress ring και έξυπνη παύση.',
-    },
-    summary: {
-      en: 'An on-page control that automates the swipe loop on Tinder and Boo, with a live counter, a progress ring and a pause that backs off when the site stops responding the way it should.',
-      el: 'Ένα control μέσα στη σελίδα που αυτοματοποιεί το swipe loop σε Tinder και Boo, με live μετρητή, progress ring και παύση που υποχωρεί όταν το site σταματάει να απαντάει σωστά.',
-    },
-    why: {
-      en: 'Built as an exercise in doing DOM automation politely — pacing itself, stopping when the page shape changes, and never asking for a permission it does not need. It requests `activeTab` and nothing else.',
-      el: 'Φτιάχτηκε ως άσκηση στο να κάνεις DOM automation ευγενικά — να ρυθμίζει ρυθμό, να σταματάει όταν αλλάζει η δομή της σελίδας, και να μη ζητάει permission που δεν χρειάζεται. Ζητάει `activeTab` και τίποτα άλλο.',
-    },
-    disclaimer: {
-      en: 'Not affiliated with Tinder or Boo.',
-      el: 'Χωρίς σχέση με Tinder ή Boo.',
-    },
-    what: {
-      en: 'Adds one control to the page: a neon button that runs the swipe loop for you, with a live count of what it has done, a progress ring, and a pause that backs off on its own when the page stops behaving the way it expects.',
-      el: 'Προσθέτει ένα control στη σελίδα: ένα neon κουμπί που τρέχει το swipe loop για σένα, με ζωντανό μετρητή, progress ring, και παύση που υποχωρεί μόνη της όταν η σελίδα σταματήσει να συμπεριφέρεται όπως περιμένει.',
-    },
-    sketch: {
-      title: 'Auto Liker — on-page control',
-      kind: 'browser',
-      rows: [
-        { label: 'Session count', value: '128', hot: true },
-        { label: 'Progress', bar: 64 },
-        { label: 'Smart pause', value: 'armed' },
-        { label: 'Platforms', value: 'Tinder · Boo' },
-        { label: 'Languages', value: '3' },
-        { label: 'Permissions', value: 'activeTab only' }
-      ]
-    },
-    features: [
-      {
-        title: { en: 'One-tap automation', el: 'Automation με ένα tap' },
-        body: {
-          en: 'A floating control starts and stops the loop on Tinder and Boo, while the popup mirrors its live state.',
-          el: 'Ένα floating control ξεκινάει και σταματάει το loop σε Tinder και Boo, ενώ το popup δείχνει ζωντανά την κατάστασή του.',
-        },
-      },
-      {
-        title: { en: 'Counter + progress ring', el: 'Μετρητής + progress ring' },
-        body: {
-          en: 'Counts successful likes during the current session and fills a progress ring every 100 actions.',
-          el: 'Μετράει τα επιτυχημένα likes του τρέχοντος session και γεμίζει ένα progress ring κάθε 100 ενέργειες.',
-        },
-      },
-      {
-        title: { en: 'Smart pause', el: 'Έξυπνη παύση' },
-        body: {
-          en: 'Stops after four consecutive failures, waits through loading states and dismisses match overlays before continuing.',
-          el: 'Σταματάει μετά από τέσσερις συνεχόμενες αποτυχίες, περιμένει τα loading states και κλείνει τα match overlays πριν συνεχίσει.',
-        },
-      },
-    ],
-    challenges: [
-      {
-        title: { en: 'Moving DOM targets', el: 'DOM που αλλάζει' },
-        body: {
-          en: 'Both sites change their markup regularly, so selectors have to fail safely instead of clicking whatever happens to occupy the same position.',
-          el: 'Και τα δύο sites αλλάζουν συχνά το markup τους, οπότε οι selectors πρέπει να αποτυγχάνουν με ασφάλεια αντί να πατούν ό,τι βρεθεί στην ίδια θέση.',
-        },
-      },
-      {
-        title: { en: 'Knowing when to stop', el: 'Να ξέρει πότε να σταματήσει' },
-        body: {
-          en: 'Daily limits, overlays and navigation can all look like a broken button. The failure counter turns those ambiguous states into a deliberate pause.',
-          el: 'Daily limits, overlays και navigation μπορούν όλα να μοιάζουν με χαλασμένο κουμπί. Ο failure counter μετατρέπει αυτές τις ασαφείς καταστάσεις σε ελεγχόμενη παύση.',
-        },
-      },
-    ],
-    privacy: {
-      en: 'Nothing is stored or sent anywhere. The session counter lives only in memory, and the extension asks for activeTab plus access to Tinder and Boo — no tabs list, history, storage, analytics or all-sites access.',
-      el: 'Τίποτα δεν αποθηκεύεται ή στέλνεται αλλού. Ο session counter μένει μόνο στη μνήμη και το extension ζητά activeTab μαζί με πρόσβαση σε Tinder και Boo — χωρίς λίστα tabs, ιστορικό, storage, analytics ή πρόσβαση σε όλα τα sites.',
-    },
-    lessons: {
-      en: [
-        'DOM automation needs pacing, loading awareness and a clear stop condition more than it needs raw speed.',
-        'The smallest permission set makes a questionable automation idea much easier to inspect and understand.',
-      ],
-      el: [
-        'Το DOM automation χρειάζεται ρυθμό, επίγνωση του loading και καθαρή συνθήκη τερματισμού περισσότερο από ωμή ταχύτητα.',
-        'Το μικρότερο δυνατό permission set κάνει μια αμφίβολη ιδέα automation πολύ πιο εύκολη στον έλεγχο και την κατανόηση.',
-      ],
-    },
-  },
-
-  {
-    slug: 'extensions-showcase',
-    name: 'Extensions Showcase',
-    category: 'web',
-    status: 'maintained',
-    accent: 'lime',
-    year: '2026',
-    repo: `${GH}/nexusmods-bypass/tree/727b706`,
-    repoLabel: 'historical multi-extension showcase',
-    tech: ['HTML', 'CSS', 'JavaScript', 'Cloudflare'],
-    lab: {
-      badge: { en: 'Ships itself', el: 'Ανεβαίνει μόνο του' },
-      note: {
-        en: 'The install page for four extensions, at the root of their own repo.',
-        el: 'Η σελίδα εγκατάστασης τεσσάρων extensions, στη ρίζα του δικού τους repo.',
-      },
-    },
-    metrics: [
-      { value: '4', label: { en: 'extensions', el: 'extensions' } },
-      { value: '~30s', label: { en: 'to install', el: 'για εγκατάσταση' } },
-      { value: '0', label: { en: 'analytics SDKs', el: 'analytics SDKs' } },
-    ],
-    short: {
-      en: 'The landing and install page for all four browser extensions, served from the root of the repository that contains them.',
-      el: 'Η σελίδα εγκατάστασης και για τα τέσσερα extensions, στη ρίζα του ίδιου repository που τα φιλοξενεί.',
-    },
-    summary: {
-      en: 'A single-page showcase that explains what each extension does, how to load it unpacked, and what permissions it asks for — sitting at the root of the same repository as the source, so the page and the code can never drift apart.',
-      el: 'Ένα single-page showcase που εξηγεί τι κάνει κάθε extension, πώς το φορτώνεις unpacked, και τι permissions ζητάει — στη ρίζα του ίδιου repository με τον κώδικα, ώστε σελίδα και κώδικας να μην ξεκολλήσουν ποτέ.',
-    },
-    why: {
-      en: 'None of the four are on the Chrome Web Store, so the repository had to do the job a store listing normally does: explain, reassure, and get someone to a working install in about thirty seconds.',
-      el: 'Κανένα από τα τέσσερα δεν είναι στο Chrome Web Store, οπότε το repository έπρεπε να κάνει τη δουλειά που κάνει κανονικά ένα store listing: να εξηγήσει, να καθησυχάσει, και να φέρει κάποιον σε λειτουργική εγκατάσταση σε τριάντα δευτερόλεπτα.',
-    },
-    what: {
-      en: 'One page that does the job a store listing normally would: what each of the four extensions is for, the permissions it asks for and why, and the thirty-second path to a working unpacked install.',
-      el: 'Μία σελίδα που κάνει τη δουλειά που θα έκανε ένα store listing: τι κάνει καθένα από τα τέσσερα extensions, τι permissions ζητάει και γιατί, και η διαδρομή τριάντα δευτερολέπτων μέχρι να δουλέψει unpacked.',
-    },
-    sketch: {
-      title: 'historical multi-extension showcase',
-      kind: 'browser',
-      rows: [
-        { label: 'NexusMods Bypass', value: 'Chrome · Firefox', hot: true },
-        { label: 'An1me.to Tracker', value: 'v7.3.3' },
-        { label: 'Auto Liker', value: 'v4.8' },
-        { label: 'Speed Control', value: 'v3.5' },
-        { label: 'Install time', value: '~30s, unpacked' },
-        { label: 'Analytics', value: 'none' }
-      ]
-    },
-    features: [
-      {
-        title: { en: 'Four products, one home', el: 'Τέσσερα προϊόντα, ένα σπίτι' },
-        body: {
-          en: 'Presents An1me Tracker, NexusMods Bypass, Auto Liker and Speed Control from the same repository that contains their source.',
-          el: 'Παρουσιάζει τα An1me Tracker, NexusMods Bypass, Auto Liker και Speed Control από το ίδιο repository που περιέχει τον κώδικά τους.',
-        },
-      },
-      {
-        title: { en: 'Install walkthrough', el: 'Οδηγός εγκατάστασης' },
-        body: {
-          en: 'Explains the unpacked-extension flow for Chrome-family browsers and Edge, including the easy-to-miss subfolder selection.',
-          el: 'Εξηγεί τη διαδικασία unpacked extension για Chrome-family browsers και Edge, μαζί με την εύκολα χαμένη επιλογή του σωστού subfolder.',
-        },
-      },
-      {
-        title: { en: 'Permission context', el: 'Εξήγηση permissions' },
-        body: {
-          en: 'Each product is linked to readable source, a full feature list and a permission explanation before anyone installs it.',
-          el: 'Κάθε προϊόν συνδέεται με αναγνώσιμο source, πλήρη λίστα λειτουργιών και εξήγηση permissions πριν το εγκαταστήσει κάποιος.',
-        },
-      },
-    ],
-    privacy: {
-      en: 'The showcase itself has no analytics SDK. It also makes the privacy model of the four extensions explicit: three are fully local, while Tracker syncs only a signed-in user’s private library document.',
-      el: 'Το ίδιο το showcase δεν έχει analytics SDK. Κάνει επίσης ξεκάθαρο το privacy model των τεσσάρων extensions: τα τρία είναι πλήρως τοπικά, ενώ το Tracker συγχρονίζει μόνο το ιδιωτικό library document του συνδεδεμένου χρήστη.',
-    },
-    impact: {
-      en: 'One page now handles discovery, trust and installation for four source-available extensions without relying on a browser-store listing.',
-      el: 'Μία σελίδα καλύπτει πλέον discovery, εμπιστοσύνη και εγκατάσταση για τέσσερα source-available extensions χωρίς browser-store listing.',
-    },
-    lessons: {
-      en: [
-        'When distribution is manual, installation instructions are part of the product rather than optional documentation.',
-        'Keeping the showcase beside the source reduces the chance that marketing copy and actual permissions drift apart.',
-      ],
-      el: [
-        'Όταν η διανομή είναι χειροκίνητη, οι οδηγίες εγκατάστασης είναι μέρος του προϊόντος και όχι προαιρετικό documentation.',
-        'Το showcase δίπλα στον κώδικα μειώνει την πιθανότητα να ξεφύγουν μεταξύ τους το marketing copy και τα πραγματικά permissions.',
+        'Το κοινό storage είναι δίαυλος μηνυμάτων. Γράφοντας ένα κλειδί και αφήνοντας κάθε frame να ακούει, έφυγε η ανάγκη για messaging σε tabs — και μαζί της το permission που θα ερχόταν κολλημένο.',
+        'Όταν ένας περιορισμός δεν λύνεται τεχνικά, πες τον στο interface. Μία τίμια πρόταση για το κλικ στο βίντεο γλίτωσε περισσότερη σύγχυση απ᾽ όσο κάθε έξυπνος χειρισμός focus.',
       ],
     },
   },
@@ -415,7 +264,7 @@ export const more: Project[] = [
     repo: `${GH}/desktop-utils/tree/main/Github-Build-Release`,
     repoLabel: 'desktop-utils',
     repoPath: 'Github-Build-Release',
-    tech: ['Electron', 'React', 'Vite', 'GitHub API', 'DeepSeek'],
+    tech: ['Electron', 'React 19', 'Vite', 'GitHub CLI', 'DeepSeek', 'electron-builder'],
     lab: {
       badge: { en: 'Side quest', el: 'Side quest' },
       note: {
@@ -424,13 +273,14 @@ export const more: Project[] = [
       },
     },
     metrics: [
-      { value: '3', label: { en: 'automated stages', el: 'αυτόματα στάδια' } },
-      { value: '1', label: { en: 'release workflow', el: 'release workflow' } },
-      { value: '0', label: { en: 'browser hopping', el: 'αλλαγές browser' } },
+      { value: '3', label: { en: 'ways to draft notes', el: 'τρόποι για σημειώσεις' } },
+      { value: '5,000', label: { en: 'lines of CSS', el: 'γραμμές CSS' } },
+      { value: '1', label: { en: 'CLI, not an API', el: 'CLI, όχι API' } },
+      { value: '0', label: { en: 'GitHub tokens stored', el: 'GitHub tokens αποθηκευμένα' } },
     ],
     short: {
-      en: 'Picks a commit range, generates release notes from the diff with an LLM, runs electron-builder and pushes the release straight to GitHub.',
-      el: 'Διαλέγεις commit range, ένα LLM διαβάζει το diff και γράφει τα release notes, τρέχει το electron-builder και ανεβαίνει το release στο GitHub. Εσύ πίνεις καφέ.',
+      en: 'Reads your latest changes, drafts release notes from them with an LLM, bumps the version, runs electron-builder and publishes the release through the GitHub CLI.',
+      el: 'Διαβάζει τις τελευταίες σου αλλαγές, γράφει release notes από αυτές με LLM, ανεβάζει την έκδοση, τρέχει το electron-builder και δημοσιεύει το release μέσω του GitHub CLI. Εσύ πίνεις καφέ.',
     },
     summary: {
       en: 'A desktop app around the part of shipping that nobody enjoys: pick a commit range, let a model read the diff and draft the notes, trigger the electron-builder build, watch the logs, and upload the artefacts to a GitHub Release without leaving the window.',
@@ -441,19 +291,19 @@ export const more: Project[] = [
       el: 'Βγάζω πολλά Electron builds και η χειροκίνητη διαδρομή είναι κάθε φορά ίδια. Αυτή η αυτοματοποίηση είναι που έκανε τη συντήρηση τεσσάρων desktop apps ταυτόχρονα βιώσιμη.',
     },
     what: {
-      en: 'Pick a commit range, let DeepSeek read the diff and draft the notes, kick off the electron-builder run, watch the log stream in the window, then push the tag and upload the artefacts to a GitHub Release. Past releases stay listed so you can see what shipped when.',
-      el: 'Διαλέγεις commit range, αφήνεις το DeepSeek να διαβάσει το diff και να γράψει τις σημειώσεις, ξεκινάς το electron-builder, βλέπεις τα logs να τρέχουν μέσα στο παράθυρο, και μετά ανεβαίνει το tag και τα artefacts σε GitHub Release. Τα παλιά releases μένουν στη λίστα για να βλέπεις τι βγήκε πότε.',
+      en: 'Point it at a repository and it reads the working tree — or a commit range, or a brief you type — sends that to DeepSeek for a first draft, and hands you the notes in a markdown editor with a live GitHub-flavoured preview. It bumps the patch version in package.json, runs electron-builder with the log stream in the window, and publishes through the GitHub CLI. Past releases and tags stay listed, with bulk delete.',
+      el: 'Του δείχνεις ένα repository και διαβάζει το working tree — ή ένα commit range, ή ένα brief που γράφεις — τα στέλνει στο DeepSeek για πρώτο draft, και σου δίνει τις σημειώσεις σε markdown editor με ζωντανό GitHub-flavoured preview. Ανεβάζει το patch version στο package.json, τρέχει το electron-builder με τα logs μέσα στο παράθυρο, και δημοσιεύει μέσω του GitHub CLI. Τα παλιά releases και tags μένουν στη λίστα, με μαζική διαγραφή.',
     },
     sketch: {
       title: 'GitHub Release Manager',
       kind: 'panel',
       rows: [
-        { label: 'Commit range', value: 'v3.7.0 … HEAD', hot: true },
+        { label: 'Scope', value: 'working tree → HEAD', hot: true },
         { label: 'Notes', value: 'deepseek-v4-flash' },
+        { label: 'Next tag', value: 'v4.6.7 → v4.6.8' },
         { label: 'Build', bar: 71, value: 'electron-builder' },
-        { label: 'Artefacts', value: '2 queued' },
-        { label: 'Upload', value: 'GitHub Releases' },
-        { label: 'History', value: '18 releases' }
+        { label: 'Publish', value: 'gh release create' },
+        { label: 'History', value: '26 releases' }
       ]
     },
     features: [
@@ -478,6 +328,20 @@ export const more: Project[] = [
           el: 'Δημιουργεί το GitHub Release και ανεβάζει τα παραγόμενα artefacts χωρίς ξεχωριστό browser session.',
         },
       },
+      {
+        title: { en: 'Three ways to draft', el: 'Τρεις τρόποι για draft' },
+        body: {
+          en: 'Latest changes reads the working tree and falls back to the last commit if the tree is clean. Commit range lets you pick two points. Manual brief lets you describe the release in your own words and have it written up. All three land in the same editable markdown field.',
+          el: 'Το «Latest changes» διαβάζει το working tree και πέφτει πίσω στο τελευταίο commit αν είναι καθαρό. Το «Commit range» σε αφήνει να διαλέξεις δύο σημεία. Το «Manual brief» σε αφήνει να περιγράψεις το release με δικά σου λόγια και να γραφτεί από εκεί. Και τα τρία καταλήγουν στο ίδιο επεξεργάσιμο markdown πεδίο.',
+        },
+      },
+      {
+        title: { en: 'It installs its own dependency', el: 'Εγκαθιστά μόνο του την εξάρτησή του' },
+        body: {
+          en: 'The whole tool is built on the GitHub CLI, so if `gh` is missing it offers to install it for you with winget rather than sending you to a download page — and if you are signed out, it opens the authentication command instead of just reporting a failure.',
+          el: 'Όλο το εργαλείο στηρίζεται στο GitHub CLI, οπότε αν λείπει το `gh` προσφέρεται να το εγκαταστήσει με winget αντί να σε στείλει σε σελίδα λήψης — και αν δεν είσαι συνδεδεμένος, ανοίγει την εντολή σύνδεσης αντί να αναφέρει απλώς αποτυχία.',
+        },
+      },
     ],
     challenges: [
       {
@@ -490,14 +354,28 @@ export const more: Project[] = [
       {
         title: { en: 'Useful AI output', el: 'Χρήσιμο AI output' },
         body: {
-          en: 'The model has to receive a bounded commit diff and return editable notes, not invent a release from a vague project description.',
-          el: 'Το model πρέπει να παίρνει περιορισμένο commit diff και να επιστρέφει επεξεργάσιμες σημειώσεις, όχι να επινοεί release από μια αόριστη περιγραφή project.',
+          en: 'The model has to receive a bounded commit diff and return editable notes, not invent a release from a vague project description. The draft always lands in a markdown field you can rewrite before anything is published — the model gets the first word, never the last one.',
+          el: 'Το model πρέπει να παίρνει περιορισμένο commit diff και να επιστρέφει επεξεργάσιμες σημειώσεις, όχι να επινοεί release από μια αόριστη περιγραφή project. Το draft καταλήγει πάντα σε markdown πεδίο που μπορείς να ξαναγράψεις πριν δημοσιευτεί οτιδήποτε — το μοντέλο παίρνει τον πρώτο λόγο, ποτέ τον τελευταίο.',
+        },
+      },
+      {
+        title: { en: 'Shelling out instead of calling an API', el: 'Shell αντί για API' },
+        body: {
+          en: 'Every GitHub operation runs through the `gh` command line rather than the REST API. That means no token to store, no auth flow to write and no scopes to get wrong — the tool inherits whatever login you already have. The cost is that it is useless without `gh` present, which is why installing it is part of the empty state rather than a note in a readme.',
+          el: 'Κάθε λειτουργία GitHub περνάει από τη γραμμή εντολών `gh` αντί για το REST API. Αυτό σημαίνει κανένα token για αποθήκευση, κανένα auth flow για γράψιμο και κανένα scope για να το κάνεις λάθος — το εργαλείο κληρονομεί όποιο login έχεις ήδη. Το κόστος είναι ότι είναι άχρηστο χωρίς το `gh`, γι᾽ αυτό η εγκατάστασή του είναι μέρος της αρχικής οθόνης και όχι σημείωση σε readme.',
+        },
+      },
+      {
+        title: { en: 'Half the project is stylesheet', el: 'Το μισό project είναι stylesheet' },
+        body: {
+          en: '5,000 of the 10,627 lines here are CSS, and 1,629 of those are the create-release screen alone. For a tool with three buttons and a text field that is either indefensible or exactly the point, depending on how you feel about tools you use every week. I lean towards the second.',
+          el: '5.000 από τις 10.627 γραμμές εδώ είναι CSS, και οι 1.629 μόνο η οθόνη δημιουργίας release. Για ένα εργαλείο με τρία κουμπιά και ένα πεδίο κειμένου, αυτό είναι είτε αδικαιολόγητο είτε ακριβώς το ζητούμενο, ανάλογα με το πώς νιώθεις για εργαλεία που χρησιμοποιείς κάθε βδομάδα. Κλίνω προς το δεύτερο.',
         },
       },
     ],
     privacy: {
-      en: 'This tool is intentionally not offline: selected diff content is sent to the configured DeepSeek model, while release metadata and build artefacts are sent to GitHub.',
-      el: 'Αυτό το εργαλείο σκόπιμα δεν είναι offline: το επιλεγμένο diff στέλνεται στο ρυθμισμένο DeepSeek model, ενώ τα release metadata και build artefacts στέλνονται στο GitHub.',
+      en: 'This tool is intentionally not offline. Your selected diff is sent to DeepSeek, and release metadata and build artefacts go to GitHub through the `gh` CLI. It stores no GitHub token of its own — it borrows whatever login `gh` already holds — but it does save your DeepSeek API key to a local config file, and that key is stored in plain text.',
+      el: 'Αυτό το εργαλείο σκόπιμα δεν είναι offline. Το επιλεγμένο diff στέλνεται στο DeepSeek, και τα release metadata και build artefacts πάνε στο GitHub μέσω του `gh` CLI. Δεν αποθηκεύει δικό του GitHub token — δανείζεται όποιο login κρατάει ήδη το `gh` — αλλά αποθηκεύει το DeepSeek API key σου σε τοπικό αρχείο config, και αυτό το κλειδί μένει σε απλό κείμενο.',
     },
     impact: {
       en: 'Commit selection, note drafting, packaging and publishing live in one repeatable flow instead of four disconnected tools.',
@@ -507,10 +385,14 @@ export const more: Project[] = [
       en: [
         'AI is most useful in a release tool when it is grounded in an explicit diff and its output stays editable.',
         'A multi-stage automation needs honest logs just as much as it needs a one-click start button.',
+        'Shelling out to a CLI someone else maintains beat writing my own auth. No token to store, no scopes to get wrong, and the login was already there.',
+        'If a tool depends on something not installed, installing it is part of the product. Sending the user to a download page is where most internal tools quietly die.',
       ],
       el: [
         'Το AI είναι πιο χρήσιμο σε release tool όταν βασίζεται σε συγκεκριμένο diff και το output του παραμένει επεξεργάσιμο.',
         'Ένα multi-stage automation χρειάζεται ειλικρινή logs όσο χρειάζεται και κουμπί εκκίνησης με ένα click.',
+        'Το να καλέσω ένα CLI που συντηρεί κάποιος άλλος κέρδισε από το να γράψω δικό μου auth. Κανένα token για αποθήκευση, κανένα scope για λάθος, και το login ήταν ήδη εκεί.',
+        'Αν ένα εργαλείο εξαρτάται από κάτι που δεν είναι εγκατεστημένο, η εγκατάστασή του είναι μέρος του προϊόντος. Το να στέλνεις τον χρήστη σε σελίδα λήψης είναι εκεί που πεθαίνουν σιωπηλά τα περισσότερα εσωτερικά εργαλεία.',
       ],
     },
   },
@@ -767,10 +649,10 @@ export const more: Project[] = [
     alsoIn: ['web'],
     status: 'legacy',
     accent: 'violet',
-    year: '2023 — now',
+    year: '2018 — now',
     repo: `${GH}/1st-theme`,
     repoLabel: '1st-theme',
-    tech: ['CSS', 'JavaScript', 'BetterDiscord'],
+    tech: ['CSS', 'JavaScript', 'BetterDiscord', 'DevTools'],
     lab: {
       badge: { en: 'Where it started', el: 'Από εδώ ξεκίνησαν όλα' },
       note: {
@@ -779,25 +661,26 @@ export const more: Project[] = [
       },
     },
     metrics: [
-      { value: '5', label: { en: 'themes', el: 'themes' } },
-      { value: '6', label: { en: 'plugins', el: 'plugins' } },
-      { value: '500+', label: { en: 'commits', el: 'commits' } },
+      { value: '4', label: { en: 'themes shipped', el: 'themes σε χρήση' } },
+      { value: '6', label: { en: 'plugins written', el: 'plugins γραμμένα' } },
+      { value: '511', label: { en: 'commits', el: 'commits' } },
+      { value: '12K', label: { en: 'lines of CSS and JS', el: 'γραμμές CSS και JS' } },
     ],
     short: {
-      en: 'Five themes and six plugins for BetterDiscord. The origin story — raw CSS, devtools and trial and error, years before I used any AI tooling.',
-      el: 'Πέντε themes και έξι plugins για το BetterDiscord. Από εδώ ξεκίνησαν όλα — σκέτο CSS, devtools και δοκιμή-λάθος, χρόνια πριν αγγίξω AI εργαλείο.',
+      en: 'Four themes and six plugins for BetterDiscord. The origin story — raw CSS, devtools and trial and error, years before I used any AI tooling.',
+      el: 'Τέσσερα themes και έξι plugins για το BetterDiscord. Από εδώ ξεκίνησαν όλα — σκέτο CSS, devtools και δοκιμή-λάθος, χρόνια πριν αγγίξω AI εργαλείο.',
     },
     summary: {
-      en: 'Simpletheme V3 and V2, a folder theme, a community theme, and six plugins — FolderManager, NoPause, Timer, Safe Console, Prezomenoi and an all-in-one updater. This is the repository where I learned CSS by inspecting a live application and breaking it repeatedly.',
-      el: 'Simpletheme V3 και V2, ένα folder theme, ένα community theme, και έξι plugins — FolderManager, NoPause, Timer, Safe Console, Prezomenoi και ένας all-in-one updater. Είναι το repository όπου έμαθα CSS κάνοντας inspect μια ζωντανή εφαρμογή και σπάζοντάς την ξανά και ξανά.',
+      en: 'Simpletheme V3 and the V2 line it replaced, a folder theme generated from its own plugin, a community theme for a server I ran, and six plugins — FolderManager, NoPause, Timer, Safe Console, Prezomenoi and an all-in-one updater. This is the repository where I learned CSS by inspecting a live application I did not own and breaking it repeatedly.',
+      el: 'Το Simpletheme V3 και η γραμμή V2 που αντικατέστησε, ένα folder theme παραγόμενο από το ίδιο του το plugin, ένα community theme για server που έτρεχα, και έξι plugins — FolderManager, NoPause, Timer, Safe Console, Prezomenoi και ένας all-in-one updater. Είναι το repository όπου έμαθα CSS κάνοντας inspect μια ζωντανή εφαρμογή που δεν μου ανήκε και σπάζοντάς την ξανά και ξανά.',
     },
     why: {
       en: 'Default Discord feels like a corporate spreadsheet with a dark mode filter. Fixing that was the first time building software felt like something I could actually do.',
       el: 'Το default Discord μοιάζει με εταιρικό spreadsheet που του έβαλαν φίλτρο dark mode. Το να το φτιάξω ήταν η πρώτη φορά που το να γράφω λογισμικό μου φάνηκε κάτι που μπορώ όντως να κάνω.',
     },
     what: {
-      en: 'Five themes and six plugins loaded straight into the Discord client. The themes restyle the app through CSS alone; the plugins add behaviour the client does not have — folder customisation, stopping unwanted stream pauses, an activity timer and quieter console logging.',
-      el: 'Πέντε themes και έξι plugins που φορτώνουν κατευθείαν μέσα στον Discord client. Τα themes αλλάζουν την εμφάνιση μόνο με CSS· τα plugins προσθέτουν συμπεριφορά που δεν έχει ο client — παραμετροποίηση φακέλων, σταμάτημα του ανεπιθύμητου pause σε stream, χρονόμετρο δραστηριότητας και πιο ήσυχο console.',
+      en: 'Four themes and six plugins loaded straight into the Discord client. The themes restyle the app through CSS alone; the plugins add behaviour the client does not have — folder customisation, stopping unwanted stream pauses, a clock with its own settings panel and quieter console logging. Their interfaces are in Greek, because the people using them were.',
+      el: 'Τέσσερα themes και έξι plugins που φορτώνουν κατευθείαν μέσα στον Discord client. Τα themes αλλάζουν την εμφάνιση μόνο με CSS· τα plugins προσθέτουν συμπεριφορά που δεν έχει ο client — παραμετροποίηση φακέλων, σταμάτημα του ανεπιθύμητου pause σε stream, ρολόι με δικό του panel ρυθμίσεων και πιο ήσυχο console. Τα interface τους είναι στα ελληνικά, επειδή έτσι ήταν κι όσοι τα χρησιμοποιούσαν.',
     },
     sketch: {
       title: 'BetterDiscord — installed',
@@ -829,8 +712,45 @@ export const more: Project[] = [
       {
         title: { en: 'Plugins', el: 'Plugins' },
         body: {
-          en: 'FolderManager for folder customisation, NoPause to stop unwanted stream and audio pausing, Timer for an embedded activity timer, and Safe Console for cleaner developer logging.',
-          el: 'FolderManager για παραμετροποίηση φακέλων, NoPause για να σταματήσει το ανεπιθύμητο pause σε stream και ήχο, Timer για ενσωματωμένο χρονόμετρο δραστηριότητας, και Safe Console για πιο καθαρό developer logging.',
+          en: 'FolderManager for folder customisation, NoPause for Quests to stop unwanted stream and audio pausing, Timer for a dark-styled clock with its own settings panel, and Safe Console for cleaner developer logging. Every one of them talks to you in Greek.',
+          el: 'FolderManager για παραμετροποίηση φακέλων, NoPause for Quests για να σταματήσει το ανεπιθύμητο pause σε stream και ήχο, Timer για ρολόι με dark εμφάνιση και δικό του panel ρυθμίσεων, και Safe Console για πιο καθαρό developer logging. Και τα έξι σου μιλάνε ελληνικά.',
+        },
+      },
+    ],
+    challenges: [
+      {
+        title: { en: 'Styling markup you cannot change', el: 'Styling σε markup που δεν αλλάζεις' },
+        body: {
+          en: 'A theme is CSS aimed at an application someone else builds, ships and rewrites without telling you. There is no markup to fix, no class you can rename, and every class name is machine-generated and can change on any update. You learn to target structure and relationships instead of names, because names are the one thing guaranteed not to survive.',
+          el: 'Ένα theme είναι CSS που στοχεύει μια εφαρμογή που χτίζει, εκδίδει και ξαναγράφει κάποιος άλλος χωρίς να σου το πει. Δεν υπάρχει markup να διορθώσεις, ούτε class να μετονομάσεις, και κάθε όνομα class είναι παραγμένο από μηχανή και μπορεί να αλλάξει σε κάθε update. Μαθαίνεις να στοχεύεις δομή και σχέσεις αντί για ονόματα, επειδή τα ονόματα είναι το ένα πράγμα που σίγουρα δεν επιβιώνει.',
+        },
+      },
+      {
+        title: { en: 'The update that breaks everything', el: 'Το update που τα σπάει όλα' },
+        body: {
+          en: 'Every Discord release is a potential total break, and there is no warning and no changelog for the internals. That is why V2 is still in the repository at 3,246 lines, and why the previous working V3 sits beside the current one under a name that says OLD_WORKING. Keeping the last version that definitely worked is not untidiness — it is the only rollback available when the thing you are styling updates itself underneath you.',
+          el: 'Κάθε έκδοση του Discord είναι πιθανό ολικό σπάσιμο, χωρίς προειδοποίηση και χωρίς changelog για τα εσωτερικά. Γι᾽ αυτό το V2 είναι ακόμα στο repository με 3.246 γραμμές, και γι᾽ αυτό το προηγούμενο V3 που δούλευε κάθεται δίπλα στο τρέχον με όνομα που λέει OLD_WORKING. Το να κρατάς την τελευταία έκδοση που σίγουρα δούλευε δεν είναι ακαταστασία — είναι το μόνο rollback που έχεις όταν αυτό που στυλάρεις ενημερώνεται από μόνο του από κάτω σου.',
+        },
+      },
+      {
+        title: { en: 'Generating the theme from the plugin', el: 'Το theme παράγεται από το plugin' },
+        body: {
+          en: 'FolderManager is 1,425 lines and the largest thing in the repository. It got big enough that hand-writing a matching stylesheet stopped making sense, so the folder theme is emitted from the plugin instead — its own header says it is auto-generated. That was the first time I built a tool to write my code rather than writing it twice.',
+          el: 'Το FolderManager είναι 1.425 γραμμές και το μεγαλύτερο πράγμα στο repository. Μεγάλωσε τόσο που το να γράφω στο χέρι ένα stylesheet που να ταιριάζει έπαψε να βγάζει νόημα, οπότε το folder theme παράγεται από το plugin — το ίδιο του το header το λέει auto-generated. Ήταν η πρώτη φορά που έφτιαξα εργαλείο να γράφει τον κώδικά μου αντί να τον γράφω δύο φορές.',
+        },
+      },
+      {
+        title: { en: 'The repository is the update server', el: 'Το repository είναι ο update server' },
+        body: {
+          en: 'There is no package registry for BetterDiscord plugins, so four of the six ship their own updater: a panel with one button that fetches the current file straight from this repository’s main branch, compares versions and reports back. No infrastructure, no release process, no account — the raw file on GitHub is the distribution channel. Every one of those panels is written in Greek, because the people installing them were on a Greek server.',
+          el: 'Δεν υπάρχει package registry για BetterDiscord plugins, οπότε τέσσερα από τα έξι κουβαλάνε δικό τους updater: ένα panel με ένα κουμπί που τραβάει το τρέχον αρχείο κατευθείαν από το main branch αυτού του repository, συγκρίνει εκδόσεις και απαντάει. Καμία υποδομή, καμία διαδικασία release, κανένας λογαριασμός — το raw αρχείο στο GitHub είναι το κανάλι διανομής. Κάθε ένα από αυτά τα panel είναι γραμμένο στα ελληνικά, επειδή όσοι τα εγκαθιστούσαν ήταν σε ελληνικό server.',
+        },
+      },
+      {
+        title: { en: 'Five of the six are parked', el: 'Τα πέντε από τα έξι είναι παρκαρισμένα' },
+        body: {
+          en: 'Only NoPause carries a proper BetterDiscord metadata header. The other five plugin files are prefixed with a dot, which is how they sit in the folder without loading — parked rather than deleted, because half of them still work and I have not decided which ones are worth bringing back. The repository is honest about being a workshop rather than a product shelf.',
+          el: 'Μόνο το NoPause έχει κανονικό BetterDiscord metadata header. Τα άλλα πέντε αρχεία plugin ξεκινούν με τελεία, κι έτσι κάθονται στον φάκελο χωρίς να φορτώνουν — παρκαρισμένα αντί για διαγραμμένα, επειδή τα μισά ακόμα δουλεύουν και δεν έχω αποφασίσει ποια αξίζει να επιστρέψουν. Το repository είναι ειλικρινές ότι είναι εργαστήριο και όχι ράφι προϊόντων.',
         },
       },
     ],
@@ -838,10 +758,14 @@ export const more: Project[] = [
       en: [
         'Reading someone else\'s live DOM in devtools taught me more CSS than any course would have.',
         'Everything I know about UI polish started here, on a product I did not own and could not change the markup of.',
+        'Keep the last version that worked. When the thing underneath you updates without warning, the backup file with the embarrassing name is the only rollback you have.',
+        'When a stylesheet and a plugin have to agree, generate one from the other. Writing the same structure twice is how the two of them drift apart.',
       ],
       el: [
         'Το να διαβάζω ζωντανό DOM κάποιου άλλου στα devtools μου έμαθε περισσότερο CSS από οποιοδήποτε μάθημα.',
         'Ό,τι ξέρω για UI polish ξεκίνησε εδώ, σε ένα προϊόν που δεν μου ανήκε και του οποίου δεν μπορούσα να αλλάξω το markup.',
+        'Κράτα την τελευταία έκδοση που δούλευε. Όταν αυτό που πατάς ενημερώνεται χωρίς προειδοποίηση, το backup αρχείο με το ντροπιαστικό όνομα είναι το μόνο rollback που έχεις.',
+        'Όταν ένα stylesheet και ένα plugin πρέπει να συμφωνούν, παρήγαγε το ένα από το άλλο. Το να γράφεις την ίδια δομή δύο φορές είναι ο τρόπος με τον οποίο αποκλίνουν.',
       ],
     },
     disclaimer: {

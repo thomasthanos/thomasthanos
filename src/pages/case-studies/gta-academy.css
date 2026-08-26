@@ -1,0 +1,1315 @@
+/* GTA Academy — bespoke case study.
+   Identity device: the damage row. The site prints every stat as "RPG ➟➟ 8", so the arrow is the
+   page's motif — it marks the position on every section rule and bullets every list. Pink is taken
+   from the site's own palette (#ff6ec4), the other half of its cyan/pink gradient. */
+
+.gta {
+  overflow-x: clip;
+  --gta-pink: #ff6ec4;
+  --gta-pink-bright: #ff9ad8;
+  --gta-pink-deep: #c93f92;
+  --gta-pink-a08: rgba(255, 110, 196, 0.09);
+  --gta-pink-a14: rgba(255, 110, 196, 0.15);
+  --gta-pink-a30: rgba(255, 110, 196, 0.34);
+  --gta-amber: #ffb454;
+  --gta-amber-a10: rgba(255, 180, 84, 0.1);
+  --gta-amber-a30: rgba(255, 180, 84, 0.32);
+  --gta-line: var(--c-line);
+  --gta-panel: color-mix(in srgb, var(--c-surface) 78%, transparent);
+  --gta-measure: 62ch;
+}
+.gta__container {
+  position: relative;
+  max-width: 1500px;
+  --n-cw: min(1500px, 100vw);
+}
+.gta__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: clamp(1rem, 0.8rem + 1vw, 1.75rem);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+  transition: color var(--d-fast) var(--e-out);
+}
+.gta__back:hover {
+  color: var(--gta-pink-bright);
+}
+.gta__back svg {
+  width: 14px;
+  transition: transform var(--d-fast) var(--e-out);
+}
+.gta__back:hover svg {
+  transform: translateX(-3px);
+}
+
+/* ── sections ─────────────────────────────────────────────────────── */
+
+.gta-section {
+  position: relative;
+  padding-top: clamp(2rem, 1.6rem + 1.4vw, 3rem);
+}
+.gta-section__head {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-6);
+  margin-bottom: clamp(1rem, 0.85rem + 0.75vw, 1.5rem);
+  padding-bottom: 1.1rem;
+}
+.gta-section__head::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--gta-pink) 0 var(--gta-at, 30%),
+    var(--gta-line) var(--gta-at, 30%) 100%
+  );
+}
+/* the motif: the site's own arrow, marking how far down the page you are */
+.gta-section__head::before {
+  content: '➟';
+  position: absolute;
+  bottom: 0.3rem;
+  left: var(--gta-at, 30%);
+  translate: -50% 0;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: var(--gta-pink);
+}
+.gta-section--tight { --gta-at: 11%; }
+.gta-section--premise { --gta-at: 24%; }
+.gta-section--output { --gta-at: 36%; }
+.gta-section--pillars { --gta-at: 49%; }
+.gta-section--method { --gta-at: 62%; }
+.gta-section--hard { --gta-at: 75%; }
+.gta-section--how { --gta-at: 85%; }
+.gta-section--honest { --gta-at: 94%; }
+.gta-section--panel { --gta-at: 100%; }
+
+.gta-section__head h2 {
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: var(--ls-head);
+  text-transform: uppercase;
+  color: var(--c-text);
+}
+.gta-section__aside {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 48ch;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.55;
+  color: var(--c-text-4);
+  text-align: right;
+}
+.gta-section--tinted {
+  isolation: isolate;
+}
+.gta-section--tinted::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset-block: calc(-1 * clamp(1rem, 2vw, 2rem)) calc(-1 * clamp(1rem, 2vw, 2rem));
+  inset-inline: calc(50% - 50vw);
+  pointer-events: none;
+}
+.gta-section--output::before {
+  background: linear-gradient(180deg, transparent, var(--gta-pink-a08) 22%, var(--gta-pink-a08) 78%, transparent);
+}
+.gta-section--method::before {
+  background: linear-gradient(180deg, transparent, var(--gta-pink-a14) 22%, var(--gta-pink-a14) 78%, transparent);
+}
+.gta-section--honest::before {
+  background: linear-gradient(180deg, transparent, var(--gta-amber-a10) 22%, var(--gta-amber-a10) 78%, transparent);
+}
+
+/* ── hero ─────────────────────────────────────────────────────────── */
+
+.gta-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  align-items: center;
+  gap: clamp(1.5rem, 2.2vw, 3rem);
+  padding: clamp(0.5rem, 1vw, 1.25rem) 0 clamp(1.75rem, 2.2vw, 2.5rem);
+  border-bottom: 1px solid var(--gta-line);
+}
+.gta-hero::before {
+  content: '';
+  position: absolute;
+  inset: auto 2% 2% auto;
+  width: min(40vw, 520px);
+  aspect-ratio: 1.4;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gta-pink-a14), transparent 70%);
+  filter: blur(38px);
+  pointer-events: none;
+}
+.gta-hero__copy {
+  position: relative;
+  z-index: 2;
+  max-width: 54ch;
+}
+.gta-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-4);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+.gta-hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--gta-pink-a30);
+  border-radius: var(--r-pill);
+  background: var(--gta-pink-a08);
+  color: var(--gta-pink-bright);
+}
+.gta-hero__status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gta-pink);
+}
+.gta-hero__year {
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--gta-line);
+  border-radius: var(--r-sm);
+  color: var(--c-text-3);
+}
+.gta-hero h1 {
+  font-family: var(--f-display);
+  font-size: clamp(2.6rem, 1.6rem + 4.4vw, 5.4rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--c-text);
+}
+.gta-hero__line2 {
+  display: block;
+  color: var(--gta-pink);
+}
+.gta-hero__tagline {
+  margin-top: 0.9rem;
+  max-width: 44ch;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.2rem);
+  line-height: 1.45;
+  color: var(--c-text-2);
+}
+.gta-hero__summary {
+  margin-top: 0.9rem;
+  max-width: var(--gta-measure);
+  font-size: 0.97rem;
+  line-height: 1.62;
+  color: var(--c-text-3);
+}
+.gta-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: 1.4rem;
+}
+
+/* the hero object: one real card, printed the way the site prints it */
+.gta-hero__panel {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  padding: clamp(1rem, 0.85rem + 0.7vw, 1.5rem);
+  border: 1px solid var(--gta-line);
+  border-top: 2px solid var(--gta-pink);
+  border-radius: var(--r-lg);
+  background: var(--gta-panel);
+}
+.gta-hero__panel-title {
+  font-family: var(--f-display);
+  font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.3rem);
+  font-weight: 600;
+  color: var(--c-text);
+}
+.gta-rows {
+  display: grid;
+  gap: 0;
+  margin-top: 0.75rem;
+}
+.gta-rows li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding-block: 0.5rem;
+  border-top: 1px solid var(--gta-line);
+}
+.gta-rows li:first-child {
+  border-top: 0;
+}
+.gta-rows span {
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.gta-rows i {
+  font-style: normal;
+  font-size: 0.75rem;
+  letter-spacing: -0.1em;
+  color: var(--gta-pink);
+  opacity: 0.7;
+}
+.gta-rows b {
+  min-width: 2ch;
+  font-family: var(--f-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: right;
+  color: var(--gta-pink-bright);
+}
+.gta-hero__panel-note {
+  margin-top: 0.7rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+
+/* ── metrics ──────────────────────────────────────────────────────── */
+
+.gta-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--gta-line);
+  border-radius: var(--r-lg);
+  background: var(--gta-panel);
+  overflow: hidden;
+}
+.gta-stat {
+  position: relative;
+  padding: clamp(0.9rem, 0.7rem + 0.7vw, 1.4rem) clamp(0.85rem, 0.6rem + 0.7vw, 1.5rem);
+  border-right: 1px solid var(--gta-line);
+}
+.gta-stat:last-child {
+  border-right: 0;
+}
+.gta-stat::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gta-pink);
+  opacity: 0.55;
+}
+.gta-stat:nth-child(2)::before { opacity: 0.4; }
+.gta-stat:nth-child(3)::before { opacity: 0.28; }
+.gta-stat:nth-child(4)::before { opacity: 0.16; }
+.gta-stat dt {
+  font-family: var(--f-display);
+  font-size: clamp(1.9rem, 1.3rem + 2vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gta-pink);
+}
+.gta-stat dd {
+  margin-top: 0.35rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--c-text-4);
+}
+.gta-nerd {
+  margin-top: 0.8rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.6;
+  color: var(--c-text-4);
+}
+
+/* ── premise ──────────────────────────────────────────────────────── */
+
+.gta-premise {
+  max-width: 68ch;
+}
+.gta-premise__lead {
+  font-family: var(--f-display);
+  font-size: clamp(1.55rem, 1.05rem + 2.1vw, 2.85rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+}
+.gta-premise__body {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.68;
+  color: var(--c-text-3);
+}
+
+/* ── gallery ──────────────────────────────────────────────────────── */
+
+.gta-disclosure {
+  display: flex;
+  gap: 0.7rem;
+  max-width: 78ch;
+  margin-bottom: clamp(1rem, 0.9rem + 0.6vw, 1.5rem);
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--gta-amber-a30);
+  border-left-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--gta-amber-a10);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--c-text-3);
+}
+.gta-disclosure svg {
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  margin-top: 0.15rem;
+  color: var(--gta-amber);
+}
+.gta-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.9rem, 0.7rem + 0.8vw, 1.5rem);
+}
+.gta-frame {
+  min-width: 0;
+}
+.gta-frame__btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--gta-line);
+  border-radius: var(--r-lg);
+  background: var(--gta-panel);
+  cursor: zoom-in;
+  overflow: hidden;
+  transition:
+    border-color var(--d-fast) var(--e-out),
+    transform var(--d-fast) var(--e-out);
+}
+.gta-frame__btn:hover,
+.gta-frame__btn:focus-visible {
+  border-color: var(--gta-pink-a30);
+  transform: translateY(-2px);
+}
+.gta-frame__btn img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.gta-frame__expand {
+  position: absolute;
+  inset: auto 0.6rem 0.6rem auto;
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--c-bg) 82%, transparent);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--gta-pink-bright);
+  opacity: 0;
+  transition: opacity var(--d-fast) var(--e-out);
+}
+.gta-frame__btn:hover .gta-frame__expand,
+.gta-frame__btn:focus-visible .gta-frame__expand {
+  opacity: 1;
+}
+.gta-frame__caption {
+  margin-top: 0.55rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.55;
+  color: var(--c-text-4);
+}
+
+/* ── pillars ──────────────────────────────────────────────────────── */
+
+.gta-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.9rem, 0.75rem + 0.8vw, 1.6rem);
+}
+.gta-pillar {
+  position: relative;
+  min-width: 0;
+  padding-top: 1rem;
+  border-top: 2px solid var(--gta-pink-a30);
+}
+.gta-pillar__icon {
+  display: inline-flex;
+  color: var(--gta-pink);
+}
+.gta-pillar__icon svg {
+  width: 20px;
+  height: 20px;
+}
+.gta-pillar h3 {
+  margin-top: 0.55rem;
+  font-family: var(--f-display);
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.35rem);
+  font-weight: 600;
+  color: var(--c-text);
+}
+.gta-pillar > p {
+  margin-top: 0.45rem;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--c-text-3);
+}
+.gta-pillar ul {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.4rem;
+}
+.gta-pillar li {
+  position: relative;
+  padding-left: 1.15rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.5;
+  color: var(--c-text-4);
+}
+.gta-pillar li::before {
+  content: '➟';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.72rem;
+  color: var(--gta-pink);
+}
+
+/* ── method cards ─────────────────────────────────────────────────── */
+
+.gta-statement {
+  max-width: 76ch;
+  margin-bottom: clamp(1.2rem, 1rem + 0.8vw, 2rem);
+  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--c-text-2);
+}
+.gta-methods {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.85rem, 0.7rem + 0.7vw, 1.35rem);
+}
+.gta-method {
+  min-width: 0;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--gta-line);
+  border-top: 2px solid var(--gta-pink-a30);
+  border-radius: var(--r-md);
+  background: var(--gta-panel);
+}
+.gta-method__icon {
+  display: inline-flex;
+  color: var(--gta-pink);
+}
+.gta-method__icon svg {
+  width: 19px;
+  height: 19px;
+}
+.gta-method__problem {
+  margin-top: 0.5rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+.gta-method h3 {
+  margin-top: 0.3rem;
+  font-family: var(--f-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gta-pink-bright);
+}
+.gta-method__body {
+  margin-top: 0.5rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--c-text-3);
+}
+
+/* ── engineering challenges ───────────────────────────────────────── */
+
+.gta-hard {
+  display: grid;
+}
+.gta-hard__row {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 1.2rem;
+  padding-block: clamp(1rem, 0.85rem + 0.7vw, 1.6rem);
+  border-top: 1px solid var(--gta-line);
+}
+.gta-hard__row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.gta-hard__row > span {
+  font-family: var(--f-display);
+  font-size: clamp(1.3rem, 1rem + 1vw, 2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gta-pink);
+  opacity: 0.7;
+}
+.gta-hard__row h3 {
+  font-family: var(--f-display);
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.4rem);
+  font-weight: 600;
+  color: var(--c-text);
+}
+.gta-hard__row > div > p {
+  margin-top: 0.4rem;
+  max-width: 72ch;
+  font-size: 0.95rem;
+  line-height: 1.62;
+  color: var(--c-text-3);
+}
+.gta-hard details {
+  margin-top: 0.65rem;
+}
+.gta-hard summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--gta-pink);
+  cursor: pointer;
+  list-style: none;
+}
+.gta-hard summary::-webkit-details-marker {
+  display: none;
+}
+.gta-hard summary::before {
+  content: '+';
+  font-size: 1em;
+}
+.gta-hard details[open] summary::before {
+  content: '–';
+}
+.gta-hard details p {
+  margin-top: 0.5rem;
+  padding-left: 0.85rem;
+  border-left: 2px solid var(--gta-pink-a30);
+  max-width: 74ch;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--c-text-4);
+}
+
+/* ── flow ─────────────────────────────────────────────────────────── */
+
+.gta-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border: 1px solid var(--gta-line);
+  border-radius: var(--r-lg);
+  background: var(--gta-panel);
+  overflow: hidden;
+}
+.gta-flow__stage {
+  position: relative;
+  min-width: 0;
+  padding: clamp(0.8rem, 0.7rem + 0.5vw, 1.2rem) clamp(0.7rem, 0.55rem + 0.5vw, 1.1rem);
+  border-right: 1px solid var(--gta-line);
+}
+.gta-flow__stage:last-child {
+  border-right: 0;
+}
+.gta-flow__stage::after {
+  content: '➟';
+  position: absolute;
+  top: 50%;
+  right: -0.42rem;
+  font-size: 0.72rem;
+  line-height: 1;
+  translate: 0 -50%;
+  color: var(--gta-pink);
+  opacity: 0.7;
+}
+.gta-flow__stage:last-child::after {
+  display: none;
+}
+.gta-flow__name {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-2);
+  word-break: break-word;
+}
+.gta-flow__stage[data-end] .gta-flow__name {
+  color: var(--gta-pink);
+}
+.gta-flow__stage code {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.45;
+  color: var(--c-text-4);
+  word-break: break-word;
+}
+.gta-flow__stage[data-end]::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gta-pink);
+}
+
+/* ── honest accounting ────────────────────────────────────────────── */
+
+.gta-verdict {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-6);
+  padding-bottom: clamp(1rem, 0.9rem + 0.6vw, 1.6rem);
+  border-bottom: 1px solid var(--gta-line);
+}
+.gta-verdict > p {
+  font-family: var(--f-display);
+  font-size: clamp(1.4rem, 1rem + 1.6vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--gta-amber);
+}
+.gta-chant {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  text-align: right;
+}
+.gta-chant li {
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+.gta-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 0.8rem + 1vw, 2rem);
+  margin-top: clamp(1.2rem, 1rem + 0.8vw, 2rem);
+}
+.gta-point {
+  min-width: 0;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--gta-line);
+  border-top: 2px solid var(--gta-amber-a30);
+  border-radius: var(--r-md);
+  background: var(--gta-panel);
+}
+.gta-point__icon {
+  display: inline-flex;
+  color: var(--gta-amber);
+}
+.gta-point__icon svg {
+  width: 19px;
+  height: 19px;
+}
+.gta-point h3 {
+  margin-top: 0.5rem;
+  font-family: var(--f-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--c-text);
+}
+.gta-point p {
+  margin-top: 0.45rem;
+  font-size: 0.88rem;
+  line-height: 1.62;
+  color: var(--c-text-3);
+}
+
+/* ── end grid, lessons, stack ─────────────────────────────────────── */
+
+.gta-endgrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 1rem + 1.4vw, 3rem);
+}
+/* Grid items default to min-width:auto, which would let the lessons rail size itself to its
+   own content instead of scrolling inside the track. */
+.gta-endgrid > * {
+  min-width: 0;
+}
+.gta-lessons {
+  display: grid;
+  gap: 0.7rem;
+}
+.gta-lessons li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.94rem;
+  line-height: 1.62;
+  color: var(--c-text-3);
+}
+.gta-lessons li::before {
+  content: '➟';
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  font-size: 0.8rem;
+  color: var(--gta-pink);
+}
+.gta-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.gta-stack span {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--gta-line);
+  border-radius: var(--r-pill);
+  background: var(--gta-panel);
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  color: var(--c-text-3);
+}
+.gta-disclaimer {
+  margin-top: 1rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-tiny);
+  line-height: 1.6;
+  color: var(--c-text-4);
+}
+.gta-disclaimer strong {
+  color: var(--c-text-3);
+}
+
+/* ── finale + nav ─────────────────────────────────────────────────── */
+
+.gta-finale {
+  margin-top: clamp(2.5rem, 4vw, 5rem);
+  padding: clamp(2rem, 4vw, 4rem) 0;
+  border-top: 1px solid var(--gta-line);
+  border-bottom: 1px solid var(--gta-line);
+  text-align: center;
+}
+.gta-finale p {
+  font-family: var(--f-display);
+  font-size: clamp(1.3rem, 1rem + 1.6vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--c-text);
+}
+.gta-finale__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-3);
+  margin-top: 1.5rem;
+}
+.gta-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--s-4);
+  margin-top: clamp(1.5rem, 3vw, 3rem);
+}
+.gta-nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--gta-line);
+  border-radius: var(--r-lg);
+  background: var(--gta-panel);
+  transition:
+    border-color var(--d-fast) var(--e-out),
+    transform var(--d-fast) var(--e-out);
+}
+.gta-nav a:hover {
+  border-color: var(--gta-pink-a30);
+  transform: translateY(-2px);
+}
+.gta-nav__next {
+  justify-content: flex-end;
+  text-align: right;
+}
+.gta-nav__thumb {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-md);
+  background: var(--gta-pink-a14);
+  font-family: var(--f-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gta-pink-bright);
+}
+.gta-nav__copy {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.gta-nav__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+.gta-nav__next .gta-nav__label {
+  justify-content: flex-end;
+}
+.gta-nav__label svg {
+  width: 12px;
+}
+.gta-nav__copy strong {
+  font-family: var(--f-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--c-text);
+}
+.gta-nav__copy small {
+  overflow: hidden;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--c-text-4);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.gta-nav__brand {
+  opacity: 0.55;
+}
+
+/* ── zoom overlay ─────────────────────────────────────────────────── */
+
+.gta-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 3rem);
+  background: color-mix(in srgb, var(--c-bg) 92%, transparent);
+  backdrop-filter: blur(6px);
+  animation: gta-zoom-in 180ms var(--e-out) both;
+  cursor: zoom-out;
+}
+@keyframes gta-zoom-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.gta-zoom img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border: 1px solid var(--gta-pink-a30);
+  border-radius: var(--r-lg);
+  object-fit: contain;
+}
+.gta-zoom__close {
+  position: absolute;
+  top: clamp(0.6rem, 2vw, 1.5rem);
+  right: clamp(0.6rem, 2vw, 1.5rem);
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--gta-line);
+  border-radius: 50%;
+  background: var(--c-surface);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--c-text-2);
+  cursor: pointer;
+}
+.gta-zoom__close:hover {
+  border-color: var(--gta-pink-a30);
+  color: var(--gta-pink-bright);
+}
+
+/* ── handwritten notes: base rotations and colours ────────────────── */
+
+.gta-note--hero { --n-rot: -5deg; }
+.gta-note--metrics { color: var(--gta-pink-bright); --n-rot: 4deg; }
+.gta-note--premise { color: var(--gta-pink-bright); --n-rot: -6deg; }
+.gta-note--output { color: var(--gta-amber); --n-rot: 5deg; }
+.gta-note--pillars { color: var(--gta-pink-bright); --n-rot: -5deg; }
+.gta-note--method { color: var(--gta-pink); --n-rot: 6deg; }
+.gta-note--honest { color: var(--gta-amber); --n-rot: -4deg; }
+
+/* In inline-rail mode the shared bottom inset is measured on the unrotated box, so a tilted
+   note spills its corner past the section edge. Sit it high enough to clear that. */
+@media (max-height: 1100px) and (max-width: 1875px),
+       (min-height: 1101px) and (max-width: 2295px) {
+  .gta-note {
+    bottom: 1.9rem;
+  }
+}
+
+/* Notes only lift into the page gutter where a gutter actually exists — the exact inverse of
+   the inline-rail range in annotations.css. Per-resolution calibration goes after this. */
+@media (max-height: 1100px) and (min-width: 1876px),
+       (min-height: 1101px) and (min-width: 2296px) {
+  .gta-note {
+    right: auto;
+    bottom: auto;
+  }
+  .gta-note--hero {
+    top: 62%;
+    left: var(--n-rail);
+  }
+  .gta-note--metrics {
+    top: 1.5rem;
+    left: calc(100% + var(--n-gap));
+  }
+  .gta-note--premise {
+    top: 45%;
+    left: var(--n-rail);
+  }
+  .gta-note--output {
+    top: 30%;
+    left: calc(100% + var(--n-gap));
+  }
+  .gta-note--pillars {
+    top: 25%;
+    left: var(--n-rail);
+  }
+  .gta-note--method {
+    top: 38%;
+    left: calc(100% + var(--n-gap));
+  }
+  .gta-note--honest {
+    top: 30%;
+    left: var(--n-rail);
+  }
+}
+
+/* ── responsive layout ────────────────────────────────────────────── */
+
+@media (max-width: 1099px) {
+  .gta-hero {
+    grid-template-columns: 1fr;
+  }
+  .gta-hero__copy {
+    max-width: none;
+  }
+  .gta-pillars,
+  .gta-methods {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gta-endgrid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 899px) {
+  .gta-points {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gta-flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .gta-flow__stage:nth-child(3n) {
+    border-right: 0;
+  }
+  .gta-flow__stage:nth-child(n + 4) {
+    border-top: 1px solid var(--gta-line);
+  }
+  .gta-flow__stage:nth-child(3n)::after {
+    display: none;
+  }
+}
+@media (max-width: 719px) {
+  .gta-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gta-stat {
+    padding: 0.8rem 0.9rem;
+  }
+  .gta-stat:nth-child(2n) {
+    border-right: 0;
+  }
+  .gta-stat:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--gta-line);
+  }
+  .gta-stat dt {
+    font-size: 1.85rem;
+  }
+  .gta-gallery {
+    grid-template-columns: 1fr;
+  }
+  .gta-verdict {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+  .gta-chant {
+    text-align: left;
+  }
+  .gta-hard__row {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.75rem;
+    padding-block: 0.9rem;
+  }
+  .gta-hard__row > span {
+    font-size: 1.15rem;
+  }
+  .gta-finale__actions .btn,
+  .gta-hero__actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .gta-nav {
+    grid-template-columns: 1fr;
+  }
+  .gta-nav__brand {
+    display: none;
+  }
+  .gta-nav__next {
+    justify-content: flex-start;
+    text-align: left;
+    flex-direction: row-reverse;
+  }
+  .gta-nav__next .gta-nav__label {
+    justify-content: flex-start;
+  }
+  .gta-frame__expand {
+    opacity: 1;
+  }
+}
+
+/* ── mobile swipe rails ───────────────────────────────────────────── */
+
+@media (max-width: 619px) {
+  .gta-pillars,
+  .gta-methods,
+  .gta-hard,
+  .gta-points,
+  .gta-lessons,
+  .gta-gallery {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(78vw, 300px);
+    grid-template-columns: none;
+    gap: var(--s-3);
+    margin-inline: calc(var(--pad-x) * -1);
+    padding-inline: var(--pad-x);
+    padding-bottom: var(--s-3);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+  }
+  .gta-gallery {
+    grid-auto-columns: min(86vw, 340px);
+  }
+  .gta-pillars::-webkit-scrollbar,
+  .gta-methods::-webkit-scrollbar,
+  .gta-hard::-webkit-scrollbar,
+  .gta-points::-webkit-scrollbar,
+  .gta-lessons::-webkit-scrollbar,
+  .gta-gallery::-webkit-scrollbar,
+  .gta-flow::-webkit-scrollbar {
+    display: none;
+  }
+  .gta-pillars > *,
+  .gta-methods > *,
+  .gta-hard > *,
+  .gta-points > *,
+  .gta-lessons > *,
+  .gta-gallery > *,
+  .gta-flow > * {
+    scroll-snap-align: start;
+  }
+  .gta-pillar,
+  .gta-method,
+  .gta-point,
+  .gta-hard__row,
+  .gta-frame {
+    min-height: 100%;
+  }
+  /* Rail cards carry their own padding and background — nothing else gives it to them here. */
+  .gta-pillar {
+    padding: 0.9rem 0.95rem;
+    border: 1px solid var(--gta-line);
+    border-top: 2px solid var(--gta-pink-a30);
+    border-radius: var(--r-md);
+    background: var(--gta-panel);
+  }
+  .gta-hard__row {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 0.9rem 0.95rem;
+    border: 1px solid var(--gta-line);
+    border-top: 2px solid var(--gta-pink-a30);
+    border-radius: var(--r-md);
+    background: var(--gta-panel);
+  }
+  .gta-hard__row:first-child {
+    padding-top: 0.9rem;
+  }
+  .gta-lessons li {
+    padding: 0.85rem 0.9rem 0.85rem 2rem;
+    border: 1px solid var(--gta-line);
+    border-top: 2px solid var(--gta-pink-a30);
+    border-radius: var(--r-md);
+    background: var(--gta-panel);
+  }
+  .gta-lessons li::before {
+    left: 0.9rem;
+    top: 0.95rem;
+  }
+  .gta-flow {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 52%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+  }
+  .gta-flow__stage {
+    border-top: 0;
+    border-right: 1px solid var(--gta-line);
+  }
+  .gta-flow__stage:last-child {
+    border-right: 0;
+  }
+  .gta-flow__stage:not(:last-child)::after {
+    display: block;
+    top: 1.35rem;
+    right: -0.42rem;
+  }
+  .gta-swipe {
+    margin-bottom: 0.5rem;
+  }
+}
+@media (min-width: 620px) {
+  .gta-swipe {
+    display: none;
+  }
+}
+
+/* ── phone density ────────────────────────────────────────────────── */
+
+@media (max-width: 619px) {
+  .gta-section,
+  .gta-section--tight,
+  .gta-section--panel {
+    padding-top: 1.5rem;
+  }
+  .gta-section__head {
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.8rem;
+  }
+  .gta-section__head h2 {
+    font-size: 1.35rem;
+  }
+  .gta-section__aside {
+    display: none;
+  }
+  .gta-hero {
+    gap: 1.25rem;
+    padding-bottom: 1.5rem;
+  }
+  .gta-hero h1 {
+    font-size: 2.5rem;
+  }
+  .gta-hero__tagline {
+    margin-top: 0.7rem;
+    font-size: 0.92rem;
+  }
+  .gta-hero__summary {
+    margin-top: 0.7rem;
+    font-size: 0.93rem;
+    line-height: 1.55;
+  }
+  .gta-hero__actions {
+    margin-top: 1rem;
+  }
+  .gta-rows span {
+    font-size: 0.68rem;
+  }
+  .gta-nerd {
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+  .gta-premise__lead {
+    font-size: 1.55rem;
+  }
+  .gta-premise__body {
+    margin-top: 0.7rem;
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+  .gta-disclosure {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.83rem;
+    line-height: 1.55;
+  }
+  .gta-statement {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+  .gta-frame__caption {
+    font-size: 0.72rem;
+  }
+  .gta-verdict > p {
+    font-size: 1.4rem;
+  }
+  .gta-finale {
+    margin-top: 2rem;
+    padding: 1.75rem 0;
+  }
+  .gta-finale p {
+    font-size: 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gta-frame__btn,
+  .gta-frame__expand,
+  .gta-nav a {
+    transition: none;
+  }
+  .gta-zoom {
+    animation: none;
+  }
+}

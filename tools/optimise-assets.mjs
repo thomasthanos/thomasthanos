@@ -35,6 +35,23 @@ const JOBS = [
   { src: 'sti-achievements.png', out: 'projects/steam-idler/achievements.webp', width: 1600, mode: 'lossy', quality: 90 },
   { src: 'sti-idle.png', out: 'projects/steam-idler/idle.webp', width: 1600, mode: 'lossy', quality: 90 },
   { src: 'sti-settings.png', out: 'projects/steam-idler/settings.webp', width: 1600, mode: 'lossy', quality: 90 },
+
+  // GTA Academy — in-game captures, one per category. The site's hero art is a third-party
+  // illustration and is deliberately not republished here.
+  { src: 'gta-cars.png', out: 'projects/gta-academy/cars.webp', width: 1456, mode: 'lossy', quality: 78 },
+  { src: 'gta-helicopters.png', out: 'projects/gta-academy/helicopters.webp', width: 1456, mode: 'lossy', quality: 78 },
+  { src: 'gta-planes.png', out: 'projects/gta-academy/planes.webp', width: 1456, mode: 'lossy', quality: 78 },
+  { src: 'gta-special.png', out: 'projects/gta-academy/special.webp', width: 1456, mode: 'lossy', quality: 78 },
+
+  // An1me Speed Control — the popup is cropped out of the store art so the shot is the UI alone.
+  { src: 'asc-popup.png', out: 'projects/an1me-speed-control/popup.webp', width: 645, mode: 'lossy', quality: 90 },
+  { src: 'asc-context.png', out: 'projects/an1me-speed-control/context.webp', width: 1280, mode: 'lossy', quality: 86 },
+
+  // ReleaseFlow — drop the captures in as gbr-*.png and re-run; missing sources are skipped.
+  { src: 'gbr-create.png', out: 'projects/github-build-release/create.webp', width: 1462, mode: 'lossy', quality: 88 },
+  { src: 'gbr-empty.png', out: 'projects/github-build-release/empty.webp', width: 1486, mode: 'lossy', quality: 88 },
+  { src: 'gbr-ai-notes.png', out: 'projects/github-build-release/ai-notes.webp', width: 1003, mode: 'lossy', quality: 90 },
+  { src: 'gbr-history.png', out: 'projects/github-build-release/history.webp', width: 1132, mode: 'lossy', quality: 90 },
 ]
 
 let before = 0

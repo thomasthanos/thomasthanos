@@ -234,10 +234,10 @@ export const areas: AreaItem[] = [
   {
     title: { en: 'Browser extensions', el: 'Browser extensions' },
     body: {
-      en: 'Modifying sites I do not control, politely and reversibly. Four shipped, one with thousands of weekly users.',
-      el: 'Να πειράζω sites που δεν ελέγχω, ευγενικά και αναστρέψιμα. Τέσσερα βγήκαν, το ένα με χιλιάδες χρήστες την εβδομάδα.',
+      en: 'Modifying sites I do not control, politely and reversibly. Three shipped, one with thousands of weekly users.',
+      el: 'Να πειράζω sites που δεν ελέγχω, ευγενικά και αναστρέψιμα. Τρία βγήκαν, το ένα με χιλιάδες χρήστες την εβδομάδα.',
     },
-    proof: ['nexusmods-bypass', 'an1me-tracker', 'auto-liker'],
+    proof: ['nexusmods-bypass', 'an1me-tracker', 'an1me-speed-control'],
   },
   {
     title: { en: 'Windows automation', el: 'Windows automation' },

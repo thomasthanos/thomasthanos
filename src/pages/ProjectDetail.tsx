@@ -20,8 +20,12 @@ import { useI18n } from '@/i18n/i18n'
 import { useDocumentMeta } from '@/hooks/useDocumentMeta'
 import { getProject, neighbours } from '@/data/projects'
 import { external } from '@/utils'
+import { An1meSpeedControlCaseStudy } from '@/pages/case-studies/An1meSpeedControlCaseStudy'
+import { BetterDiscordThemesCaseStudy } from '@/pages/case-studies/BetterDiscordThemesCaseStudy'
 import { An1meTrackerCaseStudy } from '@/pages/case-studies/An1meTrackerCaseStudy'
 import { DiscordPackageViewerCaseStudy } from '@/pages/case-studies/DiscordPackageViewerCaseStudy'
+import { GithubBuildReleaseCaseStudy } from '@/pages/case-studies/GithubBuildReleaseCaseStudy'
+import { GtaAcademyCaseStudy } from '@/pages/case-studies/GtaAcademyCaseStudy'
 import { MakeYourLifeEasierCaseStudy } from '@/pages/case-studies/MakeYourLifeEasierCaseStudy'
 import { NexusModsBypassCaseStudy } from '@/pages/case-studies/NexusModsBypassCaseStudy'
 import { SteamIdlerCaseStudy } from '@/pages/case-studies/SteamIdlerCaseStudy'
@@ -61,6 +65,22 @@ export function ProjectDetail() {
 
   if (p.slug === 'steam-idler') {
     return <SteamIdlerCaseStudy project={p} near={near} />
+  }
+
+  if (p.slug === 'gta-academy') {
+    return <GtaAcademyCaseStudy project={p} near={near} />
+  }
+
+  if (p.slug === 'an1me-speed-control') {
+    return <An1meSpeedControlCaseStudy project={p} near={near} />
+  }
+
+  if (p.slug === 'github-build-release') {
+    return <GithubBuildReleaseCaseStudy project={p} near={near} />
+  }
+
+  if (p.slug === 'betterdiscord-themes') {
+    return <BetterDiscordThemesCaseStudy project={p} near={near} />
   }
 
   return (
