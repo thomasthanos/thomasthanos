@@ -1,3 +1,11 @@
+/* Home — the front door. It keeps its own hero, but the strip under it and the index at the
+   bottom borrow the page-kit vocabulary, so arriving here and then landing on a case study feels
+   like one site rather than two. */
+
+.home-page {
+  --pk-accent: var(--c-lime);
+}
+
 .hero {
   display: grid;
   gap: clamp(2rem, 1rem + 5vw, 4rem);
@@ -116,6 +124,8 @@
 .featured__title {
   display: inline-flex;
   align-items: center;
+  flex: 0 1 auto;
+  min-width: 0;
   gap: 0.65rem;
   font-family: var(--f-mono);
   font-size: var(--t-sm);
@@ -155,6 +165,26 @@
 .featured__all:hover svg {
   transform: translateX(3px);
 }
+.featured__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-bottom: var(--s-3);
+}
+.featured__meta .swipe-hint {
+  margin: 0;
+}
+.featured__count {
+  margin-left: auto;
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--c-text-4);
+  text-align: right;
+}
 .featured__grid {
   display: grid;
   grid-auto-flow: column;
@@ -189,26 +219,130 @@
     overflow: visible;
   }
 }
-.home__more {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s-4);
-  margin-top: var(--s-7);
-  padding-top: var(--s-6);
-  border-top: 1px solid var(--c-line);
+/* ── index: the way into the other pages ──────────────────────────── */
+
+.home__index {
+  margin-top: var(--gap-section);
 }
-.home__more-note {
+.home__index-rule {
+  --pk-at: 24%;
+}
+.hroutes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-3);
+}
+.hroutes > li,
+.hroutes .reveal {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.hroute {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 152px;
+  padding: var(--s-5);
+  overflow: hidden;
+  border: 1px solid var(--pk-line);
+  border-radius: var(--r-md);
+  background: var(--pk-panel);
+  transition:
+    transform var(--d-base) var(--e-out),
+    border-color var(--d-base) var(--e-out),
+    background var(--d-base) var(--e-out);
+}
+.hroute::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  background: var(--pk-accent);
+  opacity: 0.55;
+}
+.hroutes > li:nth-child(2) .hroute::before { opacity: 0.4; }
+.hroutes > li:nth-child(3) .hroute::before { opacity: 0.28; }
+.hroutes > li:nth-child(4) .hroute::before { opacity: 0.16; }
+.hroute:hover,
+.hroute:focus-visible {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--pk-accent) 34%, var(--pk-line));
+  background: color-mix(in srgb, var(--pk-accent) 4%, var(--pk-panel));
+}
+.hroute__idx {
+  position: absolute;
+  top: var(--s-4);
+  right: var(--s-4);
   font-family: var(--f-mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.06em;
+  font-size: 9px;
+  letter-spacing: 0.1em;
   color: var(--c-text-4);
 }
-.home__more-links {
+.hroute__v {
+  font-family: var(--f-display);
+  font-size: clamp(1.7rem, 1.2rem + 1.6vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--pk-accent);
+}
+.hroute__name {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-3);
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+  font-size: var(--t-md);
+  font-weight: 680;
+  letter-spacing: var(--ls-tight);
+  color: var(--c-text);
+}
+.hroute__name svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  color: var(--c-text-4);
+  transition:
+    transform var(--d-base) var(--e-out),
+    color var(--d-base) var(--e-out);
+}
+.hroute:hover .hroute__name svg {
+  transform: translate(2px, -2px);
+  color: var(--pk-accent);
+}
+.hroute__b {
+  margin-top: var(--s-3);
+  font-size: var(--t-xs);
+  line-height: var(--lh-relaxed);
+  color: var(--c-text-3);
+  text-wrap: pretty;
+}
+@media (min-width: 560px) {
+  .hroutes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1000px) {
+  .hroutes {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 899px) {
+  .hroute {
+    min-height: 0;
+    padding: var(--s-4);
+  }
+  .hroute__b {
+    margin-top: var(--s-2);
+    font-size: var(--t-tiny);
+    line-height: 1.55;
+  }
+}
+@media (max-width: 619px) {
+  .featured__count {
+    display: none;
+  }
 }
 .hero__right {
   position: relative;
@@ -243,6 +377,7 @@
 .featured__aside {
   position: relative;
   display: flex;
+  flex: none;
   align-items: center;
   gap: var(--s-4);
 }
@@ -256,7 +391,7 @@
     right: 100%;
     bottom: 100%;
     margin-right: var(--s-4);
-    margin-bottom: 0.2rem;
+    margin-bottom: -0.35rem;
   }
 }
 @media (max-width: 939px) {

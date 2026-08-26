@@ -24,6 +24,7 @@
 }
 .stack__rule--note {
   --pk-at: 20%;
+  max-width: 1080px;
 }
 .stack-note {
   margin-top: var(--gap-section);
