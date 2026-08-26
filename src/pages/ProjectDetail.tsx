@@ -24,6 +24,7 @@ import { An1meTrackerCaseStudy } from '@/pages/case-studies/An1meTrackerCaseStud
 import { DiscordPackageViewerCaseStudy } from '@/pages/case-studies/DiscordPackageViewerCaseStudy'
 import { MakeYourLifeEasierCaseStudy } from '@/pages/case-studies/MakeYourLifeEasierCaseStudy'
 import { NexusModsBypassCaseStudy } from '@/pages/case-studies/NexusModsBypassCaseStudy'
+import { SteamIdlerCaseStudy } from '@/pages/case-studies/SteamIdlerCaseStudy'
 import '@/pages/detail.css'
 
 export function ProjectDetail() {
@@ -56,6 +57,10 @@ export function ProjectDetail() {
 
   if (p.slug === 'an1me-tracker') {
     return <An1meTrackerCaseStudy project={p} near={near} />
+  }
+
+  if (p.slug === 'steam-idler') {
+    return <SteamIdlerCaseStudy project={p} near={near} />
   }
 
   return (

@@ -864,10 +864,17 @@ export const flagship: Project[] = [
         },
       },
       {
-        title: { en: 'Your library, without an API key', el: 'Η βιβλιοθήκη σου, χωρίς API key' },
+        title: { en: 'A library built in layers', el: 'Βιβλιοθήκη χτισμένη σε στρώσεις' },
         body: {
-          en: 'The game list is read straight off disk from the `steamapps/*.acf` manifests across every library folder, parsed with a hand-written reader for Valve’s KeyValue format. Steam itself is found through the Windows registry, with common install paths as a fallback.',
-          el: 'Η λίστα παιχνιδιών διαβάζεται κατευθείαν από τον δίσκο, από τα manifests `steamapps/*.acf` σε κάθε φάκελο βιβλιοθήκης, με parser γραμμένο στο χέρι για τη μορφή KeyValue της Valve. Το ίδιο το Steam εντοπίζεται μέσω του registry των Windows, με τα συνηθισμένα paths ως εφεδρεία.',
+          en: 'Installed games are read straight off disk from the `steamapps/*.acf` manifests, parsed with a hand-written reader for Valve’s KeyValue format — that much works with no API key at all. Add a key and the list is upgraded to your full owned library with playtime and achievement counts, gathered in chunked passes so a private profile degrades instead of failing. Redistributables, soundtracks and dedicated servers are filtered out on the way in.',
+          el: 'Τα εγκατεστημένα παιχνίδια διαβάζονται κατευθείαν από τον δίσκο, από τα manifests `steamapps/*.acf`, με parser γραμμένο στο χέρι για τη μορφή KeyValue της Valve — αυτό δουλεύει χωρίς κανένα API key. Βάζεις key και η λίστα αναβαθμίζεται σε ολόκληρη τη βιβλιοθήκη σου με playtime και achievement counts, μαζεμένα σε chunked περάσματα ώστε ένα ιδιωτικό προφίλ να υποβαθμίζεται αντί να σκάει. Redistributables, soundtracks και dedicated servers φιλτράρονται στην είσοδο.',
+        },
+      },
+      {
+        title: { en: 'A home page worth opening', el: 'Αρχική που αξίζει να ανοίξεις' },
+        body: {
+          en: 'Total playtime, achievement percentage and game count across the account, a ranked Most Played list with bars, and the current Steam sale and featured rows pulled from the store’s own public endpoints behind a five-minute cache.',
+          el: 'Συνολικός χρόνος παιχνιδιού, ποσοστό achievements και αριθμός παιχνιδιών για όλο τον λογαριασμό, μια κατάταξη Most Played με μπάρες, και οι τρέχουσες προσφορές και προτεινόμενα του Steam από τα δημόσια endpoints του store, πίσω από cache πέντε λεπτών.',
         },
       },
       {
@@ -998,14 +1005,16 @@ export const flagship: Project[] = [
     category: 'web',
     status: 'maintained',
     accent: 'lime',
-    year: '2023 — 2025',
+    year: '2025 — 2026',
     repo: `${GH}/gta-academy`,
     repoLabel: 'gta-academy',
     demo: 'https://thomasthanos.github.io/gta-academy/',
     tech: ['HTML5', 'CSS3', 'Vanilla JS', 'localStorage'],
     metrics: [
-      { value: '30+', label: { en: 'vehicles tested', el: 'οχήματα' } },
+      { value: '41', label: { en: 'vehicles tested', el: 'οχήματα τεσταρισμένα' } },
+      { value: '239', label: { en: 'measurements taken', el: 'μετρήσεις' } },
       { value: '0', label: { en: 'frameworks', el: 'frameworks' } },
+      { value: '0', label: { en: 'build step', el: 'build step' } },
     ],
     short: {
       en: 'A vehicle-durability wiki for GTA V, built from real in-game testing. The project where I got obsessed with the CSS and never really recovered.',

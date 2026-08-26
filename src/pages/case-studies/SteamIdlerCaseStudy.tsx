@@ -10,6 +10,7 @@ import {
   Github,
   HardDrive,
   KeyRound,
+  LayoutDashboard,
   Package,
   Scissors,
   ShieldAlert,
@@ -104,6 +105,15 @@ const copy = {
           'restored first on shutdown, while the session is still alive',
         ],
       },
+      {
+        title: 'Opens on something useful',
+        body: 'The home page is a dashboard, not a menu.',
+        lines: [
+          'total playtime, achievement percentage, game count',
+          'a ranked Most Played list with bars',
+          'live store deals behind a five-minute cache',
+        ],
+      },
     ],
 
     isolation: 'Nothing native runs in the window',
@@ -162,12 +172,12 @@ const copy = {
     honestyChant: ['No password.', 'No account server.', 'No telemetry.', 'No launcher.'],
     honestyPoints: [
       [
-        'Stays on your machine',
-        'The game list never leaves the disk it was read from: Steam is located through the Windows registry, and your library is parsed out of the steamapps/*.acf manifests with a hand-written reader for Valve’s KeyValue format. No API key is required to see your own games.',
+        'Works before it asks for anything',
+        'Steam is located through the Windows registry, and your installed games are parsed out of the steamapps/*.acf manifests with a hand-written reader for Valve’s KeyValue format. That layer needs no key, no login and no network — it is just your own disk, read back to you.',
       ],
       [
-        'What it reaches out to',
-        'Steam’s public Web API for achievement schemas, Steam’s CDN for cover art, and GitHub for update checks. Sign-in goes to Steam itself through steam-session — either a QR code you scan in the mobile app, or a refresh token you paste. There is no account system here to sign in to.',
+        'What a key buys you',
+        'Adding a Steam Web API key upgrades the list from installed games to your full owned library, with playtime and achievement counts fetched in chunked passes. The key is yours, it is stored locally, and it is sent to nobody but Steam. The store rows on the home page come from Steam’s own public endpoints and identify no one.',
       ],
       [
         'One honest caveat',
@@ -263,6 +273,15 @@ const copy = {
           'επαναφέρεται πρώτη στο κλείσιμο, όσο ζει ακόμα το session',
         ],
       },
+      {
+        title: 'Ανοίγει σε κάτι χρήσιμο',
+        body: 'Η αρχική είναι dashboard, όχι μενού.',
+        lines: [
+          'συνολικός χρόνος, ποσοστό achievements, αριθμός παιχνιδιών',
+          'κατάταξη Most Played με μπάρες',
+          'ζωντανές προσφορές του store πίσω από cache πέντε λεπτών',
+        ],
+      },
     ],
 
     isolation: 'Τίποτα native δεν τρέχει στο παράθυρο',
@@ -321,12 +340,12 @@ const copy = {
     honestyChant: ['Χωρίς κωδικό.', 'Χωρίς server λογαριασμών.', 'Χωρίς telemetry.', 'Χωρίς launcher.'],
     honestyPoints: [
       [
-        'Μένει στο μηχάνημά σου',
-        'Η λίστα παιχνιδιών δεν φεύγει ποτέ από τον δίσκο απ᾽ όπου διαβάστηκε: το Steam εντοπίζεται μέσω του registry των Windows, και η βιβλιοθήκη σου βγαίνει από τα manifests steamapps/*.acf με parser γραμμένο στο χέρι για τη μορφή KeyValue της Valve. Δεν χρειάζεται API key για να δεις τα δικά σου παιχνίδια.',
+        'Δουλεύει πριν ζητήσει οτιδήποτε',
+        'Το Steam εντοπίζεται μέσω του registry των Windows, και τα εγκατεστημένα παιχνίδια σου βγαίνουν από τα manifests steamapps/*.acf με parser γραμμένο στο χέρι για τη μορφή KeyValue της Valve. Αυτό το στρώμα δεν θέλει key, ούτε login, ούτε δίκτυο — είναι απλώς ο δικός σου δίσκος, διαβασμένος πίσω σε σένα.',
       ],
       [
-        'Τι καλεί προς τα έξω',
-        'Το δημόσιο Web API του Steam για schemas achievements, το CDN του Steam για covers, και το GitHub για έλεγχο ενημερώσεων. Η σύνδεση πάει στο ίδιο το Steam μέσω steam-session — είτε με QR code που σκανάρεις στο κινητό, είτε με refresh token που κάνεις paste. Δεν υπάρχει σύστημα λογαριασμών εδώ για να συνδεθείς.',
+        'Τι σου αγοράζει ένα key',
+        'Ένα Steam Web API key αναβαθμίζει τη λίστα από τα εγκατεστημένα σε ολόκληρη τη βιβλιοθήκη σου, με playtime και achievement counts σε chunked περάσματα. Το key είναι δικό σου, αποθηκεύεται τοπικά, και δεν στέλνεται σε κανέναν πέρα από το Steam. Οι σειρές του store στην αρχική έρχονται από τα δημόσια endpoints του Steam και δεν ταυτοποιούν κανέναν.',
       ],
       [
         'Ένας τίμιος αστερίσκος',
@@ -366,10 +385,30 @@ const copy = {
 
 const ASSETS = `${import.meta.env.BASE_URL}assets/projects/steam-idler/`
 
+/* Captures for this project are not shipped yet. The <img> guards alone are not enough here:
+   gallery shots are lazy and below the fold, so a missing file never loads, never fires onError,
+   and the section would hold open a void. Probe for the file up front instead — the section stays
+   hidden until the .webp actually exists, and lights up on its own once it does. */
 function useShot(file: string) {
+  const src = `${ASSETS}${file}.webp`
   const [broken, setBroken] = useState(false)
+
+  useEffect(() => {
+    let cancelled = false
+    const miss = () => !cancelled && setBroken(true)
+    fetch(src, { method: 'HEAD' })
+      .then((res) => {
+        // A SPA host can answer a missing path with 200 + index.html, so check the type too.
+        if (!res.ok || !(res.headers.get('content-type') ?? '').startsWith('image/')) miss()
+      })
+      .catch(miss)
+    return () => {
+      cancelled = true
+    }
+  }, [src])
+
   const props = {
-    src: `${ASSETS}${file}.webp`,
+    src,
     onError: () => setBroken(true),
     onLoad: (e: React.SyntheticEvent<HTMLImageElement>) =>
       e.currentTarget.naturalWidth === 0 && setBroken(true),
@@ -408,7 +447,7 @@ function ProjectThumb({ project }: { project: Project }) {
 }
 
 const ISOLATION_ICONS = [Boxes, KeyRound, Scissors, Package]
-const PILLAR_ICONS = [Trophy, HardDrive, Eye]
+const PILLAR_ICONS = [Trophy, HardDrive, Eye, LayoutDashboard]
 
 export function SteamIdlerCaseStudy({ project: p, near }: Props) {
   const { lang, t, tr, trList } = useI18n()

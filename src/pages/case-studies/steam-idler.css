@@ -380,8 +380,8 @@
 
 .sti-pillars {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1rem, 0.8rem + 1vw, 2rem);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.9rem, 0.75rem + 0.8vw, 1.6rem);
 }
 .sti-pillar {
   position: relative;
@@ -997,7 +997,7 @@
 @media (max-height: 1100px) and (max-width: 1875px),
        (min-height: 1101px) and (max-width: 2295px) {
   .sti-note {
-    bottom: 1.15rem;
+    bottom: 1.9rem;
   }
 }
 
@@ -1044,6 +1044,7 @@
   .sti-hero__copy {
     max-width: none;
   }
+  .sti-pillars,
   .sti-isolations {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1055,9 +1056,6 @@
   }
 }
 @media (max-width: 899px) {
-  .sti-pillars {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
   .sti-points {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

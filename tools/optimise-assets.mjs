@@ -28,6 +28,13 @@ const JOBS = [
   { src: 'ant-library-detail.png', out: 'projects/an1me-tracker/library-detail.webp', width: 1280, mode: 'lossy', quality: 90 },
   { src: 'ant-stats.png', out: 'projects/an1me-tracker/stats.webp', width: 1280, mode: 'lossy', quality: 90 },
   { src: 'ant-settings.png', out: 'projects/an1me-tracker/settings.webp', width: 1280, mode: 'lossy', quality: 90 },
+
+  // Steam Idler — drop the captures in as sti-*.png and re-run; missing sources are skipped.
+  { src: 'sti-app.png', out: 'projects/steam-idler/app.webp', width: 1600, mode: 'lossy', quality: 90 },
+  { src: 'sti-games.png', out: 'projects/steam-idler/games.webp', width: 1600, mode: 'lossy', quality: 90 },
+  { src: 'sti-achievements.png', out: 'projects/steam-idler/achievements.webp', width: 1600, mode: 'lossy', quality: 90 },
+  { src: 'sti-idle.png', out: 'projects/steam-idler/idle.webp', width: 1600, mode: 'lossy', quality: 90 },
+  { src: 'sti-settings.png', out: 'projects/steam-idler/settings.webp', width: 1600, mode: 'lossy', quality: 90 },
 ]
 
 let before = 0
