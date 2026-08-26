@@ -52,6 +52,23 @@ const JOBS = [
   { src: 'gbr-empty.png', out: 'projects/github-build-release/empty.webp', width: 1486, mode: 'lossy', quality: 88 },
   { src: 'gbr-ai-notes.png', out: 'projects/github-build-release/ai-notes.webp', width: 1003, mode: 'lossy', quality: 90 },
   { src: 'gbr-history.png', out: 'projects/github-build-release/history.webp', width: 1132, mode: 'lossy', quality: 90 },
+
+  // BetterDiscord — drop the captures in as bdt-*.png and re-run; missing sources are skipped.
+  { src: 'bdt-simpletheme-v3.png', out: 'projects/betterdiscord-themes/simpletheme-v3.webp', width: 1600, mode: 'lossy', quality: 86 },
+  { src: 'bdt-folder-theme.png', out: 'projects/betterdiscord-themes/folder-theme.webp', width: 1600, mode: 'lossy', quality: 86 },
+  { src: 'bdt-plugins.png', out: 'projects/betterdiscord-themes/plugins.webp', width: 1200, mode: 'lossy', quality: 90 },
+
+  // Backup Studio — drop the captures in as bks-*.png and re-run.
+  { src: 'bks-home.png', out: 'projects/backup-studio/home.webp', width: 1476, mode: 'lossy', quality: 88 },
+  { src: 'bks-backups.png', out: 'projects/backup-studio/backups.webp', width: 1891, mode: 'lossy', quality: 88 },
+
+  // Pulse dashboard — drop the captures in as dbd-*.png and re-run.
+  { src: 'dbd-dashboard.png', out: 'projects/discord-bot-dashboard/dashboard.webp', width: 2000, mode: 'lossy', quality: 88 },
+  { src: 'dbd-permissions.png', out: 'projects/discord-bot-dashboard/permissions.webp', width: 2000, mode: 'lossy', quality: 88 },
+  { src: 'dbd-commands.png', out: 'projects/discord-bot-dashboard/commands.webp', width: 900, mode: 'lossy', quality: 90 },
+
+  // AutoClicker — drop the capture in as acl-app.png and re-run.
+  { src: 'acl-app.png', out: 'projects/autoclicker-premium/app.webp', width: 1252, mode: 'lossy', quality: 90 },
 ]
 
 let before = 0

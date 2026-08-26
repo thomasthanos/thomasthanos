@@ -21,8 +21,11 @@ import { useDocumentMeta } from '@/hooks/useDocumentMeta'
 import { getProject, neighbours } from '@/data/projects'
 import { external } from '@/utils'
 import { An1meSpeedControlCaseStudy } from '@/pages/case-studies/An1meSpeedControlCaseStudy'
+import { AutoClickerCaseStudy } from '@/pages/case-studies/AutoClickerCaseStudy'
+import { BackupStudioCaseStudy } from '@/pages/case-studies/BackupStudioCaseStudy'
 import { BetterDiscordThemesCaseStudy } from '@/pages/case-studies/BetterDiscordThemesCaseStudy'
 import { An1meTrackerCaseStudy } from '@/pages/case-studies/An1meTrackerCaseStudy'
+import { DiscordBotDashboardCaseStudy } from '@/pages/case-studies/DiscordBotDashboardCaseStudy'
 import { DiscordPackageViewerCaseStudy } from '@/pages/case-studies/DiscordPackageViewerCaseStudy'
 import { GithubBuildReleaseCaseStudy } from '@/pages/case-studies/GithubBuildReleaseCaseStudy'
 import { GtaAcademyCaseStudy } from '@/pages/case-studies/GtaAcademyCaseStudy'
@@ -81,6 +84,18 @@ export function ProjectDetail() {
 
   if (p.slug === 'betterdiscord-themes') {
     return <BetterDiscordThemesCaseStudy project={p} near={near} />
+  }
+
+  if (p.slug === 'backup-studio') {
+    return <BackupStudioCaseStudy project={p} near={near} />
+  }
+
+  if (p.slug === 'discord-bot-dashboard') {
+    return <DiscordBotDashboardCaseStudy project={p} near={near} />
+  }
+
+  if (p.slug === 'autoclicker-premium') {
+    return <AutoClickerCaseStudy project={p} near={near} />
   }
 
   return (

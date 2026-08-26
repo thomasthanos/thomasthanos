@@ -165,9 +165,10 @@ export const more: Project[] = [
       },
     },
     metrics: [
-      { value: '3', label: { en: 'click types', el: 'τύποι click' } },
-      { value: '1', label: { en: 'persistent runspace', el: 'μόνιμο runspace' } },
-      { value: '0', label: { en: 'per-click processes', el: 'processes ανά click' } },
+      { value: '1', label: { en: 'PowerShell process', el: 'PowerShell process' } },
+      { value: '0', label: { en: 'spawns per click', el: 'spawns ανά click' } },
+      { value: '0', label: { en: 'rows sent anywhere', el: 'γραμμές που στέλνονται' } },
+      { value: '2,421', label: { en: 'lines hand-written', el: 'γραμμές στο χέρι' } },
     ],
     short: {
       en: 'A highly configurable, Windows 11-styled auto-clicker with global hotkeys and a persistent PowerShell runspace for zero-overhead clicking.',
@@ -193,7 +194,7 @@ export const more: Project[] = [
         { label: 'Clicks at position 2', value: '25' },
         { label: 'Interval', value: '80ms ± random' },
         { label: 'Repeat limit', value: '500' },
-        { label: 'Hotkeys', value: 'F6 start · F7 stop' },
+        { label: 'Hotkeys', value: 'F6 toggle · F7 panic' },
         { label: 'Profile', value: 'saved' }
       ]
     },
@@ -206,10 +207,10 @@ export const more: Project[] = [
         },
       },
       {
-        title: { en: 'Global hotkeys', el: 'Global hotkeys' },
+        title: { en: 'Global hotkeys, and a panic key', el: 'Global hotkeys, και πλήκτρο πανικού' },
         body: {
-          en: 'Starts and stops from the keyboard even while another application owns the foreground focus.',
-          el: 'Ξεκινάει και σταματάει από το πληκτρολόγιο ακόμη κι όταν άλλη εφαρμογή έχει το foreground focus.',
+          en: 'F6 toggles it on and off, F7 is a separate emergency stop, and both register globally so they work while another application owns the foreground. Both are reassignable — a tool that takes over your mouse needs a way out that does not require finding its window first.',
+          el: 'Το F6 το ανοιγοκλείνει, το F7 είναι ξεχωριστό emergency stop, και τα δύο δηλώνονται global ώστε να δουλεύουν όσο άλλη εφαρμογή έχει το foreground. Και τα δύο αλλάζουν — ένα εργαλείο που παίρνει το ποντίκι σου χρειάζεται έξοδο που δεν απαιτεί να βρεις πρώτα το παράθυρό του.',
         },
       },
       {
@@ -231,8 +232,22 @@ export const more: Project[] = [
       {
         title: { en: 'Safe global control', el: 'Ασφαλής global έλεγχος' },
         body: {
-          en: 'A clicker that can keep running behind other windows needs an obvious global stop path, not a button hidden in its own UI.',
-          el: 'Ένα clicker που συνεχίζει πίσω από άλλα παράθυρα χρειάζεται ξεκάθαρο global stop, όχι κουμπί κρυμμένο στο δικό του UI.',
+          en: 'A clicker that can keep running behind other windows needs an obvious global stop path, not a button hidden in its own UI. Hence two separate keys: one to toggle, one that only ever stops.',
+          el: 'Ένα clicker που συνεχίζει πίσω από άλλα παράθυρα χρειάζεται ξεκάθαρο global stop, όχι κουμπί κρυμμένο στο δικό του UI. Γι᾽ αυτό δύο ξεχωριστά πλήκτρα: ένα που εναλλάσσει, ένα που μόνο σταματάει.',
+        },
+      },
+      {
+        title: { en: 'A cloud client wired to nothing', el: 'Cloud client συνδεδεμένος στο τίποτα' },
+        body: {
+          en: 'The project was scaffolded from a generator, and the scaffold came with a Supabase client, two generated table types and a device-ID hook. None of it is used: there is not a single table call anywhere in the source, no file imports the client, and there is no environment file to point it at. So an auto-clicker ships something that reads like telemetry and does nothing. It sends no data because it was never wired to — which is a weaker guarantee than deleting it, and deleting it is the job.',
+          el: 'Το project ξεκίνησε από generator, και το scaffold ήρθε με Supabase client, δύο παραγμένους τύπους πινάκων και ένα hook για device ID. Τίποτα δεν χρησιμοποιείται: δεν υπάρχει ούτε μία κλήση πίνακα πουθενά, κανένα αρχείο δεν εισάγει τον client, και δεν υπάρχει καν αρχείο περιβάλλοντος να τον στρέψει κάπου. Οπότε ένα auto-clicker κουβαλάει κάτι που διαβάζεται σαν telemetry και δεν κάνει τίποτα. Δεν στέλνει δεδομένα επειδή ποτέ δεν συνδέθηκε — που είναι πιο αδύναμη εγγύηση από το να το σβήσεις, και το σβήσιμο είναι η δουλειά.',
+        },
+      },
+      {
+        title: { en: 'More generated than written', el: 'Περισσότερα παραγμένα παρά γραμμένα' },
+        body: {
+          en: 'Forty-nine component files came with the UI kit and account for 3,954 lines. The eighteen files that are actually this application come to 2,421, plus 822 in the Electron main process. The generated half is real, working code and it saved a great deal of time — but it means the line count of this repository says almost nothing about the size of the project, and it would be dishonest to quote the total as if it did.',
+          el: 'Σαράντα εννιά αρχεία component ήρθαν με το UI kit και αντιστοιχούν σε 3.954 γραμμές. Τα δεκαοκτώ αρχεία που είναι όντως αυτή η εφαρμογή φτάνουν τις 2.421, συν 822 στον main process του Electron. Το παραγμένο μισό είναι αληθινός κώδικας που δουλεύει και γλίτωσε πολύ χρόνο — αλλά σημαίνει ότι το line count αυτού του repository δεν λέει σχεδόν τίποτα για το μέγεθος του project, και θα ήταν ανέντιμο να αναφέρω το σύνολο σαν να λέει.',
         },
       },
     ],
@@ -409,7 +424,7 @@ export const more: Project[] = [
     repo: `${GH}/desktop-utils/tree/main/backup_projects`,
     repoLabel: 'desktop-utils',
     repoPath: 'backup_projects',
-    tech: ['Electron', 'Node.js', 'Dropbox API', 'diff2html'],
+    tech: ['Electron', 'React 18', 'Node.js', 'diff2html', 'Babel standalone'],
     lab: {
       badge: { en: 'Built out of fear', el: 'Φτιαγμένο από φόβο' },
       note: {
@@ -418,36 +433,37 @@ export const more: Project[] = [
       },
     },
     metrics: [
-      { value: '1-click', label: { en: 'restore', el: 'επαναφορά' } },
-      { value: 'AUTO', label: { en: 'scheduled backups', el: 'προγραμματισμένα backups' } },
-      { value: '0', label: { en: 'node_modules', el: 'node_modules' } },
+      { value: '5', label: { en: 'folders never archived', el: 'φάκελοι που δεν μπαίνουν ποτέ' } },
+      { value: '0', label: { en: 'API keys needed', el: 'API keys που χρειάζονται' } },
+      { value: '0', label: { en: 'build step', el: 'build step' } },
+      { value: '55%', label: { en: 'of it is stylesheet', el: 'είναι stylesheet' } },
     ],
     short: {
-      en: 'Compresses your project folders and syncs them to Dropbox on a schedule, aggressively ignoring node_modules. One-click restore.',
-      el: 'Ζιπάρει τους φακέλους των projects σου και τους πετάει στο Dropbox προγραμματισμένα, αγνοώντας επιθετικά το node_modules. Επαναφορά με ένα κλικ.',
+      en: 'Compresses your project folders into the Dropbox folder you already have, skipping the five directories that rebuild themselves, and shows you the diff between any two versions.',
+      el: 'Ζιπάρει τους φακέλους των projects σου μέσα στον φάκελο Dropbox που ήδη έχεις, παρακάμπτοντας τους πέντε καταλόγους που ξαναχτίζονται μόνοι τους, και σου δείχνει το diff ανάμεσα σε δύο εκδόσεις.',
     },
     summary: {
-      en: 'Backup for the gap between commits. It zips selected project folders, skips the junk, pushes them to Dropbox, and syncs its own `projects.json` config across machines so the same set is protected everywhere.',
-      el: 'Backup για το κενό ανάμεσα στα commits. Κάνει zip επιλεγμένους φακέλους, παρακάμπτει τα σκουπίδια, τους στέλνει στο Dropbox, και συγχρονίζει και το δικό του `projects.json` config ανάμεσα σε μηχανήματα ώστε να προστατεύεται το ίδιο σετ παντού.',
+      en: 'Backup for the gap between commits. It zips selected project folders, skips the five directories that rebuild themselves, and writes the archive into your local Dropbox folder — letting the Dropbox client you already run do the syncing. Its own config lives in there too, so the same project list follows you between machines.',
+      el: 'Backup για το κενό ανάμεσα στα commits. Κάνει zip επιλεγμένους φακέλους, παρακάμπτει τους πέντε καταλόγους που ξαναχτίζονται μόνοι τους, και γράφει το archive μέσα στον τοπικό σου φάκελο Dropbox — αφήνοντας τον Dropbox client που ήδη τρέχεις να κάνει το sync. Το ίδιο του το config ζει κι αυτό εκεί μέσα, ώστε η ίδια λίστα project να σε ακολουθεί ανάμεσα στα μηχανήματα.',
     },
     why: {
       en: 'Git protects committed work. Nothing protects the three days you have not committed yet, which is exactly the window in which SSDs like to die.',
       el: 'Το Git προστατεύει ό,τι έχεις κάνει commit. Τίποτα δεν προστατεύει τις τρεις μέρες που δεν έχεις κάνει ακόμα commit — και ακριβώς εκεί μέσα αρέσει στους SSD να πεθαίνουν.',
     },
     what: {
-      en: 'Keeps a list of the project folders worth protecting, zips them on a schedule while skipping the junk, and pushes the archives to Dropbox. It can show you the diff between two backups before you restore, and the restore itself is one click.',
-      el: 'Κρατάει λίστα με τους φακέλους που αξίζει να προστατευτούν, τους ζιπάρει προγραμματισμένα παρακάμπτοντας τα σκουπίδια, και στέλνει τα αρχεία στο Dropbox. Μπορεί να σου δείξει το diff ανάμεσα σε δύο backup πριν κάνεις restore, και το restore είναι ένα κλικ.',
+      en: 'Keeps a list of the project folders worth protecting and archives them on demand, naming each one by day and version so the history reads at a glance. It can show you a full file-level diff between any two backups, tells you whether the Dropbox client is actually running and starts it if not, and pulls each project’s latest GitHub release into the same window.',
+      el: 'Κρατάει λίστα με τους φακέλους που αξίζει να προστατευτούν και τους αρχειοθετεί όποτε το ζητήσεις, ονομάζοντας τον καθένα με ημέρα και έκδοση ώστε το ιστορικό να διαβάζεται με μια ματιά. Μπορεί να σου δείξει πλήρες diff σε επίπεδο αρχείου ανάμεσα σε δύο backup, σου λέει αν ο Dropbox client όντως τρέχει και τον ξεκινάει αν όχι, και φέρνει το τελευταίο GitHub release κάθε project στο ίδιο παράθυρο.',
     },
     sketch: {
       title: 'Backup Studio',
       kind: 'panel',
       rows: [
         { label: 'Projects tracked', value: '9', hot: true },
-        { label: 'Excluded', value: 'node_modules, dist' },
+        { label: 'Excluded', value: '5 folders' },
         { label: 'Archiving', bar: 55 },
-        { label: 'Target', value: 'Dropbox' },
-        { label: 'Diff vs previous', value: '34 files changed' },
-        { label: 'Restore', value: 'one click' }
+        { label: 'Named', value: '..._D18_V4' },
+        { label: 'Dropbox client', value: 'running' },
+        { label: 'Compare', value: 'file-level diff' }
       ]
     },
     features: [
@@ -459,17 +475,24 @@ export const more: Project[] = [
         },
       },
       {
-        title: { en: 'Dropbox sync', el: 'Dropbox sync' },
+        title: { en: 'Dropbox without the Dropbox API', el: 'Dropbox χωρίς το Dropbox API' },
         body: {
-          en: 'Uploads the archives and synchronises projects.json so the same backup list follows you between PCs.',
-          el: 'Ανεβάζει τα archives και συγχρονίζει το projects.json ώστε η ίδια λίστα backup να σε ακολουθεί ανάμεσα στα PCs.',
+          en: 'It never talks to Dropbox over the network. It reads the Dropbox client’s own `info.json` to find where your Dropbox folder lives, writes the archive in there, and lets the client you already run do the syncing. No API key, no OAuth, no token to store — and it drops its config in the same folder, so the project list follows you between machines for free.',
+          el: 'Δεν μιλάει ποτέ στο Dropbox μέσω δικτύου. Διαβάζει το `info.json` του ίδιου του Dropbox client για να βρει πού ζει ο φάκελός σου, γράφει εκεί μέσα το archive, και αφήνει τον client που ήδη τρέχεις να κάνει το sync. Κανένα API key, κανένα OAuth, κανένα token — και αφήνει το config του στον ίδιο φάκελο, οπότε η λίστα project σε ακολουθεί ανάμεσα στα μηχανήματα δωρεάν.',
         },
       },
       {
-        title: { en: 'One-click restore', el: 'Επαναφορά με ένα click' },
+        title: { en: 'Compare two backups', el: 'Σύγκριση δύο backup' },
         body: {
-          en: 'Brings a selected archive back without making recovery a second manual file-management project.',
-          el: 'Επαναφέρει επιλεγμένο archive χωρίς να μετατρέπει το recovery σε δεύτερο χειροκίνητο project διαχείρισης αρχείων.',
+          en: 'Pick any two versions and it renders a full file-level diff in the window, so you can see what actually changed between Tuesday and Friday before you go digging through an archive.',
+          el: 'Διαλέγεις δύο εκδόσεις και σου εμφανίζει πλήρες diff σε επίπεδο αρχείου μέσα στο παράθυρο, ώστε να δεις τι όντως άλλαξε ανάμεσα σε Τρίτη και Παρασκευή πριν αρχίσεις να σκαλίζεις archive.',
+        },
+      },
+      {
+        title: { en: 'It watches the client, not the cloud', el: 'Παρακολουθεί τον client, όχι το cloud' },
+        body: {
+          en: 'Because the sync is somebody else’s job, the one thing that can silently break it is the Dropbox client not running. So the sidebar shows its status, and offers to start it — the failure mode is surfaced instead of discovered three weeks later.',
+          el: 'Επειδή το sync είναι δουλειά κάποιου άλλου, το ένα πράγμα που μπορεί να το χαλάσει σιωπηλά είναι να μην τρέχει ο Dropbox client. Οπότε το sidebar δείχνει την κατάστασή του και προσφέρεται να τον ξεκινήσει — η αστοχία φαίνεται αντί να ανακαλυφθεί τρεις εβδομάδες μετά.',
         },
       },
     ],
@@ -484,14 +507,28 @@ export const more: Project[] = [
       {
         title: { en: 'Configuration across machines', el: 'Ρυθμίσεις μεταξύ μηχανημάτων' },
         body: {
-          en: 'Backing up projects is only half the problem; the application also has to remember which projects belong in the set on another PC.',
-          el: 'Το backup των projects είναι μόνο το μισό πρόβλημα· η εφαρμογή πρέπει επίσης να θυμάται ποια projects ανήκουν στο σετ σε άλλο PC.',
+          en: 'Backing up projects is only half the problem; the application also has to remember which projects belong in the set on another PC. The config file is written into the Dropbox folder alongside the archives, so the second machine finds the list already there — and if the config is ever missing, the app rebuilds it by reading the backup folders that exist.',
+          el: 'Το backup των projects είναι μόνο το μισό πρόβλημα· η εφαρμογή πρέπει επίσης να θυμάται ποια projects ανήκουν στο σετ σε άλλο PC. Το αρχείο config γράφεται μέσα στον φάκελο Dropbox δίπλα στα archives, οπότε το δεύτερο μηχάνημα βρίσκει τη λίστα ήδη εκεί — και αν το config λείψει, η εφαρμογή το ξαναχτίζει διαβάζοντας τους φακέλους backup που υπάρχουν.',
+        },
+      },
+      {
+        title: { en: 'Not writing a Dropbox integration', el: 'Να μη γράψεις integration για το Dropbox' },
+        body: {
+          en: 'The obvious build is an OAuth flow, a stored token, a refresh cycle and an upload queue. The actual build reads the Dropbox client’s own `info.json` to learn where your Dropbox folder is, writes a file into it, and stops. The syncing was already solved by software running on the machine; the only thing worth adding was finding it. The cost is that the app is useless if the client is not installed — which is why its status sits in the sidebar with a button to start it.',
+          el: 'Η προφανής υλοποίηση είναι OAuth flow, αποθηκευμένο token, κύκλος ανανέωσης και ουρά upload. Η πραγματική υλοποίηση διαβάζει το `info.json` του ίδιου του Dropbox client για να μάθει πού είναι ο φάκελός σου, γράφει ένα αρχείο μέσα, και σταματάει. Το sync ήταν ήδη λυμένο από λογισμικό που τρέχει στο μηχάνημα· το μόνο που άξιζε να προστεθεί ήταν να το βρεις. Το κόστος είναι ότι η εφαρμογή είναι άχρηστη αν ο client δεν είναι εγκατεστημένος — γι᾽ αυτό η κατάστασή του κάθεται στο sidebar με κουμπί εκκίνησης.',
+        },
+      },
+      {
+        title: { en: 'A JSX app with no bundler', el: 'Εφαρμογή JSX χωρίς bundler' },
+        body: {
+          en: 'The renderer is a single 1,210-line JSX file, and there is no Vite, no webpack and no build step for it — Babel standalone ships as a runtime dependency and transpiles the file in the browser when the window opens. It is not what I would choose for something that had to start fast, but for a tool that opens once a week it removed an entire toolchain from a project that did not need one.',
+          el: 'Ο renderer είναι ένα μοναδικό αρχείο JSX 1.210 γραμμών, και δεν υπάρχει Vite, webpack ή build step γι᾽ αυτόν — το Babel standalone έρχεται ως runtime dependency και το μεταγλωττίζει στον browser όταν ανοίγει το παράθυρο. Δεν θα το διάλεγα για κάτι που πρέπει να ξεκινάει γρήγορα, αλλά για εργαλείο που ανοίγει μία φορά τη βδομάδα αφαίρεσε ολόκληρη toolchain από project που δεν τη χρειαζόταν.',
         },
       },
     ],
     privacy: {
-      en: 'Selected project archives and the projects.json configuration are uploaded to the user’s connected Dropbox account. Rebuildable dependency folders are deliberately excluded.',
-      el: 'Τα επιλεγμένα project archives και το projects.json configuration ανεβαίνουν στον συνδεδεμένο Dropbox λογαριασμό του χρήστη. Τα rebuildable dependency folders εξαιρούνται σκόπιμα.',
+      en: 'Nothing is uploaded by this app. Archives and the config file are written into your own local Dropbox folder, and the Dropbox client you already run syncs them under your own account — the app holds no token and makes no network call to Dropbox at all. The one place it does reach the network is GitHub’s public API, to read the latest release for a project. Rebuildable dependency folders are deliberately excluded from every archive.',
+      el: 'Τίποτα δεν ανεβαίνει από αυτή την εφαρμογή. Τα archives και το αρχείο config γράφονται στον δικό σου τοπικό φάκελο Dropbox, και ο Dropbox client που ήδη τρέχεις τα συγχρονίζει με τον δικό σου λογαριασμό — η εφαρμογή δεν κρατάει token και δεν κάνει καμία κλήση δικτύου προς το Dropbox. Το ένα σημείο όπου αγγίζει το δίκτυο είναι το δημόσιο API του GitHub, για να διαβάσει το τελευταίο release ενός project. Τα rebuildable dependency folders εξαιρούνται σκόπιμα από κάθε archive.',
     },
     impact: {
       en: 'It protects the work that exists after the last commit but before the next one — the exact window normal Git history cannot recover.',
@@ -500,11 +537,13 @@ export const more: Project[] = [
     lessons: {
       en: [
         'A backup people actually run is better than a theoretically perfect backup with too much setup.',
-        'Recovery deserves the same product attention as upload; an archive is not useful if restoring it is painful.',
+        'Before writing an integration, check whether the machine already runs software that solves it. Reading the Dropbox client’s own config beat an OAuth flow, a stored token and an upload queue — and there is nothing to leak.',
+        'This is the honest gap: there is still no restore. It archives, it compares, it never puts a version back. Recovery deserves the same attention as capture, and so far it has not had it — I open the folder and unzip by hand like everybody else.',
       ],
       el: [
         'Ένα backup που οι άνθρωποι πράγματι τρέχουν είναι καλύτερο από ένα θεωρητικά τέλειο backup με υπερβολικό setup.',
-        'Το recovery αξίζει την ίδια προσοχή με το upload· ένα archive δεν είναι χρήσιμο αν η επαναφορά του είναι βασανιστική.',
+        'Πριν γράψεις integration, δες αν το μηχάνημα τρέχει ήδη λογισμικό που το λύνει. Το να διαβάσω το config του ίδιου του Dropbox client κέρδισε από OAuth flow, αποθηκευμένο token και ουρά upload — και δεν υπάρχει τίποτα να διαρρεύσει.',
+        'Αυτό είναι το τίμιο κενό: δεν υπάρχει ακόμα restore. Αρχειοθετεί, συγκρίνει, ποτέ δεν επαναφέρει έκδοση. Το recovery αξίζει την ίδια προσοχή με την καταγραφή, και μέχρι στιγμής δεν την είχε — ανοίγω τον φάκελο και κάνω unzip στο χέρι όπως όλοι.',
       ],
     },
   },
@@ -538,8 +577,9 @@ export const more: Project[] = [
       },
     },
     metrics: [
-      { value: '21', label: { en: 'slash commands', el: 'slash commands' } },
-      { value: '17K', label: { en: 'lines across 98 modules', el: 'γραμμές σε 98 modules' } },
+      { value: '20', label: { en: 'slash commands', el: 'slash commands' } },
+      { value: '88', label: { en: 'modules, 21K lines', el: 'modules, 21K γραμμές' } },
+      { value: '15', label: { en: 'checks before deploy', el: 'checks πριν το deploy' } },
       { value: '24/7', label: { en: 'radio, self-reconnecting', el: 'ραδιόφωνο που επανασυνδέεται' } },
     ],
     short: {
@@ -547,8 +587,8 @@ export const more: Project[] = [
       el: 'Μουσική, ραδιόφωνο 24/7, deep-delete moderation και πλήρη transcripts, από ζωντανό web dashboard αντί για τοίχο από chat εντολές.',
     },
     summary: {
-      en: 'Twenty-one slash commands over a discord.js v14 bot: a full music queue from YouTube or Spotify, a 24/7 radio mode that reconnects itself after a reboot or a crash, moderation that can delete past Discord\'s fourteen-day bulk limit, channel transcripts with their attachments, and invite tracking. All of it is also driveable from an Express + socket.io dashboard that shows live stats and controls the player in real time.',
-      el: 'Είκοσι ένα slash commands πάνω σε bot με discord.js v14: πλήρης ουρά μουσικής από YouTube ή Spotify, λειτουργία ραδιοφώνου 24/7 που επανασυνδέεται μόνη της μετά από reboot ή crash, moderation που σβήνει και πέρα από το όριο των δεκατεσσάρων ημερών του Discord, transcripts καναλιών μαζί με τα συνημμένα, και καταγραφή προσκλήσεων. Όλα δουλεύουν και από dashboard σε Express + socket.io που δείχνει ζωντανά στατιστικά και ελέγχει τον player σε πραγματικό χρόνο.',
+      en: 'Twenty slash commands over a discord.js v14 bot: a full music queue, a 24/7 radio mode that reconnects itself after a reboot or a crash, moderation that can delete past Discord\'s fourteen-day bulk limit, channel transcripts with their attachments, and invite tracking. All of it is also driveable from Pulse — an Express, EJS and socket.io dashboard that shows live stats, and where every command can be locked to specific roles or user IDs. The interface, and the bot, speak Greek.',
+      el: 'Είκοσι slash commands πάνω σε bot με discord.js v14: πλήρης ουρά μουσικής, λειτουργία ραδιοφώνου 24/7 που επανασυνδέεται μόνη της μετά από reboot ή crash, moderation που σβήνει και πέρα από το όριο των δεκατεσσάρων ημερών του Discord, transcripts καναλιών μαζί με τα συνημμένα, και καταγραφή προσκλήσεων. Όλα δουλεύουν και από το Pulse — dashboard σε Express, EJS και socket.io που δείχνει ζωντανά στατιστικά, και όπου κάθε εντολή κλειδώνεται σε συγκεκριμένους ρόλους ή user ID. Το interface, και το bot, μιλάνε ελληνικά.',
     },
     why: {
       en: 'Years of running a large Greek GTA RP community taught me exactly which moderation jobs repeat and which ones nobody wants to do at 3am. The radio mode exists for a pettier reason: every music bot worth using eventually asks for a premium subscription to stay in the channel, and running your own is the only way out of that.',
@@ -564,10 +604,10 @@ export const more: Project[] = [
       rows: [
         { label: 'Now playing', value: 'queue: 7 tracks', hot: true },
         { label: '24/7 radio', value: 'on · auto-reconnect' },
-        { label: 'Commands', value: '21 registered' },
+        { label: 'Commands', value: '20 registered' },
         { label: 'Access rules', value: 'per user + role' },
         { label: 'Transcripts', value: 'with attachments' },
-        { label: 'Checks passing', bar: 100, value: '17 / 17' }
+        { label: 'Checks passing', bar: 100, value: '15 / 15' }
       ]
     },
     features: [
@@ -625,6 +665,36 @@ export const more: Project[] = [
         body: {
           en: 'better-sqlite3 keeps state in a single local file with scheduled backups, so the bot and the dashboard read the same truth and moving the whole thing is a file copy.',
           el: 'Το better-sqlite3 κρατάει το state σε ένα τοπικό αρχείο με προγραμματισμένα backup, οπότε bot και dashboard διαβάζουν την ίδια αλήθεια και η μεταφορά του συνόλου είναι μια αντιγραφή αρχείου.',
+        },
+      },
+    ],
+    challenges: [
+      {
+        title: { en: 'A dependency that YouTube had already broken', el: 'Μια εξάρτηση που το YouTube είχε ήδη σπάσει' },
+        body: {
+          en: 'The YouTube extractor pins an older version of the client library, and YouTube now answers that protocol with HTTP 400 on every player and search call — so every single search silently returned zero results. The fix is an override in package.json forcing the newer library underneath it, with a comment explaining exactly why and when it can be removed. Nothing in the code was wrong; the internet moved underneath a transitive dependency.',
+          el: 'Ο extractor του YouTube καρφώνει παλιότερη έκδοση της βιβλιοθήκης, και το YouTube πλέον απαντάει σε εκείνο το πρωτόκολλο με HTTP 400 σε κάθε κλήση player και search — οπότε κάθε αναζήτηση επέστρεφε σιωπηλά μηδέν αποτελέσματα. Η λύση είναι ένα override στο package.json που επιβάλλει τη νεότερη βιβλιοθήκη από κάτω, με σχόλιο που εξηγεί ακριβώς γιατί και πότε μπορεί να φύγει. Τίποτα στον κώδικα δεν ήταν λάθος· το ίντερνετ κουνήθηκε κάτω από μια transitive εξάρτηση.',
+        },
+      },
+      {
+        title: { en: 'Discord will not bulk delete old messages', el: 'Το Discord δεν σβήνει μαζικά παλιά μηνύματα' },
+        body: {
+          en: 'The bulk endpoint refuses anything older than fourteen days, which is exactly the backlog you actually want gone. Clearing a channel properly means falling back to deleting message by message, slowly enough not to be rate limited, while staying interruptible and reporting progress — because a wipe that cannot be stopped halfway is a wipe nobody will start.',
+          el: 'Το bulk endpoint αρνείται ό,τι είναι παλιότερο από δεκατέσσερις μέρες, που είναι ακριβώς το backlog που θες να φύγει. Το σωστό καθάρισμα καναλιού σημαίνει πτώση σε διαγραφή μήνυμα προς μήνυμα, αρκετά αργά ώστε να μη φας rate limit, μένοντας διακόψιμο και αναφέροντας πρόοδο — επειδή ένα wipe που δεν σταματάει στη μέση είναι wipe που δεν θα ξεκινήσει κανείς.',
+        },
+      },
+      {
+        title: { en: 'Permissions the server owner can actually reason about', el: 'Δικαιώματα που καταλαβαίνει ο ιδιοκτήτης' },
+        body: {
+          en: 'Discord\'s own permission model does not map onto "who may run this one command". So each command carries a default, and the dashboard lets you override it per role or per raw user ID — with the rule that an empty list means the default applies, and one entry means only those people and the administrators. That sentence is written on the page itself, because a permission system nobody can explain is a permission system nobody will trust.',
+          el: 'Το μοντέλο δικαιωμάτων του Discord δεν αντιστοιχεί στο «ποιος μπορεί να τρέξει αυτή τη μία εντολή». Οπότε κάθε εντολή έχει προεπιλογή, και το dashboard σε αφήνει να την παρακάμψεις ανά ρόλο ή ανά σκέτο user ID — με τον κανόνα ότι άδεια λίστα σημαίνει ότι ισχύει η προεπιλογή, και μία εγγραφή σημαίνει μόνο αυτοί και οι διαχειριστές. Αυτή η πρόταση είναι γραμμένη πάνω στη σελίδα, επειδή ένα σύστημα δικαιωμάτων που δεν εξηγείται είναι σύστημα που δεν θα εμπιστευτεί κανείς.',
+        },
+      },
+      {
+        title: { en: 'Fifteen checks instead of a test framework', el: 'Δεκαπέντε checks αντί για test framework' },
+        body: {
+          en: 'There is no Jest here. There are fifteen check files — one each for music, voice, permissions, command access, transcripts, invites, dates, DMs, security, the AI layer and YouTube auth — run by a small harness with `npm test`. They are closer to smoke tests than unit tests, and that is the point: they answer "will this bot actually start and behave" rather than "does this function return 4".',
+          el: 'Δεν υπάρχει Jest εδώ. Υπάρχουν δεκαπέντε αρχεία check — ένα για μουσική, φωνή, δικαιώματα, πρόσβαση εντολών, transcripts, προσκλήσεις, ημερομηνίες, DM, ασφάλεια, το AI layer και το YouTube auth — που τρέχουν από ένα μικρό harness με `npm test`. Είναι πιο κοντά σε smoke tests παρά σε unit tests, και αυτό είναι το ζητούμενο: απαντούν στο «θα ξεκινήσει και θα συμπεριφερθεί σωστά αυτό το bot» αντί για το «επιστρέφει 4 αυτή η συνάρτηση».',
         },
       },
     ],
