@@ -1682,7 +1682,7 @@
   border: 1px solid var(--nxb-orange-a24);
   border-radius: 50%;
   background: color-mix(in srgb, var(--c-bg) 88%, transparent);
-  color: var(--c-text-1);
+  color: var(--c-text);
   font: 400 1.65rem/1 var(--f-sans);
   cursor: pointer;
   transition:

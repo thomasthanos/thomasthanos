@@ -139,7 +139,7 @@ export const en = {
     statLines: 'lines between them',
     statWriteups: 'with a full write-up',
     statAbandoned: 'abandoned',
-    foot: 'Counted from the repositories: 20,836 lines in the Pulse bot, 12,004 in the BetterDiscord themes, 10,627 in ReleaseFlow, 5,471 in Backup Studio, 3,243 hand-written in AutoClicker and 707 in Speed Control.',
+    foot: 'Counted from the repositories: 22,577 lines in the Pulse bot, 12,004 in the BetterDiscord themes, 10,676 in ReleaseFlow, 5,471 in Backup Studio, 3,243 hand-written in AutoClicker and 707 in Speed Control.',
     gridTitle: 'The five',
     gridAside: 'Oldest first is not the order — the order is how much of it I still touch.',
   },

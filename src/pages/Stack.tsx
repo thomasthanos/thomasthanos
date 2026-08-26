@@ -102,10 +102,10 @@ export function Stack() {
                   <span className="sgroup__idx" aria-hidden="true">
                     {String(gi + 1).padStart(2, '0')}
                   </span>
-                  <span className="sgroup__copy">
-                    <span className="sgroup__title">{tr(group.title)}</span>
+                  <div className="sgroup__copy">
+                    <h2 className="sgroup__title sgroup__heading">{tr(group.title)}</h2>
                     <span className="sgroup__blurb">{tr(group.blurb)}</span>
-                  </span>
+                  </div>
                   <span className="sgroup__count" aria-hidden="true">
                     {group.items.length}
                   </span>

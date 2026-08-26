@@ -33,7 +33,7 @@ export function Labs() {
   const legacy = labProjects.filter((p) => p.status === 'legacy').length
   const stats = [
     { v: String(labProjects.length), k: t.labs.statProjects },
-    { v: '53K', k: t.labs.statLines },
+    { v: '55K', k: t.labs.statLines },
     { v: String(labProjects.length), k: t.labs.statWriteups },
     { v: '0', k: t.labs.statAbandoned },
   ]

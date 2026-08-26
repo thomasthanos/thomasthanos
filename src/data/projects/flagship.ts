@@ -231,7 +231,7 @@ export const flagship: Project[] = [
     ],
     metrics: [
       { value: '61', label: { en: 'apps in the catalog', el: 'apps στον κατάλογο' } },
-      { value: '17K', label: { en: 'lines across 68 files', el: 'γραμμές σε 68 αρχεία' } },
+      { value: '31K', label: { en: 'lines across 59 files', el: 'γραμμές σε 59 αρχεία' } },
       { value: 'signed', label: { en: 'Authenticode', el: 'Authenticode' } },
     ],
     short: {

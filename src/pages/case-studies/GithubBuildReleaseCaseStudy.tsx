@@ -55,7 +55,7 @@ const copy = {
     metrics: 'By the numbers',
     metricsNote: 'Counted from the repository, not from memory.',
     nerdStat:
-      '10,627 lines across the app · 5,627 JavaScript and JSX, 5,000 CSS · 2,390 of them in the main process alone, and 1,629 in one stylesheet',
+      '10,676 lines across the app · 5,676 JavaScript and JSX, 5,000 CSS · 2,390 of them in the main process alone, and 1,629 in one stylesheet',
 
     premise: 'The premise',
     premiseNote: 'The entire tool, in one sentence.',
@@ -214,7 +214,7 @@ const copy = {
     metrics: 'Με νούμερα',
     metricsNote: 'Μετρημένα από το repository, όχι από μνήμης.',
     nerdStat:
-      '10.627 γραμμές συνολικά · 5.627 JavaScript και JSX, 5.000 CSS · οι 2.390 μόνο στον main process, και 1.629 σε ένα stylesheet',
+      '10.676 γραμμές συνολικά · 5.676 JavaScript και JSX, 5.000 CSS · οι 2.390 μόνο στον main process, και 1.629 σε ένα stylesheet',
 
     premise: 'Η αφετηρία',
     premiseNote: 'Όλο το εργαλείο, σε μία πρόταση.',

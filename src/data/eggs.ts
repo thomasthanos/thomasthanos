@@ -17,8 +17,8 @@ export const terminalIdle: L[] = [
   },
   { en: 'no telemetry running. none ever was.', el: 'telemetry: κανένα. ούτε υπήρξε ποτέ.' },
   {
-    en: 'four extensions shipped, zero trackers',
-    el: 'τέσσερα extensions έξω, μηδέν trackers',
+    en: 'three extensions shipped, zero trackers',
+    el: 'τρία extensions έξω, μηδέν trackers',
   },
   { en: 'probably debugging something', el: 'κάτι θα debugάρω αυτή την ώρα' },
   { en: 'coffee: critical', el: 'καφές: επικίνδυνα χαμηλά' },

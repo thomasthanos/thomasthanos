@@ -52,7 +52,7 @@ const copy = {
     metrics: 'By the numbers',
     metricsNote: 'Counted from the repository, not from memory.',
     nerdStat:
-      '5,471 lines in total · 3,032 of them stylesheet, 1,210 in one JSX file, 962 in the main process · 23 IPC handlers, no bundler, no API key',
+      '5,471 lines in total · 3,032 of them stylesheet, 1,210 in one JSX file, 962 in the main process · 24 IPC handlers, no bundler, no API key',
 
     premise: 'The premise',
     premiseNote: 'The whole reason it exists.',
@@ -209,7 +209,7 @@ const copy = {
     metrics: 'Με νούμερα',
     metricsNote: 'Μετρημένα από το repository, όχι από μνήμης.',
     nerdStat:
-      '5.471 γραμμές συνολικά · οι 3.032 stylesheet, 1.210 σε ένα αρχείο JSX, 962 στον main process · 23 IPC handlers, χωρίς bundler, χωρίς API key',
+      '5.471 γραμμές συνολικά · οι 3.032 stylesheet, 1.210 σε ένα αρχείο JSX, 962 στον main process · 24 IPC handlers, χωρίς bundler, χωρίς API key',
 
     premise: 'Η αφετηρία',
     premiseNote: 'Ο λόγος που υπάρχει.',

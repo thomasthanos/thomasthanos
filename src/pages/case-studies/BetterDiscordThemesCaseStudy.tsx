@@ -53,7 +53,7 @@ const copy = {
     metrics: 'By the numbers',
     metricsNote: 'Counted from the repository, not from memory.',
     nerdStat:
-      '12,004 lines of CSS and JavaScript · 3,246 in the V2 stylesheet alone, 1,425 in the largest plugin · no build step, no framework, no dependency of any kind',
+      '12,004 lines of CSS, JavaScript and one HTML page · 3,246 in the V2 stylesheet alone, 1,425 in the largest plugin · no build step, no framework, no dependency of any kind',
 
     premise: 'The premise',
     premiseNote: 'Where all of it started.',
@@ -211,7 +211,7 @@ const copy = {
     metrics: 'Με νούμερα',
     metricsNote: 'Μετρημένα από το repository, όχι από μνήμης.',
     nerdStat:
-      '12.004 γραμμές CSS και JavaScript · 3.246 μόνο στο stylesheet του V2, 1.425 στο μεγαλύτερο plugin · χωρίς build step, χωρίς framework, χωρίς καμία εξάρτηση',
+      '12.004 γραμμές CSS, JavaScript και μίας σελίδας HTML · 3.246 μόνο στο stylesheet του V2, 1.425 στο μεγαλύτερο plugin · χωρίς build step, χωρίς framework, χωρίς καμία εξάρτηση',
 
     premise: 'Η αφετηρία',
     premiseNote: 'Από εδώ ξεκίνησαν όλα.',

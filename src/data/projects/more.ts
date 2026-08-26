@@ -383,8 +383,8 @@ export const more: Project[] = [
       {
         title: { en: 'Half the project is stylesheet', el: 'Το μισό project είναι stylesheet' },
         body: {
-          en: '5,000 of the 10,627 lines here are CSS, and 1,629 of those are the create-release screen alone. For a tool with three buttons and a text field that is either indefensible or exactly the point, depending on how you feel about tools you use every week. I lean towards the second.',
-          el: '5.000 από τις 10.627 γραμμές εδώ είναι CSS, και οι 1.629 μόνο η οθόνη δημιουργίας release. Για ένα εργαλείο με τρία κουμπιά και ένα πεδίο κειμένου, αυτό είναι είτε αδικαιολόγητο είτε ακριβώς το ζητούμενο, ανάλογα με το πώς νιώθεις για εργαλεία που χρησιμοποιείς κάθε βδομάδα. Κλίνω προς το δεύτερο.',
+          en: '5,000 of the 10,676 lines here are CSS, and 1,629 of those are the create-release screen alone. For a tool with three buttons and a text field that is either indefensible or exactly the point, depending on how you feel about tools you use every week. I lean towards the second.',
+          el: '5.000 από τις 10.676 γραμμές εδώ είναι CSS, και οι 1.629 μόνο η οθόνη δημιουργίας release. Για ένα εργαλείο με τρία κουμπιά και ένα πεδίο κειμένου, αυτό είναι είτε αδικαιολόγητο είτε ακριβώς το ζητούμενο, ανάλογα με το πώς νιώθεις για εργαλεία που χρησιμοποιείς κάθε βδομάδα. Κλίνω προς το δεύτερο.',
         },
       },
     ],
@@ -577,8 +577,8 @@ export const more: Project[] = [
       },
     },
     metrics: [
-      { value: '20', label: { en: 'slash commands', el: 'slash commands' } },
-      { value: '88', label: { en: 'modules, 21K lines', el: 'modules, 21K γραμμές' } },
+      { value: '21', label: { en: 'slash commands', el: 'slash commands' } },
+      { value: '98', label: { en: 'modules, 23K lines', el: 'modules, 23K γραμμές' } },
       { value: '15', label: { en: 'checks before deploy', el: 'checks πριν το deploy' } },
       { value: '24/7', label: { en: 'radio, self-reconnecting', el: 'ραδιόφωνο που επανασυνδέεται' } },
     ],
@@ -587,8 +587,8 @@ export const more: Project[] = [
       el: 'Μουσική, ραδιόφωνο 24/7, deep-delete moderation και πλήρη transcripts, από ζωντανό web dashboard αντί για τοίχο από chat εντολές.',
     },
     summary: {
-      en: 'Twenty slash commands over a discord.js v14 bot: a full music queue, a 24/7 radio mode that reconnects itself after a reboot or a crash, moderation that can delete past Discord\'s fourteen-day bulk limit, channel transcripts with their attachments, and invite tracking. All of it is also driveable from Pulse — an Express, EJS and socket.io dashboard that shows live stats, and where every command can be locked to specific roles or user IDs. The interface, and the bot, speak Greek.',
-      el: 'Είκοσι slash commands πάνω σε bot με discord.js v14: πλήρης ουρά μουσικής, λειτουργία ραδιοφώνου 24/7 που επανασυνδέεται μόνη της μετά από reboot ή crash, moderation που σβήνει και πέρα από το όριο των δεκατεσσάρων ημερών του Discord, transcripts καναλιών μαζί με τα συνημμένα, και καταγραφή προσκλήσεων. Όλα δουλεύουν και από το Pulse — dashboard σε Express, EJS και socket.io που δείχνει ζωντανά στατιστικά, και όπου κάθε εντολή κλειδώνεται σε συγκεκριμένους ρόλους ή user ID. Το interface, και το bot, μιλάνε ελληνικά.',
+      en: 'Twenty-one slash commands over a discord.js v14 bot: a full music queue, a 24/7 radio mode that reconnects itself after a reboot or a crash, moderation that can delete past Discord\'s fourteen-day bulk limit, channel transcripts with their attachments, and invite tracking. All of it is also driveable from Pulse — an Express, EJS and socket.io dashboard that shows live stats, and where every command can be locked to specific roles or user IDs. The interface, and the bot, speak Greek.',
+      el: 'Είκοσι μία slash commands πάνω σε bot με discord.js v14: πλήρης ουρά μουσικής, λειτουργία ραδιοφώνου 24/7 που επανασυνδέεται μόνη της μετά από reboot ή crash, moderation που σβήνει και πέρα από το όριο των δεκατεσσάρων ημερών του Discord, transcripts καναλιών μαζί με τα συνημμένα, και καταγραφή προσκλήσεων. Όλα δουλεύουν και από το Pulse — dashboard σε Express, EJS και socket.io που δείχνει ζωντανά στατιστικά, και όπου κάθε εντολή κλειδώνεται σε συγκεκριμένους ρόλους ή user ID. Το interface, και το bot, μιλάνε ελληνικά.',
     },
     why: {
       en: 'Years of running a large Greek GTA RP community taught me exactly which moderation jobs repeat and which ones nobody wants to do at 3am. The radio mode exists for a pettier reason: every music bot worth using eventually asks for a premium subscription to stay in the channel, and running your own is the only way out of that.',
@@ -604,7 +604,7 @@ export const more: Project[] = [
       rows: [
         { label: 'Now playing', value: 'queue: 7 tracks', hot: true },
         { label: '24/7 radio', value: 'on · auto-reconnect' },
-        { label: 'Commands', value: '20 registered' },
+        { label: 'Commands', value: '21 registered' },
         { label: 'Access rules', value: 'per user + role' },
         { label: 'Transcripts', value: 'with attachments' },
         { label: 'Checks passing', bar: 100, value: '15 / 15' }

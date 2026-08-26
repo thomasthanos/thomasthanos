@@ -141,7 +141,7 @@ export const el: Dict = {
     statLines: 'γραμμές συνολικά',
     statWriteups: 'με πλήρη σελίδα',
     statAbandoned: 'εγκαταλελειμμένα',
-    foot: 'Μετρημένα από τα repositories: 20.836 γραμμές στο bot Pulse, 12.004 στα themes του BetterDiscord, 10.627 στο ReleaseFlow, 5.471 στο Backup Studio, 3.243 γραμμένες στο χέρι στο AutoClicker και 707 στο Speed Control.',
+    foot: 'Μετρημένα από τα repositories: 22.577 γραμμές στο bot Pulse, 12.004 στα themes του BetterDiscord, 10.676 στο ReleaseFlow, 5.471 στο Backup Studio, 3.243 γραμμένες στο χέρι στο AutoClicker και 707 στο Speed Control.',
     gridTitle: 'Τα πέντε',
     gridAside: 'Η σειρά δεν είναι χρονολογική — είναι πόσο ακόμα τα πειράζω.',
   },

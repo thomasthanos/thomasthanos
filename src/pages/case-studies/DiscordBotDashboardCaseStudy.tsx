@@ -54,7 +54,7 @@ const copy = {
     metrics: 'By the numbers',
     metricsNote: 'Counted from the repository, not from memory.',
     nerdStat:
-      '20,836 lines across 88 modules · 20 slash commands, 8 dashboard views, 15 checks · one SQLite file holds the whole state',
+      '22,577 lines across 98 modules · 21 slash commands, 8 dashboard views, 15 checks · one SQLite file holds the whole state',
 
     premise: 'The premise',
     premiseNote: 'Why it exists at all.',
@@ -212,7 +212,7 @@ const copy = {
     metrics: 'Με νούμερα',
     metricsNote: 'Μετρημένα από το repository, όχι από μνήμης.',
     nerdStat:
-      '20.836 γραμμές σε 88 modules · 20 slash commands, 8 όψεις dashboard, 15 checks · ένα αρχείο SQLite κρατάει όλο το state',
+      '22.577 γραμμές σε 98 modules · 21 slash commands, 8 όψεις dashboard, 15 checks · ένα αρχείο SQLite κρατάει όλο το state',
 
     premise: 'Η αφετηρία',
     premiseNote: 'Γιατί υπάρχει.',
