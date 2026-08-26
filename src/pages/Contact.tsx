@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, Check, Copy, Github, Mail, MessageSquare } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { PageHeader } from '@/components/ui/PageHeader'
-import { Section } from '@/components/ui/Section'
 import { Annotation } from '@/components/ui/Annotation'
 import { useI18n } from '@/i18n/i18n'
 import { useDocumentMeta } from '@/hooks/useDocumentMeta'
 import { site } from '@/data/site'
+import '@/pages/page-kit.css'
 import { notes } from '@/data/notes'
 import { external } from '@/utils'
 import '@/pages/contact.css'
@@ -87,7 +87,7 @@ export function Contact() {
   })
 
   return (
-    <div className="page contact-page">
+    <div className="page pk contact-page">
       <div className="container">
         <div className="contact__shell">
           <PageHeader
@@ -148,11 +148,11 @@ export function Contact() {
             </div>
           </section>
 
-          <Section className="contact__availability" title={t.contact.availabilityTitle}>
-            <p className="label contact__section-kicker">
-              <span className="label__tick" aria-hidden="true" />
-              {t.contact.availabilityKicker}
-            </p>
+          <section className="contact__availability" aria-labelledby="contact-avail-title">
+            <div className="pk-rule contact__rule">
+              <h2 id="contact-avail-title">{t.contact.availabilityTitle}</h2>
+              <p className="pk-rule__aside">{t.contact.availabilityKicker}</p>
+            </div>
 
             <div className="cavail">
               <ul className="cavail__yes">
@@ -173,7 +173,7 @@ export function Contact() {
                 </ul>
               </div>
             </div>
-          </Section>
+          </section>
         </div>
       </div>
     </div>

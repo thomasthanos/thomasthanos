@@ -474,4 +474,14 @@
   .cavail__no ul {
     gap: var(--s-2);
   }
-}
+}
+/* ── page-kit harmony ─────────────────────────────────────────────── */
+/* The availability block now uses the same rule as the case studies and Labs, so this page is
+   visibly part of the same system instead of a separate layout. */
+
+.contact-page {
+  --pk-accent: var(--c-violet);
+}
+.contact__rule {
+  --pk-at: 26%;
+}

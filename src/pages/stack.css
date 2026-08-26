@@ -1,3 +1,36 @@
+/* Stack — the tools page, speaking the shared page-kit vocabulary so it reads as part of the
+   same system as the twelve case studies. Blue is the page accent; the group cards keep their
+   own per-group colours, because telling the five groups apart is the point of the accordion. */
+
+.stack-page {
+  --pk-accent: var(--c-blue);
+}
+.stack__meta {
+  border-color: color-mix(in srgb, var(--c-blue) 28%, var(--c-line));
+  background: color-mix(in srgb, var(--c-blue) 9%, transparent);
+  color: var(--c-blue);
+}
+
+/* ── counted strip ────────────────────────────────────────────────── */
+
+.stack__scale {
+  margin-bottom: clamp(1.75rem, 1.2rem + 2vw, 3rem);
+}
+
+/* ── section rules ────────────────────────────────────────────────── */
+
+.stack__rule {
+  --pk-at: 30%;
+}
+.stack__rule--note {
+  --pk-at: 20%;
+}
+.stack-note {
+  margin-top: var(--gap-section);
+}
+
+/* ── groups ───────────────────────────────────────────────────────── */
+
 .sgroups {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -230,7 +263,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--s-4);
-  margin-bottom: var(--s-5);
+  margin-bottom: var(--s-4);
 }
 .sareas__edge {
   display: none;

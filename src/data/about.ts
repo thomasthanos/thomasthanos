@@ -37,8 +37,8 @@ export const timeline: TimelineEntry[] = [
     period: '2023',
     title: { en: 'First repository that stuck', el: 'Το πρώτο repository που κράτησε' },
     body: {
-      en: 'Themes and plugins moved onto GitHub and kept getting commits instead of being abandoned. Five themes, six plugins, and the first time maintaining something felt normal rather than heroic.',
-      el: 'Τα themes και τα plugins ανέβηκαν στο GitHub και, αντί να τα παρατήσω, συνέχισαν να παίρνουν commits. Πέντε themes, έξι plugins, και η πρώτη φορά που η συντήρηση ενός project μού φάνηκε κανονική δουλειά και όχι κατόρθωμα.',
+      en: 'Themes and plugins moved onto GitHub and kept getting commits instead of being abandoned. Four themes, six plugins, 511 commits, and the first time maintaining something felt normal rather than heroic.',
+      el: 'Τα themes και τα plugins ανέβηκαν στο GitHub και, αντί να τα παρατήσω, συνέχισαν να παίρνουν commits. Τέσσερα themes, έξι plugins, 511 commits, και η πρώτη φορά που η συντήρηση ενός project μού φάνηκε κανονική δουλειά και όχι κατόρθωμα.',
     },
   },
   {
@@ -54,8 +54,8 @@ export const timeline: TimelineEntry[] = [
     period: '2026 — now',
     title: { en: 'Shipping things other people use', el: 'Βγάζω πράγματα που χρησιμοποιούν άλλοι' },
     body: {
-      en: 'Four browser extensions, three desktop apps, a data tool and a pile of smaller utilities. NexusMods Bypass alone runs for around 8,000 people in a normal week. Everything is source-available, nothing collects anything, and I still fix bugs the same evening someone reports them.',
-      el: 'Τέσσερα browser extensions, τρεις desktop εφαρμογές, ένα data tool και ένα σωρό μικρότερα utilities. Μόνο το NexusMods Bypass τρέχει για κάπου 8.000 άτομα σε μια κανονική εβδομάδα. Ο κώδικας όλων είναι ανοιχτός, κανένα δεν μαζεύει δεδομένα, και ακόμα διορθώνω bugs το ίδιο βράδυ που θα μου τα αναφέρει κάποιος.',
+      en: 'Three browser extensions, five desktop applications, a Discord bot, a data tool and a pile of smaller utilities. NexusMods Bypass alone runs for around 8,000 people in a normal week. Everything is source-available, nothing collects anything, and I still fix bugs the same evening someone reports them.',
+      el: 'Τρία browser extensions, πέντε desktop εφαρμογές, ένα Discord bot, ένα data tool και ένα σωρό μικρότερα utilities. Μόνο το NexusMods Bypass τρέχει για κάπου 8.000 άτομα σε μια κανονική εβδομάδα. Ο κώδικας όλων είναι ανοιχτός, κανένα δεν μαζεύει δεδομένα, και ακόμα διορθώνω bugs το ίδιο βράδυ που θα μου τα αναφέρει κάποιος.',
     },
   },
 ]

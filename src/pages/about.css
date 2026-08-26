@@ -893,4 +893,30 @@
     margin-top: var(--s-2);
     font-size: var(--t-sm);
   }
-}
+}
+/* ── "what exists now" bridge ─────────────────────────────────────── */
+/* Ties the story above to the twelve case-study pages. Uses page-kit, so the strip and rule
+   match the project pages rather than inventing a fourth style. */
+
+.about-page {
+  --pk-accent: var(--c-lime);
+}
+.ab__now {
+  position: relative;
+  margin-block: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+}
+.ab__now-rule {
+  --pk-at: 22%;
+}
+.ab__now-cta {
+  margin-top: var(--s-4);
+}
+@media (max-width: 619px) {
+  .ab__now {
+    margin-block: var(--s-5);
+  }
+  .ab__now-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}

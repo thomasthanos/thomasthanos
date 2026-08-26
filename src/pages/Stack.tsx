@@ -1,7 +1,7 @@
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronDown, Info } from 'lucide-react'
 import { PageHeader } from '@/components/ui/PageHeader'
-import { Section } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 import { SwipeHint } from '@/components/ui/SwipeHint'
 import { Annotation } from '@/components/ui/Annotation'
@@ -10,6 +10,7 @@ import { useDocumentMeta } from '@/hooks/useDocumentMeta'
 import { areas, stackGroups, stackNote } from '@/data/stack'
 import { getProject } from '@/data/projects'
 import { notes } from '@/data/notes'
+import '@/pages/page-kit.css'
 import '@/pages/stack.css'
 
 function UsedIn({ slugs }: { slugs: string[] }) {
@@ -38,19 +39,52 @@ export function Stack() {
     path: '/stack',
   })
 
+  /* Counted from the page's own data rather than typed in, so the strip cannot drift away from
+     the list underneath it. `proven` only counts slugs that actually resolve to a project — a
+     dead reference should shrink the number, not quietly inflate it. */
+  const { entries, proven } = useMemo(() => {
+    const slugs = new Set<string>()
+    stackGroups.forEach((g) => g.items.forEach((i) => i.usedIn?.forEach((s) => slugs.add(s))))
+    areas.forEach((a) => a.proof.forEach((s) => slugs.add(s)))
+
+    return {
+      entries: stackGroups.reduce((n, g) => n + g.items.length, 0),
+      proven: [...slugs].filter((s) => getProject(s) !== undefined).length,
+    }
+  }, [])
+
+  const stats = [
+    { v: String(entries), k: t.stack.statTools },
+    { v: String(proven), k: t.stack.statProven },
+    { v: String(areas.length), k: t.stack.statAreas },
+    { v: '0', k: t.stack.statBars },
+  ]
+
   return (
-    <div className="page">
+    <div className="page pk stack-page">
       <div className="container">
         <PageHeader
           kicker={t.stack.kicker}
           title={t.stack.title}
           lede={t.stack.lede}
           meta={
-            <span className="chip chip--violet">
-              {stackGroups.length} {t.stack.areasTitle.toLowerCase()}
+            <span className="chip stack__meta">
+              {stackGroups.length} {t.stack.metaGroups} · {entries} {t.stack.metaEntries}
             </span>
           }
         />
+
+        <section className="stack__scale" aria-label={t.stack.statTools}>
+          <dl className="pk-stats">
+            {stats.map((s) => (
+              <div className="pk-stat" key={s.k}>
+                <dt>{s.v}</dt>
+                <dd>{s.k}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="pk-foot">{t.stack.foot}</p>
+        </section>
 
         <div className="sgroups">
           {stackGroups.map((group, gi) => {
@@ -92,7 +126,12 @@ export function Stack() {
           })}
         </div>
 
-        <Section title={t.stack.areasTitle} className="stack-areas">
+        <section className="stack-areas" aria-labelledby="stack-areas-title">
+          <div className="pk-rule stack__rule">
+            <h2 id="stack-areas-title">{t.stack.areasTitle}</h2>
+            <p className="pk-rule__aside">{t.stack.areasAside}</p>
+          </div>
+
           <div className="sareas__intro">
             <p className="label">
               <span className="label__tick" aria-hidden="true" />
@@ -100,6 +139,7 @@ export function Stack() {
             </p>
             <SwipeHint className="sareas__hint" />
           </div>
+
           <div className="sareas__rail">
             <ul className="sareas">
               {areas.map((area, i) => (
@@ -117,9 +157,14 @@ export function Stack() {
             </ul>
             <span className="sareas__edge" aria-hidden="true" />
           </div>
-        </Section>
+        </section>
 
-        <Section title={t.stack.noteTitle} className="stack-note">
+        <section className="stack-note" aria-labelledby="stack-note-title">
+          <div className="pk-rule stack__rule stack__rule--note">
+            <h2 id="stack-note-title">{t.stack.noteTitle}</h2>
+            <p className="pk-rule__aside">{t.stack.noteAside}</p>
+          </div>
+
           <div className="stack__note-row">
             <p className="ddisclaimer">
               <Info aria-hidden="true" />
@@ -129,7 +174,7 @@ export function Stack() {
               {tr(notes.stackNoBars)}
             </Annotation>
           </div>
-        </Section>
+        </section>
       </div>
     </div>
   )

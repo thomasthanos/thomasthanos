@@ -10,10 +10,12 @@ import { useI18n } from '@/i18n/i18n'
 import { useChaos } from '@/hooks/useChaos'
 import { useDocumentMeta } from '@/hooks/useDocumentMeta'
 import { bio, likes, principles, timeline } from '@/data/about'
+import { projects } from '@/data/projects'
 import { site } from '@/data/site'
 import { logoWhispers } from '@/data/eggs'
 import { notes } from '@/data/notes'
 import { cx, pick } from '@/utils'
+import '@/pages/page-kit.css'
 import '@/pages/about.css'
 
 export function About() {
@@ -71,7 +73,7 @@ export function About() {
   }, [])
 
   return (
-    <div className="page">
+    <div className="page pk about-page">
       <div className="container">
         <div className="ab__top">
           <PageHeader
@@ -172,6 +174,32 @@ export function About() {
             </div>
           </div>
         </div>
+
+        {/* Bridge from the story to the twelve case studies. Counted, not estimated. */}
+        <section className="ab__now" aria-labelledby="ab-now-title">
+          <div className="pk-rule ab__now-rule">
+            <h2 id="ab-now-title">{t.about.nowTitle}</h2>
+            <p className="pk-rule__aside">{t.about.nowAside}</p>
+          </div>
+          <dl className="pk-stats">
+            {[
+              { v: String(projects.length), k: t.about.nowProjects },
+              { v: '2018', k: t.about.nowSince },
+              { v: '~8K', k: t.about.nowUsers },
+              { v: '0', k: t.about.nowAnalytics },
+            ].map((s) => (
+              <div className="pk-stat" key={s.k}>
+                <dt>{s.v}</dt>
+                <dd>{s.k}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="pk-foot">{t.about.nowFoot}</p>
+          <Link className="btn btn--ghost btn--sm ab__now-cta" to="/projects">
+            {t.common.allProjects}
+            <ArrowRight aria-hidden="true" />
+          </Link>
+        </section>
 
         <Section className="ab__section ab__section--timeline" title={t.about.timelineTitle}>
           <p className="label ab__section-kicker">

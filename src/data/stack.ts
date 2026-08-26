@@ -70,10 +70,16 @@ export const stackGroups: StackGroup[] = [
       {
         name: 'Electron',
         note: {
-          en: 'Four apps deep. I know exactly which parts of it will bite, and context isolation is not optional.',
-          el: 'Τέσσερις εφαρμογές βαθιά. Ξέρω ακριβώς ποια κομμάτια του δαγκώνουν, και το context isolation δεν είναι προαιρετικό.',
+          en: 'Five apps deep. I know exactly which parts of it will bite, and context isolation is not optional.',
+          el: 'Πέντε εφαρμογές βαθιά. Ξέρω ακριβώς ποια κομμάτια του δαγκώνουν, και το context isolation δεν είναι προαιρετικό.',
         },
-        usedIn: ['make-your-life-easier', 'steam-idler', 'autoclicker-premium'],
+        usedIn: [
+          'make-your-life-easier',
+          'steam-idler',
+          'autoclicker-premium',
+          'github-build-release',
+          'backup-studio',
+        ],
       },
       {
         name: 'Node.js',
@@ -81,6 +87,7 @@ export const stackGroups: StackGroup[] = [
           en: 'Every main process, every build script, the Discord bot.',
           el: 'Κάθε main process, κάθε build script, το Discord bot.',
         },
+        usedIn: ['discord-bot-dashboard', 'github-build-release'],
       },
       {
         name: 'React',
@@ -104,8 +111,8 @@ export const stackGroups: StackGroup[] = [
     accent: 'blue',
     title: { en: 'Browser Platform', el: 'Πλατφόρμα Browser' },
     blurb: {
-      en: 'Four extensions in, Manifest V3 has opinions and I have learned them the hard way.',
-      el: 'Τέσσερα extensions μέσα, το Manifest V3 έχει απόψεις και τις έμαθα με τον δύσκολο τρόπο.',
+      en: 'Three extensions in, Manifest V3 has opinions and I have learned them the hard way.',
+      el: 'Τρία extensions μέσα, το Manifest V3 έχει απόψεις και τις έμαθα με τον δύσκολο τρόπο.',
     },
     items: [
       {
@@ -114,7 +121,7 @@ export const stackGroups: StackGroup[] = [
           en: 'Service workers die constantly. Design for waking up, not for staying alive.',
           el: 'Τα service workers πεθαίνουν συνέχεια. Σχεδίασέ το για να ξυπνάει, όχι για να επιβιώνει.',
         },
-        usedIn: ['nexusmods-bypass', 'an1me-tracker'],
+        usedIn: ['nexusmods-bypass', 'an1me-tracker', 'an1me-speed-control'],
       },
       {
         name: 'Chrome Extension APIs',
