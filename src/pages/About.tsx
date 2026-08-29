@@ -131,15 +131,17 @@ export function About() {
                   <span className="ab__figure-index" aria-hidden="true">
                     identity / 01
                   </span>
-                  <img
-                    className="ab__facts-figure"
-                    src={`${import.meta.env.BASE_URL}assets/pumpkin-hoodie-figure.webp`}
-                    alt=""
-                    width="620"
-                    height="1028"
-                    draggable="false"
-                    decoding="async"
-                  />
+                  <div className="ab__facts-figure-wrapper">
+                    <img
+                      className="ab__facts-figure"
+                      src={`${import.meta.env.BASE_URL}assets/pumpkin-hoodie-figure.webp`}
+                      alt=""
+                      width="620"
+                      height="1028"
+                      draggable="false"
+                      decoding="async"
+                    />
+                  </div>
                   <span className="ab__facts-studio">
                     {site.studio}
                     <em>software &amp; chaos</em>

@@ -49,3 +49,4 @@ desktop.ini
 # Wrangler local state
 .wrangler/
 tools/workbench/
+/public/assets/mpil

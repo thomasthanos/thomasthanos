@@ -131,13 +131,14 @@
 }
 .ab__facts {
   position: relative;
-  overflow: hidden;
   border: 1px solid var(--c-line-strong);
   border-radius: var(--r-lg);
   background: linear-gradient(165deg, var(--c-surface-2), var(--c-surface));
   box-shadow: var(--sh-inset-top), 0 18px 45px -28px rgba(0, 0, 0, 0.9);
 }
 .ab__facts-mark {
+  border-top-left-radius: calc(var(--r-lg) - 1px);
+  border-top-right-radius: calc(var(--r-lg) - 1px);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -145,7 +146,6 @@
   gap: var(--s-2);
   min-height: 330px;
   padding: var(--s-5) var(--s-5) var(--s-6);
-  overflow: hidden;
   border-bottom: 1px solid var(--c-line);
   background:
     radial-gradient(circle at 50% 15%, var(--c-violet-a20), transparent 52%),
@@ -163,13 +163,18 @@
   text-transform: uppercase;
   color: var(--c-text-4);
 }
+.ab__facts-figure-wrapper {
+  display: flex;
+  justify-content: center;
+  width: min(calc(100% + 2.25rem), 310px);
+  margin: -0.9rem -1rem -0.45rem;
+  filter: drop-shadow(0 0 10px var(--c-violet-a35));
+}
 .ab__facts-figure {
   display: block;
-  width: min(calc(100% + 2.25rem), 310px);
+  width: 100%;
   height: auto;
-  margin: -0.9rem -1rem -0.45rem;
   object-fit: contain;
-  filter: drop-shadow(0 0 10px var(--c-violet-a35));
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 91%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 0%, #000 91%, transparent 100%);
   user-select: none;
@@ -639,8 +644,10 @@
     padding: var(--s-5);
     border-right: 1px solid var(--c-line);
     border-bottom: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: calc(var(--r-lg) - 1px);
   }
-  .ab__facts-figure {
+  .ab__facts-figure-wrapper {
     width: min(100%, 260px);
     margin: -0.8rem auto -0.25rem;
   }
@@ -730,12 +737,14 @@
     gap: 0.3rem;
     padding: 0.7rem var(--s-3) var(--s-3);
   }
-  .ab__facts-figure {
+  .ab__facts-figure-wrapper {
     width: auto;
     max-width: 100%;
     height: 185px;
     margin: -0.25rem auto 0;
-    object-fit: contain;
+  }
+  .ab__facts-figure {
+    height: 100%;
   }
   .ab__facts-studio {
     gap: 0.2rem;
