@@ -134,7 +134,7 @@ export function About() {
                   <div className="ab__facts-figure-wrapper">
                     <img
                       className="ab__facts-figure"
-                      src={`${import.meta.env.BASE_URL}assets/pumpkin-hoodie-figure.webp`}
+                      src={`${import.meta.env.BASE_URL}assets/pumpkin-hoodie-figure.webp?v=2`}
                       alt=""
                       width="620"
                       height="1028"

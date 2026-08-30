@@ -59,7 +59,7 @@ export function Terminal() {
       <div className="term__face">
         <img
           className="term__face-art"
-          src={`${import.meta.env.BASE_URL}assets/terminal-pixel-face.webp`}
+          src={`${import.meta.env.BASE_URL}assets/terminal-pixel-face.webp?v=2`}
           alt=""
           width="340"
           height="225"

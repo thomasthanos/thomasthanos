@@ -20,7 +20,7 @@ export function Logo({ size = 32, bare = false, className, title }: LogoProps) {
     >
       <img
         className="logo__image"
-        src={`${import.meta.env.BASE_URL}assets/pumpkin-logo-transparent.webp`}
+        src={`${import.meta.env.BASE_URL}assets/pumpkin-logo-transparent.webp?v=2`}
         alt=""
         width={width}
         height={size}
