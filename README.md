@@ -2,8 +2,8 @@
 
 <img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/banner-profile.svg?v=623" alt="Thomas Thanos — Kolokithes A.E.">
 
-[![4 extensions shipped](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/badge-extensions.svg?v=623)](https://github.com/thomasthanos/google_extention_privacy)
-[![NexusMods Bypass — 12k+ users](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/badge-users.svg?v=623)](https://thomasthanos.github.io/google_extention_privacy/)
+[![4 extensions shipped](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/badge-extensions.svg?v=623)](https://github.com/thomasthanos/an1me-extensions)
+[![NexusMods Bypass — 12k+ users](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/badge-users.svg?v=623)](https://github.com/thomasthanos/nexusmods-bypass)
 [![3 desktop apps](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/badge-apps.svg?v=623)](https://github.com/thomasthanos?tab=repositories)
 <br>
 [![Website](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/btn-website.svg?v=623)](https://thomasthanos.uk)
@@ -32,14 +32,14 @@ them forever, which is the part nobody warns you about.
 
 <img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/proj-extensions.svg?v=623" width="40">
 
-**Browser Extensions**
+**NexusMods Bypass**
 
-Four Manifest V3 extensions for Chrome & Edge. No trackers, no ads, no telemetry — and the whole
-source is public, so you can check rather than take my word for it.
+Simplifies Nexus Mods downloads, manages collection download queues, and keeps a local history of
+completed files. No trackers, no ads, no telemetry, and 100% public source.
 
 `JavaScript` `CSS` · **12K+ users**
 
-[→ View repository](https://github.com/thomasthanos/google_extention_privacy)
+[→ View repository](https://github.com/thomasthanos/nexusmods-bypass)
 
 </td>
 <td width="50%" valign="top">
