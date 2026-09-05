@@ -370,7 +370,7 @@ if __name__ == "__main__":
         made.append(icon(n, g, accent=a, pad=False, prefix="proj"))
 
     badges = [("badge-extensions.svg", "extensions", "4 shipped", MINT),
-              ("badge-users.svg",      "nexusmods bypass", "12k+ users", AMBER),
+              ("badge-users.svg",      "nexusmods bypass", "17k+ users", AMBER),
               ("badge-apps.svg",       "desktop apps", "3", SKY)]
     row = sum(badge(*b) for b in badges) + 4 * (len(badges) - 1)
 
@@ -382,7 +382,7 @@ if __name__ == "__main__":
 
     # "100% open source" would contradict the extensions LICENCE, which is
     # explicitly source-available. "source available" is the accurate claim.
-    sw = strip_stats("stats-strip.svg", [("12K+", "users"), ("4", "extensions"),
+    sw = strip_stats("stats-strip.svg", [("17K+", "users"), ("4", "extensions"),
                                          ("3", "desktop apps"), ("100%", "source available")])
 
     stw, sth = stack_card("stack.svg", [
