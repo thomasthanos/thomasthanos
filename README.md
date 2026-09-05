@@ -3,11 +3,11 @@
 <img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/banner-profile.svg?v=623" alt="Thomas Thanos — Kolokithes A.E.">
 
 [![4 extensions shipped](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/badge-extensions.svg?v=623)](https://github.com/thomasthanos/an1me-extensions)
-[![NexusMods Bypass — 12k+ users](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/badge-users.svg?v=623)](https://github.com/thomasthanos/nexusmods-bypass)
+[![NexusMods Bypass — 17k+ users](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/badge-users.svg?v=623)](https://github.com/thomasthanos/nexusmods-bypass)
 [![3 desktop apps](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/badge-apps.svg?v=623)](https://github.com/thomasthanos?tab=repositories)
 <br>
 [![Website](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/btn-website.svg?v=623)](https://thomasthanos.uk)
-[![Projects](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/btn-projects.svg?v=623)](https://thomasthanos.github.io/google_extention_privacy/)
+[![Projects](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/btn-projects.svg?v=623)](https://thomasthanos.uk/projects)
 [![PayPal](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/btn-paypal.svg?v=623)](https://www.paypal.me/ThomasThanos)
 [![Revolut](https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/btn-revolut.svg?v=623)](https://revolut.me/thomas2873)
 
@@ -22,7 +22,7 @@ them forever, which is the part nobody warns you about.
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/stats-strip.svg?v=623" alt="12K+ users · 4 extensions · 3 desktop apps · 100% source available">
+<img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/stats-strip.svg?v=623" alt="17K+ users · 4 extensions · 3 desktop apps · 100% source available">
 
 </div>
 
@@ -37,7 +37,7 @@ them forever, which is the part nobody warns you about.
 Manifest V3 extension for Chrome, Firefox & Edge. No trackers, no ads, no telemetry — and the whole
 source is public, so you can check rather than take my word for it.
 
-`JavaScript` `CSS` · **12K+ users**
+`JavaScript` `CSS` · **17K+ users** · **★ 120**
 
 [→ View repository](https://github.com/thomasthanos/nexusmods-bypass)
 
@@ -125,6 +125,6 @@ even survives until morning.
   <img alt="Contribution graph" src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/snake.svg?v=623" />
 </picture>
 
-<sub><b>12,000 people use something I made. 1 person follows me here. Perfect balance.</b></sub>
+<sub><b>17,000+ people use something I made. 21 people follow me here. Still perfect balance.</b></sub>
 
 </div>
