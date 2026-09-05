@@ -32,10 +32,10 @@ them forever, which is the part nobody warns you about.
 
 <img src="https://raw.githubusercontent.com/thomasthanos/thomasthanos/assets/.github/assets/proj-extensions.svg?v=623" width="40">
 
-**NexusMods Bypass**
+**Browser Extensions**
 
-Simplifies Nexus Mods downloads, manages collection download queues, and keeps a local history of
-completed files. No trackers, no ads, no telemetry, and 100% public source.
+Four Manifest V3 extensions for Chrome & Edge. No trackers, no ads, no telemetry — and the whole
+source is public, so you can check rather than take my word for it.
 
 `JavaScript` `CSS` · **12K+ users**
 
