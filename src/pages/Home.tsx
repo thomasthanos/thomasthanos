@@ -35,12 +35,10 @@ export function Home() {
     return [first, pick(rest)]
   }, [])
 
-  /* Derived from the project data, never typed in. "Shipped" is the browser extensions plus
-     anything that lists Electron — three and five today. The old hardcoded 7 had already drifted
-     out of step with what the case studies say. */
+  /* Count shipped browser and desktop projects independently of their runtime. */
   const counts = useMemo(
     () => ({
-      shipped: projects.filter((p) => p.category === 'browser' || p.tech.includes('Electron'))
+      shipped: projects.filter((p) => ['browser', 'windows', 'desktop'].includes(p.category))
         .length,
       entries: stackGroups.reduce((n, g) => n + g.items.length, 0),
     }),
@@ -128,7 +126,7 @@ export function Home() {
 
         <Reveal as="section" className="proof" aria-label={t.detail.metrics}>
           <div className="proof__cell">
-            <span className="proof__n">8K+</span>
+            <span className="proof__n">39K+</span>
             <span className="proof__t">{t.home.statsUsers}</span>
           </div>
           <div className="proof__cell">

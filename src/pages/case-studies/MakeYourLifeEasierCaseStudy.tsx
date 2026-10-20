@@ -42,36 +42,37 @@ interface CaseSectionProps {
 const copy = {
   en: {
     back: 'Back to projects',
-    eyebrow: 'Windows utility · v4.6.7',
+    eyebrow: 'Windows toolkit · v10.0.6',
     tagline: 'Built because repetitive clicking is stupid.',
     source: 'View source',
-    verified: 'Real v4.6.7 interface — captured from the running app',
+    download: 'Download MYLE',
+    verified: 'Historical v4.6.7 interface · before the Tauri redesign',
     metrics: 'By the numbers',
     features: 'What it actually does',
     featuresNote: 'One window. Fewer chores.',
     architecture: 'Under the hood',
     architectureNote: 'Local first. Privilege only when a task needs it.',
-    renderer: 'Renderer',
-    rendererNote: 'Electron UI · no Node access',
-    bridge: 'Preload bridge',
-    bridgeNote: 'Narrow, explicit API',
-    main: 'Main process',
-    mainNote: 'The only privileged boundary',
+    renderer: 'Svelte frontend',
+    rendererNote: 'Svelte 5 · TypeScript · WebView2',
+    bridge: 'Tauri commands',
+    bridgeNote: 'Typed frontend calls',
+    main: 'Rust backend',
+    mainNote: 'Validates native operations',
     local: 'Local files',
-    localNote: 'Settings + encrypted session',
+    localNote: 'Settings + encrypted vault',
     windows: 'Windows tools',
     windowsNote: 'winget · SFC · DISM · PowerShell',
     updater: 'Updater',
-    updaterNote: 'R2 feed · signed builds',
+    updaterNote: 'R2 · SHA-256 · GitHub fallback',
     cloud: 'Optional sync',
-    cloudNote: 'Supabase · preferences only',
+    cloudNote: 'Account + encrypted vault sync',
     challenges: 'Engineering challenges',
     evolution: 'How it evolved',
-    evolutionNote: 'No fake “old UI” screenshots. This is what the repository proves.',
-    gallery: 'Real interface',
-    galleryNote: 'Not a Figma mockup. Not a fake dashboard.',
-    installerShot: 'The installer catalog in the current v4.6.7 build.',
-    cleanerShot: 'The system cleaner view. Every destructive option stays off by default.',
+    evolutionNote: 'From the Electron generations to the current Tauri, Svelte and Rust rewrite.',
+    gallery: 'Earlier interface',
+    galleryNote: 'Archived v4.6.7 captures, retained to show the previous Electron generation. Current downloads use the redesigned Tauri app.',
+    installerShot: 'The installer catalog in the earlier v4.6.7 Electron build.',
+    cleanerShot: 'The system cleaner in the earlier v4.6.7 Electron build.',
     privacy: 'Privacy & security',
     privacyLine: 'Your PC is not my playground.',
     lessons: 'What shipping it taught me',
@@ -83,9 +84,9 @@ const copy = {
     notes: [
       'one place for the PC chores',
       'if it needs admin, it asks',
-      '61 apps. bookmarks clearly lost the argument.',
+      'new runtime. same hatred of chores.',
       'UAC: the Windows jump scare.',
-      'four rewrites. character development.',
+      'Electron → Tauri. character development.',
       'dark because bright software hurts',
       "0 telemetry. I genuinely don't care what you clicked.",
       'Still learning. Always shipping. :)',
@@ -93,36 +94,37 @@ const copy = {
   },
   el: {
     back: 'Πίσω στα projects',
-    eyebrow: 'Windows utility · v4.6.7',
+    eyebrow: 'Windows toolkit · v10.0.6',
     tagline: 'Φτιάχτηκε γιατί τα επαναλαμβανόμενα κλικ είναι χαζά.',
     source: 'Δες τον κώδικα',
-    verified: 'Πραγματικό UI της v4.6.7 — capture από την εφαρμογή που τρέχει',
+    download: 'Κατέβασε το MYLE',
+    verified: 'Ιστορικό UI της v4.6.7 · πριν το Tauri redesign',
     metrics: 'Με αριθμούς',
     features: 'Τι κάνει πραγματικά',
     featuresNote: 'Ένα παράθυρο. Λιγότερες αγγαρείες.',
     architecture: 'Κάτω από το καπό',
     architectureNote: 'Local-first. Δικαιώματα μόνο όταν τα χρειάζεται η εργασία.',
-    renderer: 'Renderer',
-    rendererNote: 'Electron UI · χωρίς Node access',
-    bridge: 'Preload bridge',
-    bridgeNote: 'Στενό, ξεκάθαρο API',
-    main: 'Main process',
-    mainNote: 'Το μοναδικό privileged boundary',
+    renderer: 'Svelte frontend',
+    rendererNote: 'Svelte 5 · TypeScript · WebView2',
+    bridge: 'Tauri commands',
+    bridgeNote: 'Typed frontend calls',
+    main: 'Rust backend',
+    mainNote: 'Ελέγχει τις native λειτουργίες',
     local: 'Τοπικά αρχεία',
-    localNote: 'Settings + κρυπτογραφημένο session',
+    localNote: 'Settings + κρυπτογραφημένο vault',
     windows: 'Windows tools',
     windowsNote: 'winget · SFC · DISM · PowerShell',
     updater: 'Updater',
-    updaterNote: 'R2 feed · signed builds',
+    updaterNote: 'R2 · SHA-256 · GitHub fallback',
     cloud: 'Προαιρετικό sync',
-    cloudNote: 'Supabase · μόνο προτιμήσεις',
+    cloudNote: 'Λογαριασμός + encrypted vault sync',
     challenges: 'Engineering challenges',
     evolution: 'Πώς εξελίχθηκε',
-    evolutionNote: 'Χωρίς ψεύτικα “παλιά UI” screenshots. Μόνο ό,τι αποδεικνύει το repo.',
-    gallery: 'Πραγματικό interface',
-    galleryNote: 'Όχι Figma mockup. Όχι ψεύτικο dashboard.',
-    installerShot: 'Ο installer κατάλογος στο τρέχον build της v4.6.7.',
-    cleanerShot: 'Η οθόνη system cleaner. Κάθε destructive επιλογή είναι off by default.',
+    evolutionNote: 'Από τις γενιές Electron στο σημερινό rewrite με Tauri, Svelte και Rust.',
+    gallery: 'Παλαιότερο interface',
+    galleryNote: 'Αρχειακά captures της v4.6.7 από την προηγούμενη γενιά Electron. Τα σημερινά downloads χρησιμοποιούν τη νέα εφαρμογή Tauri.',
+    installerShot: 'Ο installer κατάλογος στο παλαιότερο Electron build v4.6.7.',
+    cleanerShot: 'Το system cleaner στο παλαιότερο Electron build v4.6.7.',
     privacy: 'Privacy & security',
     privacyLine: 'Ο υπολογιστής σου δεν είναι η παιδική μου χαρά.',
     lessons: 'Τι μου έμαθε το shipping',
@@ -134,9 +136,9 @@ const copy = {
     notes: [
       'ένα μέρος για τις αγγαρείες του PC',
       'αν θέλει admin, το ζητάει',
-      '61 apps. τα bookmarks έχασαν τη μάχη.',
+      'νέο runtime. οι ίδιες αγγαρείες.',
       'UAC: το jump scare των Windows.',
-      'τέσσερα rewrites. character development.',
+      'Electron → Tauri. character development.',
       'dark γιατί το φωτεινό software πονάει',
       '0 telemetry. πραγματικά δε με νοιάζει τι πάτησες.',
       'Ακόμα μαθαίνω. Πάντα shipάρω. :)',
@@ -145,34 +147,20 @@ const copy = {
 } as const
 
 const statData = {
-  en: [
-    ['61', 'built-in apps'],
-    ['4', 'data-layer rebuilds'],
-    ['Signed', 'Authenticode builds'],
-    ['Local-first', 'no cloud required'],
-    ['Auto-update', 'setup + portable'],
-    ['0', 'telemetry'],
-  ],
-  el: [
-    ['61', 'ενσωματωμένα apps'],
-    ['4', 'data-layer rebuilds'],
-    ['Signed', 'Authenticode builds'],
-    ['Local-first', 'χωρίς απαραίτητο cloud'],
-    ['Auto-update', 'setup + portable'],
-    ['0', 'telemetry'],
-  ],
+  en: [['10.0.6', 'latest release'], ['Tauri 2', 'native app shell'], ['Svelte 5', 'TypeScript frontend'], ['Rust', 'native backend'], ['SHA-256', 'verified updates'], ['3', 'GitHub stars · 20 Oct 2026']],
+  el: [['10.0.6', 'νεότερη έκδοση'], ['Tauri 2', 'native app shell'], ['Svelte 5', 'TypeScript frontend'], ['Rust', 'native backend'], ['SHA-256', 'επαληθευμένα updates'], ['3', 'GitHub stars · 20 Οκτ 2026']],
 } as const
 
 const evolution = {
   en: [
     ['v2 · 2025', 'First tagged generation', 'The product shape was already real: one app gathering Windows chores that used to live in separate scripts and pages.'],
     ['v3 · 2025', 'The monolith came apart', 'The renderer and main process moved into modules, CSP and IPC boundaries got stricter, and updates became a product feature instead of an afterthought.'],
-    ['v4 · now', 'The plumbing grew up', 'Signed builds, R2 updates, local-first settings, safeStorage sessions, cancellable jobs and health checks. Less exciting to screenshot. Much better to ship.'],
+    ['v10 · 2026', 'Redesigned and recoded', 'Electron gave way to Tauri 2, Svelte 5 and Rust. The current toolkit adds game-save backups, an encrypted vault with browser integration, and MYLE Passwords builds for Android and iPhone.'],
   ],
   el: [
     ['v2 · 2025', 'Η πρώτη tagged γενιά', 'Το προϊόν είχε ήδη μορφή: μία εφαρμογή που μαζεύει Windows αγγαρείες οι οποίες πριν ζούσαν σε ξεχωριστά scripts και σελίδες.'],
     ['v3 · 2025', 'Ο μονόλιθος έσπασε', 'Renderer και main process έγιναν modules, τα CSP και IPC όρια έγιναν αυστηρότερα και το update έγινε product feature αντί για υποσημείωση.'],
-    ['v4 · τώρα', 'Τα σωληνάκια ωρίμασαν', 'Signed builds, R2 updates, local-first settings, safeStorage sessions, cancellable jobs και health checks. Λιγότερο εντυπωσιακά σε screenshot. Πολύ καλύτερα στο shipping.'],
+    ['v10 · 2026', 'Redesign και recode', 'Το Electron έδωσε τη θέση του σε Tauri 2, Svelte 5 και Rust. Το σημερινό toolkit περιλαμβάνει game-save backups, encrypted vault με browser integration και MYLE Passwords builds για Android και iPhone.'],
   ],
 } as const
 
@@ -227,10 +215,11 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
                 <Github aria-hidden="true" />
                 {c.source}
               </a>
-              <Link className="btn btn--outline" to="/projects">
-                {c.more}
-                <ArrowRight aria-hidden="true" />
-              </Link>
+              {p.demo && (
+                <a className="btn btn--outline" href={p.demo} {...external}>
+                  <Download aria-hidden="true" /> {c.download}
+                </a>
+              )}
             </div>
           </Reveal>
 
@@ -303,7 +292,7 @@ export function MakeYourLifeEasierCaseStudy({ project: p, near }: Props) {
                 <strong>{c.bridge}</strong>
                 <span>{c.bridgeNote}</span>
               </div>
-              <div className="myle-arch__route" aria-hidden="true"><span>contextBridge</span></div>
+              <div className="myle-arch__route" aria-hidden="true"><span>invoke</span></div>
               <div className="myle-arch__node myle-arch__node--main">
                 <LockKeyhole aria-hidden="true" />
                 <strong>{c.main}</strong>

@@ -36,14 +36,14 @@ interface Props {
 const copy = {
   en: {
     back: 'Back to projects',
-    eyebrow: 'Browser extension · v2.4.4',
+    eyebrow: 'Browser extension · v3.1.9',
     tagline: '200 mods. One button. Sanity preserved.',
     source: 'View source',
     install: 'Extensions page',
     schematic: 'Interface schematic — drawn from the extension’s own queue data, not a screenshot',
 
     metrics: 'By the numbers',
-    metricsNote: 'Chrome Web Store, a normal week.',
+    metricsNote: '20 Oct 2026 · Chrome developer dashboard + GitHub. Users are not weekly activity. Release 3.1.9 is on GitHub; the submitted store update is under review.',
 
     maths: 'The maths was insulting',
     mathsNote: 'The wait was never the problem. The multiplication was.',
@@ -58,34 +58,35 @@ const copy = {
     sumTotalNote: 'gone',
 
     queue: 'How the queue works',
-    queueNote: 'One press. The background worker does the rest, and survives you navigating away.',
+    queueNote: 'One press. The background worker schedules the queue; keep the collection tab open.',
     steps: [
       ['Detect', 'A collection page is recognised and its revision read.'],
       ['Build', 'Every mod in the revision becomes a queue entry.'],
       ['Resolve', 'Each entry is turned into a real download link.'],
       ['Pace', 'A configurable pause keeps Nexus from throttling the session.'],
       ['Hand off', 'Send to Vortex, or download in the browser.'],
-      ['Remember', 'Finished files are written to local history.'],
+      ['Remember', 'Browser completions and Vortex handoffs are recorded separately in local history.'],
       ['Resume', 'An interrupted run picks up instead of starting over.'],
     ],
 
     features: 'What it actually does',
-    featuresNote: 'Seven things, in rough order of how much they matter.',
+    featuresNote: 'Collections, integrations and the additions in 3.1.9.',
 
     challenges: 'Engineering challenges',
     challengesNote: 'The parts that were genuinely hard.',
 
     architecture: 'Under the hood',
-    architectureNote: 'Manifest V3. One host. No server anywhere in the picture.',
+    architectureNote: 'Manifest V3. Nexus page access. A separate, optional report relay.',
 
     privacy: 'Privacy',
-    privacyLine: 'no cloud. no account. no nonsense.',
+    privacyLine: 'local history. optional reports. your choice.',
     granted: 'What it asks for',
     absent: 'What it deliberately does not',
     grantedItems: [
       ['storage', 'settings and download history, locally'],
       ['downloads', 'the browser download mode'],
-      ['downloads.ui', 'un-hides the button for old profiles'],
+      ['downloads.ui', 'hides the download bubble during a run, then restores it'],
+      ['scripting', 'loads packaged features when needed'],
       ['alarms', 'paces the queue between mods'],
       ['nexusmods.com', 'the only site it can read'],
     ],
@@ -93,8 +94,8 @@ const copy = {
       ['tabs', 'never reads your other tabs'],
       ['<all_urls>', 'no access to any other site'],
       ['remote code', 'everything ships in the package'],
-      ['analytics', 'nothing is measured or sent'],
-      ['account', 'there is nothing to sign in to'],
+      ['analytics', 'no analytics SDK; error reporting is opt-in'],
+      ['account', 'no extension account; your Nexus login is required'],
     ],
 
     origin: 'Where it came from',
@@ -112,13 +113,13 @@ const copy = {
       ],
       [
         'Now',
-        '15K at peak, ~8.5K steady',
-        'It peaked near fifteen thousand users and settles around eight and a half thousand in a normal week. No marketing, no post, no launch. People just kept installing it.',
+        '39,972 Chrome users · 142 stars',
+        'The developer dashboard on 20 October 2026 shows 39,972 Chrome users and a 4.84/5 rating. GitHub has 142 stars. These are dated snapshots; Firefox and Edge are not added to that count.',
       ],
     ],
 
     gallery: 'Real interface',
-    galleryNote: 'Captured from v2.4.3 running in Chrome. No mockups, no device frames.',
+    galleryNote: 'Historical screenshots from v2.4.3 in Chrome. The 3.1.9 release adds newer controls described above.',
     openShot: 'open full size',
     shotPrev: 'Previous screen',
     shotNext: 'Next screen',
@@ -143,22 +144,22 @@ const copy = {
       'rate limits have feelings too.',
       'it remembers, because I won’t.',
       'Firefox made it weird.',
-      '8K people also hated clicking.',
-      'no cloud. no account. calm down.',
+      '39K+ people also hated clicking.',
+      'local history. reports only by choice.',
       'the timer started it.',
     ],
   },
 
   el: {
     back: 'Πίσω στα projects',
-    eyebrow: 'Browser extension · v2.4.4',
+    eyebrow: 'Browser extension · v3.1.9',
     tagline: '200 mods. Ένα κουμπί. Τα νεύρα σου σώθηκαν.',
     source: 'Δες τον κώδικα',
     install: 'Σελίδα extensions',
     schematic: 'Σκίτσο interface — φτιαγμένο από τα δεδομένα της ίδιας της ουράς, όχι screenshot',
 
     metrics: 'Με αριθμούς',
-    metricsNote: 'Chrome Web Store, μια κανονική εβδομάδα.',
+    metricsNote: '20 Οκτ 2026 · Chrome developer dashboard + GitHub. Οι χρήστες δεν είναι εβδομαδιαία δραστηριότητα. Η 3.1.9 είναι στο GitHub· το υποβληθέν store update περιμένει έλεγχο.',
 
     maths: 'Τα μαθηματικά ήταν προσβλητικά',
     mathsNote: 'Η αναμονή δεν ήταν ποτέ το πρόβλημα. Ο πολλαπλασιασμός ήταν.',
@@ -173,34 +174,35 @@ const copy = {
     sumTotalNote: 'πάει',
 
     queue: 'Πώς δουλεύει η ουρά',
-    queueNote: 'Ένα πάτημα. Τα υπόλοιπα τα κάνει το background worker, και επιβιώνει αν φύγεις από τη σελίδα.',
+    queueNote: 'Ένα πάτημα. Το background worker προγραμματίζει την ουρά· κράτα το tab του collection ανοιχτό.',
     steps: [
       ['Εντοπισμός', 'Αναγνωρίζει σελίδα collection και διαβάζει το revision.'],
       ['Ουρά', 'Κάθε mod του revision γίνεται εγγραφή στην ουρά.'],
       ['Ανάλυση', 'Κάθε εγγραφή γίνεται πραγματικό download link.'],
       ['Ρυθμός', 'Ρυθμιζόμενη παύση ώστε να μη σε κόψει το Nexus.'],
       ['Παράδοση', 'Send to Vortex, ή download μέσα από τον browser.'],
-      ['Μνήμη', 'Ό,τι τελείωσε γράφεται σε τοπικό ιστορικό.'],
+      ['Μνήμη', 'Οι ολοκληρώσεις browser downloads και τα Vortex handoffs καταγράφονται ξεχωριστά στο τοπικό ιστορικό.'],
       ['Συνέχεια', 'Ένα run που κόπηκε συνεχίζει αντί να ξαναρχίζει.'],
     ],
 
     features: 'Τι κάνει πραγματικά',
-    featuresNote: 'Εφτά πράγματα, χοντρικά κατά σειρά σημασίας.',
+    featuresNote: 'Collections, integrations και οι προσθήκες της 3.1.9.',
 
     challenges: 'Engineering challenges',
     challengesNote: 'Τα κομμάτια που ήταν όντως δύσκολα.',
 
     architecture: 'Κάτω από το καπό',
-    architectureNote: 'Manifest V3. Ένας host. Κανένας server πουθενά στην εικόνα.',
+    architectureNote: 'Manifest V3. Πρόσβαση σε σελίδες Nexus. Ξεχωριστό, προαιρετικό report relay.',
 
     privacy: 'Ιδιωτικότητα',
-    privacyLine: 'κανένα cloud. κανένας λογαριασμός. ηρέμησε.',
+    privacyLine: 'τοπικό ιστορικό. προαιρετικά reports.',
     granted: 'Τι ζητάει',
     absent: 'Τι επίτηδες δεν ζητάει',
     grantedItems: [
       ['storage', 'settings και ιστορικό, τοπικά'],
       ['downloads', 'το browser download mode'],
-      ['downloads.ui', 'ξανα-εμφανίζει το κουμπί σε παλιά profiles'],
+      ['downloads.ui', 'κρύβει προσωρινά το download bubble και το επαναφέρει'],
+      ['scripting', 'φορτώνει λειτουργίες του πακέτου όταν χρειάζονται'],
       ['alarms', 'ρυθμίζει τον ρυθμό ανάμεσα στα mods'],
       ['nexusmods.com', 'το μόνο site που μπορεί να διαβάσει'],
     ],
@@ -208,8 +210,8 @@ const copy = {
       ['tabs', 'δεν διαβάζει ποτέ τις άλλες σου καρτέλες'],
       ['<all_urls>', 'καμία πρόσβαση σε άλλο site'],
       ['remote code', 'τα πάντα έρχονται μέσα στο πακέτο'],
-      ['analytics', 'τίποτα δεν μετριέται και τίποτα δεν φεύγει'],
-      ['λογαριασμός', 'δεν υπάρχει πουθενά να συνδεθείς'],
+      ['analytics', 'χωρίς analytics SDK· error reports μόνο με επιλογή σου'],
+      ['λογαριασμός', 'χωρίς λογαριασμό extension· απαιτείται σύνδεση στο Nexus'],
     ],
 
     origin: 'Από πού ξεκίνησε',
@@ -227,13 +229,13 @@ const copy = {
       ],
       [
         'Σήμερα',
-        '15K στο peak, ~8.5K σταθερά',
-        'Έφτασε κοντά στις δεκαπέντε χιλιάδες χρήστες και κάθεται γύρω στις οκτώμισι χιλιάδες σε μια κανονική εβδομάδα. Μηδέν marketing, μηδέν post, μηδέν launch. Απλώς το κατέβαζε ο κόσμος.',
+        '39.972 χρήστες Chrome · 142 stars',
+        'Το developer dashboard στις 20 Οκτωβρίου 2026 δείχνει 39.972 χρήστες Chrome και βαθμολογία 4,84/5. Το GitHub έχει 142 stars. Είναι στιγμιότυπα της ημερομηνίας· Firefox και Edge δεν προστίθενται σε αυτόν τον αριθμό.',
       ],
     ],
 
     gallery: 'Πραγματικό interface',
-    galleryNote: 'Capture από την v2.4.3 σε Chrome. Χωρίς mockups, χωρίς πλαίσια συσκευών.',
+    galleryNote: 'Ιστορικά screenshots από την v2.4.3 σε Chrome. Η 3.1.9 προσθέτει τα νεότερα controls που περιγράφονται παραπάνω.',
     openShot: 'πλήρες μέγεθος',
     shotPrev: 'Προηγούμενη οθόνη',
     shotNext: 'Επόμενη οθόνη',
@@ -258,8 +260,8 @@ const copy = {
       'και τα rate limits έχουν αισθήματα.',
       'το θυμάται αυτό, γιατί εγώ δεν πρόκειται.',
       'ο Firefox το έκανε περίεργο.',
-      '8 χιλιάδες άτομα σιχάθηκαν κι αυτοί τα κλικ.',
-      'κανένα cloud. κανένας λογαριασμός. ηρέμησε.',
+      '39 χιλιάδες και βάλε σιχάθηκαν τα κλικ.',
+      'τοπικό ιστορικό. προαιρετικά reports.',
       'το χρονόμετρο το ξεκίνησε.',
     ],
   },
@@ -812,6 +814,10 @@ export function NexusModsBypassCaseStudy({ project: p, near }: Props) {
               <a className="btn btn--outline btn--path" href={p.repo} {...external}>
                 <Github aria-hidden="true" /> {p.repoLabel} <ExternalLink aria-hidden="true" />
               </a>
+              <a className="btn btn--outline" href="https://addons.mozilla.org/en-US/firefox/addon/nexusmods-bypass/" {...external}>Firefox <ExternalLink aria-hidden="true" /></a>
+              <a className="btn btn--outline" href="https://microsoftedge.microsoft.com/addons/detail/hcjpcnajmkanhodhpkoinodjbkeolgaa" {...external}>Edge <ExternalLink aria-hidden="true" /></a>
+              <a className="btn btn--outline" href="https://github.com/thomasthanos/nexusmods-bypass/releases/latest" {...external}>GitHub release <ExternalLink aria-hidden="true" /></a>
+              <a className="btn btn--outline" href="https://github.com/thomasthanos/nexusmods-bypass/blob/main/PRIVACY.md" {...external}>{c.privacy} <ExternalLink aria-hidden="true" /></a>
             </div>
             {p.disclaimer && (
               <p className="nxb-disclaimer">

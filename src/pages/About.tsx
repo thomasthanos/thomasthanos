@@ -187,7 +187,7 @@ export function About() {
             {[
               { v: String(projects.length), k: t.about.nowProjects },
               { v: '2018', k: t.about.nowSince },
-              { v: '~8K', k: t.about.nowUsers },
+              { v: '39K+', k: t.about.nowUsers },
               { v: '0', k: t.about.nowAnalytics },
             ].map((s) => (
               <div className="pk-stat" key={s.k}>

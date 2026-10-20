@@ -20,8 +20,8 @@ export const stackGroups: StackGroup[] = [
     accent: 'lime',
     title: { en: 'Languages', el: 'Γλώσσες' },
     blurb: {
-      en: 'Four, and I reach for the same one most days.',
-      el: 'Τέσσερις, και τις μισές μέρες πιάνω την ίδια.',
+      en: 'The tools behind the extensions, desktop apps and native rewrite.',
+      el: 'Τα εργαλεία πίσω από τα extensions, τα desktop apps και το native rewrite.',
     },
     items: [
       {
@@ -30,7 +30,7 @@ export const stackGroups: StackGroup[] = [
           en: 'The default. Extensions, Electron main processes, everything glued together.',
           el: 'Η προεπιλογή. Extensions, Electron main processes, και ό,τι κολλάει τα υπόλοιπα μεταξύ τους.',
         },
-        usedIn: ['nexusmods-bypass', 'an1me-tracker', 'make-your-life-easier'],
+        usedIn: ['nexusmods-bypass', 'an1me-tracker'],
       },
       {
         name: 'TypeScript',
@@ -38,7 +38,12 @@ export const stackGroups: StackGroup[] = [
           en: 'When a project crosses process boundaries. One shared types file catches more IPC bugs than any test I have written.',
           el: 'Όταν ένα project περνάει όρια διεργασιών. Ένα κοινό αρχείο τύπων πιάνει περισσότερα IPC bugs από κάθε test που έχω γράψει.',
         },
-        usedIn: ['steam-idler'],
+        usedIn: ['steam-idler', 'make-your-life-easier'],
+      },
+      {
+        name: 'Rust',
+        note: { en: 'Native operations and the shared password vault in MYLE.', el: 'Native λειτουργίες και το κοινό password vault του MYLE.' },
+        usedIn: ['make-your-life-easier'],
       },
       {
         name: 'Python',
@@ -68,13 +73,17 @@ export const stackGroups: StackGroup[] = [
     },
     items: [
       {
+        name: 'Tauri 2 / Svelte 5',
+        note: { en: 'MYLE was recoded from Electron into a Svelte frontend and Rust backend.', el: 'Το MYLE ξαναγράφτηκε από Electron σε Svelte frontend και Rust backend.' },
+        usedIn: ['make-your-life-easier'],
+      },
+      {
         name: 'Electron',
         note: {
           en: 'Five apps deep. I know exactly which parts of it will bite, and context isolation is not optional.',
           el: 'Πέντε εφαρμογές βαθιά. Ξέρω ακριβώς ποια κομμάτια του δαγκώνουν, και το context isolation δεν είναι προαιρετικό.',
         },
         usedIn: [
-          'make-your-life-easier',
           'steam-idler',
           'autoclicker-premium',
           'github-build-release',
@@ -159,8 +168,8 @@ export const stackGroups: StackGroup[] = [
       {
         name: 'Supabase',
         note: {
-          en: 'Auth and preference sync. Google and Discord OAuth, and nothing that would hurt if the service vanished.',
-          el: 'Auth και sync προτιμήσεων. Google και Discord OAuth, και τίποτα που θα πονούσε αν εξαφανιζόταν αύριο η υπηρεσία.',
+          en: 'Optional account sign-in and sync in MYLE, including encrypted vault sync. Local maintenance works without an account.',
+          el: 'Προαιρετική σύνδεση και sync στο MYLE, μαζί με encrypted vault sync. Η τοπική συντήρηση λειτουργεί χωρίς λογαριασμό.',
         },
         usedIn: ['make-your-life-easier'],
       },
@@ -182,8 +191,8 @@ export const stackGroups: StackGroup[] = [
       {
         name: 'Cloudflare R2',
         note: {
-          en: 'Update feed for installers and portable builds. Cheap, boring, does not go down.',
-          el: 'Update feed για installers και portable builds. Φθηνό, βαρετό, δεν πέφτει ποτέ.',
+          en: 'MYLE update and download feeds, with SHA-256 verification and GitHub Releases as fallback.',
+          el: 'Feeds για updates και downloads του MYLE, με έλεγχο SHA-256 και fallback στα GitHub Releases.',
         },
         usedIn: ['make-your-life-easier'],
       },
@@ -241,8 +250,8 @@ export const areas: AreaItem[] = [
   {
     title: { en: 'Browser extensions', el: 'Browser extensions' },
     body: {
-      en: 'Modifying sites I do not control, politely and reversibly. Three shipped, one with thousands of weekly users.',
-      el: 'Να πειράζω sites που δεν ελέγχω, ευγενικά και αναστρέψιμα. Τρία βγήκαν, το ένα με χιλιάδες χρήστες την εβδομάδα.',
+      en: 'Modifying sites I do not control, politely and reversibly. Three shipped; NexusMods Bypass has 39K+ Chrome users in the October 2026 snapshot.',
+      el: 'Να πειράζω sites που δεν ελέγχω, ευγενικά και αναστρέψιμα. Τρία βγήκαν· το NexusMods Bypass έχει 39K+ χρήστες Chrome στο στιγμιότυπο Οκτωβρίου 2026.',
     },
     proof: ['nexusmods-bypass', 'an1me-tracker', 'an1me-speed-control'],
   },
@@ -257,8 +266,8 @@ export const areas: AreaItem[] = [
   {
     title: { en: 'Desktop apps', el: 'Desktop εφαρμογές' },
     body: {
-      en: 'Electron with a locked-down renderer, an isolated worker for anything native, and auto-update that has actually been tested.',
-      el: 'Electron με κλειδωμένο renderer, απομονωμένο worker για ό,τι είναι native, και auto-update που έχει όντως τεσταριστεί.',
+      en: 'Electron apps and the MYLE rewrite with Tauri, Svelte and Rust: explicit native boundaries and verified updates.',
+      el: 'Εφαρμογές Electron και το rewrite του MYLE με Tauri, Svelte και Rust: ρητά native όρια και επαληθευμένα updates.',
     },
     proof: ['steam-idler', 'make-your-life-easier', 'github-build-release'],
   },

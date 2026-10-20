@@ -54,8 +54,8 @@ export const timeline: TimelineEntry[] = [
     period: '2026 — now',
     title: { en: 'Shipping things other people use', el: 'Βγάζω πράγματα που χρησιμοποιούν άλλοι' },
     body: {
-      en: 'Three browser extensions, five desktop applications, a Discord bot, a data tool and a pile of smaller utilities. NexusMods Bypass alone runs for around 8,000 people in a normal week. Everything is source-available, nothing collects anything, and I still fix bugs the same evening someone reports them.',
-      el: 'Τρία browser extensions, πέντε desktop εφαρμογές, ένα Discord bot, ένα data tool και ένα σωρό μικρότερα utilities. Μόνο το NexusMods Bypass τρέχει για κάπου 8.000 άτομα σε μια κανονική εβδομάδα. Ο κώδικας όλων είναι ανοιχτός, κανένα δεν μαζεύει δεδομένα, και ακόμα διορθώνω bugs το ίδιο βράδυ που θα μου τα αναφέρει κάποιος.',
+      en: 'Three browser extensions, five desktop applications, a Discord bot, a data tool and a pile of smaller utilities. NexusMods Bypass reached 39,972 Chrome users and 142 GitHub stars in the 20 October 2026 snapshot. MYLE has been redesigned and recoded with Tauri, Svelte and Rust. The source is available to read; optional diagnostics and sync are described per project.',
+      el: 'Τρία browser extensions, πέντε desktop εφαρμογές, ένα Discord bot, ένα data tool και ένα σωρό μικρότερα utilities. Το NexusMods Bypass έφτασε τους 39.972 χρήστες Chrome και 142 GitHub stars στο στιγμιότυπο της 20ής Οκτωβρίου 2026. Το MYLE έχει γίνει redesign και recode με Tauri, Svelte και Rust. Ο κώδικας είναι διαθέσιμος για ανάγνωση· τα προαιρετικά diagnostics και το sync εξηγούνται ανά project.',
     },
   },
 ]
