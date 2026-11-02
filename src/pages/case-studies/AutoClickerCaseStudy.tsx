@@ -46,7 +46,7 @@ const copy = {
     back: 'Back to projects',
     eyebrow: 'Desktop app · Windows 11 Edition',
     tagline: 'The clicking was never the hard part. The cost of starting a process was.',
-    source: 'View source',
+    source: 'View related current source',
     more: 'More projects',
 
     metrics: 'By the numbers',
@@ -201,7 +201,7 @@ const copy = {
     back: 'Πίσω στα projects',
     eyebrow: 'Desktop app · Windows 11 Edition',
     tagline: 'Το κλικ δεν ήταν ποτέ το δύσκολο. Το κόστος εκκίνησης μιας διεργασίας ήταν.',
-    source: 'Δες τον κώδικα',
+    source: 'Δες τον σχετικό σημερινό κώδικα',
     more: 'Περισσότερα projects',
 
     metrics: 'Με νούμερα',
