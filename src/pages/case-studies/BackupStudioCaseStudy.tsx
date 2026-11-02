@@ -46,7 +46,7 @@ const copy = {
     back: 'Back to projects',
     eyebrow: 'Desktop app · Windows',
     tagline: 'Git protects what you committed. This protects the three days you did not.',
-    source: 'View source',
+    source: 'View related current source',
     more: 'More projects',
 
     metrics: 'By the numbers',
@@ -203,7 +203,7 @@ const copy = {
     back: 'Πίσω στα projects',
     eyebrow: 'Desktop app · Windows',
     tagline: 'Το Git προστατεύει ό,τι έκανες commit. Αυτό προστατεύει τις τρεις μέρες που δεν έκανες.',
-    source: 'Δες τον κώδικα',
+    source: 'Δες τον σχετικό σημερινό κώδικα',
     more: 'Περισσότερα projects',
 
     metrics: 'Με νούμερα',
