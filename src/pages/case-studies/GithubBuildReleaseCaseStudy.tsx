@@ -49,7 +49,7 @@ const copy = {
     back: 'Back to projects',
     eyebrow: 'Desktop app · ReleaseFlow',
     tagline: 'The part of shipping nobody enjoys, reduced to one window and one button.',
-    source: 'View source',
+    source: 'View related current source',
     more: 'More projects',
 
     metrics: 'By the numbers',
@@ -208,7 +208,7 @@ const copy = {
     back: 'Πίσω στα projects',
     eyebrow: 'Desktop app · ReleaseFlow',
     tagline: 'Το κομμάτι του shipping που δεν γουστάρει κανείς, σε ένα παράθυρο και ένα κουμπί.',
-    source: 'Δες τον κώδικα',
+    source: 'Δες τον σχετικό σημερινό κώδικα',
     more: 'Περισσότερα projects',
 
     metrics: 'Με νούμερα',
