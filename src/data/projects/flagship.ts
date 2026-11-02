@@ -34,12 +34,12 @@ export const flagship: Project[] = [
       { value: '0', label: { en: 'analytics SDKs', el: 'analytics SDKs' } },
     ],
     short: {
-      en: 'Anime episode tracking, playback resume and a searchable library with optional cloud sync. Chrome, Edge, Brave and Safari on iPhone.',
-      el: 'Παρακολούθηση επεισοδίων anime, resume και βιβλιοθήκη με προαιρετικό cloud sync. Chrome, Edge, Brave και Safari σε iPhone.',
+      en: 'Anime tracking, playback resume and integrated Speed Control, with a searchable library and optional cloud sync. Desktop and iPhone Safari.',
+      el: 'Anime tracking, resume και ενσωματωμένο Speed Control, με βιβλιοθήκη αναζήτησης και προαιρετικό cloud sync. Desktop και Safari iPhone.',
     },
     summary: {
-      en: 'The tracker saves episode progress, resumes playback and presents a searchable anime library with optional Firebase sync, AniSkip outro skipping and desktop AniList alerts. Version 8.3.8 also supports iPhone Safari through SideStore (with mobile-specific limits).',
-      el: 'Ο tracker κρατά την πρόοδο επεισοδίων, συνεχίζει το βίντεο από εκεί που σταμάτησες και παρέχει βιβλιοθήκη με αναζήτηση, προαιρετικό Firebase sync, AniSkip και ειδοποιήσεις AniList σε desktop. Η 8.3.8 λειτουργεί και σε Safari iPhone μέσω SideStore, με περιορισμούς ειδικούς για mobile.',
+      en: 'The tracker combines episode progress, playback resume and the formerly separate Speed Control in one extension. Version 8.3.8 includes a searchable library, optional Firebase sync, AniSkip and desktop AniList alerts, with iPhone Safari support through SideStore and touch speed controls up to 2×.',
+      el: 'Ο tracker συνδυάζει πρόοδο επεισοδίων, resume και το παλιότερα ξεχωριστό Speed Control σε ένα extension. Η 8.3.8 περιλαμβάνει βιβλιοθήκη αναζήτησης, προαιρετικό Firebase sync, AniSkip και desktop alerts AniList, μαζί με υποστήριξη Safari iPhone μέσω SideStore και touch speed controls έως 2×.',
     },
     why: {
       en: 'Remembering which episode you were on is apparently too much to ask of a grown adult. It is also a solved problem everywhere except on the site I actually use, so I solved it there.',
@@ -50,6 +50,13 @@ export const flagship: Project[] = [
       el: 'Ξεκινάς ένα βίντεο και το επεισόδιο καταγράφεται — χωρίς κουμπιά. Το ξανανοίγεις και συνεχίζει από το δευτερόλεπτο που σταμάτησες. Στην αρχική μπαίνει μια σειρά Continue Watching, τα δεδομένα επεισόδια σημειώνονται στη σελίδα της σειράς, και εμφανίζεται κουμπί Skip Outro με χρόνους από το AniSkip.',
     },
     features: [
+      {
+        title: { en: 'Integrated Speed Control', el: 'Ενσωματωμένο Speed Control' },
+        body: {
+          en: 'The former standalone extension is built in. Hold F7 to boost or use F8 to toggle on desktop, with boost speeds up to 8×. On iPhone, choose 1×–2× or hold the speed button for a temporary 2× boost. Settings stay local; no account is required.',
+          el: 'Το παλιό ξεχωριστό extension είναι πλέον ενσωματωμένο. Κράτησε F7 για boost ή πάτησε F8 για toggle στο desktop, έως 8×. Στο iPhone διάλεξε 1×–2× ή κράτησε το κουμπί για προσωρινό boost 2×. Οι ρυθμίσεις μένουν τοπικά, χωρίς απαίτηση λογαριασμού.',
+        },
+      },
       {
         title: { en: 'Tracking that happens by itself', el: 'Tracking που γίνεται μόνο του' },
         body: {

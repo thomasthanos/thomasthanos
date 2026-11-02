@@ -73,7 +73,7 @@ const copy = {
     } as Record<ShotKey, string>,
 
     pillars: 'What it does while you watch',
-    pillarsNote: 'Three jobs, none of which need you.',
+    pillarsNote: 'Tracking, resume, filler and speed controls in one extension.',
     pillarList: [
       {
         title: 'Records by itself',
@@ -100,6 +100,15 @@ const copy = {
           'filler episodes flagged from AnimeFillerList',
           'canon progress tracked apart from raw episode number',
           'outro timings from AniSkip, intros captured by hand',
+        ],
+      },
+      {
+        title: 'Speed Control, now built in',
+        body: 'The separate speed tool is now part of the Tracker. No second extension or account needed.',
+        lines: [
+          'F7 hold and F8 toggle, with desktop boosts up to 8×',
+          'iPhone touch controls from 1× to 2×, with hold-to-boost',
+          'local preferences under Settings → Speed Control',
         ],
       },
     ],
@@ -156,7 +165,7 @@ const copy = {
     ],
 
     privacy: 'Privacy',
-    privacyHeadline: 'Without an account, nothing leaves the machine.',
+    privacyHeadline: 'The library stays local unless you enable sync. Metadata lookups still contact external providers.',
     privacyChant: ['No analytics.', 'No ad SDK.', 'No telemetry.', 'No sale.'],
     privacyPoints: [
       [
@@ -234,7 +243,7 @@ const copy = {
     } as Record<ShotKey, string>,
 
     pillars: 'Τι κάνει όσο βλέπεις',
-    pillarsNote: 'Τρεις δουλειές, καμία δεν σε χρειάζεται.',
+    pillarsNote: 'Tracking, resume, filler και speed controls σε ένα extension.',
     pillarList: [
       {
         title: 'Καταγράφει μόνο του',
@@ -261,6 +270,15 @@ const copy = {
           'filler επεισόδια από το AnimeFillerList',
           'canon πρόοδος ξεχωριστά από τον σκέτο αριθμό',
           'χρόνοι outro από AniSkip, τα intro στο χέρι',
+        ],
+      },
+      {
+        title: 'Speed Control, πλέον ενσωματωμένο',
+        body: 'Το ξεχωριστό εργαλείο ταχύτητας είναι πλέον μέρος του Tracker. Χωρίς δεύτερο extension ή λογαριασμό.',
+        lines: [
+          'F7 hold και F8 toggle, με desktop boost έως 8×',
+          'touch controls iPhone από 1× έως 2×, με hold-to-boost',
+          'τοπικές προτιμήσεις στο Settings → Speed Control',
         ],
       },
     ],
@@ -317,7 +335,7 @@ const copy = {
     ],
 
     privacy: 'Ιδιωτικότητα',
-    privacyHeadline: 'Χωρίς λογαριασμό, τίποτα δεν φεύγει από το μηχάνημα.',
+    privacyHeadline: 'Η βιβλιοθήκη μένει τοπικά μέχρι να ενεργοποιήσεις sync. Τα metadata lookups επικοινωνούν με εξωτερικούς παρόχους.',
     privacyChant: ['Χωρίς analytics.', 'Χωρίς ad SDK.', 'Χωρίς telemetry.', 'Χωρίς πώληση.'],
     privacyPoints: [
       [

@@ -54,8 +54,8 @@ export const timeline: TimelineEntry[] = [
     period: '2026 — now',
     title: { en: 'Shipping things other people use', el: 'Βγάζω πράγματα που χρησιμοποιούν άλλοι' },
     body: {
-      en: 'Three browser extensions, five desktop applications, a Discord bot, a data tool and a pile of smaller utilities. NexusMods Bypass reached 39,972 Chrome users and 142 GitHub stars in the 20 October 2026 snapshot. MYLE has been redesigned and recoded with Tauri, Svelte and Rust. The source is available to read; optional diagnostics and sync are described per project.',
-      el: 'Τρία browser extensions, πέντε desktop εφαρμογές, ένα Discord bot, ένα data tool και ένα σωρό μικρότερα utilities. Το NexusMods Bypass έφτασε τους 39.972 χρήστες Chrome και 142 GitHub stars στο στιγμιότυπο της 20ής Οκτωβρίου 2026. Το MYLE έχει γίνει redesign και recode με Tauri, Svelte και Rust. Ο κώδικας είναι διαθέσιμος για ανάγνωση· τα προαιρετικά diagnostics και το sync εξηγούνται ανά project.',
+      en: 'NexusMods Bypass and An1me Tracker, Windows and desktop apps, a Discord bot and a data viewer. Speed Control now lives in the Tracker; AutoClicker, GitHub Build Release and Backup Studio live in MYLE, rebuilt with Tauri, Svelte and Rust. Each project lists its current stack and whether its repository is public or private.',
+      el: 'NexusMods Bypass και An1me Tracker, Windows και desktop apps, ένα Discord bot και ένας data viewer. Το Speed Control βρίσκεται πλέον στον Tracker· τα AutoClicker, GitHub Build Release και Backup Studio στο MYLE, ξαναγραμμένο με Tauri, Svelte και Rust. Κάθε project αναφέρει το σημερινό stack του και αν το repository είναι δημόσιο ή ιδιωτικό.',
     },
   },
 ]

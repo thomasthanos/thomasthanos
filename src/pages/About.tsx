@@ -7,6 +7,7 @@ import { Reveal } from '@/components/ui/Reveal'
 import { SwipeHint } from '@/components/ui/SwipeHint'
 import { Annotation } from '@/components/ui/Annotation'
 import { useI18n } from '@/i18n/i18n'
+import { nexusmodsAudience } from '@/data/projects/current'
 import { useChaos } from '@/hooks/useChaos'
 import { useDocumentMeta } from '@/hooks/useDocumentMeta'
 import { bio, likes, principles, timeline } from '@/data/about'
@@ -177,7 +178,7 @@ export function About() {
           </div>
         </div>
 
-        {/* Bridge from the story to the twelve case studies. Counted, not estimated. */}
+        {/* Counts follow the current project catalog. */}
         <section className="ab__now" aria-labelledby="ab-now-title">
           <div className="pk-rule ab__now-rule">
             <h2 id="ab-now-title">{t.about.nowTitle}</h2>
@@ -187,7 +188,7 @@ export function About() {
             {[
               { v: String(projects.length), k: t.about.nowProjects },
               { v: '2018', k: t.about.nowSince },
-              { v: '39K+', k: t.about.nowUsers },
+              { v: nexusmodsAudience.value, k: tr(nexusmodsAudience.label) },
               { v: '0', k: t.about.nowAnalytics },
             ].map((s) => (
               <div className="pk-stat" key={s.k}>

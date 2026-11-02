@@ -4,6 +4,14 @@ import { more } from '@/data/projects/more'
 
 export const projects: Project[] = [...flagship, ...more]
 
+// Keep saved links working after standalone tools join their parent project.
+export const mergedProjects = [
+  { from: 'an1me-speed-control', to: 'an1me-tracker' },
+  { from: 'autoclicker-premium', to: 'make-your-life-easier' },
+  { from: 'github-build-release', to: 'make-your-life-easier' },
+  { from: 'backup-studio', to: 'make-your-life-easier' },
+] as const
+
 export const featuredProjects: Project[] = projects
   .filter((p): p is Project & { featured: number } => p.featured !== undefined)
   .sort((a, b) => a.featured - b.featured)

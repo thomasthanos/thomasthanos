@@ -144,7 +144,7 @@ const copy = {
       'rate limits have feelings too.',
       'it remembers, because I won’t.',
       'Firefox made it weird.',
-      '39K+ people also hated clicking.',
+      'queues, not another evening of clicking.',
       'local history. reports only by choice.',
       'the timer started it.',
     ],

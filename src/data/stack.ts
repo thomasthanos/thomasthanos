@@ -80,15 +80,10 @@ export const stackGroups: StackGroup[] = [
       {
         name: 'Electron',
         note: {
-          en: 'Five apps deep. I know exactly which parts of it will bite, and context isolation is not optional.',
-          el: 'Πέντε εφαρμογές βαθιά. Ξέρω ακριβώς ποια κομμάτια του δαγκώνουν, και το context isolation δεν είναι προαιρετικό.',
+          en: 'The runtime behind Steam Idler. Earlier standalone utilities now live in the Tauri-based MYLE.',
+          el: 'Το runtime του Steam Idler. Τα παλιότερα ξεχωριστά utilities έχουν ενσωματωθεί στο MYLE με Tauri.',
         },
-        usedIn: [
-          'steam-idler',
-          'autoclicker-premium',
-          'github-build-release',
-          'backup-studio',
-        ],
+        usedIn: ['steam-idler'],
       },
       {
         name: 'Node.js',
@@ -96,7 +91,7 @@ export const stackGroups: StackGroup[] = [
           en: 'Every main process, every build script, the Discord bot.',
           el: 'Κάθε main process, κάθε build script, το Discord bot.',
         },
-        usedIn: ['discord-bot-dashboard', 'github-build-release'],
+        usedIn: ['discord-bot-dashboard', 'make-your-life-easier'],
       },
       {
         name: 'React',
@@ -104,7 +99,7 @@ export const stackGroups: StackGroup[] = [
           en: 'For renderers with real state. Not for a page that could be three files.',
           el: 'Για renderers με πραγματικό state. Όχι για μια σελίδα που θα ήταν τρία αρχεία.',
         },
-        usedIn: ['steam-idler', 'github-build-release'],
+        usedIn: ['steam-idler'],
       },
       {
         name: 'Vite',
@@ -120,8 +115,8 @@ export const stackGroups: StackGroup[] = [
     accent: 'blue',
     title: { en: 'Browser Platform', el: 'Πλατφόρμα Browser' },
     blurb: {
-      en: 'Three extensions in, Manifest V3 has opinions and I have learned them the hard way.',
-      el: 'Τρία extensions μέσα, το Manifest V3 έχει απόψεις και τις έμαθα με τον δύσκολο τρόπο.',
+      en: 'NexusMods Bypass and An1me Tracker, including its integrated speed controls. Manifest V3 has opinions.',
+      el: 'NexusMods Bypass και An1me Tracker, μαζί με τα ενσωματωμένα speed controls. Το Manifest V3 έχει απόψεις.',
     },
     items: [
       {
@@ -130,7 +125,7 @@ export const stackGroups: StackGroup[] = [
           en: 'Service workers die constantly. Design for waking up, not for staying alive.',
           el: 'Τα service workers πεθαίνουν συνέχεια. Σχεδίασέ το για να ξυπνάει, όχι για να επιβιώνει.',
         },
-        usedIn: ['nexusmods-bypass', 'an1me-tracker', 'an1me-speed-control'],
+        usedIn: ['nexusmods-bypass', 'an1me-tracker'],
       },
       {
         name: 'Chrome Extension APIs',
@@ -234,7 +229,7 @@ export const stackGroups: StackGroup[] = [
           en: 'The actual Windows automation surface underneath the pretty buttons.',
           el: 'Η πραγματική επιφάνεια αυτοματισμού των Windows, κάτω από τα ωραία κουμπιά.',
         },
-        usedIn: ['make-your-life-easier', 'autoclicker-premium'],
+        usedIn: ['make-your-life-easier'],
       },
     ],
   },
@@ -250,10 +245,10 @@ export const areas: AreaItem[] = [
   {
     title: { en: 'Browser extensions', el: 'Browser extensions' },
     body: {
-      en: 'Modifying sites I do not control, politely and reversibly. Three shipped; NexusMods Bypass has 39K+ Chrome users in the October 2026 snapshot.',
-      el: 'Να πειράζω sites που δεν ελέγχω, ευγενικά και αναστρέψιμα. Τρία βγήκαν· το NexusMods Bypass έχει 39K+ χρήστες Chrome στο στιγμιότυπο Οκτωβρίου 2026.',
+      en: 'NexusMods Bypass handles download queues; An1me Tracker combines episode progress and speed controls in one extension.',
+      el: 'Το NexusMods Bypass διαχειρίζεται ουρές downloads· ο An1me Tracker συνδυάζει πρόοδο επεισοδίων και speed controls σε ένα extension.',
     },
-    proof: ['nexusmods-bypass', 'an1me-tracker', 'an1me-speed-control'],
+    proof: ['nexusmods-bypass', 'an1me-tracker'],
   },
   {
     title: { en: 'Windows automation', el: 'Windows automation' },
@@ -261,7 +256,7 @@ export const areas: AreaItem[] = [
       en: 'winget, SFC, DISM, PowerShell, scheduled cleanup and per-task elevation — wrapped so you never see any of it.',
       el: 'winget, SFC, DISM, PowerShell, προγραμματισμένο καθάρισμα και elevation ανά εργασία — τυλιγμένα ώστε να μη χρειάζεται να δεις τίποτα από αυτά.',
     },
-    proof: ['make-your-life-easier', 'autoclicker-premium'],
+    proof: ['make-your-life-easier'],
   },
   {
     title: { en: 'Desktop apps', el: 'Desktop εφαρμογές' },
@@ -269,7 +264,7 @@ export const areas: AreaItem[] = [
       en: 'Electron apps and the MYLE rewrite with Tauri, Svelte and Rust: explicit native boundaries and verified updates.',
       el: 'Εφαρμογές Electron και το rewrite του MYLE με Tauri, Svelte και Rust: ρητά native όρια και επαληθευμένα updates.',
     },
-    proof: ['steam-idler', 'make-your-life-easier', 'github-build-release'],
+    proof: ['steam-idler', 'make-your-life-easier'],
   },
   {
     title: { en: 'Data parsing', el: 'Data parsing' },
@@ -285,7 +280,7 @@ export const areas: AreaItem[] = [
       en: 'GitHub, AniList GraphQL, Jikan, AniSkip, Steam, Dropbox. Mostly the art of failing well when they are down.',
       el: 'GitHub, AniList GraphQL, Jikan, AniSkip, Steam, Dropbox. Κυρίως η τέχνη του να μη σκας όταν πέφτουν.',
     },
-    proof: ['an1me-tracker', 'github-build-release', 'steam-idler'],
+    proof: ['an1me-tracker', 'make-your-life-easier', 'steam-idler'],
   },
   {
     title: { en: 'UI development', el: 'UI development' },

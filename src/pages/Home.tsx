@@ -11,6 +11,7 @@ import { useI18n } from '@/i18n/i18n'
 import { useChaos } from '@/hooks/useChaos'
 import { useDocumentMeta } from '@/hooks/useDocumentMeta'
 import { featuredProjects, labProjects, projects } from '@/data/projects'
+import { nexusmodsAudience } from '@/data/projects/current'
 import { stackGroups } from '@/data/stack'
 import { site } from '@/data/site'
 import { statusChips } from '@/data/eggs'
@@ -38,7 +39,10 @@ export function Home() {
   /* Count shipped browser and desktop projects independently of their runtime. */
   const counts = useMemo(
     () => ({
-      shipped: projects.filter((p) => ['browser', 'windows', 'desktop'].includes(p.category))
+      shipped: projects.filter((p) =>
+        ['browser', 'windows', 'desktop'].includes(p.category) &&
+        ['active', 'maintained', 'shipped'].includes(p.status),
+      )
         .length,
       entries: stackGroups.reduce((n, g) => n + g.items.length, 0),
     }),
@@ -126,8 +130,8 @@ export function Home() {
 
         <Reveal as="section" className="proof" aria-label={t.detail.metrics}>
           <div className="proof__cell">
-            <span className="proof__n">39K+</span>
-            <span className="proof__t">{t.home.statsUsers}</span>
+            <span className="proof__n">{nexusmodsAudience.value}</span>
+            <span className="proof__t">{tr(nexusmodsAudience.label)}</span>
           </div>
           <div className="proof__cell">
             <span className="proof__n">{counts.shipped}</span>

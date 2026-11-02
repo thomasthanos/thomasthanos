@@ -1,8 +1,16 @@
-import type { Project } from '@/data/types'
+import type { Metric, Project } from '@/data/types'
 
 // Refreshed 2026-11-02 from source repositories, release metadata and Chrome Web Store export.
 // Weekly users: owner-provided CSV for 2026-10-31. Rating: dated snapshot, 2026-10-20.
 // GitHub stars: GitHub API snapshot, 2026-11-02.
+export const nexusmodsAudience: Metric = {
+  value: '15,486',
+  label: {
+    en: 'weekly Chrome users · 31 Oct 2026',
+    el: 'εβδομαδιαίοι χρήστες Chrome · 31/10/2026',
+  },
+}
+
 export const currentProjects: Project[] = [
   {
     slug: 'nexusmods-bypass',
@@ -31,7 +39,7 @@ export const currentProjects: Project[] = [
       "13 languages"
     ],
     "metrics": [
-      { "value": "15,486", "label": { "en": "weekly Chrome users · 31 Oct 2026", "el": "εβδομαδιαίοι χρήστες Chrome · 31/10/2026" } },
+      nexusmodsAudience,
       { "value": "156", "label": { "en": "GitHub stars · 2 Nov 2026", "el": "GitHub stars · 02/11/2026" } },
       { "value": "4.84 / 5", "label": { "en": "Chrome rating · 20 Oct 2026", "el": "βαθμολογία Chrome · 20/10/2026" } }
     ],
@@ -375,8 +383,8 @@ export const currentProjects: Project[] = [
       "el": "Windows toolkit με Tauri 2, Svelte 5 και Rust: εγκαταστάσεις winget, κρυπτογραφημένο vault, backups παιχνιδιών/projects, disk analysis και επαληθευμένα updates."
     },
     "summary": {
-      "en": "MYLE 10.1.6 combines Windows app installs, password and passkey management, game-save and project backups, disk analysis, maintenance and Spotify customization. Current Svelte 5/TypeScript and Rust/Tauri 2 code replaced the historical Electron version.",
-      "el": "Το MYLE 10.1.6 συνδυάζει εγκατάσταση apps, password/passkey manager, backups παιχνιδιών και projects, ανάλυση δίσκων, συντήρηση Windows και Spotify. Το σημερινό Svelte 5/TypeScript και Rust/Tauri 2 αντικατέστησε την ιστορική έκδοση Electron."
+      "en": "MYLE 10.1.6 brings thirteen Windows tool pages into one Svelte 5, TypeScript and Rust/Tauri 2 app. AutoClicker Premium, GitHub Build Release and Backup Studio now live here as Auto Clicker, GitHub Releases and Project Backups, alongside the encrypted vault, game saves and maintenance tools.",
+      "el": "Το MYLE 10.1.6 συγκεντρώνει δεκατρείς σελίδες εργαλείων Windows σε μία εφαρμογή Svelte 5, TypeScript και Rust/Tauri 2. Τα AutoClicker Premium, GitHub Build Release και Backup Studio βρίσκονται πλέον εδώ ως Auto Clicker, GitHub Releases και Project Backups, μαζί με το κρυπτογραφημένο vault, τα game saves και τα εργαλεία συντήρησης."
     },
     "why": {
       "en": "Windows chores kept sending me between scripts, installers, settings pages and browser tabs. I kept the jobs that mattered, rebuilt the interface in Svelte and moved native work into Rust. The product stayed; the Electron plumbing did not.",
@@ -387,7 +395,9 @@ export const currentProjects: Project[] = [
       "el": "Ένα Svelte frontend μιλά με Rust commands μέσω Tauri. Το toolkit συνδυάζει εγκατάσταση και updates apps, κρυπτογραφημένο password vault με browser integration, game-save backups μέσω Ludusavi, Spotify customization, καθάρισμα και επισκευή συστήματος. Τα downloads και τα updates ελέγχονται πριν εγκατασταθούν."
     },
     "features": [
-      { "title": { "en": "Project backups & diff", "el": "Backups έργων και σύγκριση" }, "body": { "en": "Archive project folders to Google Drive or Dropbox, verify backups and compare snapshots.", "el": "Αρχειοθέτηση projects σε Google Drive ή Dropbox, επαλήθευση backups και σύγκριση snapshots." } },
+      { "title": { "en": "Project Backups · formerly Backup Studio", "el": "Project Backups · πρώην Backup Studio" }, "body": { "en": "The former standalone backup tool is now a MYLE page: archive project folders to Google Drive or Dropbox, verify backups and compare snapshots.", "el": "Το παλιό ξεχωριστό backup tool είναι πλέον σελίδα του MYLE: αρχειοθέτηση projects σε Google Drive ή Dropbox, επαλήθευση backups και σύγκριση snapshots." } },
+      { "title": { "en": "Auto Clicker · formerly AutoClicker Premium", "el": "Auto Clicker · πρώην AutoClicker Premium" }, "body": { "en": "Repeat clicks at a chosen interval or replay a sequence of recorded points. F6 starts and stops the run, directly inside MYLE.", "el": "Επανάληψη κλικ σε επιλεγμένο διάστημα ή εκτέλεση ακολουθίας καταγεγραμμένων σημείων. Το F6 ξεκινά και σταματά την εκτέλεση μέσα στο MYLE." } },
+      { "title": { "en": "GitHub Releases · formerly GitHub Build Release", "el": "GitHub Releases · πρώην GitHub Build Release" }, "body": { "en": "Commit, build and release projects from MYLE: update version files, write notes, create tags and upload assets or use the tag-triggered Actions workflow.", "el": "Commit, build και release projects από το MYLE: ενημέρωση version files, release notes, δημιουργία tags και ανέβασμα assets ή εκτέλεση του Actions workflow του tag." } },
       { "title": { "en": "Disk Analyzer", "el": "Ανάλυση δίσκου" }, "body": { "en": "Treemap and folder tree showing large files, file types and space usage.", "el": "Treemap και δέντρο φακέλων με μεγάλα αρχεία, τύπους αρχείων και χρήση χώρου." } },
       {
         "title": {

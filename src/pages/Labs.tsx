@@ -28,14 +28,12 @@ export function Labs() {
     path: '/labs',
   })
 
-  /* Every figure here is counted from the repositories, not estimated. One of the six is the
-     2018 origin and is marked legacy rather than dropped; nothing here was abandoned. */
   const legacy = labProjects.filter((p) => p.status === 'legacy').length
   const stats = [
     { v: String(labProjects.length), k: t.labs.statProjects },
-    { v: '55K', k: t.labs.statLines },
-    { v: String(labProjects.length), k: t.labs.statWriteups },
-    { v: '0', k: t.labs.statAbandoned },
+    { v: String(labProjects.filter((p) => ['active', 'maintained', 'shipped'].includes(p.status)).length), k: t.labs.statActive },
+    { v: String(labProjects.filter((p) => p.status === 'experiment').length), k: t.labs.statExperiments },
+    { v: String(legacy), k: t.labs.statLegacy },
   ]
 
   return (

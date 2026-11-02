@@ -18,16 +18,12 @@ import { Reveal } from '@/components/ui/Reveal'
 import { SwipeHint } from '@/components/ui/SwipeHint'
 import { useI18n } from '@/i18n/i18n'
 import { useDocumentMeta } from '@/hooks/useDocumentMeta'
-import { getProject, neighbours } from '@/data/projects'
+import { getProject, mergedProjects, neighbours } from '@/data/projects'
 import { external } from '@/utils'
-import { An1meSpeedControlCaseStudy } from '@/pages/case-studies/An1meSpeedControlCaseStudy'
-import { AutoClickerCaseStudy } from '@/pages/case-studies/AutoClickerCaseStudy'
-import { BackupStudioCaseStudy } from '@/pages/case-studies/BackupStudioCaseStudy'
 import { BetterDiscordThemesCaseStudy } from '@/pages/case-studies/BetterDiscordThemesCaseStudy'
 import { An1meTrackerCaseStudy } from '@/pages/case-studies/An1meTrackerCaseStudy'
 import { DiscordBotDashboardCaseStudy } from '@/pages/case-studies/DiscordBotDashboardCaseStudy'
 import { DiscordPackageViewerCaseStudy } from '@/pages/case-studies/DiscordPackageViewerCaseStudy'
-import { GithubBuildReleaseCaseStudy } from '@/pages/case-studies/GithubBuildReleaseCaseStudy'
 import { GtaAcademyCaseStudy } from '@/pages/case-studies/GtaAcademyCaseStudy'
 import { MakeYourLifeEasierCaseStudy } from '@/pages/case-studies/MakeYourLifeEasierCaseStudy'
 import { NexusModsBypassCaseStudy } from '@/pages/case-studies/NexusModsBypassCaseStudy'
@@ -37,14 +33,16 @@ import '@/pages/detail.css'
 export function ProjectDetail() {
   const { slug = '' } = useParams()
   const { t, tr, trList } = useI18n()
-  const project = getProject(slug)
+  const mergedInto = mergedProjects.find((p) => p.from === slug)?.to
+  const project = getProject(mergedInto ?? slug)
 
   useDocumentMeta({
     title: project ? project.name : t.projects.title,
     description: project ? tr(project.short) : t.projects.lede,
-    path: `/projects/${slug}`,
+    path: `/projects/${mergedInto ?? slug}`,
   })
 
+  if (mergedInto) return <Navigate to={`/projects/${mergedInto}`} replace />
   if (!project) return <Navigate to="/projects" replace />
 
   const p = project
@@ -74,28 +72,12 @@ export function ProjectDetail() {
     return <GtaAcademyCaseStudy project={p} near={near} />
   }
 
-  if (p.slug === 'an1me-speed-control') {
-    return <An1meSpeedControlCaseStudy project={p} near={near} />
-  }
-
-  if (p.slug === 'github-build-release') {
-    return <GithubBuildReleaseCaseStudy project={p} near={near} />
-  }
-
   if (p.slug === 'betterdiscord-themes') {
     return <BetterDiscordThemesCaseStudy project={p} near={near} />
   }
 
-  if (p.slug === 'backup-studio') {
-    return <BackupStudioCaseStudy project={p} near={near} />
-  }
-
   if (p.slug === 'discord-bot-dashboard') {
     return <DiscordBotDashboardCaseStudy project={p} near={near} />
-  }
-
-  if (p.slug === 'autoclicker-premium') {
-    return <AutoClickerCaseStudy project={p} near={near} />
   }
 
   return (
