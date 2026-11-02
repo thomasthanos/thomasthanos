@@ -7,13 +7,12 @@ export const more: Project[] = [
     slug: 'an1me-speed-control',
     name: 'An1me.to Speed Control',
     category: 'browser',
-    status: 'maintained',
+    status: 'legacy',
     accent: 'pink',
     year: '2026',
     version: '3.5',
-    repo: `${GH}/an1me-extensions/tree/main/an1me-speed-control`,
-    repoLabel: 'an1me-extensions',
-    repoPath: 'an1me-speed-control',
+    repo: `${GH}/An1me-Tracker`,
+    repoLabel: 'An1me-Tracker',
     tech: ['JavaScript', 'Manifest V3', 'chrome.storage'],
     lab: {
       badge: { en: 'Surprisingly stable', el: 'Απρόσμενα σταθερό' },
@@ -149,13 +148,13 @@ export const more: Project[] = [
     name: 'AutoClicker Premium',
     category: 'windows',
     alsoIn: ['desktop', 'automation'],
-    status: 'maintained',
+    status: 'legacy',
     accent: 'violet',
     year: '2026',
     version: '1.0.0',
-    repo: `${GH}/desktop-utils/tree/main/autoclicker_premium`,
-    repoLabel: 'desktop-utils',
-    repoPath: 'autoclicker_premium',
+    repo: `${GH}/MYLE/tree/main/frontend/app/pages/auto-clicker`,
+    repoLabel: 'MYLE',
+    repoPath: 'frontend/app/pages/auto-clicker',
     tech: ['Electron', 'React', 'TypeScript', 'Tailwind', 'Radix UI', 'PowerShell'],
     lab: {
       badge: { en: 'Works on my machine', el: 'Στο δικό μου δουλεύει' },
@@ -265,6 +264,10 @@ export const more: Project[] = [
         'Το background automation χρειάζεται stop control που παραμένει προσβάσιμο όταν η εφαρμογή δεν έχει focus.',
       ],
     },
+    disclaimer: {
+      en: "Historical standalone Electron/PowerShell project. The linked MYLE page is the current auto-clicker implementation, not the original source tree.",
+      el: "Ιστορικό αυτόνομο project Electron/PowerShell. Ο σύνδεσμος οδηγεί στον σημερινό auto-clicker του MYLE και όχι στον αρχικό κώδικα.",
+    },
   },
 
   {
@@ -272,13 +275,13 @@ export const more: Project[] = [
     name: 'GitHub Build Release',
     category: 'automation',
     alsoIn: ['desktop'],
-    status: 'maintained',
+    status: 'legacy',
     accent: 'violet',
     year: '2026',
     version: '3.7.1',
-    repo: `${GH}/desktop-utils/tree/main/Github-Build-Release`,
-    repoLabel: 'desktop-utils',
-    repoPath: 'Github-Build-Release',
+    repo: `${GH}/MYLE/tree/main/frontend/app/pages/github-releases`,
+    repoLabel: 'MYLE',
+    repoPath: 'frontend/app/pages/github-releases',
     tech: ['Electron', 'React 19', 'Vite', 'GitHub CLI', 'DeepSeek', 'electron-builder'],
     lab: {
       badge: { en: 'Side quest', el: 'Side quest' },
@@ -410,6 +413,10 @@ export const more: Project[] = [
         'Αν ένα εργαλείο εξαρτάται από κάτι που δεν είναι εγκατεστημένο, η εγκατάστασή του είναι μέρος του προϊόντος. Το να στέλνεις τον χρήστη σε σελίδα λήψης είναι εκεί που πεθαίνουν σιωπηλά τα περισσότερα εσωτερικά εργαλεία.',
       ],
     },
+    disclaimer: {
+      en: "Historical standalone Electron release manager. MYLE now provides a distinct GitHub release workflow; the link points to its current implementation.",
+      el: "Ιστορικό αυτόνομο Electron release manager. Το MYLE παρέχει πλέον ξεχωριστό GitHub release workflow· ο σύνδεσμος οδηγεί στη σύγχρονη υλοποίηση.",
+    },
   },
 
   {
@@ -417,13 +424,13 @@ export const more: Project[] = [
     name: 'Backup Studio',
     category: 'automation',
     alsoIn: ['desktop', 'windows'],
-    status: 'maintained',
+    status: 'legacy',
     accent: 'blue',
     year: '2026',
     version: '2.0.2',
-    repo: `${GH}/desktop-utils/tree/main/backup_projects`,
-    repoLabel: 'desktop-utils',
-    repoPath: 'backup_projects',
+    repo: `${GH}/MYLE/tree/main/frontend/app/pages/project-backups`,
+    repoLabel: 'MYLE',
+    repoPath: 'frontend/app/pages/project-backups',
     tech: ['Electron', 'React 18', 'Node.js', 'diff2html', 'Babel standalone'],
     lab: {
       badge: { en: 'Built out of fear', el: 'Φτιαγμένο από φόβο' },
@@ -546,6 +553,10 @@ export const more: Project[] = [
         'Αυτό είναι το τίμιο κενό: δεν υπάρχει ακόμα restore. Αρχειοθετεί, συγκρίνει, ποτέ δεν επαναφέρει έκδοση. Το recovery αξίζει την ίδια προσοχή με την καταγραφή, και μέχρι στιγμής δεν την είχε — ανοίγω τον φάκελο και κάνω unzip στο χέρι όπως όλοι.',
       ],
     },
+    disclaimer: {
+      en: "Historical standalone Dropbox backup tool. The linked MYLE project-backups page is the current implementation, supporting Google Drive and Dropbox.",
+      el: "Ιστορικό ξεχωριστό εργαλείο Dropbox backup. Ο σύνδεσμος οδηγεί στη σημερινή λειτουργία MYLE Project Backups με Google Drive και Dropbox.",
+    },
   },
 
   {
@@ -557,9 +568,8 @@ export const more: Project[] = [
     accent: 'violet',
     year: '2026 — now',
     version: '1.0.0',
-    repo: `${GH}/desktop-utils/tree/main/discord_bot`,
-    repoLabel: 'desktop-utils',
-    repoPath: 'discord_bot',
+    repo: `${GH}/discord-dashboard-bot`,
+    repoLabel: 'discord-dashboard-bot (private)',
     tech: [
       'Node.js 22',
       'discord.js v14',
@@ -710,6 +720,10 @@ export const more: Project[] = [
         'Το να δώσεις read-only δικαιώματα σε ένα AI layer δεν είναι περιορισμός. Είναι ο μόνος λόγος που ήταν ασφαλές να μπει.',
       ],
     },
+    disclaimer: {
+      en: "Private source repository; GitHub access is restricted. The project uses discord.js v14, Node.js, Express, Socket.IO and SQLite.",
+      el: "Ιδιωτικό repository: ο πηγαίος κώδικας δεν είναι δημόσια προσβάσιμος. Υλοποίηση με discord.js v14, Node.js, Express, Socket.IO και SQLite.",
+    },
   },
 
   {
@@ -719,7 +733,7 @@ export const more: Project[] = [
     alsoIn: ['web'],
     status: 'legacy',
     accent: 'violet',
-    year: '2018 — now',
+    year: '2022 — now',
     repo: `${GH}/1st-theme`,
     repoLabel: '1st-theme',
     tech: ['CSS', 'JavaScript', 'BetterDiscord', 'DevTools'],
@@ -841,6 +855,65 @@ export const more: Project[] = [
     disclaimer: {
       en: 'Not affiliated with Discord or BetterDiscord.',
       el: 'Χωρίς σχέση με το Discord ή το BetterDiscord.',
+    },
+  },
+  {
+    slug: 'touch-screen-app',
+    name: 'Touch 0.2 · Windows Touch Dashboard',
+    category: 'windows',
+    alsoIn: ['desktop', 'discord'],
+    status: 'experiment',
+    accent: 'blue',
+    year: '2026 — now',
+    version: '0.2.0',
+    repo: `${GH}/touch-screen-app`,
+    repoLabel: 'touch-screen-app (private)',
+    tech: ['Tauri 2', 'Svelte 5', 'Rust', '.NET 10', 'WebView2', 'LibreHardwareMonitor'],
+    short: {
+      en: 'Portable Windows dashboard designed for a 7-inch touchscreen, with system monitoring, app launching, game mode and Discord voice controls.',
+      el: 'Portable Windows dashboard για οθόνη αφής 7 ιντσών, με hardware monitoring, εκκίνηση apps, game mode και χειριστήρια Discord.',
+    },
+    summary: {
+      en: 'A portable 1024×600 Windows control surface built with Svelte 5 and Tauri 2, with a self-contained .NET 10 monitoring helper. It includes live CPU/GPU/RAM/network readings, customizable app shortcuts and a Discord mixer. Its game mode is designed to avoid stealing focus from the active game.',
+      el: 'Portable περιβάλλον ελέγχου Windows 1024×600 με Svelte 5/Tauri 2 και self-contained .NET 10 helper. Περιλαμβάνει αισθητήρες CPU/GPU/RAM/network, συντομεύσεις εφαρμογών και Discord mixer. Το game mode σχεδιάστηκε για να μην αφαιρεί focus από το ενεργό παιχνίδι.',
+    },
+    features: [
+      { title: { en: 'Live hardware readings', el: 'Live μετρήσεις hardware' }, body: { en: 'CPU/GPU temperatures, usage, memory, storage and network sensors through LibreHardwareMonitor.', el: 'Θερμοκρασίες και χρήση CPU/GPU, μνήμη, δίσκοι και δίκτυο μέσω LibreHardwareMonitor.' } },
+      { title: { en: 'Touch-first game mode', el: 'Game mode για touch' }, body: { en: 'Separate game/edit modes designed for touch interaction while preserving foreground game focus.', el: 'Ξεχωριστά game/edit modes για χειρισμό αφής χωρίς απώλεια focus από το παιχνίδι.' } },
+      { title: { en: 'Discord controls', el: 'Έλεγχος Discord' }, body: { en: 'Optional Discord voice mixer, mute/deafen and BetterDiscord bridge integration.', el: 'Προαιρετικό Discord voice mixer, mute/deafen και BetterDiscord bridge.' } },
+    ],
+    disclaimer: {
+      en: 'Private, work-in-progress repository. Features that depend on real touchscreen hardware or Discord authorization require validation on the target setup; source link is not publicly accessible.',
+      el: 'Ιδιωτικό repository σε εξέλιξη. Οι λειτουργίες πραγματικής αφής και Discord authorization απαιτούν δοκιμή στο αντίστοιχο setup· ο κώδικας δεν είναι δημόσιος.',
+    },
+  },
+  {
+    slug: 'glass-player',
+    name: 'Glass Player',
+    category: 'desktop',
+    alsoIn: ['windows'],
+    status: 'experiment',
+    accent: 'violet',
+    year: '2026',
+    version: '0.1.0',
+    repo: `${GH}/svelte-video-player-prompt`,
+    repoLabel: 'svelte-video-player-prompt (private)',
+    tech: ['Tauri 2', 'Svelte 5', 'Vite', 'JavaScript', 'WebView2'],
+    short: {
+      en: 'Lightweight portable Windows video player with a glass-style UI, playlists, subtitle support and playback resume.',
+      el: 'Ελαφρύς portable video player για Windows με glass UI, playlists, υπότιτλους και συνέχιση αναπαραγωγής.',
+    },
+    summary: {
+      en: 'A portable Windows media player written with Svelte 5 and Tauri 2. It opens local files or folders, sorts episode playlists naturally, remembers playback positions and automatically finds matching SRT, WebVTT and ASS/SSA subtitles.',
+      el: 'Portable media player για Windows με Svelte 5 και Tauri 2. Ανοίγει αρχεία/φακέλους, ταξινομεί επεισόδια, θυμάται το σημείο αναπαραγωγής και αναζητά αυτόματα υπότιτλους SRT, WebVTT και ASS/SSA.',
+    },
+    features: [
+      { title: { en: 'Smart playlists', el: 'Έξυπνες playlists' }, body: { en: 'Folder import, natural episode ordering and drag-and-drop file opening.', el: 'Εισαγωγή φακέλων, φυσική ταξινόμηση επεισοδίων και drag-and-drop.' } },
+      { title: { en: 'Resume and subtitles', el: 'Resume και υπότιτλοι' }, body: { en: 'Saved progress and automatic SRT/WebVTT/ASS subtitle matching.', el: 'Αποθηκευμένη πρόοδος και αυτόματη αντιστοίχιση υποτίτλων SRT/WebVTT/ASS.' } },
+    ],
+    disclaimer: {
+      en: 'Private experimental repository. Playback formats depend on codecs supported by the Windows WebView2 runtime; source is not publicly accessible.',
+      el: 'Ιδιωτικό πειραματικό repository. Τα formats εξαρτώνται από τους codecs του Windows WebView2· ο κώδικας δεν είναι δημόσιος.',
     },
   },
 ]
