@@ -44,7 +44,7 @@ const copy = {
     back: 'Back to projects',
     eyebrow: 'Browser extension · Manifest V3',
     tagline: 'Hold F7 to go faster. Press F8 to stay there. That is the entire product.',
-    source: 'View source',
+    source: 'View related current source',
     more: 'More projects',
 
     metrics: 'By the numbers',
@@ -203,7 +203,7 @@ const copy = {
     back: 'Πίσω στα projects',
     eyebrow: 'Browser extension · Manifest V3',
     tagline: 'Κρατάς F7 και τρέχει. Πατάς F8 και μένει. Αυτό είναι όλο το προϊόν.',
-    source: 'Δες τον κώδικα',
+    source: 'Δες τον σχετικό σημερινό κώδικα',
     more: 'Περισσότερα projects',
 
     metrics: 'Με νούμερα',
