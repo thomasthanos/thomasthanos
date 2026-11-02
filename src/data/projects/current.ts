@@ -1,8 +1,8 @@
 import type { Project } from '@/data/types'
 
-// Refreshed 2026-10-20 from the source repositories and releases.
-// Chrome count/rating: owner-provided developer dashboard screenshot (not weekly activity).
-// GitHub stars: live GitHub API snapshot on the same date.
+// Refreshed 2026-11-02 from source repositories, release metadata and Chrome Web Store export.
+// Weekly users: owner-provided CSV for 2026-10-31. Rating: dated snapshot, 2026-10-20.
+// GitHub stars: GitHub API snapshot, 2026-11-02.
 export const currentProjects: Project[] = [
   {
     slug: 'nexusmods-bypass',
@@ -15,7 +15,7 @@ export const currentProjects: Project[] = [
     "accent": "lime",
     "featured": 1,
     "year": "2026 — now",
-    "version": "3.1.9",
+    "version": "4.0.1",
     "repo": "https://github.com/thomasthanos/nexusmods-bypass",
     "repoLabel": "nexusmods-bypass",
     "demo": "https://chromewebstore.google.com/detail/nexusmods-bypass/chfghiknjhpcncpcjopglefnckckdlpj",
@@ -26,48 +26,34 @@ export const currentProjects: Project[] = [
       "Firefox 140+",
       "Edge",
       "Nexus API",
+      "Cloudflare Workers",
+      "Playwright",
       "13 languages"
     ],
     "metrics": [
-      {
-        "value": "39,972",
-        "label": {
-          "en": "Chrome users",
-          "el": "χρήστες Chrome"
-        }
-      },
-      {
-        "value": "142",
-        "label": {
-          "en": "GitHub stars",
-          "el": "GitHub stars"
-        }
-      },
-      {
-        "value": "4.84 / 5",
-        "label": {
-          "en": "Chrome rating",
-          "el": "βαθμολογία Chrome"
-        }
-      }
+      { "value": "15,486", "label": { "en": "weekly Chrome users · 31 Oct 2026", "el": "εβδομαδιαίοι χρήστες Chrome · 31/10/2026" } },
+      { "value": "156", "label": { "en": "GitHub stars · 2 Nov 2026", "el": "GitHub stars · 02/11/2026" } },
+      { "value": "4.84 / 5", "label": { "en": "Chrome rating · 20 Oct 2026", "el": "βαθμολογία Chrome · 20/10/2026" } }
     ],
     "short": {
-      "en": "Queue Nexus Mods collections, send files to Vortex or your browser, and resume interrupted runs. Chrome, Firefox and Edge.",
-      "el": "Βάλε Nexus Mods collections στην ουρά, στείλε αρχεία στο Vortex ή στον browser και συνέχισε ό,τι διακόπηκε. Chrome, Firefox και Edge."
+      "en": "Queue Nexus Mods collections, resume interrupted runs and handle Vortex/browser downloads with rate-limit-aware retries. Chrome, Firefox and Edge.",
+      "el": "Ουρές Nexus Mods collections, συνέχιση διακοπών και λήψεις μέσω Vortex ή browser, με έξυπνες παύσεις και retries. Chrome, Firefox και Edge."
     },
     "summary": {
-      "en": "A Manifest V3 extension for Chrome, Firefox and Edge that removes repetitive download steps on Nexus Mods. Queue a whole collection or selected files, send them to Vortex or your browser, and use local history to skip what you already sent or downloaded.",
-      "el": "Manifest V3 extension για Chrome, Firefox και Edge που αφαιρεί τα επαναλαμβανόμενα βήματα στα downloads του Nexus Mods. Βάζεις ολόκληρο collection ή επιλεγμένα αρχεία στην ουρά, τα στέλνεις στο Vortex ή στον browser και παραλείπεις όσα έχουν ήδη σταλεί ή κατέβει."
+      "en": "A Manifest V3 extension for Chrome, Firefox and Edge. Queue collections, send files to Vortex or the browser, handle throttling and Cloudflare challenges, and review local download history. Optional diagnostics use consent-based reporting.",
+      "el": "Manifest V3 extension για Chrome, Firefox και Edge. Ουρές collections, αποστολή αρχείων σε Vortex ή browser, διαχείριση rate limits και Cloudflare challenges, τοπικό ιστορικό και προαιρετικά diagnostics με συγκατάθεση."
     },
     "why": {
       "en": "A collection of 200 mods means repeating the same requirements screens, timers and download clicks 200 times. I wanted the browser to do the repetitive part while keeping control over the files and the download method.",
       "el": "Ένα collection με 200 mods σημαίνει τις ίδιες οθόνες requirements, χρονόμετρα και κλικ στο download 200 φορές. Ήθελα ο browser να κάνει την επανάληψη, με έλεγχο στα αρχεία και στον τρόπο λήψης."
     },
     "what": {
-      "en": "Choose Vortex or browser downloads, queue a collection revision, and keep the collection tab open. The background queue handles pacing and retries. A run ends with a sent/skipped/failed summary, retry controls and local history. Version 3.1.9 fixes Vortex handoff and adds optional Mod Organizer 2 metadata.",
-      "el": "Διάλεξε Vortex ή browser downloads, βάλε ένα collection revision στην ουρά και κράτα ανοιχτό το tab του collection. Η background ουρά αναλαμβάνει pacing και retries. Στο τέλος βλέπεις sent/skipped/failed, επιλογές επανάληψης και τοπικό ιστορικό. Η 3.1.9 διορθώνει το Vortex handoff και προσθέτει προαιρετικά metadata για Mod Organizer 2."
+      "en": "Choose Vortex or browser downloads, start a collection queue and keep its tab open. In 4.0.1, explicit Retry-After waits survive queue restarts, Cloudflare challenges pause the current file for retry, and transient gateway failures no longer skip files.",
+      "el": "Διάλεξε Vortex ή browser download, ξεκίνα την ουρά και κράτα ανοιχτό το tab. Στην 4.0.1, τα Retry-After διατηρούνται μετά από restart, τα Cloudflare challenges παγώνουν το τρέχον αρχείο για retry και προσωρινά gateway errors δεν παρακάμπτουν αρχεία."
     },
     "features": [
+      { "title": { "en": "Challenge-aware retries · 4.0.1", "el": "Retries με αναγνώριση challenges · 4.0.1" }, "body": { "en": "Nexus outages and Cloudflare challenges pause the current file instead of silently skipping it. Server Retry-After deadlines persist across queue restarts.", "el": "Οι διακοπές Nexus και τα Cloudflare challenges παγώνουν το τρέχον αρχείο χωρίς να το παρακάμπτουν. Τα Retry-After του server διατηρούνται μετά από restart." } },
+      { "title": { "en": "Diagnostics & issue triage", "el": "Diagnostics και διαχείριση σφαλμάτων" }, "body": { "en": "Optional privacy-reviewed bug reports, a Cloudflare Workers diagnostics dashboard and issue status tracking.", "el": "Προαιρετικά bug reports με έλεγχο προσωπικών στοιχείων, diagnostics dashboard μέσω Cloudflare Workers και παρακολούθηση κατάστασης issues." } },
       {
         "title": {
           "en": "Collection queues",
@@ -281,8 +267,8 @@ export const currentProjects: Project[] = [
       "el": "Settings, ιστορικό, κατάσταση ουράς και logs μένουν στο local extension storage. Τα download και API requests πηγαίνουν στο Nexus Mods. Δεν υπάρχει analytics SDK ή λογαριασμός του extension. Τα manual reports προβάλλονται πριν σταλούν στο relay του maintainer· τα αυτόματα τεχνικά reports είναι κλειστά μέχρι να τα ενεργοποιήσεις, με ξεχωριστή επιλογή για πρόσθετα diagnostics. Αφαιρούνται ευαίσθητα στοιχεία, αλλά τα reports δεν εγγυώνται ανωνυμία."
     },
     "impact": {
-      "en": "On 20 October 2026, the developer dashboard showed 39,972 Chrome users and a 4.84/5 rating; GitHub showed 142 stars. These are dated snapshots, not weekly activity or a combined count across browsers. GitHub 3.1.9 is available while the submitted store update is under review.",
-      "el": "Στις 20 Οκτωβρίου 2026, το developer dashboard έδειχνε 39.972 χρήστες Chrome και βαθμολογία 4,84/5· το GitHub έδειχνε 142 stars. Είναι στιγμιότυπα της ημερομηνίας, όχι εβδομαδιαία δραστηριότητα ή άθροισμα όλων των browsers. Η 3.1.9 είναι διαθέσιμη στο GitHub ενώ το υποβληθέν store update περιμένει έλεγχο."
+      "en": "The developer's Chrome Web Store export records 15,486 weekly users on 31 October 2026 (a short-lived peak of 62,652 on 22 October), while GitHub had 156 stars on 2 November. The 4.84/5 Chrome rating is a historical snapshot from 20 October.",
+      "el": "Το export του Chrome Web Store καταγράφει 15.486 εβδομαδιαίους χρήστες στις 31/10/2026 (προσωρινή κορύφωση 62.652 στις 22/10), ενώ το GitHub είχε 156 stars στις 02/11. Η βαθμολογία Chrome 4,84/5 είναι ιστορικό snapshot της 20/10."
     },
     "lessons": {
       "en": [
@@ -347,7 +333,7 @@ export const currentProjects: Project[] = [
     "accent": "violet",
     "featured": 2,
     "year": "2024 — now",
-    "version": "10.0.6",
+    "version": "10.1.6",
     "repo": "https://github.com/thomasthanos/MYLE",
     "repoLabel": "MYLE",
     "demo": "https://downloads.thomast.uk/MYLE.exe",
@@ -357,11 +343,13 @@ export const currentProjects: Project[] = [
       "TypeScript",
       "Rust",
       "WebView2",
-      "winget"
+      "winget",
+      "SQLite",
+      "GitHub Actions"
     ],
     "metrics": [
       {
-        "value": "10.0.6",
+        "value": "10.1.6",
         "label": {
           "en": "latest release",
           "el": "νεότερη έκδοση"
@@ -383,12 +371,12 @@ export const currentProjects: Project[] = [
       }
     ],
     "short": {
-      "en": "Rebuilt with Tauri, Svelte and Rust. App installs, encrypted passwords, game-save backups, Spotify tools and Windows maintenance in one place.",
-      "el": "Ξαναγραμμένο με Tauri, Svelte και Rust. Εγκατάσταση apps, κρυπτογραφημένοι κωδικοί, game-save backups, εργαλεία Spotify και συντήρηση Windows σε ένα μέρος."
+      "en": "Tauri 2, Svelte 5 and Rust Windows toolkit: winget installs, encrypted vault, game-save and project backups, disk analysis and verified updates.",
+      "el": "Windows toolkit με Tauri 2, Svelte 5 και Rust: εγκαταστάσεις winget, κρυπτογραφημένο vault, backups παιχνιδιών/projects, disk analysis και επαληθευμένα updates."
     },
     "summary": {
-      "en": "The Windows toolkit I use myself, redesigned and recoded from Electron to Tauri 2, Svelte 5 and Rust. Install and update apps, keep passwords, back up game saves, customize Spotify and maintain Windows from one interface. MYLE Passwords also has Android and iPhone builds.",
-      "el": "Το Windows toolkit που χρησιμοποιώ ο ίδιος, με redesign και recode από Electron σε Tauri 2, Svelte 5 και Rust. Εγκατάσταση και ενημέρωση apps, κωδικοί, game-save backups, Spotify και συντήρηση Windows από ένα interface. Το MYLE Passwords έχει και builds για Android και iPhone."
+      "en": "MYLE 10.1.6 combines Windows app installs, password and passkey management, game-save and project backups, disk analysis, maintenance and Spotify customization. Current Svelte 5/TypeScript and Rust/Tauri 2 code replaced the historical Electron version.",
+      "el": "Το MYLE 10.1.6 συνδυάζει εγκατάσταση apps, password/passkey manager, backups παιχνιδιών και projects, ανάλυση δίσκων, συντήρηση Windows και Spotify. Το σημερινό Svelte 5/TypeScript και Rust/Tauri 2 αντικατέστησε την ιστορική έκδοση Electron."
     },
     "why": {
       "en": "Windows chores kept sending me between scripts, installers, settings pages and browser tabs. I kept the jobs that mattered, rebuilt the interface in Svelte and moved native work into Rust. The product stayed; the Electron plumbing did not.",
@@ -399,6 +387,8 @@ export const currentProjects: Project[] = [
       "el": "Ένα Svelte frontend μιλά με Rust commands μέσω Tauri. Το toolkit συνδυάζει εγκατάσταση και updates apps, κρυπτογραφημένο password vault με browser integration, game-save backups μέσω Ludusavi, Spotify customization, καθάρισμα και επισκευή συστήματος. Τα downloads και τα updates ελέγχονται πριν εγκατασταθούν."
     },
     "features": [
+      { "title": { "en": "Project backups & diff", "el": "Backups έργων και σύγκριση" }, "body": { "en": "Archive project folders to Google Drive or Dropbox, verify backups and compare snapshots.", "el": "Αρχειοθέτηση projects σε Google Drive ή Dropbox, επαλήθευση backups και σύγκριση snapshots." } },
+      { "title": { "en": "Disk Analyzer", "el": "Ανάλυση δίσκου" }, "body": { "en": "Treemap and folder tree showing large files, file types and space usage.", "el": "Treemap και δέντρο φακέλων με μεγάλα αρχεία, τύπους αρχείων και χρήση χώρου." } },
       {
         "title": {
           "en": "Install Apps",
