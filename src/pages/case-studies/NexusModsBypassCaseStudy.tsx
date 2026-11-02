@@ -36,14 +36,14 @@ interface Props {
 const copy = {
   en: {
     back: 'Back to projects',
-    eyebrow: 'Browser extension · v3.1.9',
+    eyebrow: 'Browser extension · v4.0.1',
     tagline: '200 mods. One button. Sanity preserved.',
     source: 'View source',
     install: 'Extensions page',
     schematic: 'Interface schematic — drawn from the extension’s own queue data, not a screenshot',
 
     metrics: 'By the numbers',
-    metricsNote: '20 Oct 2026 · Chrome developer dashboard + GitHub. Users are not weekly activity. Release 3.1.9 is on GitHub; the submitted store update is under review.',
+    metricsNote: 'Chrome Web Store export: 15,486 weekly users (31 Oct 2026). GitHub: 156 stars (2 Nov). Chrome rating 4.84/5 is from 20 Oct. These are separate dated snapshots; 62,652 was a temporary weekly peak.',
 
     maths: 'The maths was insulting',
     mathsNote: 'The wait was never the problem. The multiplication was.',
@@ -70,7 +70,7 @@ const copy = {
     ],
 
     features: 'What it actually does',
-    featuresNote: 'Collections, integrations and the additions in 3.1.9.',
+    featuresNote: 'Collections, retries, official Nexus API and the 4.0.1 fixes for Cloudflare challenges and server cooldowns.',
 
     challenges: 'Engineering challenges',
     challengesNote: 'The parts that were genuinely hard.',
@@ -113,13 +113,13 @@ const copy = {
       ],
       [
         'Now',
-        '39,972 Chrome users · 142 stars',
-        'The developer dashboard on 20 October 2026 shows 39,972 Chrome users and a 4.84/5 rating. GitHub has 142 stars. These are dated snapshots; Firefox and Edge are not added to that count.',
+        '15,486 weekly Chrome users · 156 GitHub stars',
+        'The Chrome Web Store CSV reports 15,486 weekly users on 31 October 2026, after a short-lived peak of 62,652 on 22 October. GitHub had 156 stars on 2 November. The Chrome rating of 4.84/5 was recorded on 20 October. Figures are dated; Firefox/Edge are not added.',
       ],
     ],
 
     gallery: 'Real interface',
-    galleryNote: 'Historical screenshots from v2.4.3 in Chrome. The 3.1.9 release adds newer controls described above.',
+    galleryNote: 'Historical screenshots from v2.4.3 in Chrome. Current v4.0.1 adds more capable queue retry and diagnostics flows not shown in these captures.',
     openShot: 'open full size',
     shotPrev: 'Previous screen',
     shotNext: 'Next screen',
@@ -152,14 +152,14 @@ const copy = {
 
   el: {
     back: 'Πίσω στα projects',
-    eyebrow: 'Browser extension · v3.1.9',
+    eyebrow: 'Browser extension · v4.0.1',
     tagline: '200 mods. Ένα κουμπί. Τα νεύρα σου σώθηκαν.',
     source: 'Δες τον κώδικα',
     install: 'Σελίδα extensions',
     schematic: 'Σκίτσο interface — φτιαγμένο από τα δεδομένα της ίδιας της ουράς, όχι screenshot',
 
     metrics: 'Με αριθμούς',
-    metricsNote: '20 Οκτ 2026 · Chrome developer dashboard + GitHub. Οι χρήστες δεν είναι εβδομαδιαία δραστηριότητα. Η 3.1.9 είναι στο GitHub· το υποβληθέν store update περιμένει έλεγχο.',
+    metricsNote: 'Chrome Web Store: 15.486 εβδομαδιαίοι χρήστες (31/10/2026). GitHub: 156 stars (02/11). Η βαθμολογία 4,84/5 είναι από 20/10. Ξεχωριστά, χρονολογημένα στοιχεία· οι 62.652 ήταν προσωρινό μέγιστο.',
 
     maths: 'Τα μαθηματικά ήταν προσβλητικά',
     mathsNote: 'Η αναμονή δεν ήταν ποτέ το πρόβλημα. Ο πολλαπλασιασμός ήταν.',
@@ -186,7 +186,7 @@ const copy = {
     ],
 
     features: 'Τι κάνει πραγματικά',
-    featuresNote: 'Collections, integrations και οι προσθήκες της 3.1.9.',
+    featuresNote: 'Collections, retries, επίσημο Nexus API και διορθώσεις της 4.0.1 για Cloudflare challenges και server cooldowns.',
 
     challenges: 'Engineering challenges',
     challengesNote: 'Τα κομμάτια που ήταν όντως δύσκολα.',
@@ -229,13 +229,13 @@ const copy = {
       ],
       [
         'Σήμερα',
-        '39.972 χρήστες Chrome · 142 stars',
-        'Το developer dashboard στις 20 Οκτωβρίου 2026 δείχνει 39.972 χρήστες Chrome και βαθμολογία 4,84/5. Το GitHub έχει 142 stars. Είναι στιγμιότυπα της ημερομηνίας· Firefox και Edge δεν προστίθενται σε αυτόν τον αριθμό.',
+        '15.486 εβδομαδιαίοι Chrome χρήστες · 156 GitHub stars',
+        'Το CSV του Chrome Web Store καταγράφει 15.486 εβδομαδιαίους χρήστες στις 31/10/2026, μετά από προσωρινή κορυφή 62.652 στις 22/10. Το GitHub είχε 156 stars στις 02/11. Η βαθμολογία Chrome 4,84/5 καταγράφηκε στις 20/10. Δεν προστίθενται χρήστες Firefox/Edge.',
       ],
     ],
 
     gallery: 'Πραγματικό interface',
-    galleryNote: 'Ιστορικά screenshots από την v2.4.3 σε Chrome. Η 3.1.9 προσθέτει τα νεότερα controls που περιγράφονται παραπάνω.',
+    galleryNote: 'Ιστορικά screenshots της v2.4.3 σε Chrome. Η 4.0.1 έχει νεότερα queue retries και diagnostics που δεν φαίνονται σε αυτές τις λήψεις.',
     openShot: 'πλήρες μέγεθος',
     shotPrev: 'Προηγούμενη οθόνη',
     shotNext: 'Επόμενη οθόνη',
