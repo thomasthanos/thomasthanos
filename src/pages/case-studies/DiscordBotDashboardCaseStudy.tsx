@@ -48,7 +48,7 @@ const copy = {
     back: 'Back to projects',
     eyebrow: 'Discord bot · live dashboard',
     tagline: 'Twenty commands, a 24/7 radio, and a control panel that speaks Greek.',
-    source: 'View source',
+    source: 'Private repository (access required)',
     more: 'More projects',
 
     metrics: 'By the numbers',
@@ -206,7 +206,7 @@ const copy = {
     back: 'Πίσω στα projects',
     eyebrow: 'Discord bot · ζωντανό dashboard',
     tagline: 'Είκοσι εντολές, ραδιόφωνο 24/7, και πίνακας ελέγχου που μιλάει ελληνικά.',
-    source: 'Δες τον κώδικα',
+    source: 'Ιδιωτικό repo (απαιτείται πρόσβαση)',
     more: 'Περισσότερα projects',
 
     metrics: 'Με νούμερα',
