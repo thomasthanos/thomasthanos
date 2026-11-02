@@ -51,7 +51,7 @@ const copy = {
     metrics: 'By the numbers',
     metricsNote: 'Counted from the repository, not from memory.',
     nerdStat:
-      '47K lines hand-written · 38,957 JavaScript, 8,148 CSS · zero TODO, FIXME or HACK markers in any of it',
+      'Manifest V3 · Chrome / Edge / Brave · Safari iOS via SideStore · optional Firebase sync',
 
     premise: 'The premise',
     premiseNote: 'The entire product, in one sentence.',
@@ -62,7 +62,7 @@ const copy = {
     output: 'Real output',
     outputNote: 'Store listing art, labelled as such.',
     outputDisclosure:
-      'Fair warning: these are the Chrome Web Store listing images, not raw screenshots. The panels are rendered in perspective on a designed background, they show v6.4.5 while the current manifest reads 7.3.3, and two of them have a Sync Error chip sitting in the corner. The interface in them is real. The framing is marketing.',
+      'Fair warning: these are the Chrome Web Store listing images, not raw screenshots. The panels are rendered in perspective on a designed background, they show v6.4.5 while the current manifest reads 8.3.8, and two of them have a Sync Error chip sitting in the corner. The interface in them is real. The framing is marketing.',
     expand: 'Open full size',
     close: 'Close',
     shotCaptions: {
@@ -212,7 +212,7 @@ const copy = {
     metrics: 'Με νούμερα',
     metricsNote: 'Μετρημένα από το repository, όχι από μνήμης.',
     nerdStat:
-      '47K γραμμές γραμμένες στο χέρι · 38.957 JavaScript, 8.148 CSS · μηδέν TODO, FIXME ή HACK σε καμία από αυτές',
+      'Manifest V3 · Chrome / Edge / Brave · Safari iOS μέσω SideStore · προαιρετικό Firebase sync',
 
     premise: 'Η αφετηρία',
     premiseNote: 'Όλο το προϊόν, σε μία πρόταση.',
@@ -223,7 +223,7 @@ const copy = {
     output: 'Πραγματικό αποτέλεσμα',
     outputNote: 'Εικόνες από το Chrome Web Store, δηλωμένες ως τέτοιες.',
     outputDisclosure:
-      'Με το χέρι στην καρδιά: αυτές είναι οι εικόνες της καταχώρησης στο Chrome Web Store, όχι σκέτα screenshots. Τα panels είναι σε προοπτική πάνω σε σχεδιασμένο φόντο, δείχνουν v6.4.5 ενώ το τρέχον manifest γράφει 7.3.3, και δύο από αυτές έχουν ένα Sync Error στη γωνία. Το interface μέσα τους είναι αληθινό. Το στήσιμο είναι μάρκετινγκ.',
+      'Με το χέρι στην καρδιά: αυτές είναι οι εικόνες της καταχώρησης στο Chrome Web Store, όχι σκέτα screenshots. Τα panels είναι σε προοπτική πάνω σε σχεδιασμένο φόντο, δείχνουν v6.4.5 ενώ το τρέχον manifest γράφει 8.3.8, και δύο από αυτές έχουν ένα Sync Error στη γωνία. Το interface μέσα τους είναι αληθινό. Το στήσιμο είναι μάρκετινγκ.',
     expand: 'Άνοιγμα σε πλήρες μέγεθος',
     close: 'Κλείσιμο',
     shotCaptions: {
