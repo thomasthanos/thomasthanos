@@ -42,7 +42,7 @@ interface CaseSectionProps {
 const copy = {
   en: {
     back: 'Back to projects',
-    eyebrow: 'Windows toolkit · v10.0.6',
+    eyebrow: 'Windows toolkit · v10.1.6',
     tagline: 'Built because repetitive clicking is stupid.',
     source: 'View source',
     download: 'Download MYLE',
@@ -94,7 +94,7 @@ const copy = {
   },
   el: {
     back: 'Πίσω στα projects',
-    eyebrow: 'Windows toolkit · v10.0.6',
+    eyebrow: 'Windows toolkit · v10.1.6',
     tagline: 'Φτιάχτηκε γιατί τα επαναλαμβανόμενα κλικ είναι χαζά.',
     source: 'Δες τον κώδικα',
     download: 'Κατέβασε το MYLE',
@@ -147,8 +147,8 @@ const copy = {
 } as const
 
 const statData = {
-  en: [['10.0.6', 'latest release'], ['Tauri 2', 'native app shell'], ['Svelte 5', 'TypeScript frontend'], ['Rust', 'native backend'], ['SHA-256', 'verified updates'], ['3', 'GitHub stars · 20 Oct 2026']],
-  el: [['10.0.6', 'νεότερη έκδοση'], ['Tauri 2', 'native app shell'], ['Svelte 5', 'TypeScript frontend'], ['Rust', 'native backend'], ['SHA-256', 'επαληθευμένα updates'], ['3', 'GitHub stars · 20 Οκτ 2026']],
+  en: [['10.1.6', 'latest release'], ['Tauri 2', 'native app shell'], ['Svelte 5', 'TypeScript frontend'], ['Rust', 'native backend'], ['SHA-256', 'verified updates'], ['3', 'GitHub stars · 20 Oct 2026']],
+  el: [['10.1.6', 'νεότερη έκδοση'], ['Tauri 2', 'native app shell'], ['Svelte 5', 'TypeScript frontend'], ['Rust', 'native backend'], ['SHA-256', 'επαληθευμένα updates'], ['3', 'GitHub stars · 20 Οκτ 2026']],
 } as const
 
 const evolution = {
